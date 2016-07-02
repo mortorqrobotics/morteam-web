@@ -8,17 +8,19 @@ let streamify = require("gulp-streamify");
 let uglify = require("gulp-uglify");
 
 gulp.task("build", function() {
-	let bundler = browserify({
-		entries: ["./src/test.js"],
-		debug: true,
-		cache: {},
-		packageCache: {},
-		fullPaths: true
-	});
-	bundler
-		.transform(babelify, { presets: ["es2015", "react"] })
-		.bundle()
-		.pipe(source("test.js"))
-		.pipe(steamify(uglify()))
-		.pipe(gulp.dest("./build/"));
+    let bundler = browserify({
+        entries: ["./src/test.js"],
+        debug: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+    });
+    bundler
+        .transform(babelify, {
+            presets: ["es2015", "react"]
+        })
+        .bundle()
+        .pipe(source("test.js"))
+        .pipe(steamify(uglify()))
+        .pipe(gulp.dest("./build/"));
 });

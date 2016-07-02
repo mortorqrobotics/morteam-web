@@ -4,7 +4,8 @@
   "description": "The web client for the MorMap inter-team FRC collaboration tool",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/gulp/bin/gulp.js build"
+    "build": "./node_modules/gulp/bin/gulp.js build",
+    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" $f; done"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "gulp": "^3.9.1",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.4",
+    "js-beautify": "^1.6.3",
     "vinyl-source-stream": "^1.1.0"
   }
 }
