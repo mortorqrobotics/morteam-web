@@ -21,6 +21,6 @@ gulp.task("build", function() {
         })
         .bundle()
         .pipe(source("test.js"))
-        .pipe(steamify(uglify()))
+        .pipe(streamify(uglify()))
         .pipe(gulp.dest("./build/"));
 });
