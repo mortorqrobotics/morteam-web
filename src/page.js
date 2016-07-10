@@ -9,5 +9,12 @@ async function test() {
     await stuff();
     return 4;
 }
-
 test();
+
+//global
+requireAbs = function(path) {
+    if (path[0] != "/") {
+        path = "/" + path;
+    }
+    import thing from "./components" + path;
+};
