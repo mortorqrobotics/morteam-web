@@ -2,7 +2,7 @@ import React from "react";
 
 import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "../signup/SignupInput";
-import ajax from "../util/ajax";
+import ajax from "../../util/ajax";
 
 let self;
 
