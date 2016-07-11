@@ -28,6 +28,7 @@ gulp.task("build", function() {
                     "syntax-async-functions",
                     "transform-regenerator",
                     "transform-class-properties",
+                    ["transform-runtime", { polyfill: false, regenerator: true }],
                 ]
             })
             .bundle()
