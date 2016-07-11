@@ -20,12 +20,20 @@ export default class Signup extends React.Component {
             password: "",
             confirmPassword: "",
             email: "",
-            phoneNumber: ""
+            phoneNumber: "",
         };
 
-        self.handlerCache = {};
+        for (let key of Object.getOwnPropertyNames(this.constructor.prototype)) {
+            if (key == "constructor"
+                    || key == "render"
+                    || typeof this[key] != "function") {
+                continue;
+            }
+            this[key] = this[key].bind(this);
+        }
     }
 
+    handlerCache = {}
     getChangeHandler(name) {
         if (self.handlerCache[name]) {
             return handlerCache[name];
@@ -63,7 +71,7 @@ export default class Signup extends React.Component {
                     <SignupInput
                         placeholder="First Name"
                         value={self.state.firstname}
-                        onChange={self.getChangeHandler("firstname")}
+                        onChange={this.getChangeHandler("firstname")}
                     />
                     <SignupInput
                         placeholder="Last Name"

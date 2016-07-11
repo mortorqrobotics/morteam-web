@@ -1,22 +1,21 @@
 {
-  "name": "mormap-web",
+  "name": "morteam-web",
   "version": "0.0.1",
-  "description": "The web client for the MorMap inter-team FRC collaboration tool",
-  "main": "index.js",
+  "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
     "build": "./node_modules/gulp/bin/gulp.js build",
     "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" $f; done"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mortorqrobotics/mormap-web.git"
+    "url": "https://github.com/mortorqrobotics/morteam-web.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mortorqrobotics/mormap-web/issues"
+    "url": "https://github.com/mortorqrobotics/morteam-web/issues"
   },
-  "homepage": "https://github.com/mortorqrobotics/mormap-web#readme",
+  "homepage": "https://github.com/mortorqrobotics/morteam-web",
   "dependencies": {
     "axios": "^0.12.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
