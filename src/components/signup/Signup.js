@@ -4,14 +4,14 @@ import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "../signup/SignupInput";
 import ajax from "../util/ajax";
 
-
 let self;
 
 export default class Signup extends React.Component {
 
     constructor(props) {
         super(props);
-        self = that;
+        self = this;
+
         self.state = {
             firstName: "",
             lastName: "",
@@ -22,19 +22,19 @@ export default class Signup extends React.Component {
             phoneNumber: ""
         };
 
+        self.handlerCache = {};
     }
 
-    handlerCache = {};
     getChangeHandler(name) {
-        if (handlerCache[name]) {
+        if (self.handlerCache[name]) {
             return handlerCache[name];
         } else {
-            handlerCache[name] = function(event) {
+            self.handlerCache[name] = function(event) {
                 let obj = {};
                 obj[name] = event.target.value;
                 self.setState(obj);
             };
-            return handlerCache[name];
+            return self.handlerCache[name];
         }
     }
 
@@ -50,6 +50,7 @@ export default class Signup extends React.Component {
             email: self.state.email,
             phone: self.state.phone,
         });
+        console.log(result); // TODO: do stuff
     }
 
 
@@ -57,17 +58,46 @@ export default class Signup extends React.Component {
         return (
             <div>
                 <form style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
-                    <SignupInput placeholder="First Name" value={self.state.firstname} onChange={self.getChangeHandler("firstname")} />
-                    <SignupInput placeholder="Last Name" value={self.state.lastname} onChange={self.getChangeHandler("lastname")} />
-                    <SignupInput placeholder="Username" value={self.state.username} onChange={self.getChangeHandler("username")} />
-                    <SignupInput placeholder="Password" value={self.state.password} onChange={self.getChangeHandler("password")} />
-                    <SignupInput placeholder="Confirm Password" value={self.state.confirmPassword} onChange={self.getChangeHandler("confirmPassword")} />
-                    <SignupInput placeholder="Email" value={self.state.email} onChange={self.getChangeHandler("email")} />
-                    <SignupInput placeholder="Phone Number" value={self.state.phoneNumber} onChange={self.getChangeHandler("phoneNumber")} />
+                    <SignupInput
+                        placeholder="First Name"
+                        value={self.state.firstname}
+                        onChange={self.getChangeHandler("firstname")}
+                    />
+                    <SignupInput
+                        placeholder="Last Name"
+                        value={self.state.lastname}
+                        onChange={self.getChangeHandler("lastname")}
+                    />
+                    <SignupInput
+                        placeholder="Username"
+                        value={self.state.username}
+                        onChange={self.getChangeHandler("username")}
+                    />
+                    <SignupInput
+                        placeholder="Password"
+                        value={self.state.password}
+                        onChange={self.getChangeHandler("password")}
+                    />
+                    <SignupInput
+                        placeholder="Confirm Password"
+                        value={self.state.confirmPassword}
+                        onChange={self.getChangeHandler("confirmPassword")}
+                    />
+                    <SignupInput
+                        placeholder="Email"
+                        value={self.state.email}
+                        onChange={self.getChangeHandler("email")}
+                    />
+                    <SignupInput
+                        placeholder="Phone Number"
+                        value={self.state.phoneNumber}
+                        onChange={self.getChangeHandler("phoneNumber")}
+                    />
                 </form>
-               <Link location="login" text="Back to login" />
+
+                <Link location="login" text="Back to login" />
+
             </div>
         )
     }
-
 }
