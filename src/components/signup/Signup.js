@@ -4,16 +4,16 @@ import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
 import Link from "../shared/Link";
 import ajax from "../../util/ajax";
-
-let self;
+import {
+    fixThis
+} from "../../util";
 
 export default class Signup extends React.Component {
 
     constructor(props) {
         super(props);
-        self = this;
 
-        self.state = {
+        this.state = {
             firstName: "",
             lastName: "",
             username: "",
@@ -23,41 +23,34 @@ export default class Signup extends React.Component {
             phoneNumber: "",
         };
 
-        for (let key of Object.getOwnPropertyNames(this.constructor.prototype)) {
-            if (key == "constructor"
-                    || key == "render"
-                    || typeof this[key] != "function") {
-                continue;
-            }
-            this[key] = this[key].bind(this);
-        }
+        fixThis(this);
     }
 
     handlerCache = {}
     getChangeHandler(name) {
-        if (self.handlerCache[name]) {
+        if (this.handlerCache[name]) {
             return handlerCache[name];
         } else {
-            self.handlerCache[name] = function(event) {
+            this.handlerCache[name] = function(event) {
                 let obj = {};
                 obj[name] = event.target.value;
-                self.setState(obj);
-            };
-            return self.handlerCache[name];
+                this.setState(obj);
+            }.bind(this);
+            return this.handlerCache[name];
         }
     }
 
     async onSubmit() {
-        if (self.state.password != self.state.confirmPassword) {
+        if (this.state.password != this.state.confirmPassword) {
             return alert("get rid of this alert");
         }
         let result = await ajax.post("/users", {
-            firstname: self.state.firstname,
-            lastname: self.state.lastname,
-            username: self.state.username,
-            password: self.state.password,
-            email: self.state.email,
-            phone: self.state.phone,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email,
+            phone: this.state.phone,
         });
         console.log(result); // TODO: do stuff
     }
@@ -70,38 +63,38 @@ export default class Signup extends React.Component {
                 // style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
                     <SignupInput
                         placeholder="First Name"
-                        value={self.state.firstname}
+                        value={this.state.firstname}
                         onChange={this.getChangeHandler("firstname")}
                     />
                     <SignupInput
                         placeholder="Last Name"
-                        value={self.state.lastname}
-                        onChange={self.getChangeHandler("lastname")}
+                        value={this.state.lastname}
+                        onChange={this.getChangeHandler("lastname")}
                     />
                     <SignupInput
                         placeholder="Username"
-                        value={self.state.username}
-                        onChange={self.getChangeHandler("username")}
+                        value={this.state.username}
+                        onChange={this.getChangeHandler("username")}
                     />
                     <SignupInput
                         placeholder="Password"
-                        value={self.state.password}
-                        onChange={self.getChangeHandler("password")}
+                        value={this.state.password}
+                        onChange={this.getChangeHandler("password")}
                     />
                     <SignupInput
                         placeholder="Confirm Password"
-                        value={self.state.confirmPassword}
-                        onChange={self.getChangeHandler("confirmPassword")}
+                        value={this.state.confirmPassword}
+                        onChange={this.getChangeHandler("confirmPassword")}
                     />
                     <SignupInput
                         placeholder="Email"
-                        value={self.state.email}
-                        onChange={self.getChangeHandler("email")}
+                        value={this.state.email}
+                        onChange={this.getChangeHandler("email")}
                     />
                     <SignupInput
                         placeholder="Phone Number"
-                        value={self.state.phoneNumber}
-                        onChange={self.getChangeHandler("phoneNumber")}
+                        value={this.state.phoneNumber}
+                        onChange={this.getChangeHandler("phoneNumber")}
                     />
                 </form>
 
