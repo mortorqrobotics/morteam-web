@@ -24,7 +24,11 @@ gulp.task("build", function() {
         bundler
             .transform(babelify, {
                 presets: ["es2015", "react"],
-                plugins: ["syntax-async-functions", "transform-regenerator"]
+                plugins: [
+                    "syntax-async-functions",
+                    "transform-regenerator",
+                    "transform-class-properties",
+                ]
             })
             .bundle()
             .pipe(source(page.capitalize() + ".js"))
