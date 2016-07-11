@@ -31,6 +31,10 @@ gulp.task("build", function() {
                 ]
             })
             .bundle()
+            .on("error", function(err) {
+                console.log(err.toString());
+                console.log(err.codeFrame);
+            })
             .pipe(source(page.capitalize() + ".js"))
 //            .pipe(streamify(uglify()))
             .pipe(gulp.dest("./build/"));
