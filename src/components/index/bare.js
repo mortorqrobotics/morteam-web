@@ -10,18 +10,18 @@ import styles from "./path";
 
 export default class ComponentName extends React.Component {
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
         self = this;
-		self.state = {
+        self.state = {
 
-		};
-	}
+        };
+    }
 
     //Handle Actions
 
     //Render
-	render() {
+    render() {
 
-	}
+    }
 }
