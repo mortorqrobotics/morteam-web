@@ -37,6 +37,10 @@ gulp.task("build", function() {
     }
 });
 
+gulp.task("watch", function() {
+    gulp.watch("src/**/*.js", ["build"]);
+});
+
 String.prototype.capitalize = function() {
     return this[0].toUpperCase() + this.substring(1);
 };

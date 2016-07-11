@@ -4,6 +4,7 @@
   "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
     "build": "./node_modules/gulp/bin/gulp.js build",
+    "watch": "./node_modules/gulp/bin/gulp.js watch",
     "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" $f; done"
   },
   "repository": {
