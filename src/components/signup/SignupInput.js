@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 
 import TextBox from "../shared/forms/TextBox.js";
 //import signupStyles from "some location where the styles imports are";
@@ -6,7 +6,7 @@ import TextBox from "../shared/forms/TextBox.js";
 export default class SignupInput extends React.Component {
     render() {
         return (
-            <TextBox placeholder={self.props.placeholder} style={SignupStyles.input} />
+            <TextBox placeholder={this.props.placeholder} /> // style={SignupStyles.input} />
         )
     }
 }

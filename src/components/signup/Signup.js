@@ -1,7 +1,8 @@
-import React from "react";
+//import React from "react";
 
 import SubmitButton from "../shared/forms/SubmitButton";
-import SignupInput from "../signup/SignupInput";
+import SignupInput from "./SignupInput";
+import Link from "../shared/Link";
 import ajax from "../../util/ajax";
 
 let self;
@@ -57,7 +58,8 @@ export default class Signup extends React.Component {
     render() {
         return (
             <div>
-                <form style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
+                <form action="javascript:void 0">
+                // style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
                     <SignupInput
                         placeholder="First Name"
                         value={self.state.firstname}
@@ -101,3 +103,5 @@ export default class Signup extends React.Component {
         )
     }
 }
+
+window.Page = Signup;

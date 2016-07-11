@@ -27,8 +27,8 @@ gulp.task("build", function() {
                 plugins: ["syntax-async-functions", "transform-regenerator"]
             })
             .bundle()
-            .pipe(source(page + ".js"))
-            .pipe(streamify(uglify()))
+            .pipe(source(page.capitalize() + ".js"))
+//            .pipe(streamify(uglify()))
             .pipe(gulp.dest("./build/"));
     }
 });
