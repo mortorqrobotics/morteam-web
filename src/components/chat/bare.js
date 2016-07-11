@@ -1,7 +1,5 @@
 import React from "react";
 
-let self;
-
 //Import components
 import SubComponentName from "./path";
 
@@ -12,8 +10,7 @@ export default class ComponentName extends React.Component {
 
     constructor(props) {
         super(props);
-        self = this;
-        self.state = {
+        this.state = {
 
         };
     }
