@@ -14,13 +14,13 @@ export default class Signup extends React.Component {
         super(props);
 
         this.state = {
-            firstName: "",
-            lastName: "",
+            firstname: "",
+            lastname: "",
             username: "",
             password: "",
             confirmPassword: "",
             email: "",
-            phoneNumber: "",
+            phone: "",
         };
 
         fixThis(this);
@@ -29,7 +29,7 @@ export default class Signup extends React.Component {
     handlerCache = {}
     getChangeHandler(name) {
         if (this.handlerCache[name]) {
-            return handlerCache[name];
+            return this.handlerCache[name];
         } else {
             this.handlerCache[name] = function(event) {
                 let obj = {};
@@ -44,7 +44,7 @@ export default class Signup extends React.Component {
         if (this.state.password != this.state.confirmPassword) {
             return alert("get rid of this alert");
         }
-        let result = await ajax.post("/users", {
+        let result = await ajax("post", "/users", {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             username: this.state.username,
@@ -59,7 +59,7 @@ export default class Signup extends React.Component {
     render() {
         return (
             <div>
-                <form action="javascript:void 0">
+                <form action="javascript:void 0" onSubmit={this.onSubmit}>
                 // style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
                     <SignupInput
                         placeholder="First Name"
@@ -94,8 +94,9 @@ export default class Signup extends React.Component {
                     <SignupInput
                         placeholder="Phone Number"
                         value={this.state.phoneNumber}
-                        onChange={this.getChangeHandler("phoneNumber")}
+                        onChange={this.getChangeHandler("phone")}
                     />
+                        <input type="submit" />
                 </form>
 
                 <Link location="login" text="Back to login" />

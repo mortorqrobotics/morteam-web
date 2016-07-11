@@ -6,7 +6,11 @@ import TextBox from "../shared/forms/TextBox.js";
 export default class SignupInput extends React.Component {
     render() {
         return (
-            <TextBox placeholder={this.props.placeholder} /> // style={SignupStyles.input} />
+            <TextBox
+                placeholder={this.props.placeholder}
+                onChange={this.props.onChange}
+                // style={SignupStyles.input} />
+            />
         )
     }
 }
