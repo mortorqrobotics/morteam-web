@@ -35,7 +35,7 @@ export default class Signup extends React.Component {
             }.bind(this);
             return this.handlerCache[name];
         }
-    }
+    }.bind(this);
 
     async onSubmit() {
         if (this.state.password != this.state.confirmPassword) {
@@ -50,7 +50,7 @@ export default class Signup extends React.Component {
             phone: this.state.phone,
         });
         console.log(result); // TODO: do stuff
-    }
+    }.bind(this);
 
 
     render() {
