@@ -24,7 +24,7 @@ export default class Signup extends React.Component {
     }
 
     handlerCache = {}
-    getChangeHandler(name) {
+    getChangeHandler = function(name) {
         if (this.handlerCache[name]) {
             return this.handlerCache[name];
         } else {
@@ -37,7 +37,7 @@ export default class Signup extends React.Component {
         }
     }.bind(this);
 
-    async onSubmit() {
+    onSubmit = async function() {
         if (this.state.password != this.state.confirmPassword) {
             return alert("get rid of this alert");
         }
