@@ -4,9 +4,7 @@ import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
 import Link from "../shared/Link";
 import ajax from "../../util/ajax";
-import {
-    fixThis
-} from "../../util";
+
 
 export default class Signup extends React.Component {
 
@@ -23,7 +21,6 @@ export default class Signup extends React.Component {
             phone: "",
         };
 
-        fixThis(this);
     }
 
     handlerCache = {}
