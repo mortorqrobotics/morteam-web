@@ -3,8 +3,8 @@
 export default class Link extends React.Component {
 
     static propTypes = {
-        location: React.PropTypes.string,
-        text: React.PropTypes.string
+        location: React.PropTypes.string.isRequired,
+        text: React.PropTypes.string.isRequired,
     }
 
     render() {
