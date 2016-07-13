@@ -29,7 +29,7 @@ gulp.task("build", function() {
                     "transform-regenerator",
                     "transform-class-properties",
                     ["transform-runtime", { polyfill: false, regenerator: true }],
-                    ["css-in-js", { "vendorPrefixes": true, "bundleFile": "public/bundle.css" }]
+                    ["css-in-js", { "vendorPrefixes": true, "bundleFile": "src/bundle.css" }]
                 ]
             })
             .bundle()
