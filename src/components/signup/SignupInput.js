@@ -8,6 +8,7 @@ export default class SignupInput extends React.Component {
     static propTypes = {
         placeholder: React.PropTypes.string,
         onChange: React.PropTypes.func,
+        value: React.PropTypes.string
     }
 
     render() {
@@ -15,7 +16,7 @@ export default class SignupInput extends React.Component {
             <TextBox
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
-                // style={SignupStyles.input} />
+                style={}
             />
         )
     }

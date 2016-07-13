@@ -57,7 +57,6 @@ export default class Signup extends React.Component {
         return (
             <div>
                 <form action="javascript:void 0" onSubmit={this.onSubmit}>
-                // style="text-align: center;" id="signup_form" enctype="multipart/form-data" action="/users" method="post">
                     <SignupInput
                         placeholder="First Name"
                         value={this.state.firstname}

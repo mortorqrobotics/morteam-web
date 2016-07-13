@@ -4,7 +4,8 @@ export default class TextBox extends React.Component {
 
     static propTypes = {
         placeholder: React.PropTypes.string,
-        onChange: React.PropTypes.func
+        onChange: React.PropTypes.func,
+        style: React.PropTypes.object
     }
 
     render() {
@@ -13,7 +14,7 @@ export default class TextBox extends React.Component {
                 type="text"
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
-                // style={this.props.style}
+                style={this.props.style}
             />
         )
     }
