@@ -25,6 +25,7 @@
     "react-dom": "^15.1.0"
   },
   "devDependencies": {
+    "babel-plugin-css-in-js": "^1.2.3",
     "babel-plugin-syntax-async-functions": "^6.8.0",
     "babel-plugin-transform-regenerator": "^6.9.0",
     "babel-plugin-transform-runtime": "^6.9.0",
