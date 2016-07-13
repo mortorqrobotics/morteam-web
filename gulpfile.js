@@ -29,6 +29,7 @@ gulp.task("build", function() {
                     "transform-regenerator",
                     "transform-class-properties",
                     ["transform-runtime", { polyfill: false, regenerator: true }],
+                    ["css-in-js", { "vendorPrefixes": true, "bundleFile": "public/bundle.css" }]
                 ]
             })
             .bundle()
@@ -49,4 +50,3 @@ gulp.task("watch", function() {
 String.prototype.capitalize = function() {
     return this[0].toUpperCase() + this.substring(1);
 };
-
