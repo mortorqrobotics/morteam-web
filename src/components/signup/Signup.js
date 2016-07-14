@@ -3,7 +3,7 @@
 import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
 import Link from "../shared/Link";
-import ajax from "../../util/ajax";
+import ajax from "../../util/ajax.js";
 
 
 export default class Signup extends React.Component {
@@ -41,7 +41,7 @@ export default class Signup extends React.Component {
         if (this.state.password != this.state.confirmPassword) {
             return alert("get rid of this alert");
         }
-        let result = await ajax("post", "/users", {
+        let result = await ajax.request("post", ajax.getRoute("users"), {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
             username: this.state.username,

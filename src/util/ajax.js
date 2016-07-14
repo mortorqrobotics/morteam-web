@@ -1,6 +1,10 @@
 //import axios from "axios";
 
-export async function request(method, path, data) {
+let ajax = {};
+
+export default ajax;
+
+ajax.request = async function(method, path, data) {
     return await axios({
         method: method,
         url: path,
@@ -8,17 +12,20 @@ export async function request(method, path, data) {
     });
 }
 
-export function getRoute(name) { // also takes more arguments
+ajax.getRoute = function(name) { // also takes more arguments
     let path = routes[name];
     let args = Array.prototype.slice.call(arguments, 1);
-    return path.split("/").map(part => (
-        part[0] != ":"
-            ? part
-            : typeof args[0] == "object"
-                ? args[0][part.substring(1)]
-                : args.splice(0, 1)[0]
+    return path.split("/").map(part => {
+        if (part[0] != ":") {
+            return part;
+        }
+        if (typeof args[0] == "object") {
+            return args[0][part.substring(1)];
+        } else {
+            args.splice(0, 1)[0]
+        }
     )).join("/");
-//    while (path != (path = path.replace(/:([^\/]+)/, value("$1"))));
+    //    while (path != (path = path.replace(/:([^\/]+)/, value("$1"))));
 }
 
 let routes = {
@@ -66,4 +73,3 @@ let routes = {
     "current-team-user": "/teams/current/users/id/:userId",
     "user-team-info": "/users/id/:userId/teamInfo",
 }
-

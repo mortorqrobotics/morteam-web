@@ -5,7 +5,7 @@ import TextBox from "../shared/forms/TextBox.js";
 
 var styles = cssInJS({
     "signup_item": {
-      "display": "block"
+        "display": "block"
     }
 });
 
