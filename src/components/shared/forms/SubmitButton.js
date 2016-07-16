@@ -10,7 +10,7 @@ export default class SubmitButton extends React.Component {
         return (
             <input
                 type="submit"
-                value={this.props.text}
+                value={this.props.value}
                 style={this.props.style}
             />
         )
