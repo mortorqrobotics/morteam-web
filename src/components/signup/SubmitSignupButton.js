@@ -1,3 +1,4 @@
+import SubmitButton from '../shared/forms/SubmitButton.js'
 
 var styles = {
     submitButton: {
