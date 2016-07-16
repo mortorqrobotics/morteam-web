@@ -5,12 +5,12 @@ import TextBox from "../shared/forms/TextBox.js";
 
 var styles = {
     "signup_item": {
-      "display": "block"
+        "display": "block"
     },
     "signup_item_not_make_team_question": {
-      "boxShadow": "1.5px 3px 8px -2px #BA7000",
-      "borderRadius": "0px"
-  },
+        "boxShadow": "1.5px 3px 8px -2px #BA7000",
+        "borderRadius": "0px"
+    },
     "signup_item_extended": {
         "position": "relative",
         "left": "50%",
@@ -39,7 +39,7 @@ export default class SignupInput extends React.Component {
             <TextBox
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
-                style={[styles.signup_item, styles.signup_item_not_make_team_question, styles.signup_item_extended]}
+                style={[styles.signup_item, styles.signup_item_extended, styles.signup_item_not_make_team_question]}
             />
         )
     }

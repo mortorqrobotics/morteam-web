@@ -10,8 +10,8 @@ import {
 
 var styles = {
     form: {
-      "position": "relative",
-      "textAlign": "center"
+        "position": "relative",
+        "textAlign": "center"
     },
     div: {
         "width": "360px",
@@ -23,9 +23,17 @@ var styles = {
         "margin": "-330px 0 0 -180px",
         "borderRadius": "1px",
         "boxShadow": "3px 5px 10px -2px gray"
+    },
+    globalDefaults: {
+        "margin": "0",
+        "padding": "0",
+        "fontFamily": "'exo 2', sans-serif",
+        "fontWeight": "200",
+        "outline": "0"
     }
 }
 
+@Radium
 export default class Signup extends React.Component {
 
     constructor(props) {
@@ -64,7 +72,7 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-            <div style={styles.div}>
+            <div style={[styles.globalDefaults, styles.div]}>
                 <form style={styles.form} action="javascript:void 0" onSubmit={this.onSubmit}>
                     <SignupInput
                         placeholder="First Name"
