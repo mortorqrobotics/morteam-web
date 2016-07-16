@@ -25,7 +25,6 @@
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
-    "babel-plugin-css-in-js": "^1.2.3",
     "babel-plugin-syntax-async-functions": "^6.8.0",
     "babel-plugin-transform-class-properties": "^6.10.2",
     "babel-plugin-transform-regenerator": "^6.9.0",
