@@ -25,7 +25,7 @@ var styles = {
         "borderRadius": "1px",
         "boxShadow": "3px 5px 10px -2px gray"
     },
-    globalDefaults: {
+    globalDefaults: { //Import later
         "margin": "0",
         "padding": "0",
         "fontFamily": "'exo 2', sans-serif",
@@ -73,48 +73,48 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-            <div style={[styles.globalDefaults, styles.div]}>
-                <form style={styles.form} action="javascript:void 0" onSubmit={this.onSubmit}>
-                    <SignupInput
-                        placeholder="First Name"
-                        value={this.state.firstname}
-                        onChange={this.getChangeHandler("firstname")}
-                    />
-                    <SignupInput
-                        placeholder="Last Name"
-                        value={this.state.lastname}
-                        onChange={this.getChangeHandler("lastname")}
-                    />
-                    <SignupInput
-                        placeholder="Username"
-                        value={this.state.username}
-                        onChange={this.getChangeHandler("username")}
-                    />
-                    <SignupInput
-                        placeholder="Password"
-                        value={this.state.password}
-                        onChange={this.getChangeHandler("password")}
-                    />
-                    <SignupInput
-                        placeholder="Confirm Password"
-                        value={this.state.confirmPassword}
-                        onChange={this.getChangeHandler("confirmPassword")}
-                    />
-                    <SignupInput
-                        placeholder="Email"
-                        value={this.state.email}
-                        onChange={this.getChangeHandler("email")}
-                    />
-                    <SignupInput
-                        placeholder="Phone Number"
-                        value={this.state.phoneNumber}
-                        onChange={this.getChangeHandler("phone")}
-                    />
-                    <SubmitSignupButton />
-                </form>
-
+            <div>
                 <Link location="login" text="Back to login" />
-
+                <div style={[styles.globalDefaults, styles.div]}>
+                    <form style={styles.form} action="javascript:void 0" onSubmit={this.onSubmit}>
+                        <SignupInput
+                            placeholder="First Name"
+                            value={this.state.firstname}
+                            onChange={this.getChangeHandler("firstname")}
+                        />
+                        <SignupInput
+                            placeholder="Last Name"
+                            value={this.state.lastname}
+                            onChange={this.getChangeHandler("lastname")}
+                        />
+                        <SignupInput
+                            placeholder="Username"
+                            value={this.state.username}
+                            onChange={this.getChangeHandler("username")}
+                        />
+                        <SignupInput
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={this.getChangeHandler("password")}
+                        />
+                        <SignupInput
+                            placeholder="Confirm Password"
+                            value={this.state.confirmPassword}
+                            onChange={this.getChangeHandler("confirmPassword")}
+                        />
+                        <SignupInput
+                            placeholder="Email"
+                            value={this.state.email}
+                            onChange={this.getChangeHandler("email")}
+                        />
+                        <SignupInput
+                            placeholder="Phone Number"
+                            value={this.state.phoneNumber}
+                            onChange={this.getChangeHandler("phone")}
+                        />
+                        <SubmitSignupButton />
+                    </form>
+                </div>
             </div>
         )
     }
