@@ -1,4 +1,4 @@
-import SubmitButton from '../shared/forms/SubmitButton'
+import SubmitButton from "~/components/shared/forms/SubmitButton";
 
 var styles = {
     submitButton: {

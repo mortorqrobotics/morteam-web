@@ -1,10 +1,10 @@
 //import React from "react";
 
-import SubmitButton from "../shared/forms/SubmitButton";
+import SubmitButton from "~/components/shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
 import SubmitSignupButton from "./SubmitSignupButton";
-import Link from "../shared/Link";
-import ajax from "../../util/ajax.js";
+import Link from "~/components/shared/Link";
+import ajax from "~/util/ajax.js";
 import {
     makeChangeHandlerFactory
 } from "../../util";

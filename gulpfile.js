@@ -30,6 +30,7 @@ gulp.task("build", function() {
                     "transform-regenerator",
                     "transform-decorators-legacy",
                     "transform-class-properties",
+                    ["babel-root-import", { rootPathSuffix: "src" }],
                     ["transform-runtime", { polyfill: false, regenerator: true }],
                 ]
             })

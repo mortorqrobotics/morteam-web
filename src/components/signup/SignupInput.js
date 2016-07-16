@@ -1,6 +1,6 @@
 //import React from "react";
 
-import TextBox from "../shared/forms/TextBox.js";
+import TextBox from "~/components/shared/forms/TextBox.js";
 //import signupStyles from "some location where the styles imports are";
 
 var styles = {
