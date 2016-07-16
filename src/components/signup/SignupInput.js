@@ -16,7 +16,6 @@ export default class SignupInput extends React.Component {
             <TextBox
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
-                className={styles.signup_item}
             />
         )
     }
