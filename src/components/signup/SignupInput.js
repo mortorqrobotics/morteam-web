@@ -3,17 +3,20 @@
 import TextBox from "../shared/forms/TextBox.js";
 //import signupStyles from "some location where the styles imports are";
 
+var styles = {
+    "signup_item": {
+      "display": "block"
+    },
+    "signup_item_not__make_team_question": {
+      "box-shadow": "1.5px 3px 8px -2px #BA7000 !important",
+      "border-radius": "0px !important"
+    }
+}
+
+@Radium
 export default class SignupInput extends React.Component {
 
-    var styles = {
-        "signup_item": {
-          "display": "block"
-        },
-        "signup_item_not__make_team_question": {
-          "box-shadow": "1.5px 3px 8px -2px #BA7000 !important",
-          "border-radius": "0px !important"
-        }
-    });
+
 
     static propTypes = {
         placeholder: React.PropTypes.string,

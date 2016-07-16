@@ -21,12 +21,14 @@ gulp.task("build", function() {
         });
         bundler.external("react");
         bundler.external("axios");
+        bundler.external("radium");
         bundler
             .transform(babelify, {
                 presets: ["es2015", "react"],
                 plugins: [
                     "syntax-async-functions",
                     "transform-regenerator",
+                    "transform-decorators-legacy",
                     "transform-class-properties",
                     ["transform-runtime", { polyfill: false, regenerator: true }],
                 ]
