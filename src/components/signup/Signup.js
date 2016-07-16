@@ -2,6 +2,7 @@
 
 import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
+import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "../shared/Link";
 import ajax from "../../util/ajax.js";
 import {
@@ -109,7 +110,7 @@ export default class Signup extends React.Component {
                         value={this.state.phoneNumber}
                         onChange={this.getChangeHandler("phone")}
                     />
-                        <input type="submit" />
+                    <SubmitSignupButton />
                 </form>
 
                 <Link location="login" text="Back to login" />
