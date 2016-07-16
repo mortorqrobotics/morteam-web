@@ -1,4 +1,3 @@
-
 @Radium
 export default class SubmitButton extends React.Component {
 
