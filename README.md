@@ -1,2 +1,2 @@
-# mormap-web
-The web client for the MorMap inter-team FRC collaboration tool
+# morteam-web
+The new web client for MorTeam
