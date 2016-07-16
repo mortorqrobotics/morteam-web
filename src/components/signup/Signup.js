@@ -4,12 +4,17 @@ import SubmitButton from "../shared/forms/SubmitButton";
 import SignupInput from "./SignupInput";
 import Link from "../shared/Link";
 import ajax from "../../util/ajax.js";
+import {
+    makeChangeHandlerFactory
+} from "../../util";
 
 
 export default class Signup extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.getChangeHandler = makeChangeHandlerFactory(this);
 
         this.state = {
             firstname: "",
@@ -23,19 +28,6 @@ export default class Signup extends React.Component {
 
     }
 
-    handlerCache = {}
-    getChangeHandler = function(name) {
-        if (this.handlerCache[name]) {
-            return this.handlerCache[name];
-        } else {
-            this.handlerCache[name] = function(event) {
-                let obj = {};
-                obj[name] = event.target.value;
-                this.setState(obj);
-            }.bind(this);
-            return this.handlerCache[name];
-        }
-    }.bind(this);
 
     onSubmit = async function() {
         if (this.state.password != this.state.confirmPassword) {

@@ -1,10 +1,15 @@
-export function fixThis(obj) {
-    for (let key of Object.getOwnPropertyNames(obj.constructor.prototype)) {
-        if (key === "constructor" ||
-            key === "render" ||
-            typeof obj[key] !== "function") {
-            continue;
+export function makeChangeHandlerFactory(ctx) {
+    let handlerCache = {};
+    return function(name) {
+        if (handlerCache[name]) {
+            return handlerCache[name];
+        } else {
+            handlerCache[name] = (event) => {
+                let obj = {};
+                obj[name] = event.target.value;
+                this.setState(obj);
+            }
+            return handlerCache[name];
         }
-        obj[key] = obj[key].bind(obj);
-    }
+    }.bind(ctx);
 }

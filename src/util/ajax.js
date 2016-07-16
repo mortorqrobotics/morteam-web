@@ -22,10 +22,10 @@ ajax.getRoute = function(name) { // also takes more arguments
         if (typeof args[0] == "object") {
             return args[0][part.substring(1)];
         } else {
-            args.splice(0, 1)[0]
+            return args.splice(0, 1)[0]
         }
-    )).join("/");
-    //    while (path != (path = path.replace(/:([^\/]+)/, value("$1"))));
+    }).join("/");
+    //while (path != (path = path.replace(/:([^\/]+)/, value("$1"))));
 }
 
 let routes = {
