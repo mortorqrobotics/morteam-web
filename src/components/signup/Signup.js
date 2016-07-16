@@ -8,6 +8,23 @@ import {
     makeChangeHandlerFactory
 } from "../../util";
 
+var styles = {
+    form: {
+      "position": "relative",
+      "textAlign": "center"
+    },
+    div: {
+        "width": "360px",
+        "height": "640px",
+        "backgroundColor": "#FFC547",
+        "position": "absolute",
+        "top": "50%",
+        "left": "50%",
+        "margin": "-330px 0 0 -180px",
+        "borderRadius": "1px",
+        "boxShadow": "3px 5px 10px -2px gray"
+    }
+}
 
 export default class Signup extends React.Component {
 
@@ -47,8 +64,8 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-            <div>
-                <form action="javascript:void 0" onSubmit={this.onSubmit}>
+            <div style={styles.div}>
+                <form style={styles.form} action="javascript:void 0" onSubmit={this.onSubmit}>
                     <SignupInput
                         placeholder="First Name"
                         value={this.state.firstname}
