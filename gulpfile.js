@@ -9,7 +9,8 @@ let uglify = require("gulp-uglify");
 
 gulp.task("build", function() {
     let pages = [
-        "signup"
+        "signup",
+        "login",
     ];
     for (let page of pages) {
         let bundler = browserify({
