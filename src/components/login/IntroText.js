@@ -5,7 +5,12 @@ var styles = {
     	paddingTop: "100px";
     	paddingLeft: "100px";
     	paddingRight: "100px";
-    }
+    },
+    landingBoxMain: {
+        lineHeight: "32.5px",
+    	maxWidth: "800px",
+    	margin: "auto",
+    },
 }
 
 @Radium
@@ -14,7 +19,7 @@ export default class IntroText extends React.Component {
     render() {
         return (
             <div style={styles.introText}>
-    			<div style={}>
+    			<div style={styles.landingBoxMain}>
                     <IntroTextItem title="Welcome" text="" />
                     <IntroTextItem title="Subdivisions" text="" />
                     <IntroTextItem title="Announcements" text="" />
