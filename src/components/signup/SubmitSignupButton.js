@@ -16,6 +16,9 @@ var styles = {
         ":hover": {
             "backgroundColor": "#008AE6",
             "cursor": "pointer"
+        },
+        ":focus": {
+            outline: "none"
         }
     }
 }
