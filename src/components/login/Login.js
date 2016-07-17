@@ -8,7 +8,7 @@ var styles = {
 }
 
 @Radium
-export default class Signup extends React.Component {
+export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
