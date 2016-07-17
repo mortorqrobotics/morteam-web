@@ -8,6 +8,10 @@ var styles = {
     text: {
     	max-width: "800px";
     	margin-bottom: "85px";
+    },
+    h1: {
+        paddingTop: "10px";
+		fontSize: "50px";
     }
 }
 
