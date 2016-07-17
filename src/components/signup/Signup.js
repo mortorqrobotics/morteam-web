@@ -1,6 +1,7 @@
 //import React from "react";
 
 import SubmitButton from "~/components/shared/forms/SubmitButton";
+import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 import SignupInput from "./SignupInput";
 import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "~/components/shared/Link";
@@ -50,6 +51,7 @@ export default class Signup extends React.Component {
             confirmPassword: "",
             email: "",
             phone: "",
+            errorMsg: ""
         };
 
     }
@@ -57,7 +59,9 @@ export default class Signup extends React.Component {
 
     onSubmit = async function() {
         if (this.state.password != this.state.confirmPassword) {
-            return alert("get rid of this alert");
+        	this.setState({
+        		errorMsg: "Password does not match"
+        	});
         }
         let result = await ajax.request("post", ajax.getRoute("users"), {
             firstname: this.state.firstname,
@@ -112,6 +116,7 @@ export default class Signup extends React.Component {
                             value={this.state.phoneNumber}
                             onChange={this.getChangeHandler("phone")}
                         />
+                        <ErrorMsg message={this.state.errorMsg} />
                         <SubmitSignupButton />
                     </form>
                 </div>

@@ -7,7 +7,7 @@ export default class ErrorMsg extends React.Component {
 
     render() {
         return (
-            <span style={}>{this.props.message}</span>
+            <span>{this.props.message}</span>
         )
     }
 }
