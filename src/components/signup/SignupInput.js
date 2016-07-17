@@ -21,7 +21,10 @@ var styles = {
         "margin-top": "20px",
         "border": "0",
         "border-radius": "5px",
-        "padding": "8px"
+        "padding": "8px",
+        ":focus": {
+            outline: "none"
+        }
     }
 }
 
