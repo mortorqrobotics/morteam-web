@@ -11,9 +11,9 @@ var styles = {
     	height: "auto",
     	position: "fixed",
     	right: "10px",
-    	text-align: "center",
-    	padding-top: "50px",
-    	padding-bottom: "50px",
+    	textAlign: "center",
+    	paddingTop: "50px",
+    	paddingBottom: "50px",
     	top: "230px",
     },
     fpLink: {
