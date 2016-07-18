@@ -47,10 +47,10 @@ export default class LoginBox extends React.Component {
         return (
             <div style={styles.loginBox}>
 
-                <LoginUsernameBox onChange={this.getChangeHandler("username")}/>
-                <LoginPasswordBox onChange={this.getChangeHandler("password")}/>
-                <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} />
-                <br/>
+                <LoginUsernameBox onChange={this.getChangeHandler("username")}/><br/>
+                <LoginPasswordBox onChange={this.getChangeHandler("password")}/><br/>
+                <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} /><br/>
+
 
     			<Link style={styles.fpLink} location="fp" text="Forgot password?" />
     		</div>
