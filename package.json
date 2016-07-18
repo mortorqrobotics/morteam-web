@@ -5,7 +5,7 @@
   "scripts": {
     "build": "./node_modules/gulp/bin/gulp.js build",
     "watch": "./node_modules/gulp/bin/gulp.js watch",
-    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" $f; done"
+    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" -b collapse-preserve-inline $f; done"
   },
   "repository": {
     "type": "git",

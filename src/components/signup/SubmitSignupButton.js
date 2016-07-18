@@ -1,6 +1,6 @@
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 
-var styles = {
+let styles = {
     submitButton: {
         "backgroundColor": "#0099FF",
         "border": "0",

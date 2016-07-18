@@ -1,4 +1,4 @@
-var styles = {
+let styles = {
     introText: {
         width: "calc(100% - 490px)"
         textAlign: "justify";

@@ -1,4 +1,4 @@
-var styles = {
+let styles = {
     landingBox: {
         backgroundColor: "#FFC547",
         paddingTop: "30px",

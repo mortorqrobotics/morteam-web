@@ -6,11 +6,9 @@ import SignupInput from "./SignupInput";
 import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "~/components/shared/Link";
 import ajax from "~/util/ajax.js";
-import {
-    makeChangeHandlerFactory
-} from "../../util";
+import { makeChangeHandlerFactory } from "../../util";
 
-var styles = {
+let styles = {
     form: {
         "position": "relative",
         "textAlign": "center"
@@ -73,9 +71,9 @@ export default class Signup extends React.Component {
                 phone: this.state.phone,
             });
             console.log(result); // TODO: redirect
-        } catch (result) {
+        } catch ({ data }) {
             this.setState({
-                errorMsg: result.data
+                errorMsg: data
             });
         }
     }

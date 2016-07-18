@@ -1,9 +1,5 @@
 //import React from "react";
 
-import ajax from "~/util/ajax.js";
-import {
-    makeChangeHandlerFactory
-} from "../../util";
 import TextBox from "~/components/shared/forms/TextBox";
 
 

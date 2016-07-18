@@ -1,11 +1,9 @@
 import ajax from "~/util/ajax.js";
-import {
-    makeChangeHandlerFactory
-} from "../../util";
+import { makeChangeHandlerFactory } from "../../util";
 import LoginUsernameBox from "~/components/login/LoginUsernameBox";
 import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 
-var styles = {
+let styles = {
     loginBox: {
         backgroundColor: "#FFC547",
         width: "260px",

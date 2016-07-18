@@ -3,7 +3,7 @@
 import TextBox from "~/components/shared/forms/TextBox.js";
 //import signupStyles from "some location where the styles imports are";
 
-var styles = {
+let styles = {
     "signup_item": {
         "display": "block"
     },
@@ -38,11 +38,16 @@ export default class SignupInput extends React.Component {
     }
 
     render() {
-        return (
-            <TextBox
-                placeholder={this.props.placeholder}
-                onChange={this.props.onChange}
-                style={[styles.signup_item, styles.signup_item_extended, styles.signup_item_not_make_team_question]}
+        return ( <
+            TextBox placeholder = { this.props.placeholder }
+            onChange = { this.props.onChange }
+            style = {
+                [
+                    styles.signup_item,
+                    styles.signup_item_extended,
+                    styles.signup_item_not_make_team_question,
+                ]
+            }
             />
         )
     }

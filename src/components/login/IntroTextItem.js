@@ -1,4 +1,4 @@
-var styles = {
+let styles = {
     title: {
         font - size: "40px";
         margin - bottom: "25px";
