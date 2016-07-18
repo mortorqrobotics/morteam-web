@@ -8,13 +8,13 @@ import TextBox from "~/components/shared/forms/TextBox";
 
 
 let styles = {
-    loginUsernameBox:{
+    loginUsernameBox: {
         fontSize: "18px",
-	    width: "210px",
-	    height: "28px",
-	    padding: "3px",
-	    border: "none",
-	    marginBottom: "15px",
+        width: "210px",
+        height: "28px",
+        padding: "3px",
+        border: "none",
+        marginBottom: "15px",
     }
 }
 

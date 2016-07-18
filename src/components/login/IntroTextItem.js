@@ -1,17 +1,17 @@
 var styles = {
     title: {
-    	font-size: "40px";
-    	margin-bottom: "25px";
-    	font-weight: "400";
-    	max-width: "800px";
+        font - size: "40px";
+        margin - bottom: "25px";
+        font - weight: "400";
+        max - width: "800px";
     }
     text: {
-    	max-width: "800px";
-    	margin-bottom: "85px";
+        max - width: "800px";
+        margin - bottom: "85px";
     },
     h1: {
         paddingTop: "10px";
-		fontSize: "50px";
+        fontSize: "50px";
     }
 }
 

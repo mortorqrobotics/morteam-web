@@ -1,19 +1,19 @@
 var styles = {
-    landingBox:{
+    landingBox: {
         backgroundColor: "#FFC547",
-    	paddingTop: "30px",
-    	height: "80px",
-    	width: "100%",
+        paddingTop: "30px",
+        height: "80px",
+        width: "100%",
     },
     landingBoxh1h3: {
         display: "inline-block",
-    	color: "white",
-    	fontWeight: "200",
-    	fontFamily: "'exo 2', sans-serif",
+        color: "white",
+        fontWeight: "200",
+        fontFamily: "'exo 2', sans-serif",
     },
     landingBoxh1: {
         fontSize: "60px",
-    	paddingLeft: "30px",
+        paddingLeft: "30px",
     },
     landingBoxh3: {
         paddingLeft: "10px",

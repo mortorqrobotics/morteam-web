@@ -51,28 +51,34 @@ export default class Signup extends React.Component {
             confirmPassword: "",
             email: "",
             phone: "",
-            errorMsg: ""
+            errorMsg: "",
         };
 
     }
 
 
-    onSubmit = async function() {
+    onSubmit = async() => {
         if (this.state.password != this.state.confirmPassword) {
-        	this.setState({
-        		errorMsg: "Password does not match"
-        	});
+            return this.setState({
+                errorMsg: "Passwords do not match"
+            });
         }
-        let result = await ajax.request("post", ajax.getRoute("users"), {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email,
-            phone: this.state.phone,
-        });
-        console.log(result); // TODO: do stuff
-    }.bind(this);
+        try {
+            let result = await ajax.request("post", ajax.getRoute("users"), {
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                username: this.state.username,
+                password: this.state.password,
+                email: this.state.email,
+                phone: this.state.phone,
+            });
+            console.log(result); // TODO: redirect
+        } catch (result) {
+            this.setState({
+                errorMsg: result.data
+            });
+        }
+    }
 
 
     render() {

@@ -1,4 +1,3 @@
-
 import ajax from "~/util/ajax.js";
 import {
     makeChangeHandlerFactory
@@ -9,14 +8,14 @@ import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 var styles = {
     loginBox: {
         backgroundColor: "#FFC547",
-    	width: "260px",
-    	height: "auto",
-    	position: "fixed",
-    	right: "10px",
-    	textAlign: "center",
-    	paddingTop: "50px",
-    	paddingBottom: "50px",
-    	top: "230px",
+        width: "260px",
+        height: "auto",
+        position: "fixed",
+        right: "10px",
+        textAlign: "center",
+        paddingTop: "50px",
+        paddingBottom: "50px",
+        top: "230px",
     },
     fpLink: {
         fontSize: "14px",
