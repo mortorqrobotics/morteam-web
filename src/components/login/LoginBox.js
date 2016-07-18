@@ -3,6 +3,8 @@ import ajax from "~/util/ajax.js";
 import {
     makeChangeHandlerFactory
 } from "../../util";
+import LoginUsernameBox from "~/components/login/LoginUsernameBox";
+import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 
 var styles = {
     loginBox: {
