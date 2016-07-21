@@ -1,10 +1,6 @@
 import axios from "axios";
 
-let ajax = {};
-
-export default ajax;
-
-ajax.request = async function(method, path, data) {
+export async function request(method, path, data) {
     return await axios({
         method: method,
         url: path,
@@ -12,7 +8,7 @@ ajax.request = async function(method, path, data) {
     });
 }
 
-ajax.getRoute = function(name) { // also takes more arguments
+export function getRoute(name) { // also takes more arguments
     let path = routes[name];
     let args = Array.prototype.slice.call(arguments, 1);
     return path.split("/").map(part => {
