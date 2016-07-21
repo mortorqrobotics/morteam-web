@@ -1,3 +1,6 @@
+import React from "react";
+import Radium from "radium";
+
 let styles = {
     introText: {
         width: "calc(100% - 490px)"

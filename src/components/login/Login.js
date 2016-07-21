@@ -1,3 +1,6 @@
+import React from "react";
+import Radium from "radium";
+
 let styles = {
 
 }
@@ -20,4 +23,9 @@ export default class Login extends React.Component {
     }
 }
 
-window.Page = Login;
+import ReactDOM from "react-dom";
+window.__pageInit = {
+    React: React,
+    ReactDOM: ReactDOM,
+    Page: Login,
+};

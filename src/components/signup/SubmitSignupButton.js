@@ -1,3 +1,6 @@
+import React from "react";
+import Radium from "radium";
+
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 
 let styles = {

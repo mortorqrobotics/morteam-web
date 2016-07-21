@@ -1,3 +1,6 @@
+import React from "react";
+import Radium from "radium";
+
 @Radium
 export default class SubmitButton extends React.Component {
 

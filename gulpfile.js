@@ -7,6 +7,13 @@ let babelify = require("babelify");
 let streamify = require("gulp-streamify");
 let uglify = require("gulp-uglify");
 
+let libs = [
+    "react",
+    "react-dom",
+    "axios",
+    "radium",
+];
+
 gulp.task("build", function() {
     let pages = [
         "signup",
@@ -18,11 +25,11 @@ gulp.task("build", function() {
             debug: true,
             cache: {},
             packageCache: {},
-            fullPaths: true
+            fullPaths: true // TODO: I think this should be false
         });
-        bundler.external("react");
-        bundler.external("axios");
-        bundler.external("radium");
+        for (let lib of libs) {
+            bundler.external(lib);
+        }
         bundler
             .transform(babelify, {
                 presets: ["es2015", "react"],
@@ -48,6 +55,21 @@ gulp.task("build", function() {
 
 gulp.task("watch", function() {
     gulp.watch("src/**/*.js", ["build"]);
+});
+
+gulp.task("vendor", function() {
+    let bundler = browserify({
+        debug: true,
+        cache: {},
+        packageCache: {},
+    });
+    for (let lib of libs) {
+        bundler.require(lib);
+    }
+    bundler
+        .bundle()
+        .pipe(source("vendor.js"))
+        .pipe(gulp.dest("./build/"));
 });
 
 String.prototype.capitalize = function() {

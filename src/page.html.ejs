@@ -13,25 +13,26 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.12.0/axios.min.js"></script>
-
-        <script src="https://fb.me/react-15.2.1.min.js"></script>
-        <script src="https://fb.me/react-dom-15.2.1.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/radium/0.18.0/radium.js"></script>
-
     </head>
 
     <body style="background-color: #E9E9E9;">
 
         <div id="allContent"></div>
 
+		<script src="/js/vendor"></script>
         <script src="/js/<%= page %>"></script>
 
         <script type="text/javascript">
-            // each root jsx file has to define the global variable Page
+            // each root jsx file has to define the global variable __pageInit
+            // it must contain Page, React, and ReactDOM
             // global variables ftw
-            ReactDOM.render(React.createElement(Page, null), document.getElementById("allContent"));
+            window.__pageInit.ReactDOM.render(
+                window.__pageInit.React.createElement(
+                    window.__pageInit.Page,
+                    null
+                ),
+                document.getElementById("allContent")
+            );
         </script>
 
     </body>

@@ -1,3 +1,6 @@
+import React from "react";
+import Radium from "radium";
+
 import ajax from "~/util/ajax.js";
 import { makeChangeHandlerFactory } from "../../util";
 import LoginUsernameBox from "~/components/login/LoginUsernameBox";

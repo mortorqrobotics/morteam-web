@@ -1,4 +1,5 @@
-//import React from "react";
+import React from "react";
+import Radium from "radium";
 
 @Radium
 export default class TextBox extends React.Component {
