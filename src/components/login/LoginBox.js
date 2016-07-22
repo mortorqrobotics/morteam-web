@@ -7,6 +7,7 @@ import LoginUsernameBox from "~/components/login/LoginUsernameBox";
 import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 import LoginRememberMeBox from "~/components/login/LoginRememberMeBox";
 import LoginButton from "~/components/login/LoginButton";
+import SignupButton from "~/components/login/SignupButton";
 import Link from "~/components/shared/Link";
 import Form from "~/components/shared/forms/Form";
 
@@ -83,6 +84,8 @@ export default class LoginBox extends React.Component {
                     <LoginButton />
 
                 </Form>
+
+                <SignupButton />
 
     			<Link style={styles.fpLink} location="/fp" text="Forgot password?" />
     		</div>

@@ -5,7 +5,7 @@ import Radium from "radium";
 export default class SubmitButton extends React.Component {
 
     static propTypes = {
-        value: React.PropTypes.string,
+        text: React.PropTypes.string,
         style: React.PropTypes.object
     }
 
@@ -13,7 +13,7 @@ export default class SubmitButton extends React.Component {
         return (
             <input
                 type="submit"
-                value={this.props.value}
+                value={this.props.text}
                 style={this.props.style}
             />
         )

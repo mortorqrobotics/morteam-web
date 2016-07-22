@@ -32,7 +32,7 @@ export default class SubmitSignupButton extends React.Component {
     render() {
         return (
             <SubmitButton
-                value="Submit"
+                text="Submit"
                 style={styles.submitButton}
             />
         )
