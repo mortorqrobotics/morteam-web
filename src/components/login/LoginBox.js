@@ -5,6 +5,8 @@ import ajax from "~/util/ajax";
 import { makeChangeHandlerFactory } from "~/util";
 import LoginUsernameBox from "~/components/login/LoginUsernameBox";
 import LoginPasswordBox from "~/components/login/LoginPasswordBox";
+import LoginRememberMeBox from "~/components/login/LoginRememberMeBox";
+import Link from "~/components/shared/Link";
 
 let styles = {
     loginBox: {
@@ -40,7 +42,7 @@ export default class LoginBox extends React.Component {
     }
 
 
-    onSubmit = async () => {
+    onSubmit = async() => {
         try {
             let { data } = await ajax.request("post", ajax.getRoute("login"), {
                 username: this.state.username,
