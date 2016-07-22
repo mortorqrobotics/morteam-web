@@ -9,7 +9,7 @@ let styles = {
     	borderRadius: "1px",
     	fontSize: "32px",
     	marginTop: "20px",
-    	position: "relative",
+    	position: "absolute",
     	width: "300px",
     	left: "50%",
     	marginLeft: "-150px",
@@ -21,7 +21,7 @@ let styles = {
     }
 }
 
-export default class LoginButton extends React.Component {
+export default class SignupButton extends React.Component {
 
     onClick() {
         window.location.assign("/signup");
