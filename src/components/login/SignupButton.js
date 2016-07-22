@@ -9,7 +9,7 @@ let styles = {
     	borderRadius: "1px",
     	fontSize: "32px",
     	marginTop: "20px",
-    	position: "absolute",
+    	position: "relative",
     	width: "300px",
     	left: "50%",
     	marginLeft: "-150px",
