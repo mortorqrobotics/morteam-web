@@ -8,12 +8,12 @@ export default class TextBox extends React.Component {
         placeholder: React.PropTypes.string,
         onChange: React.PropTypes.func,
         style: React.PropTypes.object,
-        autocapitalize: React.PropTypes.boolean,
-        autocorrect: React.PropTypes.boolean,
+        autoCapitalize: React.PropTypes.bool,
+        autoCorrect: React.PropTypes.bool,
     }
     static defaultProps = {
-        autocapitalize: true,
-        autocorrect: true,
+        autoCapitalize: true,
+        autoCorrect: true,
     }
 
     render() {
@@ -23,8 +23,8 @@ export default class TextBox extends React.Component {
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
                 style={this.props.style}
-                autocapitalize={this.props.autocapitalize ? "on" : "off"}
-                autocorrect={this.props.autocorrect ? "on" : "off"}
+                autoCapitalize={this.props.autoCapitalize ? "on" : "off"}
+                autoCorrect={this.props.autoCorrect ? "on" : "off"}
             />
         )
     }

@@ -57,7 +57,7 @@ export default class Signup extends React.Component {
     }
 
 
-    onSubmit = async () => {
+    onSubmit = async() => {
         if (this.state.password != this.state.confirmPassword) {
             return this.setState({
                 errorMsg: "Passwords do not match"

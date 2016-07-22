@@ -26,8 +26,8 @@ export default class LoginUsernameBox extends React.Component {
         return (
             <TextBox 
                 onChange={this.props.onChange} 
-                autocapitalize={false} 
-                autocorrect={false} 
+                autoCapitalize={false} 
+                autoCorrect={false} 
                 placeholder="Username/Email"
                 style={styles.loginUsernameBox}
             />
