@@ -7,7 +7,7 @@
     "watch": "./node_modules/gulp/bin/gulp.js watch",
     "vendor": "./node_modules/gulp/bin/gulp.js vendor",
     "postinstall": "npm run vendor",
-    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" -b collapse-preserve-inline $f; done"
+    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" -b collapse-preserve-inline $f; done | grep '\\.js$' || echo done"
   },
   "repository": {
     "type": "git",

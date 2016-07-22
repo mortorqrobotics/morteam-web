@@ -6,8 +6,9 @@ import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 import SignupInput from "./SignupInput";
 import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "~/components/shared/Link";
-import ajax from "~/util/ajax.js";
-import { makeChangeHandlerFactory } from "../../util";
+import Form from "~/components/shared/forms/Form";
+import ajax from "~/util/ajax";
+import { makeChangeHandlerFactory } from "~/util";
 
 let styles = {
     form: {
@@ -56,7 +57,7 @@ export default class Signup extends React.Component {
     }
 
 
-    onSubmit = async() => {
+    onSubmit = async () => {
         if (this.state.password != this.state.confirmPassword) {
             return this.setState({
                 errorMsg: "Passwords do not match"
@@ -85,7 +86,7 @@ export default class Signup extends React.Component {
             <div>
                 <Link location="login" text="Back to login" />
                 <div style={[styles.globalDefaults, styles.div]}>
-                    <form style={styles.form} action="javascript:void 0" onSubmit={this.onSubmit}>
+                    <Form style={styles.form} onSubmit={this.onSubmit}>
                         <SignupInput
                             placeholder="First Name"
                             value={this.state.firstname}
@@ -123,7 +124,7 @@ export default class Signup extends React.Component {
                         />
                         <ErrorMsg message={this.state.errorMsg} />
                         <SubmitSignupButton />
-                    </form>
+                    </Form>
                 </div>
             </div>
         )

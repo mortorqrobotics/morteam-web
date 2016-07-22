@@ -1,5 +1,8 @@
 import axios from "axios";
 
+let ajax = {};
+export default ajax;
+
 export async function request(method, path, data) {
     return await axios({
         method: method,
@@ -7,6 +10,7 @@ export async function request(method, path, data) {
         data: data
     });
 }
+ajax.request = request;
 
 export function getRoute(name) { // also takes more arguments
     let path = routes[name];
@@ -23,6 +27,7 @@ export function getRoute(name) { // also takes more arguments
     }).join("/");
     //while (path != (path = path.replace(/:([^\/]+)/, value("$1"))));
 }
+ajax.getRoute = getRoute;
 
 let routes = {
     "login": "/login",

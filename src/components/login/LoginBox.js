@@ -1,8 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
-import ajax from "~/util/ajax.js";
-import { makeChangeHandlerFactory } from "../../util";
+import ajax from "~/util/ajax";
+import { makeChangeHandlerFactory } from "~/util";
 import LoginUsernameBox from "~/components/login/LoginUsernameBox";
 import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 
@@ -54,7 +54,7 @@ export default class LoginBox extends React.Component {
                 <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} /><br/>
 
 
-    			<Link style={styles.fpLink} location="fp" text="Forgot password?" />
+    			<Link style={styles.fpLink} location="/fp" text="Forgot password?" />
     		</div>
         )
     }

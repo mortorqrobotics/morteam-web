@@ -22,8 +22,8 @@ let styles = {
 export default class IntroTextItem extends React.Component {
 
     static propTypes = {
-        title: React.PropTypes.string,
-        text: React.PropTypes.string
+        title: React.PropTypes.string.isRequired,
+        text: React.PropTypes.string.isRequired,
     }
 
     render() {

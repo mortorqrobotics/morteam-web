@@ -5,11 +5,11 @@ import texts from "./introTexts.json";
 
 let styles = {
     introText: {
-        width: "calc(100% - 490px)"
-        textAlign: "justify";
-        paddingTop: "100px";
-        paddingLeft: "100px";
-        paddingRight: "100px";
+        width: "calc(100% - 490px)",
+        textAlign: "justify",
+        paddingTop: "100px",
+        paddingLeft: "100px",
+        paddingRight: "100px",
     },
     landingBoxMain: {
         lineHeight: "32.5px",
