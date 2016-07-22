@@ -19,7 +19,7 @@ let styles = {
 export default class LoginUsernameBox extends React.Component {
 
     static propTypes = {
-        onChange: React.propTypes.func.isRequired
+        onChange: React.PropTypes.func.isRequired,
     }
 
     render() {

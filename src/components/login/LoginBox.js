@@ -34,24 +34,36 @@ export default class LoginBox extends React.Component {
         this.state = {
             username: "",
             password: "",
-            checkedRM: "",
-        };
+            checkedRM: false,
+        }
 
     }
 
 
-    onSubmit = async function() {
-
-    }.bind(this);
+    onSubmit = async () => {
+        try {
+            let { data } = await ajax.request("post", ajax.getRoute("login"), {
+                username: this.state.username,
+                password: this.state.passsord,
+                rememberMe: this.state.checkedRM,
+            });
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
 
     render() {
         return (
             <div style={styles.loginBox}>
 
-                <LoginUsernameBox onChange={this.getChangeHandler("username")}/><br/>
-                <LoginPasswordBox onChange={this.getChangeHandler("password")}/><br/>
-                <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} /><br/>
+                <LoginUsernameBox onChange={this.getChangeHandler("username")} />
+                <br/>
+                <LoginPasswordBox onChange={this.getChangeHandler("password")} />
+                <br/>
+                <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} />
+                <br/>
 
 
     			<Link style={styles.fpLink} location="/fp" text="Forgot password?" />

@@ -1,11 +1,9 @@
 import React from "react";
-import Radium from "radium";
 
-let styles = {
+import TopBar from "./TopBar";
+import IntroText from "./IntroText";
+import LoginBox from "./LoginBox";
 
-}
-
-@Radium
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -17,7 +15,9 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-
+                <TopBar />
+                <IntroText />
+                <LoginBox />
             </div>
         )
     }

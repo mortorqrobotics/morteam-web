@@ -3,18 +3,18 @@ import Radium from "radium";
 
 let styles = {
     title: {
-        fontSize: "40px";
-        marginBottom: "25px";
-        fontWeight: "400";
-        maxWidth: "800px";
-    }
+        fontSize: "40px",
+        marginBottom: "25px",
+        fontWeight: "400",
+        maxWidth: "800px",
+    },
     text: {
-        maxWidth: "800px";
-        marginBottom: "85px";
+        maxWidth: "800px",
+        marginBottom: "85px",
     },
     h1: {
-        paddingTop: "10px";
-        fontSize: "50px";
+        paddingTop: "10px",
+        fontSize: "50px",
     }
 }
 

@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
+import IntroTextItem from "./IntroTextItem";
+
 import texts from "./introTexts.json";
 
 let styles = {
@@ -26,8 +28,8 @@ export default class IntroText extends React.Component {
             <div style={styles.introText}>
     			<div style={styles.landingBoxMain}>
                     {Object.keys(texts).map(title => (
-                        <IntroTextItem title={title} text={texts[title]} />
-                    )}
+                        <IntroTextItem key={title} title={title} text={texts[title]} />
+                        ))}
                 </div>
             </div>
         )
