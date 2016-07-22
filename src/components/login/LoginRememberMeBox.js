@@ -6,11 +6,15 @@ export default class LoginRememberMeBox extends React.Component {
 
     static propTypes = {
         onChange: React.PropTypes.func,
+        checked: React.PropTypes.bool.isRequired,
     }
 
     render() {
         return (
-            <CheckBox onChange={this.props.onChange} />
+            <CheckBox
+                checked={this.props.checked}
+                onChange={this.props.onChange}
+            />
         )
     }
 }

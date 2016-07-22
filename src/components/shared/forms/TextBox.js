@@ -10,6 +10,7 @@ export default class TextBox extends React.Component {
         style: React.PropTypes.object,
         autoCapitalize: React.PropTypes.bool,
         autoCorrect: React.PropTypes.bool,
+        value: React.PropTypes.string,
     }
     static defaultProps = {
         autoCapitalize: true,
@@ -20,6 +21,7 @@ export default class TextBox extends React.Component {
         return (
             <input
                 type="text"
+                value={this.props.value}
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
                 style={this.props.style}

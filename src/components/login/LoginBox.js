@@ -60,11 +60,20 @@ export default class LoginBox extends React.Component {
         return (
             <div style={styles.loginBox}>
 
-                <LoginUsernameBox onChange={this.getChangeHandler("username")} />
+                <LoginUsernameBox
+                    value={this.state.username}
+                    onChange={this.getChangeHandler("username")}
+                />
                 <br/>
-                <LoginPasswordBox onChange={this.getChangeHandler("password")} />
+                <LoginPasswordBox
+                    value={this.state.password}
+                    onChange={this.getChangeHandler("password")}
+                />
                 <br/>
-                <LoginRememberMeBox onChange={this.getChangeHandler("checkedRM", "checked")} />
+                <LoginRememberMeBox
+                    checked={this.state.checkedRM}
+                    onChange={this.getChangeHandler("checkedRM", "checked")}
+                />
                 <br/>
 
 

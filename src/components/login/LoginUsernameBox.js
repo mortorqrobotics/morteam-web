@@ -20,12 +20,14 @@ export default class LoginUsernameBox extends React.Component {
 
     static propTypes = {
         onChange: React.PropTypes.func.isRequired,
+        value: React.PropTypes.string.isRequired,
     }
 
     render() {
         return (
             <TextBox 
                 onChange={this.props.onChange} 
+                value={this.props.value}
                 autoCapitalize={false} 
                 autoCorrect={false} 
                 placeholder="Username/Email"

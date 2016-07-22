@@ -41,6 +41,7 @@ export default class SignupInput extends React.Component {
     render() {
         return (
             <TextBox
+                value={this.props.value}
                 placeholder={this.props.placeholder}
                 onChange={this.props.onChange}
                 style={[styles.signup_item, styles.signup_item_extended, styles.signup_item_not_make_team_question]}
