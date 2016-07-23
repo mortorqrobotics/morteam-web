@@ -19,7 +19,11 @@
 
         <div id="allContent"></div>
 
-		<script src="/js/vendor"></script>
+        <script type="text/javascript">
+            window.__userInfo = <%- JSON.stringify(userInfo || null) %>;
+        </script>
+
+        <script src="/js/vendor"></script>
         <script src="/js/<%= page %>"></script>
 
         <script type="text/javascript">
