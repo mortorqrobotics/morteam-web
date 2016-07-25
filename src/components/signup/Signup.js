@@ -27,13 +27,6 @@ let styles = {
         "borderRadius": "1px",
         "boxShadow": "3px 5px 10px -2px gray"
     },
-    globalDefaults: { //Import later
-        "margin": "0",
-        "padding": "0",
-        "fontFamily": "'exo 2', sans-serif",
-        "fontWeight": "200",
-        "outline": "0"
-    }
 }
 
 @Radium

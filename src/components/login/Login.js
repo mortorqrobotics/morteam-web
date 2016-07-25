@@ -7,13 +7,6 @@ import IntroText from "./IntroText";
 import LoginBox from "./LoginBox";
 
 var styles = {
-    globalDefaults: { //Import later
-        "margin": "0",
-        "padding": "0",
-        "fontFamily": "'helvetica neue', sans-serif",
-        "fontWeight": "200",
-        "outline": "0"
-    },
     div: {
         "backgroundColor": "#fff",
         "color": "black"

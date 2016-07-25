@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import { StyleRoot } from "radium";
 
 let globalStyle = {
-    // TODO: add stuff here
+    margin: "0",
+    padding: "0",
+    fontFamily: "'exo 2', sans-serif",
+    fontWeight: "200",
+    outline: "0",
 }
 
 export default class Root extends React.Component {
