@@ -25,6 +25,7 @@ let styles = {
     },
     fpLink: {
         fontSize: "14px",
+        textDecoration: "underline",
     }
 }
 
@@ -86,7 +87,10 @@ export default class LoginBox extends React.Component {
                 </Form>
 
                 <SignupButton />
-
+                
+                <br />
+                <br />
+                
     			<Link style={styles.fpLink} location="/fp" text="Forgot password?" />
     		</div>
         )

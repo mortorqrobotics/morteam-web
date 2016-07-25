@@ -12,6 +12,7 @@ let styles = {
         padding: "3px",
         border: "none",
         marginBottom: "15px",
+        boxSizing: "unset",
     }
 }
 

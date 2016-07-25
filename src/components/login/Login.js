@@ -9,9 +9,13 @@ var styles = {
     globalDefaults: { //Import later
         "margin": "0",
         "padding": "0",
-        "fontFamily": "'exo 2', sans-serif",
+        "fontFamily": "'helvetica neue', sans-serif",
         "fontWeight": "200",
         "outline": "0"
+    },
+    div: {
+        "backgroundColor": "#fff",
+        "color": "black"
     }
 }
 
@@ -26,7 +30,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div style={[styles.globalDefaults]}>
+            <div style={[styles.globalDefaults, styles.div]}>
                 <TopBar />
                 <IntroText />
                 <LoginBox />

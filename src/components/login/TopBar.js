@@ -7,6 +7,7 @@ let styles = {
         paddingTop: "30px",
         height: "80px",
         width: "100%",
+        boxSizing: "unset"
     },
     landingBoxh1h3: {
         display: "inline-block",
@@ -17,8 +18,10 @@ let styles = {
     landingBoxh1: {
         fontSize: "60px",
         paddingLeft: "30px",
+        margin: "0px",
     },
     landingBoxh3: {
+        fontSize: "16px",
         paddingLeft: "10px",
     },
 }

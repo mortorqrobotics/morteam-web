@@ -11,10 +11,9 @@ let styles = {
     text: {
         maxWidth: "800px",
         marginBottom: "85px",
-    },
-    h1: {
-        paddingTop: "10px",
-        fontSize: "50px",
+        fontWeight: "200",
+        fontSize: "24px",
+        lineHeight: "32.5px",
     }
 }
 

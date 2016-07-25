@@ -12,9 +12,9 @@ let styles = {
         paddingTop: "100px",
         paddingLeft: "100px",
         paddingRight: "100px",
+        boxSizing: "unset",
     },
     landingBoxMain: {
-        lineHeight: "32.5px",
         maxWidth: "800px",
         margin: "auto",
     },
