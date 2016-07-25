@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
+import Root from "~/components/shared/Root";
 import TopBar from "./TopBar";
 import IntroText from "./IntroText";
 import LoginBox from "./LoginBox";
@@ -26,22 +27,17 @@ export default class Login extends React.Component {
         super(props);
     }
 
-
-
     render() {
         return (
-            <div style={[styles.globalDefaults, styles.div]}>
-                <TopBar />
-                <IntroText />
-                <LoginBox />
-            </div>
+            <Root>
+                <div style={[styles.globalDefaults, styles.div]}>
+                    <TopBar />
+                    <IntroText />
+                    <LoginBox />
+                </div>
+            </Root>
         )
     }
 }
 
-import ReactDOM from "react-dom";
-window.__pageInit = {
-    React: React,
-    ReactDOM: ReactDOM,
-    Page: Login,
-};
+window.__pageClass = Login;

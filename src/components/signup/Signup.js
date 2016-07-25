@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
+import Root from "~/components/shared/Root";
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 import SignupInput from "./SignupInput";
@@ -83,7 +84,7 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-            <div>
+            <Root>
                 <Link location="login" text="Back to login" />
                 <div style={[styles.globalDefaults, styles.div]}>
                     <Form style={styles.form} onSubmit={this.onSubmit}>
@@ -126,14 +127,9 @@ export default class Signup extends React.Component {
                         <SubmitSignupButton />
                     </Form>
                 </div>
-            </div>
+            </Root>
         )
     }
 }
 
-import ReactDOM from "react-dom";
-window.__pageInit = {
-    React: React,
-    ReactDOM: ReactDOM,
-    Page: Signup,
-};
+window.__pageClass = Signup;
