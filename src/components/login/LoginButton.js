@@ -3,7 +3,7 @@ import React from "react";
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 
 let styles = {
-    lognButton: {
+    loginButton: {
         backgroundColor: "orange",
         border: "0",
         borderRadius: "1px",
@@ -23,7 +23,7 @@ export default class LoginButton extends React.Component {
 
     render() {
         return (
-            <SubmitButton style={[styles.lognButton]} text="Login" />
+            <SubmitButton style={[styles.loginButton]} text="Login" />
         )
     }
 }
