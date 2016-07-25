@@ -79,7 +79,7 @@ export default class Signup extends React.Component {
         return (
             <Root>
                 <Link location="login" text="Back to login" />
-                <div style={[styles.globalDefaults, styles.div]}>
+                <div style={[styles.div]}>
                     <Form style={styles.form} onSubmit={this.onSubmit}>
                         <SignupInput
                             placeholder="First Name"

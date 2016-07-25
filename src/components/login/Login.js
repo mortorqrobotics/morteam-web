@@ -23,7 +23,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <Root>
-                <div style={[styles.globalDefaults, styles.div]}>
+                <div style={[styles.div]}>
                     <TopBar />
                     <IntroText />
                     <LoginBox />

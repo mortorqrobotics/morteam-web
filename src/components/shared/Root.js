@@ -14,7 +14,7 @@ export default class Root extends React.Component {
 
     render() {
         return (
-            <StyleRoot style={{globalStyle}}>
+            <StyleRoot style={[globalStyle]}>
                 {this.props.children}
             </StyleRoot>
         )

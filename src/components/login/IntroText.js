@@ -7,6 +7,7 @@ import texts from "./introTexts.json";
 
 let styles = {
     introText: {
+        fontFamily: "'helvetica neue', sans-serif",
         width: "calc(100% - 490px)",
         textAlign: "justify",
         paddingTop: "100px",
