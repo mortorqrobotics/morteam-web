@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import Root from "~/components/shared/Root";
+import Root, { pageInit } from "~/components/shared/Root";
 import TopBar from "./TopBar";
 import IntroText from "./IntroText";
 import LoginBox from "./LoginBox";
@@ -33,4 +33,4 @@ export default class Login extends React.Component {
     }
 }
 
-window.__pageClass = Login;
+pageInit(Login);

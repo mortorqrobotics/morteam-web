@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import Root from "~/components/shared/Root";
+import Root, { pageInit } from "~/components/shared/Root";
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 import SignupInput from "./SignupInput";
@@ -125,4 +125,4 @@ export default class Signup extends React.Component {
     }
 }
 
-window.__pageClass = Signup;
+pageInit(Signup);

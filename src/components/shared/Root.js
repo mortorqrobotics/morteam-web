@@ -22,7 +22,10 @@ export default class Root extends React.Component {
 
 }
 
-window.__pageInit = {
-    React: React,
-    ReactDOM: ReactDOM,
+export function pageInit(Page) {
+    window.__pageInit = {
+        React: React,
+        ReactDOM: ReactDOM,
+        Page: Page
+    }
 }
