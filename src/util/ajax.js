@@ -1,14 +1,43 @@
 import axios from "axios";
+import cancelAdapter from "axios-cancel";
+import { Cancellation } from "axios-cancel/cancel";
 
 let ajax = {};
 export default ajax;
 
-export async function request(method, path, data) {
-    return await axios({
-        method: method,
-        url: path,
-        data: data
-    });
+export function request(method, path, data, cancellable) {
+    if (!cancellable) {
+        return axios({
+            method: method,
+            url: path,
+            data: data,
+        });
+    } else {
+        let cancellation = new Cancellation();
+        return {
+            cancel: () => cancellation.cancel(),
+            req: axios({
+                method: method,
+                url: path,
+                data: data,
+                adapter: cancelAdapter,
+                cancellation: cancellation,
+            }),
+        };
+        /* usage
+
+           let { cancel, req } = ajax.request(stuff, stuff, stuff, true);
+           this.cancelRequest = cancel;
+           try {
+               let result = await req;
+           } catch (err) {
+               handle(err); 
+           }
+
+           this.cancelRequest();
+
+       */
+    }
 }
 ajax.request = request;
 

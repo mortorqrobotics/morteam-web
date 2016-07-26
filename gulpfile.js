@@ -12,6 +12,7 @@ let libs = [
     "react-dom",
     "axios",
     "radium",
+    "axios-cancel",
 ];
 
 gulp.task("build", function() {
