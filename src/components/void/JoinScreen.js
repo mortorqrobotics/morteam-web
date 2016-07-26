@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import { makeChangeHandlerFactory } from "~/util";
+import ajax from "~/util/ajax";
 //import Form from "~/components/shared/forms/Form";
 import VoidButton from "./VoidButton";
 import VoidTextBox from "./VoidTextBox";
@@ -21,7 +22,14 @@ export default class JoinScreen extends React.Component {
     }
 
     join = async() => {
-        alert(this.state.teamCode + "\nsomething should happen here");
+        try {
+            let result = await ajax.request("POST",
+                "/teams/code/" + this.state.teamCode + "/join"
+            ); // TODO: urlencode the team code
+            console.log(result);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     render() {
