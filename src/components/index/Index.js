@@ -25,7 +25,7 @@ export default class Index extends React.Component {
             <Root>
                 <div style={styles.div}>
                     <Leftbar />
-                    <NicEditor />
+                    <Editor />
                     <AnnouncementsList />
                 </div>
             </Root>

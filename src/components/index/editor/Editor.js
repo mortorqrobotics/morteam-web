@@ -1,9 +1,20 @@
 import React from "react";
 import Radium from "radium";
-import ReactQuill from "react-quill";
 
-// NO RADIUM!!! something about the react quill thing, it has its own css
-export default class Editor extends React.Component {
+let styles = {
+    textarea:{
+        width: "100%",
+    	verticalAlign: "top",
+    	padding: "5px",
+    	resize: "none",
+        ":focus":{
+            outlineStyle: "none",
+        }
+    }
+}
+
+@Radium
+export default class NicEditor extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,18 +22,20 @@ export default class Editor extends React.Component {
         this.state = {
             content: "",
         }
+        //onChange={(value) => this.setState({ content: value })}
     }
 
     render() {
         return (
             <div>
-                <ReactQuill
-                    style={{ width: "1000px", height: "200px", }}
-                    theme="snow"
-                    value={this.state.content}
-                    onChange={(value) => this.setState({ content: value })}
-                />
-                <input type="button" value="Hello" />
+                <textarea style={styles.textarea} id="main-textarea" placeholder="Make an announcement..."></textarea>
+                <script type="text/javascript">
+                    {bkLib.onDomLoaded(function() {
+                        new nicEditor({
+                            buttonList: ['bold', 'italic', 'underline', 'left', 'center', 'right', 'justify', 'removeformat', 'hr', 'upload']
+                        }).panelInstance('main-textarea');
+                    })}
+                </script>
             </div>
         )
     }
