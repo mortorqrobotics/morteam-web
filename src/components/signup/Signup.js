@@ -58,7 +58,7 @@ export default class Signup extends React.Component {
             });
         }
         try {
-            let result = await ajax.request("post", ajax.getRoute("users"), {
+            await ajax.request("post", ajax.getRoute("users"), {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 username: this.state.username,
@@ -66,7 +66,10 @@ export default class Signup extends React.Component {
                 email: this.state.email,
                 phone: this.state.phone,
             });
-            console.log(result); // TODO: redirect
+            this.setState({
+                errorMsg: "Success"
+            });
+            setTimeout(() => window.location.assign("/login"), 500);
         } catch ({ data }) {
             this.setState({
                 errorMsg: data

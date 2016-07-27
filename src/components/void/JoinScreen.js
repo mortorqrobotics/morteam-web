@@ -4,6 +4,7 @@ import Radium from "radium";
 import { makeChangeHandlerFactory } from "~/util";
 import ajax from "~/util/ajax";
 //import Form from "~/components/shared/forms/Form";
+import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 import VoidButton from "./VoidButton";
 import VoidTextBox from "./VoidTextBox";
 // TODO: use a submit button
@@ -18,17 +19,23 @@ export default class JoinScreen extends React.Component {
 
         this.state = {
             teamCode: "",
+            errorMsg: "",
         }
     }
 
     join = async() => {
         try {
-            let result = await ajax.request("POST",
+            await ajax.request("POST",
                 "/teams/code/" + this.state.teamCode + "/join"
             ); // TODO: urlencode the team code
-            console.log(result);
-        } catch (err) {
-            console.log(err);
+            this.setState({
+                errorMsg: "Success"
+            });
+            setTimeout(() => window.location.assign("/"), 1000);
+        } catch ({ data }) {
+            this.setState({
+                errorMsg: data
+            });
         }
     }
 
@@ -44,6 +51,7 @@ export default class JoinScreen extends React.Component {
                     text="Join"
                     onClick={this.join}
                 />
+                <ErrorMsg message={this.state.errorMsg} />
             </div>
         )
     }

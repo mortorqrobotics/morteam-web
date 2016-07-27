@@ -5,6 +5,7 @@ import { makeChangeHandlerFactory } from "~/util";
 import ajax from "~/util/ajax";
 import VoidButton from "./VoidButton";
 import VoidTextBox from "./VoidTextBox";
+import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 
 @Radium
 export default class CreateScreen extends React.Component {
@@ -18,19 +19,25 @@ export default class CreateScreen extends React.Component {
             number: "", // actual number here?
             name: "",
             id: "",
+            errorMsg: "",
         }
     }
 
     create = async() => {
         try {
-            let result = await ajax.request("post", "/teams", {
+            await ajax.request("post", "/teams", {
                 number: this.state.number,
                 name: this.state.name,
                 id: this.state.id,
             });
-            console.log(result);
-        } catch (err) {
-            console.log(err);
+            this.setState({
+                errorMsg: "Success"
+            });
+            setTimeout(() => window.location.assign("/"), 1000);
+        } catch ({ data }) {
+            this.setState({
+                errorMsg: "data"
+            });
         }
     }
 
@@ -56,6 +63,7 @@ export default class CreateScreen extends React.Component {
                     text="Done"
                     onClick={this.create}
                 />
+                <ErrorMsg message={this.state.errorMsg} />
             </div>
         )
     }

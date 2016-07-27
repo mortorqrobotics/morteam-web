@@ -10,6 +10,7 @@ import LoginButton from "~/components/login/LoginButton";
 import SignupButton from "~/components/login/SignupButton";
 import Link from "~/components/shared/Link";
 import Form from "~/components/shared/forms/Form";
+import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 
 let styles = {
     loginBox: {
@@ -41,6 +42,7 @@ export default class LoginBox extends React.Component {
             username: "",
             password: "",
             checkedRM: false,
+            errorMsg: "",
         }
 
     }
@@ -53,9 +55,14 @@ export default class LoginBox extends React.Component {
                 password: this.state.password,
                 rememberMe: this.state.checkedRM,
             });
-            console.log(data);
-        } catch (err) {
-            console.log(err);
+            this.setState({
+                errorMsg: "Success"
+            });
+            setTimeout(() => window.location.assign("/"), 1000);
+        } catch ({ data }) {
+            this.setState({
+                errorMsg: data
+            });
         }
     }
 
@@ -70,17 +77,20 @@ export default class LoginBox extends React.Component {
                         value={this.state.username}
                         onChange={this.getChangeHandler("username")}
                     />
-                    <br/>
+                    <br />
                     <LoginPasswordBox
                         value={this.state.password}
                         onChange={this.getChangeHandler("password")}
                     />
-                    <br/>
+                    <br />
                     <LoginRememberMeBox
                         checked={this.state.checkedRM}
                         onChange={this.getChangeHandler("checkedRM", "checked")}
                     />
-                    <br/>
+                    <br />
+
+                    <ErrorMsg message={this.state.errorMsg} />
+                    <br />
 
                     <LoginButton />
 
