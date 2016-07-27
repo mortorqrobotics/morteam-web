@@ -20,6 +20,7 @@ gulp.task("build", function() {
         "signup",
         "login",
         "void",
+        "index"
     ];
     for (let page of pages) {
         let bundler = browserify({
