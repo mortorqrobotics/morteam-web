@@ -12,7 +12,7 @@ export default class ProfileButton extends React.Component {
 
     render() {
         return (
-            <LeftbarButton text="View Profile" onClick={this.onClick}/>
+            <LeftbarButton text="View Profile" onClick={this.onClick} />
         )
     }
 }

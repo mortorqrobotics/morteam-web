@@ -13,6 +13,7 @@ let libs = [
     "axios",
     "radium",
     "axios-cancel",
+    "react-quill",
 ];
 
 gulp.task("build", function() {
@@ -20,7 +21,7 @@ gulp.task("build", function() {
         "signup",
         "login",
         "void",
-        "index"
+        "index",
     ];
     for (let page of pages) {
         let bundler = browserify({

@@ -9,7 +9,7 @@ export default class LogoutButton extends React.Component {
 
     onClick = async() => {
         try {
-            let { data } = await ajax.request("post", "logout");
+            let { data } = await ajax.request("post", "/logout");
             if (data == "success") {
                 window.location.assign("/login");
             }
