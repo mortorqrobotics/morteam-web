@@ -12,7 +12,7 @@ export default class Editor extends React.Component {
             content: "",
         }
     }
-    
+
     render() {
         return (
             <div>
