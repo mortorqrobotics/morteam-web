@@ -9,7 +9,7 @@ import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "~/components/shared/Link";
 import Form from "~/components/shared/forms/Form";
 import ajax from "~/util/ajax";
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
 let styles = {
     form: {
@@ -69,7 +69,7 @@ export default class Signup extends React.Component {
             this.setState({
                 errorMsg: "Success"
             });
-            setTimeout(() => window.location.assign("/login"), 500);
+            setTimeout(() => window.location.assign("/login"), REDIR_TIME);
         } catch ({ data }) {
             this.setState({
                 errorMsg: data

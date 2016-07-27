@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import ajax from "~/util/ajax";
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import LoginUsernameBox from "~/components/login/LoginUsernameBox";
 import LoginPasswordBox from "~/components/login/LoginPasswordBox";
 import LoginRememberMeBox from "~/components/login/LoginRememberMeBox";
@@ -58,7 +58,7 @@ export default class LoginBox extends React.Component {
             this.setState({
                 errorMsg: "Success"
             });
-            setTimeout(() => window.location.assign("/"), 1000);
+            setTimeout(() => window.location.assign("/"), REDIR_TIME);
         } catch ({ data }) {
             this.setState({
                 errorMsg: data

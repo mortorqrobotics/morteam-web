@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import ajax from "~/util/ajax";
 //import Form from "~/components/shared/forms/Form";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
@@ -31,7 +31,7 @@ export default class JoinScreen extends React.Component {
             this.setState({
                 errorMsg: "Success"
             });
-            setTimeout(() => window.location.assign("/"), 1000);
+            setTimeout(() => window.location.assign("/"), REDIR_TIME);
         } catch ({ data }) {
             this.setState({
                 errorMsg: data
