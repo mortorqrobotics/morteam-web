@@ -23,9 +23,9 @@ export default class Index extends React.Component {
         return (
             <Root>
                 <div style={styles.div}>
-                    <AnnouncementsList />
                     <Leftbar />
                     <Editor />
+                    <AnnouncementsList />                    
                 </div>
             </Root>
         )
