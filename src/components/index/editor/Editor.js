@@ -19,10 +19,6 @@ export default class NicEditor extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            content: "",
-        }
-        //onChange={(value) => this.setState({ content: value })}
     }
 
     render() {
