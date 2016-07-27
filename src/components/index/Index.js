@@ -6,6 +6,12 @@ import Leftbar from "./leftbar/Leftbar";
 import AnnouncementsList from "./announcements/AnnouncementsList";
 import Editor from "./editor/Editor";
 
+let styles = {
+    div: {
+        marginTop: "60px",
+    }
+}
+
 @Radium
 export default class Index extends React.Component {
 
@@ -16,7 +22,7 @@ export default class Index extends React.Component {
     render() {
         return (
             <Root>
-                <div>
+                <div style={styles.div}>
                     <AnnouncementsList />
                     <Leftbar />
                     <Editor />
