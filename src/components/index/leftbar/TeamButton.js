@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import LeftbarButton from "./LeftbarButton"
+import LeftbarButton from "./LeftbarButton";
 
 @Radium
 export default class TeamButton extends React.Component {

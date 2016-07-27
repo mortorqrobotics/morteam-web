@@ -2,12 +2,12 @@ import React from "react";
 import Radium from "radium";
 
 let styles = {
-    textarea:{
+    textarea: {
         width: "100%",
-    	verticalAlign: "top",
-    	padding: "5px",
-    	resize: "none",
-        ":focus":{
+        verticalAlign: "top",
+        padding: "5px",
+        resize: "none",
+        ":focus": {
             outlineStyle: "none",
         }
     }

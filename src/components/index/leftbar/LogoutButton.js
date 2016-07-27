@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import ajax from "~/util/ajax";
-import LeftbarButton from "./LeftbarButton"
+import LeftbarButton from "./LeftbarButton";
 
 @Radium
 export default class LogoutButton extends React.Component {

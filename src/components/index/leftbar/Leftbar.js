@@ -4,9 +4,11 @@ import Radium from "radium";
 import ProfileButton from "./ProfileButton";
 import LogoutButton from "./LogoutButton";
 import TeamButton from "./TeamButton";
+import MakeGroupButton from "./MakeGroupButton";
 import UserGroups from "./UserGroups";
 import PublicGroups from "./PublicGroups";
-import Link from "../../shared/Link"
+import Link from "../../shared/Link";
+import userInfo from "~/util/userInfo";
 
 var styles = {
     div: {
@@ -40,6 +42,17 @@ export default class Leftbar extends React.Component {
         super(props);
     }
 
+    displayMakeGroupButton() {
+        if (userInfo.isAdmin()) {
+            return (
+                <div>
+                    <hr />
+                    <MakeGroupButton />
+                </div>
+            )
+        }
+    }
+
     render() {
         return (
             <div style={styles.div}>
@@ -50,6 +63,7 @@ export default class Leftbar extends React.Component {
                 <UserGroups />
                 <hr />
                 <PublicGroups /> //TODO: implement public/private-ness to groups
+                {this.displayMakeGroupButton()}
                 <hr />
                 <span style={styles.span}>© 2015 MorTeam</span>
                 <span style={styles.span}>
