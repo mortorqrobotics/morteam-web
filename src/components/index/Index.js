@@ -5,6 +5,7 @@ import Root, { pageInit } from "~/components/shared/Root";
 import Leftbar from "./leftbar/Leftbar";
 import AnnouncementsList from "./announcements/AnnouncementsList";
 import Editor from "./editor/Editor";
+import NicEditor from "./editor/NicEditor";
 
 let styles = {
     div: {
@@ -24,8 +25,8 @@ export default class Index extends React.Component {
             <Root>
                 <div style={styles.div}>
                     <Leftbar />
-                    <Editor />
-                    <AnnouncementsList />                    
+                    <NicEditor />
+                    <AnnouncementsList />
                 </div>
             </Root>
         )
