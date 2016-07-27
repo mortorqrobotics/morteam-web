@@ -11,13 +11,13 @@ export default class GroupItem extends React.Component {
         id: React.PropTypes.string,
     }
 
-    onClick() {
+    onClick = () => {
         window.location.assign("/groups/id/" + this.props.id);
     }
 
     render() {
         return (
-            <LeftbarButton text={this.props.name} onClick={this.onClick.bind(this)} />
+            <LeftbarButton text={this.props.name} onClick={this.onClick} />
         )
     }
 }
