@@ -1,29 +1,19 @@
 import React from "react";
 import Radium from "radium";
 
-import ModalWrapper from "../../shared/ModalWrapper";
+import DimModal from "../../shared/DimModal";
 
 let styles = {
     modal: {
-        overlay: {
-            position: "fixed",
-            top: "0",
-            left: "0",
-            backgroundColor: "rgba(0, 0, 0, .6)",
-            display: "block",
-
-        },
-        content: {
-            position: "fixed",
-            display: "block",
-            left: "50%",
-            top: "50%",
-            marginLeft: "-175px",
-            marginTop: "-207px",
-            borderRadius: "3px",
-            fontFamily: "'exo 2', sans-serif",
-            fontWeight: "200",
-        }
+        position: "fixed",
+        display: "block",
+        left: "50%",
+        top: "50%",
+        marginLeft: "-175px",
+        marginTop: "-207px",
+        borderRadius: "3px",
+        fontFamily: "'exo 2', sans-serif",
+        fontWeight: "200",
     },
     title: {
         padding: "10px 15px",
@@ -47,7 +37,7 @@ export default class MakeGroupModal extends React.Component {
 
     render() {
         return (
-            <ModalWrapper
+            <DimModal
                 isOpen={this.props.isOpen}
                 onAfterOpen={this.props.onAfterOpen}
                 onRequestClose={this.props.onRequestClose}
@@ -57,7 +47,7 @@ export default class MakeGroupModal extends React.Component {
                 <div style={styles.content}>
                     <p>test</p>
                 </div>
-            </ModalWrapper>
+            </DimModal>
         )
     }
 }

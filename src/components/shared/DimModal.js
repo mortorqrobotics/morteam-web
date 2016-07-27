@@ -1,14 +1,22 @@
 import React from "react";
 import Modal from "react-modal";
 
-export default class ModalWrapper extends React.Component {
+let overlayStyle = {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    backgroundColor: "rgba(0, 0, 0, .6)",
+    display: "block",
+}
+
+export default class DimModal extends React.Component {
 
     static propTypes = {
         isOpen: React.PropTypes.bool,
         onAfterOpen: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
         closeTimeoutMS: React.PropTypes.number,
-        style: React.PropTypes.object
+        style: React.PropTypes.object,
     }
 
     render() {
@@ -18,7 +26,7 @@ export default class ModalWrapper extends React.Component {
                 onAfterOpen={this.props.onAfterOpen}
                 onRequestClose={this.props.onRequestClose}
                 closeTimeoutMS={this.props.closeTimeoutMS}
-                style={this.props.style}
+                style={{ overlay: overlayStyle, content: this.props.style }}
             >
                 {this.props.children}
             </Modal>

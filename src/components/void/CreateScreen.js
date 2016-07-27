@@ -36,7 +36,7 @@ export default class CreateScreen extends React.Component {
             setTimeout(() => window.location.assign("/"), REDIR_TIME);
         } catch ({ data }) {
             this.setState({
-                errorMsg: "data"
+                errorMsg: data
             });
         }
     }
