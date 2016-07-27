@@ -14,7 +14,7 @@ let styles = {
 }
 
 @Radium
-export default class NicEditor extends React.Component {
+export default class Editor extends React.Component {
 
     constructor(props) {
         super(props);
