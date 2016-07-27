@@ -13,7 +13,6 @@ let libs = [
     "axios",
     "radium",
     "axios-cancel",
-    "react-quill",
 ];
 
 gulp.task("build", function() {
