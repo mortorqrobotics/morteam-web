@@ -5,11 +5,9 @@ import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import ajax from "~/util/ajax";
 //import Form from "~/components/shared/forms/Form";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
-import VoidButton from "./VoidButton";
-import VoidTextBox from "./VoidTextBox";
 // TODO: use a submit button
 
-import { VoidRow } from "./sharedStyles";
+import { VoidRow, VoidButton, VoidTextBox } from "./shared";
 
 @Radium
 export default class JoinScreen extends React.Component {

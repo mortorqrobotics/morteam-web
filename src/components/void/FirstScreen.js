@@ -3,20 +3,7 @@ import Radium from "radium";
 
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
-import VoidButton from "./VoidButton";
-
-const styles = {
-    buttonCol: {
-        textAlign: "center",
-        margin: "10px 0 10px 0",
-    },
-}
-
-const ButtonCol = (props) => (
-    <Col sm={6} style={styles.buttonCol}>
-        {props.children}
-    </Col>
-)
+import { ButtonCol, VoidButton } from "./shared";
 
 @Radium
 export default class FirstScreen extends React.Component {

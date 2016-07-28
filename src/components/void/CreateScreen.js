@@ -3,11 +3,9 @@ import Radium from "radium";
 
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import ajax from "~/util/ajax";
-import VoidButton from "./VoidButton";
-import VoidTextBox from "./VoidTextBox";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 
-import { VoidRow } from "./sharedStyles";
+import { VoidRow, VoidButton, VoidTextBox } from "./shared";
 
 @Radium
 export default class CreateScreen extends React.Component {

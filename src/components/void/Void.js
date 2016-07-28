@@ -9,20 +9,7 @@ import message from "./message";
 import Grid from "react-bootstrap/lib/Grid";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
-
-const styles = {
-    message: {
-        width: "70%",
-        textAlign: "center",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginBottom: "33px",
-        fontSize: "18px",
-        backgroundColor: "white",
-        boxShadow: "0 2px 6px -4px black",
-        padding: "7px",
-    },
-}
+import { MessageBox } from "./shared";
 
 @Radium
 export default class Void extends React.Component {
@@ -54,9 +41,9 @@ export default class Void extends React.Component {
                 <Grid style={{ width: "100%" }}>
                     <Row>
                         <Col>
-                            <h3 style={styles.message}>
+                            <MessageBox>
                                 {message}
-                            </h3>
+                            </MessageBox>
                         </Col>
                     </Row>
                     {(() => {

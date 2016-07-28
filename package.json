@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
-    "build": "./node_modules/gulp/bin/gulp.js build",
-    "watch": "npm run build; ./node_modules/gulp/bin/gulp.js watch",
-    "vendor": "./node_modules/gulp/bin/gulp.js vendor",
+    "build": "./node_modules/.bin/gulp build",
+    "watch": "npm run build; ./node_modules/.bin/gulp watch",
+    "vendor": "./node_modules/.bin/gulp vendor",
     "postinstall": "npm run vendor",
-    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/js-beautify/js/bin/js-beautify.js --type js -r -n -X -e \"\\n\" -b collapse-preserve-inline $f; done | grep '\\.js$' || echo done"
+    "fmt": "for f in `find src -name '*.js'`; do ./node_modules/.bin/js-beautify --type js -r -n -X -e \"\\n\" -b collapse-preserve-inline $f; done | grep '\\.js$' || echo done"
   },
   "repository": {
     "type": "git",
