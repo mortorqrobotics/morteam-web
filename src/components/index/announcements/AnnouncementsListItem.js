@@ -14,19 +14,23 @@ export default class AnnouncementsListItem extends React.Component {
     render() {
         return (
             <div>
-				<div>
-					{this.props.author.firstname} 
-					{this.props.author.lastname}
-					{this.props.timestamp.toLocaleString()}
-					{this.props.audience.groups.map(group => (
-						<p>{group.name}</p>
-					))}
-					{this.props.audience.users.map(user => (
-						<p>{user.firstname}{user.lastname}</p>
-					))}
-				</div>
-				<p>{this.props.content}</p>
-			</div>
+                <div>
+                    {this.props.author.firstname} 
+                    {this.props.author.lastname}
+                    {this.props.timestamp.toLocaleString()}
+                    {this.props.audience.groups.map(group => (
+                        <p key={group._id}>
+                            {group.name}
+                        </p>
+                    ))}
+                    {this.props.audience.users.map(user => (
+                        <p key={user._id}>
+                            {user.firstname} {user.lastname}
+                        </p>
+                    ))}
+                </div>
+                <p>{this.props.content}</p>
+            </div>
         )
     }
 

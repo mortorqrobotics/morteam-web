@@ -25,9 +25,9 @@ export default class AnnouncementsList extends React.Component {
 
     componentDidMount = async() => {
         try {
-            let announcements = await ajax.request("get", "/announcements");
+            let { data } = await ajax.request("get", "/announcements");
             this.setState({
-                announcements: announcements
+                announcements: data
             });
         } catch (err) {
             console.log(err);
@@ -37,16 +37,17 @@ export default class AnnouncementsList extends React.Component {
     render() {
         return (
             <div style={styles.announcementsList}>
-				{this.state.announcements.map(listItem => (
-    				<AnnouncementsListItem 
-    					author={listItem.author}
-    					content={listItem.content}
-    					audience={listItem.audience}
-						timestamp={listItem.timestamp}
-   					/>
-    			))};			
-    		</div>
-        );
+                {this.state.announcements.map(listItem => (
+                    <AnnouncementsListItem 
+                        key={listItem._id}
+                        author={listItem.author}
+                        content={listItem.content}
+                        audience={listItem.audience}
+                        timestamp={new Date(listItem.timestamp)}
+                    />
+                ))};			
+            </div>
+        )
     }
 
 }
