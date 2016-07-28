@@ -25,6 +25,7 @@
     "babel-runtime": "^6.9.2",
     "radium": "^0.18.1",
     "react": "^15.1.0",
+    "react-bootstrap": "^0.30.0",
     "react-dom": "^15.1.0",
     "react-modal": "^1.4.0"
   },
@@ -44,7 +45,6 @@
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.4",
     "js-beautify": "^1.6.3",
-    "react-bootstrap": "^0.29.5",
     "vinyl-source-stream": "^1.1.0"
   }
 }

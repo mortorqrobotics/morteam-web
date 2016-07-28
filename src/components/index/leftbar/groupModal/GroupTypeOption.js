@@ -21,8 +21,8 @@ let styles = {
 @Radium
 export default class GroupTypeOption extends React.Component {
 
-    static PropTypes = {
-        isSelected: React.PropTypes.string,
+    static propTypes = {
+        isSelected: React.PropTypes.bool,
         onClick: React.PropTypes.func,
         text: React.PropTypes.string
     }

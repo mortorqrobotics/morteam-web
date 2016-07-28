@@ -6,6 +6,7 @@ import CreateGroupButton from "./CreateGroupButton";
 import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
 import ajax from "~/util/ajax";
+import userInfo from "~/util/userInfo";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
 let styles = {
@@ -50,12 +51,12 @@ export default class MakeGroupModal extends React.Component {
         this.state = {
             groupName: "",
             searchName: "",
-            members: [window.__userInfo._id], //TODO: add the ability to add other members
+            members: [userInfo._id], //TODO: add the ability to add other members
             isPublic: true,
         }
     }
 
-    static PropTypes = {
+    static propTypes = {
         isOpen: React.PropTypes.bool,
         onAfterOpen: React.PropTypes.func,
         onRequestClose: React.PropTypes.func

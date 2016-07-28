@@ -7,6 +7,8 @@ import VoidButton from "./VoidButton";
 import VoidTextBox from "./VoidTextBox";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 
+import { VoidRow } from "./sharedStyles";
+
 @Radium
 export default class CreateScreen extends React.Component {
 
@@ -43,27 +45,37 @@ export default class CreateScreen extends React.Component {
 
     render() {
         return (
-            <div>
-                <VoidTextBox
-                    placeholder="Team Number"
-                    value={this.state.number}
-                    onChange={this.getChangeHandler("number")}
-                />
-                <VoidTextBox
-                    placeholder="Team Name"
-                    value={this.state.name}
-                    onChange={this.getChangeHandler("name")}
-                />
-                <VoidTextBox
-                    placeholder="Choose Team ID"
-                    value={this.state.id}
-                    onChange={this.getChangeHandler("id")}
-                />
-                <VoidButton
-                    text="Done"
-                    onClick={this.create}
-                />
-                <ErrorMsg message={this.state.errorMsg} />
+            <div style={{ textAlign: "center" }}>
+                <VoidRow>
+                    <VoidTextBox
+                        placeholder="Team Number"
+                        value={this.state.number}
+                        onChange={this.getChangeHandler("number")}
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <VoidTextBox
+                        placeholder="Team Name"
+                        value={this.state.name}
+                        onChange={this.getChangeHandler("name")}
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <VoidTextBox
+                        placeholder="Choose Team ID"
+                        value={this.state.id}
+                        onChange={this.getChangeHandler("id")}
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <VoidButton
+                        text="Done"
+                        onClick={this.create}
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <ErrorMsg message={this.state.errorMsg} />
+                </VoidRow>
             </div>
         )
     }

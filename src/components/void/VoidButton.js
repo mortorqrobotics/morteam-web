@@ -3,6 +3,16 @@ import Radium from "radium";
 
 import Button from "~/components/shared/forms/Button";
 
+import sharedStyles from "./sharedStyles";
+
+const styles = {
+    button: [sharedStyles, {
+        backgroundColor: "#ffc547",
+        borderRadius: "1px",
+        cursor: "pointer",
+    }],
+}
+
 @Radium
 export default class VoidButton extends React.Component {
 
@@ -16,6 +26,7 @@ export default class VoidButton extends React.Component {
             <Button
                 text={this.props.text}
                 onClick={this.props.onClick}
+                style={styles.button}
             />
         )
     }

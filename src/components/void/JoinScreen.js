@@ -9,6 +9,8 @@ import VoidButton from "./VoidButton";
 import VoidTextBox from "./VoidTextBox";
 // TODO: use a submit button
 
+import { VoidRow } from "./sharedStyles";
+
 @Radium
 export default class JoinScreen extends React.Component {
 
@@ -41,17 +43,23 @@ export default class JoinScreen extends React.Component {
 
     render() {
         return (
-            <div>
-                <VoidTextBox
-                    value={this.state.teamCode}
-                    onChange={this.getChangeHandler("teamCode")}
-                    placeholder="Team Code"
-                />
-                <VoidButton
-                    text="Join"
-                    onClick={this.join}
-                />
-                <ErrorMsg message={this.state.errorMsg} />
+            <div style={{ textAlign: "center" }}>
+                <VoidRow>
+                    <VoidTextBox
+                        value={this.state.teamCode}
+                        onChange={this.getChangeHandler("teamCode")}
+                        placeholder="Team Code"
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <VoidButton
+                        text="Join"
+                        onClick={this.join}
+                    />
+                </VoidRow>
+                <VoidRow>
+                    <ErrorMsg message={this.state.errorMsg} />
+                </VoidRow>
             </div>
         )
     }
