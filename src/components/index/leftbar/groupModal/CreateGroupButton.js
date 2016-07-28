@@ -23,7 +23,7 @@ let styles = {
 @Radium
 export default class CreateGroupButton extends React.Component {
 
-    static PropTypes = {
+    static propTypes = {
         onClick: React.PropTypes.func
     }
 

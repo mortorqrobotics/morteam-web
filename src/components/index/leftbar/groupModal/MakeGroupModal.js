@@ -55,7 +55,7 @@ export default class MakeGroupModal extends React.Component {
         }
     }
 
-    static PropTypes = {
+    static propTypes = {
         isOpen: React.PropTypes.bool,
         onAfterOpen: React.PropTypes.func,
         onRequestClose: React.PropTypes.func
