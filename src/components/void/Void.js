@@ -9,7 +9,7 @@ import message from "./message";
 import Grid from "react-bootstrap/lib/Grid";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
-import { MessageBox } from "./shared";
+import { MessageBox, VoidButton } from "./shared";
 
 @Radium
 export default class Void extends React.Component {
@@ -35,6 +35,12 @@ export default class Void extends React.Component {
         })
     }
 
+    onBack = () => {
+        this.setState({
+            screen: "first",
+        })
+    }
+
     render() {
         return (
             <Root verticalAlignMiddle>
@@ -52,8 +58,8 @@ export default class Void extends React.Component {
                                 onJoin={this.onJoin}
                                 onCreate={this.onCreate}
                             />
-                            case "join": return <JoinScreen />
-                            case "create": return <CreateScreen />
+                            case "join": return <JoinScreen onBack={this.onBack} />
+                            case "create": return <CreateScreen onBack={this.onBack} />
                         }
                     })()}
                 </Grid>

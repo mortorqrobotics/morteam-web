@@ -7,10 +7,14 @@ import ajax from "~/util/ajax";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 // TODO: use a submit button
 
-import { VoidRow, VoidButton, VoidTextBox } from "./shared";
+import { VoidRow, VoidButton, VoidTextBox, BackButton, CenteredDiv } from "./shared";
 
 @Radium
 export default class JoinScreen extends React.Component {
+
+    static propTypes = {
+        onBack: React.PropTypes.func,
+    }
 
     constructor(props) {
         super(props);
@@ -25,6 +29,7 @@ export default class JoinScreen extends React.Component {
 
     join = async() => {
         try {
+            // TODO: validate empty input
             await ajax.request("POST",
                 "/teams/code/" + this.state.teamCode + "/join"
             ); // TODO: urlencode the team code
@@ -41,7 +46,7 @@ export default class JoinScreen extends React.Component {
 
     render() {
         return (
-            <div style={{ textAlign: "center" }}>
+            <CenteredDiv>
                 <VoidRow>
                     <VoidTextBox
                         value={this.state.teamCode}
@@ -56,9 +61,12 @@ export default class JoinScreen extends React.Component {
                     />
                 </VoidRow>
                 <VoidRow>
+                    <BackButton onBack={this.props.onBack} />
+                </VoidRow>
+                <VoidRow>
                     <ErrorMsg message={this.state.errorMsg} />
                 </VoidRow>
-            </div>
+            </CenteredDiv>
         )
     }
 

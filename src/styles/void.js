@@ -33,4 +33,7 @@ export default {
     row: {
         marginBottom: "7px",
     },
+    centered: {
+        textAlign: "center",
+    },
 }

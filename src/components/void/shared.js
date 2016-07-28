@@ -1,6 +1,5 @@
-// TODO: do not keep this here
+import React from "react"; // does need to be here
 
-import React from "react"; // needs to be here
 import styles from "~/styles/void";
 import { withCss, withProps } from "~/util/component";
 
@@ -21,3 +20,12 @@ export const VoidButton = withCss(Button, styles.button);
 export const VoidTextBox = withCss(TextBox, styles.textBox);
 
 export const MessageBox = withCss("h3", styles.message);
+
+export const CenteredDiv = withCss("div", styles.centered);
+
+export const BackButton = (props) => (
+    <VoidButton
+        text="Back"
+        onClick={props.onBack}
+    />
+)

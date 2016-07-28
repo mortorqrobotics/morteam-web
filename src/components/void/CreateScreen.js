@@ -5,10 +5,14 @@ import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import ajax from "~/util/ajax";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
 
-import { VoidRow, VoidButton, VoidTextBox } from "./shared";
+import { VoidRow, VoidButton, VoidTextBox, BackButton, CenteredDiv } from "./shared";
 
 @Radium
 export default class CreateScreen extends React.Component {
+
+    static propTypes = {
+        onBack: React.PropTypes.func,
+    }
 
     constructor(props) {
         super(props);
@@ -43,7 +47,7 @@ export default class CreateScreen extends React.Component {
 
     render() {
         return (
-            <div style={{ textAlign: "center" }}>
+            <CenteredDiv>
                 <VoidRow>
                     <VoidTextBox
                         placeholder="Team Number"
@@ -72,9 +76,12 @@ export default class CreateScreen extends React.Component {
                     />
                 </VoidRow>
                 <VoidRow>
+                    <BackButton onBack={this.props.onBack} />
+                </VoidRow>
+                <VoidRow>
                     <ErrorMsg message={this.state.errorMsg} />
                 </VoidRow>
-            </div>
+            </CenteredDiv>
         )
     }
 

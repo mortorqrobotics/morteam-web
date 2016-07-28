@@ -15,24 +15,24 @@ let styles = {
 @Radium
 export default class AnnouncementsList extends React.Component {
 
-	constructor(props) {
-		super(props);
-		
-		this.state = {
-			announcements: []
-		};
-	}
+    constructor(props) {
+        super(props);
 
-	componentDidMount = async() => {
-		try {
-			let announcements = await ajax.request("get", "/announcements");
-			this.setState({
-				announcements: announcements
-			});
-		} catch (err) {
-			console.log(err);
-		}
-	}
+        this.state = {
+            announcements: []
+        };
+    }
+
+    componentDidMount = async() => {
+        try {
+            let announcements = await ajax.request("get", "/announcements");
+            this.setState({
+                announcements: announcements
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     render() {
         return (
