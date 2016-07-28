@@ -19,11 +19,6 @@ let styles = {
 @Radium
 export default class ModalTextBox extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     static propTypes = {
         placeholder: React.PropTypes.string,
         onChange: React.PropTypes.func.isRequired,
