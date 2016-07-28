@@ -6,7 +6,7 @@ let styles = {
         fontsize: "14px",
         ":hover": {
             backgroundColor: "#E9E9E9",
-            cursor: "hand",
+            cursor: "pointer",
         }
     }
 }

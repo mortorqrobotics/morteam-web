@@ -19,7 +19,7 @@ export default class PublicGroups extends React.Component {
 
     componentDidMount = async() => {
         try {
-            let { data } = await ajax.request("get", "/groups/public"); //TODO: implement this
+            let { data } = await ajax.request("get", "/groups/public");
             this.setState({
                 groups: data
             });
@@ -36,7 +36,7 @@ export default class PublicGroups extends React.Component {
                     <GroupItem
                         key={group._id}
                         id={group._id}
-                        name="group name"
+                        name={group.name}
                     />
                 ))}
             </div>

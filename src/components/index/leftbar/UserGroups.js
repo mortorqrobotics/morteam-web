@@ -34,7 +34,7 @@ export default class UserGroups extends React.Component {
                     <GroupItem
                         key={group._id}
                         id={group._id}
-                        name="group name" //TODO: give groups names
+                        name={group.name}
                     />
                 ))}
             </div>

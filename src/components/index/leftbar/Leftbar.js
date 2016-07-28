@@ -7,7 +7,7 @@ import TeamButton from "./TeamButton";
 import MakeGroupButton from "./MakeGroupButton";
 import UserGroups from "./UserGroups";
 import PublicGroups from "./PublicGroups";
-import Link from "../../shared/Link";
+import Link from "~/components/shared/Link";
 import userInfo from "~/util/userInfo";
 
 var styles = {
@@ -46,8 +46,8 @@ export default class Leftbar extends React.Component {
         if (userInfo.isAdmin()) {
             return (
                 <div>
-                    <hr />
                     <MakeGroupButton />
+                    <hr />
                 </div>
             )
         }
@@ -56,15 +56,20 @@ export default class Leftbar extends React.Component {
     render() {
         return (
             <div style={styles.div}>
+
                 <ProfileButton />
                 <LogoutButton />
                 <TeamButton />
                 <hr />
+
                 <UserGroups />
                 <hr />
-                <PublicGroups /> //TODO: implement public/private-ness to groups
-                {this.displayMakeGroupButton()}
+
+                <PublicGroups />
                 <hr />
+
+                {this.displayMakeGroupButton()}
+
                 <span style={styles.span}>© 2015 MorTeam</span>
                 <span style={styles.span}>
                     <Link
@@ -73,6 +78,7 @@ export default class Leftbar extends React.Component {
                         style={styles.link}
                     />
                 </span>
+
             </div>
         )
     }

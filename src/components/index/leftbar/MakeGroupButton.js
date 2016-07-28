@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import LeftbarButton from "./LeftbarButton";
-import MakeGroupModal from "./MakeGroupModal";
+import MakeGroupModal from "./groupModal/MakeGroupModal";
 
 @Radium
 export default class MakeGroupButton extends React.Component {
