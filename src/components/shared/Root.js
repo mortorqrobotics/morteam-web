@@ -34,7 +34,7 @@ export default class Root extends React.Component {
 
     getChildContext() {
         let user = window.__userInfo;
-        if (typeof user === "object") {
+        if (user && typeof user === "object") {
             user.isAdmin = () => (
                 user.position === "leader" || user.position === "mentor"
             )
