@@ -8,7 +8,6 @@ import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
 import MemberSelect from "./MemberSelect";
 import ajax from "~/util/ajax";
-import userInfo from "~/util/userInfo";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
 let styles = {
@@ -45,24 +44,28 @@ let styles = {
 @Radium
 export default class MakeGroupModal extends React.Component {
 
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        isOpen: React.PropTypes.bool,
+        onAfterOpen: React.PropTypes.func,
+        onRequestClose: React.PropTypes.func,
+    }
+
+    static contextTypes = {
+        user: React.PropTypes.object.isRequired,
+    }
+
+    constructor(props, context) {
+        super(props, context);
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 
         this.state = {
             groupName: "",
             searchName: "",
-            users: [userInfo._id],
+            users: [this.context.user._id],
             groups: [],
             isPublic: true,
         }
-    }
-
-    static propTypes = {
-        isOpen: React.PropTypes.bool,
-        onAfterOpen: React.PropTypes.func,
-        onRequestClose: React.PropTypes.func
     }
 
     //TODO: update state of leftbar to add new groups to leftbar

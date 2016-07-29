@@ -8,7 +8,6 @@ import MakeGroupButton from "./MakeGroupButton";
 import UserGroups from "./UserGroups";
 import PublicGroups from "./PublicGroups";
 import Link from "~/components/shared/Link";
-import userInfo from "~/util/userInfo";
 
 var styles = {
     div: {
@@ -38,12 +37,12 @@ var styles = {
 @Radium
 export default class Leftbar extends React.Component {
 
-    constructor(props) {
-        super(props);
+    static contextTypes = {
+        user: React.PropTypes.object,
     }
 
-    displayMakeGroupButton() {
-        if (userInfo.isAdmin()) {
+    displayMakeGroupButton = () => {
+        if (this.context.user.isAdmin()) {
             return (
                 <div>
                     <MakeGroupButton />

@@ -28,6 +28,22 @@ export default class Root extends React.Component {
         verticalAlignMiddle: React.PropTypes.bool,
     }
 
+    static childContextTypes = {
+        user: React.PropTypes.object,
+    }
+
+    getChildContext() {
+        let user = window.__userInfo;
+        if (typeof user === "object") {
+            user.isAdmin = () => (
+                user.position === "leader" || user.position === "mentor"
+            )
+        }
+        return {
+            user: user,
+        }
+    }
+
     render() {
         return (
             <StyleRoot style={styles.global}>

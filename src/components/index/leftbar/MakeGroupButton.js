@@ -15,6 +15,10 @@ export default class MakeGroupButton extends React.Component {
         }
     }
 
+    static contextTypes = {
+        user: React.PropTypes.object,
+    }
+
     openModal = () => {
         this.setState({
             modalIsOpen: true
