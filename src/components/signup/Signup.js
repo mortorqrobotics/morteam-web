@@ -4,30 +4,17 @@ import Radium from "radium";
 import Root, { pageInit } from "~/components/shared/Root";
 import SubmitButton from "~/components/shared/forms/SubmitButton";
 import ErrorMsg from "~/components/shared/forms/ErrorMsg";
-import SignupInput from "./SignupInput";
-import SubmitSignupButton from "./SubmitSignupButton";
 import Link from "~/components/shared/Link";
 import Form from "~/components/shared/forms/Form";
 import ajax from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
-let styles = {
-    form: {
-        "position": "relative",
-        "textAlign": "center"
-    },
-    div: {
-        "width": "360px",
-        "height": "640px",
-        "backgroundColor": "#FFC547",
-        "position": "absolute",
-        "top": "50%",
-        "left": "50%",
-        "margin": "-330px 0 0 -180px",
-        "borderRadius": "1px",
-        "boxShadow": "3px 5px 10px -2px gray"
-    },
-}
+import {
+    SignupInput,
+    SignupSubmitButton,
+    SignupContainer,
+    SignupForm,
+} from "./shared";
 
 @Radium
 export default class Signup extends React.Component {
@@ -82,12 +69,13 @@ export default class Signup extends React.Component {
         return (
             <Root>
                 <Link location="login" text="Back to login" />
-                <div style={[styles.div]}>
-                    <Form style={styles.form} onSubmit={this.onSubmit}>
+                <SignupContainer>
+                    <SignupForm onSubmit={this.onSubmit}>
                         <SignupInput
                             placeholder="First Name"
                             value={this.state.firstname}
                             onChange={this.getChangeHandler("firstname")}
+                            autoFocus
                         />
                         <SignupInput
                             placeholder="Last Name"
@@ -120,9 +108,9 @@ export default class Signup extends React.Component {
                             onChange={this.getChangeHandler("phone")}
                         />
                         <ErrorMsg message={this.state.errorMsg} />
-                        <SubmitSignupButton />
-                    </Form>
-                </div>
+                        <SignupSubmitButton />
+                    </SignupForm>
+                </SignupContainer>
             </Root>
         )
     }

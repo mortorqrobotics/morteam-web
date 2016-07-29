@@ -11,6 +11,7 @@ export default class TextBox extends React.Component {
         autoCapitalize: React.PropTypes.bool,
         autoCorrect: React.PropTypes.bool,
         value: React.PropTypes.string,
+        autoFocus: React.PropTypes.bool,
     }
     static defaultProps = {
         autoCapitalize: true,
@@ -27,6 +28,7 @@ export default class TextBox extends React.Component {
                 style={this.props.style}
                 autoCapitalize={this.props.autoCapitalize ? "on" : "off"}
                 autoCorrect={this.props.autoCorrect ? "on" : "off"}
+                autoFocus={this.props.autoFocus}
             />
         )
     }
