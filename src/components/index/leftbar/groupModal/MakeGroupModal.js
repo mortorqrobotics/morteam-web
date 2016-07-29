@@ -1,10 +1,12 @@
 import React from "react";
 import Radium from "radium";
+import update from "react/lib/update";
 
 import DimModal from "~/components/shared/DimModal";
 import CreateGroupButton from "./CreateGroupButton";
 import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
+import MemberSelect from "./MemberSelect";
 import ajax from "~/util/ajax";
 import userInfo from "~/util/userInfo";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
@@ -51,7 +53,8 @@ export default class MakeGroupModal extends React.Component {
         this.state = {
             groupName: "",
             searchName: "",
-            members: [userInfo._id], //TODO: add the ability to add other members
+            users: [userInfo._id],
+            groups: [],
             isPublic: true,
         }
     }
@@ -66,7 +69,8 @@ export default class MakeGroupModal extends React.Component {
     createGroup = async() => {
         try {
             let { data } = await ajax.request("post", "/groups", {
-                users: this.state.members,
+                users: this.state.users,
+                //groups: this.state.groups, //TODO: fix NormalGroup in mornetwork
                 name: this.state.groupName,
                 isPublic: this.state.isPublic
             });
@@ -86,6 +90,38 @@ export default class MakeGroupModal extends React.Component {
         this.setState({
             isPublic: false
         });
+    }
+
+    onGroupClick = (group) => {
+        if (this.state.groups.indexOf(group) == -1) {
+            this.setState({
+                groups: this.state.groups.concat([group])
+            });
+        } else {
+            this.setState({
+                groups: update(this.state.groups, {
+                    $splice: [
+                        [this.state.groups.indexOf(group), 1]
+                    ]
+                })
+            });
+        }
+    }
+
+    onUserClick = (user) => {
+        if (this.state.users.indexOf(user) == -1) {
+            this.setState({
+                users: this.state.users.concat([user])
+            });
+        } else {
+            this.setState({
+                users: update(this.state.users, {
+                    $splice: [
+                        [this.state.users.indexOf(user), 1]
+                    ]
+                })
+            });
+        }
     }
 
     render() {
@@ -118,11 +154,19 @@ export default class MakeGroupModal extends React.Component {
                     />
                     <br />
 
-                    <p>Please select some inital members</p> //TODO: actually do this
+                    <p>Please select some inital members</p>
                     <ModalTextBox
                         placeholder="Search Names..."
                         onChange={this.getChangeHandler("searchName")}
-                        value={this.state.searchName}
+                        value={this.state.searchName} //TODO: give search actual functionality
+                    />
+                    <br />
+
+                    <MemberSelect
+                        selectedGroups={this.state.groups}
+                        selectedUsers={this.state.users}
+                        onUserClick={this.onUserClick}
+                        onGroupClick={this.onGroupClick}
                     />
                     <br />
 
