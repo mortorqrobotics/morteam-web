@@ -4,36 +4,23 @@ import Radium from "radium";
 import MemberItem from "./MemberItem";
 import ajax from "~/util/ajax";
 
+let styles = {
+    div: {
+        height: "130px",
+        overflowY: "auto",
+    }
+}
+
 @Radium
 export default class MemberSelect extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            users: [],
-            groups: []
-        }
-    }
-
     static propTypes = {
+        users: React.PropTypes.array,
+        groups: React.PropTypes.array,
         selectedUsers: React.PropTypes.array,
         selectedGroups: React.PropTypes.array,
         onUserClick: React.PropTypes.func,
         onGroupClick: React.PropTypes.func,
-    }
-
-    componentDidMount = async() => {
-        try {
-            let userResponse = await ajax.request("get", "/teams/current/users");
-            let groupResponse = await ajax.request("get", "/groups");
-            this.setState({
-                users: userResponse.data,
-                groups: groupResponse.data
-            });
-        } catch (err) {
-            console.log(err);
-        }
     }
 
     isGroupSelected = (group) => {
@@ -44,11 +31,10 @@ export default class MemberSelect extends React.Component {
         return this.props.selectedUsers.indexOf(user) != -1;
     }
 
-    //TODO: scrollbar
     render() {
         return (
-            <div>
-                {this.state.groups.map(group => (
+            <div style={styles.div}>
+                {this.props.groups.map(group => (
                     <MemberItem
                         key={group._id}
                         text={group.name}
@@ -57,7 +43,7 @@ export default class MemberSelect extends React.Component {
                         isSelected={this.isGroupSelected(group._id)}
                     />
                 ))}
-                {this.state.users.map(user => (
+                {this.props.users.map(user => (
                     <MemberItem
                         key={user._id}
                         text={user.firstname + " " + user.lastname}

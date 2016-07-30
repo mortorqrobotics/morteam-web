@@ -32,6 +32,7 @@ export default class ModalTextBox extends React.Component {
                 onChange={this.props.onChange}
                 value={this.props.value}
                 style={styles.textBox}
+                maxLength={21}
             />
         )
     }

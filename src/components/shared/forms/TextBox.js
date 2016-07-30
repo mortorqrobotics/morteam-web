@@ -12,6 +12,7 @@ export default class TextBox extends React.Component {
         autoCorrect: React.PropTypes.bool,
         value: React.PropTypes.string,
         autoFocus: React.PropTypes.bool,
+        maxLength: React.PropTypes.number,
     }
     static defaultProps = {
         autoCapitalize: true,
@@ -29,6 +30,7 @@ export default class TextBox extends React.Component {
                 autoCapitalize={this.props.autoCapitalize ? "on" : "off"}
                 autoCorrect={this.props.autoCorrect ? "on" : "off"}
                 autoFocus={this.props.autoFocus}
+                maxLength={this.props.maxLength.toString()}
             />
         )
     }

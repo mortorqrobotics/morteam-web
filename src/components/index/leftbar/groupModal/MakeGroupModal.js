@@ -62,24 +62,51 @@ export default class MakeGroupModal extends React.Component {
 
         this.state = {
             groupName: "",
-            searchName: "",
-            users: [this.context.user._id],
+            users: [],
             groups: [],
+            selectedUsers: [this.context.user._id],
+            selectedGroups: [],
             isPublic: true,
+            query: "",
         }
+    }
+
+    componentDidMount = () => {
+        this.showAllGroupsAndUsers();
     }
 
     createGroup = async() => {
         try {
             let { data } = await ajax.request("post", "/groups", {
-                users: this.state.users,
-                //groups: this.state.groups, //TODO: fix NormalGroup in mornetwork
+                users: this.state.selectedUsers,
+                //groups: this.state.selectedGroups, //TODO: fix NormalGroup in mornetwork
                 name: this.state.groupName,
                 isPublic: this.state.isPublic
             });
             console.log(data);
+            this.setState({
+                groupName: "",
+                selectedUsers: [this.context.user._id],
+                selectedGroups: [],
+                isPublic: true,
+                query: "",
+            });
+            this.showAllGroupsAndUsers();
             this.props.updateGroups();
             this.props.onRequestClose();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    showAllGroupsAndUsers = async() => {
+        try {
+            let userResponse = await ajax.request("get", "/teams/current/users");
+            let groupResponse = await ajax.request("get", "/groups");
+            this.setState({
+                users: userResponse.data,
+                groups: groupResponse.data
+            });
         } catch (err) {
             console.log(err);
         }
@@ -98,15 +125,15 @@ export default class MakeGroupModal extends React.Component {
     }
 
     onGroupClick = (group) => {
-        if (this.state.groups.indexOf(group) == -1) {
+        if (this.state.selectedGroups.indexOf(group) == -1) {
             this.setState({
-                groups: this.state.groups.concat([group])
+                selectedGroups: this.state.selectedGroups.concat([group])
             });
         } else {
             this.setState({
-                groups: update(this.state.groups, {
+                selectedGroups: update(this.state.selectedGroups, {
                     $splice: [
-                        [this.state.groups.indexOf(group), 1]
+                        [this.state.selectedGroups.indexOf(group), 1]
                     ]
                 })
             });
@@ -115,18 +142,37 @@ export default class MakeGroupModal extends React.Component {
 
     onUserClick = (user) => {
         if (user != this.context.user._id) {
-            if (this.state.users.indexOf(user) == -1) {
+            if (this.state.selectedUsers.indexOf(user) == -1) {
                 this.setState({
-                    users: this.state.users.concat([user])
+                    selectedUsers: this.state.selectedUsers.concat([user])
                 });
             } else {
                 this.setState({
-                    users: update(this.state.users, {
+                    selectedUsers: update(this.state.selectedUsers, {
                         $splice: [
-                            [this.state.users.indexOf(user), 1]
+                            [this.state.selectedUsers.indexOf(user), 1]
                         ]
                     })
                 });
+            }
+        }
+    }
+
+    //TODO: group search
+    handleQueryChange = async(e) => {
+        this.setState({
+            query: e.target.value
+        });
+        if (e.target.value == "") {
+            this.showAllGroupsAndUsers()
+        } else {
+            try {
+                let { data } = await ajax.request("get", "/users/search?search=" + e.target.value);
+                this.setState({
+                    users: data
+                });
+            } catch (err) {
+                console.log(err);
             }
         }
     }
@@ -164,14 +210,16 @@ export default class MakeGroupModal extends React.Component {
                     <p>Please select some inital members</p>
                     <ModalTextBox
                         placeholder="Search Names..."
-                        onChange={this.getChangeHandler("searchName")}
-                        value={this.state.searchName} //TODO: give search actual functionality
+                        onChange={this.handleQueryChange}
+                        value={this.state.query}
                     />
                     <br />
 
                     <MemberSelect
-                        selectedGroups={this.state.groups}
-                        selectedUsers={this.state.users}
+                        users={this.state.users}
+                        groups={this.state.groups}
+                        selectedUsers={this.state.selectedUsers}
+                        selectedGroups={this.state.selectedGroups}
                         onUserClick={this.onUserClick}
                         onGroupClick={this.onGroupClick}
                     />
