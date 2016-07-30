@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import MemberItem from "./MemberItem";
 import ajax from "~/util/ajax";
+import { getGroupName } from "~/util/groups";
 
 let styles = {
     div: {
@@ -37,7 +38,7 @@ export default class MemberSelect extends React.Component {
                 {this.props.groups.map(group => (
                     <MemberItem
                         key={group._id}
-                        text={group.name}
+                        text={getGroupName(group)}
                         id={group._id}
                         onClick={this.props.onGroupClick}
                         isSelected={this.isGroupSelected(group._id)}

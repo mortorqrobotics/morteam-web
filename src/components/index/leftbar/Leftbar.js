@@ -95,7 +95,7 @@ export default class Leftbar extends React.Component {
 
     updateGroups = async() => {
         try {
-            let userGroupsRes = await ajax.request("get", "/groups");
+            let userGroupsRes = await ajax.request("get", "/normalgroups");
             let publicGroupsRes = await ajax.request("get", "/groups/public");
             this.setState({
                 userGroups: userGroupsRes.data,
