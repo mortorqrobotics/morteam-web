@@ -17,7 +17,11 @@ export default class GroupItem extends React.Component {
 
     render() {
         return (
-            <LeftbarButton text={this.props.name} onClick={this.onClick} />
+            <LeftbarButton
+                text={this.props.name}
+                glyph="screenshot"
+                onClick={this.onClick}
+            />
         )
     }
 }

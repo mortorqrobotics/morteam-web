@@ -11,13 +11,13 @@ export default class MakeGroupButton extends React.Component {
         onClick: React.PropTypes.func
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     render() {
         return (
-            <LeftbarButton text="Make a Group" onClick={this.props.onClick} />
+            <LeftbarButton
+                text="Make a Group"
+                glyph="plus"
+                onClick={this.props.onClick}
+            />
         )
     }
 }

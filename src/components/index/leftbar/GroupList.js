@@ -7,12 +7,7 @@ import GroupItem from "./GroupItem";
 export default class GroupList extends React.Component {
 
     static propTypes = {
-        updateGroups: React.PropTypes.func,
         groups: React.PropTypes.array
-    }
-
-    componentDidMount = () => {
-        this.props.updateGroups();
     }
 
     render() {

@@ -32,6 +32,9 @@ var styles = {
         ":hover": {
             textDecoration: "underline",
         }
+    },
+    h5: {
+        marginBottom: "15px",
     }
 }
 
@@ -50,6 +53,10 @@ export default class Leftbar extends React.Component {
 
     static contextTypes = {
         user: React.PropTypes.object,
+    }
+
+    componentDidMount = () => {
+        this.updateGroups();
     }
 
     displayMakeGroupButton = () => {
@@ -108,16 +115,14 @@ export default class Leftbar extends React.Component {
                 <TeamButton />
                 <hr />
 
-                <h5>Your Groups</h5>
+                <h5 style={styles.h5}>Your Groups</h5>
                 <GroupList
-                    updateGroups={this.updateGroups}
                     groups={this.state.userGroups}
                 />
                 <hr />
 
-                <h5>Public Groups</h5>
+                <h5 style={styles.h5}>Public Groups</h5>
                 <GroupList
-                    updateGroups={this.updateGroups}
                     groups={this.state.publicGroups}
                 />
                 <hr />
