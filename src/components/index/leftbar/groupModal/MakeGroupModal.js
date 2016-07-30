@@ -48,6 +48,7 @@ export default class MakeGroupModal extends React.Component {
         isOpen: React.PropTypes.bool,
         onAfterOpen: React.PropTypes.func,
         onRequestClose: React.PropTypes.func,
+        updateGroups: React.PropTypes.func
     }
 
     static contextTypes = {
@@ -68,7 +69,6 @@ export default class MakeGroupModal extends React.Component {
         }
     }
 
-    //TODO: update state of leftbar to add new groups to leftbar
     createGroup = async() => {
         try {
             let { data } = await ajax.request("post", "/groups", {
@@ -78,6 +78,8 @@ export default class MakeGroupModal extends React.Component {
                 isPublic: this.state.isPublic
             });
             console.log(data);
+            this.props.updateGroups();
+            this.props.onRequestClose();
         } catch (err) {
             console.log(err);
         }
@@ -112,18 +114,20 @@ export default class MakeGroupModal extends React.Component {
     }
 
     onUserClick = (user) => {
-        if (this.state.users.indexOf(user) == -1) {
-            this.setState({
-                users: this.state.users.concat([user])
-            });
-        } else {
-            this.setState({
-                users: update(this.state.users, {
-                    $splice: [
-                        [this.state.users.indexOf(user), 1]
-                    ]
-                })
-            });
+        if (user != this.context.user._id) {
+            if (this.state.users.indexOf(user) == -1) {
+                this.setState({
+                    users: this.state.users.concat([user])
+                });
+            } else {
+                this.setState({
+                    users: update(this.state.users, {
+                        $splice: [
+                            [this.state.users.indexOf(user), 1]
+                        ]
+                    })
+                });
+            }
         }
     }
 

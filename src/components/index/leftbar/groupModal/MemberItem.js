@@ -14,7 +14,7 @@ let styles = {
         backgroundColor: "#53CF29",
     },
     unselected: {
-        backgroundColor: "#FFBC59",
+        backgroundColor: "#ffd16e",
         ":hover": {
             backgroundColor: "orange"
         }
