@@ -26,10 +26,12 @@ export default class Root extends React.Component {
 
     static propTypes = {
         verticalAlignMiddle: React.PropTypes.bool,
+        pageName: React.PropTypes.string, // lowercase
     }
 
     static childContextTypes = {
         user: React.PropTypes.object,
+        pageName: React.PropTypes.string,
     }
 
     getChildContext() {
@@ -41,6 +43,7 @@ export default class Root extends React.Component {
         }
         return {
             user: user,
+            pageName: this.props.pageName,
         }
     }
 

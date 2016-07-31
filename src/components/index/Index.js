@@ -21,7 +21,7 @@ export default class Index extends React.Component {
 
     render() {
         return (
-            <Root>
+            <Root pageName="index">
                 <div style={styles.div}>
                     <Leftbar />
                     <Editor />

@@ -67,7 +67,7 @@ export default class Signup extends React.Component {
 
     render() {
         return (
-            <Root>
+            <Root pageName="signup">
                 <Link location="login" text="Back to login" />
                 <SignupContainer>
                     <SignupForm onSubmit={this.onSubmit}>
