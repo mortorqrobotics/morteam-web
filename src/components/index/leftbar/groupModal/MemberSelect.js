@@ -2,7 +2,6 @@ import React from "react";
 import Radium from "radium";
 
 import MemberItem from "./MemberItem";
-import ajax from "~/util/ajax";
 import { getGroupName } from "~/util/groups";
 
 let styles = {

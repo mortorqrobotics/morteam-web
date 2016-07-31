@@ -101,8 +101,10 @@ export default class MakeGroupModal extends React.Component {
 
     showAllGroupsAndUsers = async() => {
         try {
-            let userResponse = await ajax.request("get", "/teams/current/users");
-            let groupResponse = await ajax.request("get", "/groups");
+            let [userResponse, groupResponse] = await Promise.all([
+                ajax.request("get", "/teams/current/users"),
+                ajax.request("get", "/groups")
+            ]);
             this.setState({
                 users: userResponse.data,
                 groups: groupResponse.data
