@@ -161,20 +161,35 @@ export default class MakeGroupModal extends React.Component {
     }
 
     handleQueryChange = async(e) => {
+        let query = e.target.value;
         this.setState({
-            query: e.target.value
+            query: query
         });
-        if (e.target.value == "") {
+        if (query == "") {
             this.showAllGroupsAndUsers()
         } else {
             try {
-                let [userResponse, groupResponse] = await Promise.all([
-                    ajax.request("get", "/users/search?search=" + e.target.value),
-                    ajax.request("get", "/groups/search?search=" + e.target.value)
-                ]);
+
+                if (this.userCancel) {
+                    this.userCancel();
+                }
+                if (this.groupCancel) {
+                    this.groupCancel();
+                }
+
+                let { cancel: userCancel, req: userReq, } =
+                    ajax.request("get", "/users/search?search=" + query, {}, true);
+                let { cancel: groupCancel, req: groupReq, } =
+                    ajax.request("get", "/groups/search?search=" + query, {}, true);
+                this.userCancel = userCancel;
+                this.groupCancel = groupCancel;
+                let [{ data: userRes }, { data: groupRes }] =
+                    await Promise.all([userReq, groupReq]);
+                this.userCancel = null;
+                this.groupCancel = null;
                 this.setState({
-                    users: userResponse.data,
-                    groups: groupResponse.data
+                    users: userRes,
+                    groups: groupRes,
                 });
             } catch (err) {
                 console.log(err);
