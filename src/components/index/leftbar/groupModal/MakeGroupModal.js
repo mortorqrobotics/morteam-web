@@ -79,7 +79,7 @@ export default class MakeGroupModal extends React.Component {
         try {
             let { data } = await ajax.request("post", "/groups", {
                 users: this.state.selectedUsers,
-                //groups: this.state.selectedGroups, //TODO: fix NormalGroup in mornetwork
+                groups: this.state.selectedGroups,
                 name: this.state.groupName,
                 isPublic: this.state.isPublic
             });
