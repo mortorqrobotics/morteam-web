@@ -7,7 +7,7 @@ import CreateGroupButton from "./CreateGroupButton";
 import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
 import MemberSelect from "./MemberSelect";
-import ajax from "~/util/ajax";
+import ajax, { cancellableRequestFactory } from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
 let styles = {
@@ -59,6 +59,9 @@ export default class MakeGroupModal extends React.Component {
         super(props, context);
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
+
+        this.makeUserReq = cancellableRequestFactory();
+        this.makeGroupReq = cancellableRequestFactory();
 
         this.state = {
             groupName: "",
@@ -170,23 +173,11 @@ export default class MakeGroupModal extends React.Component {
         } else {
             try {
 
-                if (this.userCancel) {
-                    this.userCancel();
-                }
-                if (this.groupCancel) {
-                    this.groupCancel();
-                }
+                let [{ data: userRes }, { data: groupRes }] = await Promise.all([
+                    this.makeUserReq("get", "/users/search?search=" + query),
+                    this.makeGroupReq("get", "/groups/search?search=" + query),
+                ]);
 
-                let { cancel: userCancel, req: userReq, } =
-                    ajax.request("get", "/users/search?search=" + query, {}, true);
-                let { cancel: groupCancel, req: groupReq, } =
-                    ajax.request("get", "/groups/search?search=" + query, {}, true);
-                this.userCancel = userCancel;
-                this.groupCancel = groupCancel;
-                let [{ data: userRes }, { data: groupRes }] =
-                    await Promise.all([userReq, groupReq]);
-                this.userCancel = null;
-                this.groupCancel = null;
                 this.setState({
                     users: userRes,
                     groups: groupRes,
