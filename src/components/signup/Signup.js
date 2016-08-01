@@ -45,7 +45,7 @@ export default class Signup extends React.Component {
             });
         }
         try {
-            await ajax.request("post", ajax.getRoute("users"), {
+            await ajax.request("post", "/users", {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 username: this.state.username,

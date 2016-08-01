@@ -50,7 +50,7 @@ export default class LoginBox extends React.Component {
 
     onSubmit = async() => {
         try {
-            let { data } = await ajax.request("post", ajax.getRoute("login"), {
+            let { data } = await ajax.request("post", "/login", {
                 username: this.state.username,
                 password: this.state.password,
                 rememberMe: this.state.checkedRM,
