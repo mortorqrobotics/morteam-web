@@ -160,7 +160,6 @@ export default class MakeGroupModal extends React.Component {
         }
     }
 
-    //TODO: group search
     handleQueryChange = async(e) => {
         this.setState({
             query: e.target.value
@@ -169,9 +168,13 @@ export default class MakeGroupModal extends React.Component {
             this.showAllGroupsAndUsers()
         } else {
             try {
-                let { data } = await ajax.request("get", "/users/search?search=" + e.target.value);
+                let [userResponse, groupResponse] = await Promise.all([
+                    ajax.request("get", "/users/search?search=" + e.target.value),
+                    ajax.request("get", "/groups/search?search=" + e.target.value)
+                ]);
                 this.setState({
-                    users: data
+                    users: userResponse.data,
+                    groups: groupResponse.data
                 });
             } catch (err) {
                 console.log(err);
