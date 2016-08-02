@@ -25,13 +25,7 @@ export default class Editor extends React.Component {
         return (
             <div>
                 <textarea style={styles.textarea} id="main-textarea" placeholder="Make an announcement..."></textarea>
-                <script type="text/javascript">
-                    {bkLib.onDomLoaded(function() {
-                        new nicEditor({
-                            buttonList: ['bold', 'italic', 'underline', 'left', 'center', 'right', 'justify', 'removeformat', 'hr', 'upload']
-                        }).panelInstance('main-textarea');
-                    })}
-                </script>
+             
             </div>
         )
     }
