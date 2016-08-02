@@ -14,6 +14,7 @@ let libs = [
     "radium",
     "axios-cancel",
     "react-modal",
+    "react-redux",
 ];
 
 gulp.task("build", function() {

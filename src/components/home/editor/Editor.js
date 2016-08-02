@@ -4,9 +4,11 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 import RTEditor from "./RTEditor";
 import { EditorButton } from "./shared";
+import { connect } from "react-redux";
+import { addAnnouncement } from "~/actions/home";
 
 @Radium
-export default class Editor extends React.Component {
+class Editor extends React.Component {
 
     constructor(props) {
         super(props);
@@ -27,11 +29,11 @@ export default class Editor extends React.Component {
     }
 
     post = async () => {
-        let announcement = await ajax.request("POST", "/announcements", {
+        let { data } = await ajax.request("POST", "/announcements", {
             content: this.content,
             audience: this.state.audience,
         });
-        console.log(announcement);
+        this.props.dispatch(addAnnouncement(data));
     }
     
     render() {
@@ -53,3 +55,4 @@ export default class Editor extends React.Component {
     }
 
 }
+export default connect()(Editor);
