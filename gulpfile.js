@@ -15,6 +15,7 @@ let libs = [
     "axios-cancel",
     "react-modal",
     "react-redux",
+    "redux-thunk",
 ];
 
 gulp.task("build", function() {

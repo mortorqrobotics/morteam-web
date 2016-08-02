@@ -6,11 +6,14 @@ import Leftbar from "./leftbar/Leftbar";
 import AnnouncementsList from "./announcements/AnnouncementsList";
 import Editor from "./editor/Editor";
 import Navbar from "~/components/shared/navbar/Navbar"
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 import reducers from "~/reducers/home";
-const store = createStore(reducers);
+import { fetchAnnouncements } from "~/actions/home";
+const store = createStore(reducers, applyMiddleware(thunk));
+store.dispatch(fetchAnnouncements());
 
 let styles = {
     div: {

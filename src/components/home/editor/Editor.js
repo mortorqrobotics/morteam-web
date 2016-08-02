@@ -28,12 +28,11 @@ class Editor extends React.Component {
         // TODO: add audience selection button
     }
 
-    post = async () => {
-        let { data } = await ajax.request("POST", "/announcements", {
+    post = () => {
+        this.props.dispatch(addAnnouncement({
             content: this.content,
             audience: this.state.audience,
-        });
-        this.props.dispatch(addAnnouncement(data));
+        }));
     }
     
     render() {
