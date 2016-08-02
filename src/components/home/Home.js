@@ -14,7 +14,7 @@ let styles = {
 }
 
 @Radium
-export default class Index extends React.Component {
+export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ export default class Index extends React.Component {
 
     render() {
         return (
-            <Root pageName="index">
+            <Root pageName="home">
                 <div style={styles.div}>
                     <Leftbar />
                     <Editor />
@@ -34,4 +34,4 @@ export default class Index extends React.Component {
     }
 }
 
-pageInit(Index);
+pageInit(Home);

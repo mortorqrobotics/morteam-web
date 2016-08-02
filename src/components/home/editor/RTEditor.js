@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/styles/index/editor";
+import styles from "~/styles/home/editor";
 
 @Radium
 export default class RTEditor extends React.Component {
