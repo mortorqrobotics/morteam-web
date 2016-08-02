@@ -14,8 +14,6 @@ let styles = {
         //TODO: fix styling
         ":hover": {
             backgroundColor: "#ffcc80",
-
-
         }
     },
     span: {
@@ -27,10 +25,11 @@ let styles = {
         objectFit: "cover",
         borderRadius: "5px",
     }
-
 }
+
 @Radium
 export default class SearchDropItem extends React.Component {
+
     static propTypes = {
         userid: React.PropTypes.string,
         name: React.PropTypes.string,
@@ -40,6 +39,7 @@ export default class SearchDropItem extends React.Component {
     onClick = () => {
         window.location.assign("/profiles/id/" + this.props.userid);
     }
+
     render() {
         return (
             <li onClick={this.onClick} style={styles.li}>
@@ -48,8 +48,6 @@ export default class SearchDropItem extends React.Component {
         	        src={this.props.profpicpath}
         	    />
         	    <span style={styles.span}>{this.props.name}</span>
-        	     
-        	
         	</li>
         )
     }

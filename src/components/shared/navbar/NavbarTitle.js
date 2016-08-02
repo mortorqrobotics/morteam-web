@@ -14,25 +14,23 @@ let styles = {
             marginRight: "4px",
         },
         "@media screen and (max-width: 490px)": {
-
             marginLeft: "6px",
             marginRight: "0px",
-
         },
         "@media screen and (max-width: 330px)": {
             marginTop: "8.5px",
             display: "none",
         },
-
-
     }
 }
 
 @Radium
 export default class NavbarTitle extends React.Component {
+
     onClick = () => {
         window.location.assign("/");
     }
+
     render() {
         return (
             <li onClick={this.onClick} style={styles.li}>MorTeam</li>

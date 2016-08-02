@@ -13,21 +13,16 @@ let styles = {
         display: "inline-block",
         "@media screen and (max-width: 700px)": {
             width: "55% ",
-
         },
         "@media screen and (max-width: 490px)": {
             width: "41% ",
-
         },
         "@media screen and (max-width: 330px)": {
             width: "60% ",
-
         },
         "@media screen and (max-width: 295px)": {
             width: "50% ",
-
         },
-
     },
     textbox: {
         border: "0",
@@ -52,6 +47,7 @@ export default class SearchBox extends React.Component {
             userIds: []
         }
     }
+
     sendQuery = async(query) => {
         if (query == "") {
             this.setState({
@@ -67,9 +63,9 @@ export default class SearchBox extends React.Component {
                 console.log(err);
             }
             //TODO: make this faster
-
         }
     }
+
     onChange = (e) => {
         this.setState({
             query: e.target.value,
@@ -78,20 +74,16 @@ export default class SearchBox extends React.Component {
     }
 
     render() {
-
-
         return (
             <li style={styles.li}>
-        	        <TextBox
-        	            style={styles.textbox}
-        	            placeholder={"search"}
-        	            onChange={this.onChange}
-        	            value={this.state.query}
-        	        />
-        	    
-        	        <SearchDrop userIds={this.state.userIds} />
-        	    </li>
-
+                <TextBox
+                    style={styles.textbox}
+                    placeholder={"search"}
+                    onChange={this.onChange}
+                    value={this.state.query}
+                />
+                <SearchDrop userIds={this.state.userIds} />
+            </li>
         )
     }
 }

@@ -1,9 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-
 import NavbarList from "./NavbarList";
-
 
 let styles = {
     div: {
@@ -27,14 +25,12 @@ let styles = {
 
 @Radium
 export default class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         return (
-            <div style = {styles.div}>
-        		<NavbarList />
-        	</div>
+            <div style={styles.div}>
+                <NavbarList />
+            </div>
         )
     }
 }
