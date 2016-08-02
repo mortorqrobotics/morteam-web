@@ -11,11 +11,13 @@ let styles = {
         padding: "0",
     },
 }
+
 @Radium
 export default class NavbarList extends React.Component {
+
     render() {
         return (
-            <ul style = {styles.ul}>
+            <ul style={styles.ul}>
                 <NavbarTitle />
                 <SearchBox />
                 <GlyphLink path="/chat" glyph="comment"/>
@@ -24,10 +26,6 @@ export default class NavbarList extends React.Component {
                 <GlyphLink path="/networks" glyph="globe"/>
                 <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
             </ul>
-
         )
     }
-
-
-
 }
