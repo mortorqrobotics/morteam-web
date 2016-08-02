@@ -1,12 +1,11 @@
 import React from "react";
 import Radium from "radium";
-import update from "react/lib/update";
 
 import DimModal from "~/components/shared/DimModal";
 import CreateGroupButton from "./CreateGroupButton";
 import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
-import MemberSelect from "./MemberSelect";
+import MemberSelect from "~/components/shared/audience/AudienceSelect";
 import ajax, { cancellableRequestFactory } from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 
@@ -129,40 +128,6 @@ export default class MakeGroupModal extends React.Component {
         });
     }
 
-    onGroupClick = (group) => {
-        if (this.state.selectedGroups.indexOf(group) == -1) {
-            this.setState({
-                selectedGroups: this.state.selectedGroups.concat([group])
-            });
-        } else {
-            this.setState({
-                selectedGroups: update(this.state.selectedGroups, {
-                    $splice: [
-                        [this.state.selectedGroups.indexOf(group), 1]
-                    ]
-                })
-            });
-        }
-    }
-
-    onUserClick = (user) => {
-        if (user != this.context.user._id) {
-            if (this.state.selectedUsers.indexOf(user) == -1) {
-                this.setState({
-                    selectedUsers: this.state.selectedUsers.concat([user])
-                });
-            } else {
-                this.setState({
-                    selectedUsers: update(this.state.selectedUsers, {
-                        $splice: [
-                            [this.state.selectedUsers.indexOf(user), 1]
-                        ]
-                    })
-                });
-            }
-        }
-    }
-
     handleQueryChange = async(e) => {
         let query = e.target.value;
         this.setState({
@@ -186,6 +151,13 @@ export default class MakeGroupModal extends React.Component {
                 console.log(err);
             }
         }
+    }
+
+    onSelectedUpdate = (selected) => {
+        this.setState({
+            selectedGroups: selected.groups,
+            selectedUsers: selected.users,
+        });
     }
 
     render() {
@@ -231,8 +203,7 @@ export default class MakeGroupModal extends React.Component {
                         groups={this.state.groups}
                         selectedUsers={this.state.selectedUsers}
                         selectedGroups={this.state.selectedGroups}
-                        onUserClick={this.onUserClick}
-                        onGroupClick={this.onGroupClick}
+                        onUpdate={this.onSelectedUpdate}
                     />
                     <br />
 
