@@ -6,14 +6,14 @@ import SearchBox from "./SearchBox";
 import GlyphLink from "./GlyphLink";
 
 let styles = {
-    ul:{
+    ul: {
         height: "45px",
-    	padding: "0",
+        padding: "0",
     },
 }
 @Radium
-export default class NavbarList extends React.Component{
-    render(){
+export default class NavbarList extends React.Component {
+    render() {
         return (
             <ul style = {styles.ul}>
                 <NavbarTitle />
@@ -24,10 +24,10 @@ export default class NavbarList extends React.Component{
                 <GlyphLink path="/networks" glyph="globe"/>
                 <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
             </ul>
-                
-            )
-        }
-        
-        
-    
+
+        )
+    }
+
+
+
 }

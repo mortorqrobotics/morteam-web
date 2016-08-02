@@ -1,16 +1,12 @@
 import React from "react";
+import Radium from "radium";
 
-export default class Link extends React.Component {
-
-    static propTypes = {
-        location: React.PropTypes.string.isRequired,
-        text: React.PropTypes.string.isRequired,
-        style: React.PropTypes.object,
-    }
-
-    render() {
-        return (
-            <a style={this.props.style} href={this.props.location}>{this.props.text}</a>
-        )
-    }
+const Link = (props) => {
+    let { location, text, ...rest } = props;
+    return React.createElement("a", {
+        href: location,
+        children: text,
+        ...rest,
+    })
 }
+export default Radium(Link);

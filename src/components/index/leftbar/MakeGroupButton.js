@@ -7,36 +7,17 @@ import MakeGroupModal from "./groupModal/MakeGroupModal";
 @Radium
 export default class MakeGroupButton extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            modalIsOpen: false
-        }
-    }
-
-    openModal = () => {
-        this.setState({
-            modalIsOpen: true
-        });
-    }
-
-    closeModal = () => {
-        this.setState({
-            modalIsOpen: false
-        });
+    static propTypes = {
+        onClick: React.PropTypes.func
     }
 
     render() {
         return (
-            <div>
-                <LeftbarButton text="Make a Group" onClick={this.openModal} />
-                <MakeGroupModal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.openModal}
-                    onRequestClose={this.closeModal}
-                />
-            </div>
+            <LeftbarButton
+                text="Make a Group"
+                glyph="plus"
+                onClick={this.props.onClick}
+            />
         )
     }
 }

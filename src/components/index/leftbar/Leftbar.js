@@ -5,10 +5,10 @@ import ProfileButton from "./ProfileButton";
 import LogoutButton from "./LogoutButton";
 import TeamButton from "./TeamButton";
 import MakeGroupButton from "./MakeGroupButton";
-import UserGroups from "./UserGroups";
-import PublicGroups from "./PublicGroups";
+import GroupList from "./GroupList";
+import MakeGroupModal from "./groupModal/MakeGroupModal";
 import Link from "~/components/shared/Link";
-import userInfo from "~/util/userInfo";
+import ajax from "~/util/ajax";
 
 var styles = {
     div: {
@@ -32,24 +32,79 @@ var styles = {
         ":hover": {
             textDecoration: "underline",
         }
+    },
+    h5: {
+        marginBottom: "15px",
     }
 }
 
 @Radium
 export default class Leftbar extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            userGroups: [],
+            publicGroups: [],
+            modalIsOpen: false,
+        }
     }
 
-    displayMakeGroupButton() {
-        if (userInfo.isAdmin()) {
+    static contextTypes = {
+        user: React.PropTypes.object,
+    }
+
+    componentDidMount = () => {
+        this.updateGroups();
+    }
+
+    displayMakeGroupButton = () => {
+        if (this.context.user.isAdmin()) {
             return (
                 <div>
-                    <MakeGroupButton />
+
+                    <MakeGroupButton
+                        onClick={this.openModal}
+                    />
                     <hr />
+
+                    <MakeGroupModal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.openModal}
+                        onRequestClose={this.closeModal}
+                        updateGroups={this.updateGroups}
+                    />
+
                 </div>
             )
+        }
+    }
+
+    openModal = () => {
+        this.setState({
+            modalIsOpen: true
+        });
+    }
+
+    closeModal = () => {
+        this.setState({
+            modalIsOpen: false
+        });
+    }
+
+    updateGroups = async() => {
+        try {
+            let [userGroupsRes, publicGroupsRes] = await Promise.all([
+                ajax.request("get", "/groups/normal"),
+                ajax.request("get", "/groups/public")
+            ]);
+            this.setState({
+                userGroups: userGroupsRes.data,
+                publicGroups: publicGroupsRes.data
+            });
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -62,10 +117,16 @@ export default class Leftbar extends React.Component {
                 <TeamButton />
                 <hr />
 
-                <UserGroups />
+                <h5 style={styles.h5}>Your Groups</h5>
+                <GroupList
+                    groups={this.state.userGroups}
+                />
                 <hr />
 
-                <PublicGroups />
+                <h5 style={styles.h5}>Public Groups</h5>
+                <GroupList
+                    groups={this.state.publicGroups}
+                />
                 <hr />
 
                 {this.displayMakeGroupButton()}

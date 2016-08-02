@@ -1,22 +1,10 @@
 import React from "react";
+import Radium from "radium";
 
-export default class Form extends React.Component {
-
-    static propTypes = {
-        onSubmit: React.PropTypes.func.isRequired,
-        style: React.PropTypes.object,
-    }
-
-    render() {
-        return (
-            <form
-                action="javascript:void 0"
-                onSubmit={this.props.onSubmit}
-                style={this.props.style}
-            >
-                {this.props.children}
-            </form>
-        )
-    }
-
+const Form = (props) => {
+    return React.createElement("form", {
+        action: "javascript:void 0",
+        ...props,
+    })
 }
+export default Radium(Form);

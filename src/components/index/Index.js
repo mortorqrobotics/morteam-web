@@ -5,8 +5,6 @@ import Root, { pageInit } from "~/components/shared/Root";
 import Leftbar from "./leftbar/Leftbar";
 import AnnouncementsList from "./announcements/AnnouncementsList";
 import Editor from "./editor/Editor";
-import Navbar from "../shared/navbar/Navbar";
-
 
 let styles = {
     div: {
@@ -16,15 +14,19 @@ let styles = {
 
 @Radium
 export default class Index extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <Root>
+            <Root pageName="index">
                 <div style={styles.div}>
-                    <Navbar />
                     <Leftbar />
                     <Editor />
                     <AnnouncementsList />
-                    
+                    <Navbar />
                 </div>
             </Root>
         )

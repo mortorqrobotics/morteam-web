@@ -6,8 +6,8 @@ import LeftbarButton from "./LeftbarButton";
 @Radium
 export default class ProfileButton extends React.Component {
 
-    onClick() {
-        window.location.assign("/profiles/id/" + window.__userInfo._id);
+    onClick = () => {
+        window.location.assign("/profiles/id/" + this.context.user._id);
     }
 
     render() {

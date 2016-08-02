@@ -22,7 +22,7 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <Root>
+            <Root pageName="login">
                 <div style={[styles.div]}>
                     <TopBar />
                     <IntroText />

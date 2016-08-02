@@ -43,7 +43,7 @@ export default class Void extends React.Component {
 
     render() {
         return (
-            <Root verticalAlignMiddle>
+            <Root pageName="void" verticalAlignMiddle>
                 <Grid style={{ width: "100%" }}>
                     <Row>
                         <Col>

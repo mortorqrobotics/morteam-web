@@ -26,6 +26,25 @@ export default class Root extends React.Component {
 
     static propTypes = {
         verticalAlignMiddle: React.PropTypes.bool,
+        pageName: React.PropTypes.string, // lowercase
+    }
+
+    static childContextTypes = {
+        user: React.PropTypes.object,
+        pageName: React.PropTypes.string,
+    }
+
+    getChildContext() {
+        let user = window.__userInfo;
+        if (user && typeof user === "object") {
+            user.isAdmin = () => (
+                user.position === "leader" || user.position === "mentor"
+            )
+        }
+        return {
+            user: user,
+            pageName: this.props.pageName,
+        }
     }
 
     render() {

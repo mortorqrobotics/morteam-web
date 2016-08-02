@@ -45,7 +45,7 @@ export default class AnnouncementsList extends React.Component {
                         audience={listItem.audience}
                         timestamp={new Date(listItem.timestamp)}
                     />
-                ))};			
+                ))}
             </div>
         )
     }
