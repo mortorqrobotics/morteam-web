@@ -13,8 +13,14 @@ let styles = {
     selected: {
         backgroundColor: "#53CF29",
     },
-    unselected: {
+    user: {
         backgroundColor: "#ffd16e",
+        ":hover": {
+            backgroundColor: "orange"
+        }
+    },
+    group: {
+        backgroundColor: "#FFBC59",
         ":hover": {
             backgroundColor: "orange"
         }
@@ -29,6 +35,7 @@ export default class AudienceItem extends React.Component {
         isSelected: React.PropTypes.bool,
         id: React.PropTypes.string,
         text: React.PropTypes.string,
+        isGroup: React.PropTypes.bool,
     }
 
     constructor(props) {
@@ -43,7 +50,7 @@ export default class AudienceItem extends React.Component {
         if (this.props.isSelected) {
             return styles.selected;
         }
-        return styles.unselected;
+        return this.props.isGroup ? styles.group : styles.user;
     }
 
     render() {

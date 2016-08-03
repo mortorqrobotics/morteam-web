@@ -8,6 +8,7 @@ import GroupTypeOption from "./GroupTypeOption";
 import MemberSelect from "~/components/shared/audience/AudienceSelect";
 import ajax, { cancellableRequestFactory } from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
+import { getGroupName } from "~/util/groups";
 
 let styles = {
     modal: {
@@ -59,13 +60,12 @@ export default class MakeGroupModal extends React.Component {
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.makeUserReq = cancellableRequestFactory();
-        this.makeGroupReq = cancellableRequestFactory();
-
         this.state = {
             groupName: "",
             users: [],
             groups: [],
+            shownUsers: [],
+            shownGroups: [],
             selectedUsers: [this.context.user._id],
             selectedGroups: [],
             isPublic: true,
@@ -73,7 +73,19 @@ export default class MakeGroupModal extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount = async() => {
+        try {
+            let [userResponse, groupResponse] = await Promise.all([
+                ajax.request("get", "/teams/current/users"),
+                ajax.request("get", "/groups")
+            ]);
+            this.setState({
+                users: userResponse.data,
+                groups: groupResponse.data
+            });
+        } catch (err) {
+            console.log(err);
+        }
         this.showAllGroupsAndUsers();
     }
 
@@ -101,19 +113,11 @@ export default class MakeGroupModal extends React.Component {
         }
     }
 
-    showAllGroupsAndUsers = async() => {
-        try {
-            let [userResponse, groupResponse] = await Promise.all([
-                ajax.request("get", "/teams/current/users"),
-                ajax.request("get", "/groups")
-            ]);
-            this.setState({
-                users: userResponse.data,
-                groups: groupResponse.data
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    showAllGroupsAndUsers = () => {
+        this.setState({
+            shownUsers: this.state.users,
+            shownGroups: this.state.groups
+        })
     }
 
     selectTypePublic = () => {
@@ -134,22 +138,17 @@ export default class MakeGroupModal extends React.Component {
             query: query
         });
         if (query == "") {
-            this.showAllGroupsAndUsers()
+            this.showAllGroupsAndUsers();
         } else {
-            try {
-
-                let [{ data: userRes }, { data: groupRes }] = await Promise.all([
-                    this.makeUserReq("get", "/users/search?search=" + query),
-                    this.makeGroupReq("get", "/groups/search?search=" + query),
-                ]);
-
-                this.setState({
-                    users: userRes,
-                    groups: groupRes,
-                });
-            } catch (err) {
-                console.log(err);
-            }
+            let regex = new RegExp(query.trim().replace(/\s+/g, "|"), "ig");
+            this.setState({
+                shownUsers: this.state.users.filter(function(user) {
+                    return regex.test(user.firstname) || regex.test(user.lastname);
+                }),
+                shownGroups: this.state.groups.filter(function(group) {
+                    return regex.test(getGroupName(group));
+                })
+            });
         }
     }
 
@@ -199,8 +198,8 @@ export default class MakeGroupModal extends React.Component {
                     <br />
 
                     <MemberSelect
-                        users={this.state.users}
-                        groups={this.state.groups}
+                        users={this.state.shownUsers}
+                        groups={this.state.shownGroups}
                         selectedUsers={this.state.selectedUsers}
                         selectedGroups={this.state.selectedGroups}
                         onUpdate={this.onSelectedUpdate}
