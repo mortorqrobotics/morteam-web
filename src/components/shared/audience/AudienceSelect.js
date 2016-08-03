@@ -59,7 +59,6 @@ export default class AudienceSelect extends React.Component {
             });
         } else {
             newGroups = this.props.selectedGroups.concat([groupId]);
-            console.log(newGroups)
         }
         this.props.onUpdate({
             groups: newGroups,
@@ -77,6 +76,7 @@ export default class AudienceSelect extends React.Component {
                         id={group._id}
                         onClick={this.onGroupClick}
                         isSelected={this.isGroupSelected(group._id)}
+                        isGroup={true}
                     />
                 ))}
                 {this.props.users.map(user => (
@@ -86,6 +86,7 @@ export default class AudienceSelect extends React.Component {
                         id={user._id}
                         onClick={this.onUserClick}
                         isSelected={this.isUserSelected(user._id)}
+                        isGroup={false}
                     />
                 ))}
             </div>
