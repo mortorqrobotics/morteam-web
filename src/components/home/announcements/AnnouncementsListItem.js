@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
+import styles from "~/styles/home/announcements";
+
 @Radium
 export default class AnnouncementsListItem extends React.Component {
 
@@ -13,11 +15,19 @@ export default class AnnouncementsListItem extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    {this.props.author.firstname} 
-                    {this.props.author.lastname}
-                    {this.props.timestamp.toLocaleString()}
+            <div style={styles.announcement}>
+                <div style={styles.announcementTop}>
+                    <img
+                        src={this.props.author.profpicpath + "-60"}
+                        style={styles.image}
+                    />
+                    <span style={styles.author}>
+                        {this.props.author.firstname + " "
+                            + this.props.author.lastname}
+                    </span>
+                    <span style={styles.time}>
+                        {" - " + this.props.timestamp.toLocaleString()}
+                    </span>
                     {this.props.audience.groups.map(group => (
                         <p key={group._id}>
                             {group.name}
@@ -29,7 +39,7 @@ export default class AnnouncementsListItem extends React.Component {
                         </p>
                     ))}
                 </div>
-                <p>{this.props.content}</p>
+                <span dangerouslySetInnerHTML={{ __html: this.props.content }} />
             </div>
         )
     }

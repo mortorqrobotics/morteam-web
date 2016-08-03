@@ -29,7 +29,7 @@ class AnnouncementsList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        announcements: state.announcements
+        announcements: state.announcements,
     }
 }
 
