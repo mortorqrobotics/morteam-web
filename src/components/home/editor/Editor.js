@@ -6,6 +6,7 @@ import RTEditor from "./RTEditor";
 import { EditorButton } from "./shared";
 import { connect } from "react-redux";
 import { addAnnouncement } from "~/actions/home";
+import styles from "~/styles/home/editor";
 
 @Radium
 class Editor extends React.Component {
@@ -33,22 +34,29 @@ class Editor extends React.Component {
             content: this.content,
             audience: this.state.audience,
         }));
+        this.clear();
     }
     
     render() {
         return (
             <div>
+            <div style={styles.test2} />
+            <div style={styles.container}>
                 <RTEditor
                     onChange={html => this.content = html}
-                />
-                <EditorButton
-                    text="Select audience"
-                    onClick={() => {}}
+                    registerClear={clear => this.clear = clear}
                 />
                 <EditorButton
                     text="Post"
                     onClick={this.post}
                 />
+                {/* order is switched because of float: right */}
+                <EditorButton
+                    text="Select audience"
+                    onClick={() => {}}
+                />
+            </div>
+            <div style={styles.test} />
             </div>
         )
     }

@@ -9,17 +9,12 @@ import Navbar from "~/components/shared/navbar/Navbar"
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import styles from "~/styles/home";
 
 import reducers from "~/reducers/home";
 import { fetchAnnouncements } from "~/actions/home";
 const store = createStore(reducers, applyMiddleware(thunk));
 store.dispatch(fetchAnnouncements());
-
-let styles = {
-    div: {
-        marginTop: "60px",
-    }
-}
 
 @Radium
 export default class Home extends React.Component {
@@ -32,11 +27,15 @@ export default class Home extends React.Component {
         return (
             <Root pageName="home">
                 <Provider store={store}>
-                    <div style={styles.div}>
-                        <Leftbar />
-                        <Editor />
-                        <AnnouncementsList />
+                    <div>
                         <Navbar />
+                        <div style={styles.container}>
+                            <Leftbar />
+                            <div style={styles.centerCol}>
+                                <Editor />
+                                <AnnouncementsList />
+                            </div>
+                        </div>
                     </div>
                 </Provider>
             </Root>

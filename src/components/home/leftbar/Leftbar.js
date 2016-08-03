@@ -132,6 +132,7 @@ export default class Leftbar extends React.Component {
                 {this.displayMakeGroupButton()}
 
                 <span style={styles.span}>© 2015 MorTeam</span>
+                <br />
                 <span style={styles.span}>
                     <Link
                         location="/terms"

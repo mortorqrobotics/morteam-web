@@ -4,40 +4,14 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 import AnnouncementsListItem from "./AnnouncementsListItem";
 import { connect } from "react-redux";
-
-let styles = {
-    announcementsList: {
-        maxWidth: "700px",
-        margin: "auto",
-        width: "90%",
-    }
-}
+import styles from "~/styles/home/announcements";
 
 @Radium
 class AnnouncementsList extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            announcements: []
-        };
-    }
-
-    componentDidMount = async() => {
-//        try {
-//            let { data } = await ajax.request("get", "/announcements");
-//            this.setState({
-//                announcements: data
-//            });
-//        } catch (err) {
-//            console.log(err);
-//        }
-    }
-
     render() {
         return (
-            <div style={styles.announcementsList}>
+            <div style={styles.container}>
                 {this.props.announcements.map(listItem => (
                     <AnnouncementsListItem 
                         key={listItem._id}

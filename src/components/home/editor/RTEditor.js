@@ -8,6 +8,7 @@ export default class RTEditor extends React.Component {
 
     static propTypes = {
         onChange: React.PropTypes.func.isRequired,
+        registerClear: React.PropTypes.func.isRequired, // eh
     }
 
     componentDidMount = () => {
@@ -30,6 +31,11 @@ export default class RTEditor extends React.Component {
             $elem.bind("DOMSubtreeModified", () => {
                 this.props.onChange($elem.html());
             });
+            $elem.css("outline", "none");
+            $elem.css("font-size", "16px");
+            this.props.registerClear(() => {
+                $elem.html("");
+            });
         });
     }
 
@@ -47,7 +53,6 @@ export default class RTEditor extends React.Component {
                 <textarea
                     style={styles.rtEditor}
                     id="niceditor-textarea"
-                    placeholder="Make an announcement..."
                 />
             </div>
         )
