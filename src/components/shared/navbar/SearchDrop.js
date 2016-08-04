@@ -2,28 +2,18 @@ import React from "react";
 import Radium from "radium";
 
 import SearchDropItem from "./SearchDropItem";
-
-let styles = {
-    div: {
-        display: "block",
-        position: "absolute",
-        width: "100%",
-        height: "auto",
-        backgroundColor: "white",
-        zIndex: "300",
-    }
-}
+import styles from "~/styles/navbar";
 
 @Radium
 export default class SearchDrop extends React.Component {
 
     static propTypes = {
-        userIds: React.PropTypes.array
+        userIds: React.PropTypes.array,
     }
 
     render() {
         return (
-            <div style ={styles.div}>
+            <div style ={styles.searchDrop}>
                 <ul>
                     {this.props.userIds.map(user => (
                         <SearchDropItem

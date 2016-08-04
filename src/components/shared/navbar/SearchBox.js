@@ -4,37 +4,7 @@ import Radium from "radium";
 import TextBox from "../forms/TextBox";
 import SearchDrop from "./SearchDrop";
 import ajax from "~/util/ajax";
-
-let styles = {
-    li: {
-        width: "360px",
-        marginRight: "10px",
-        position: "relative",
-        display: "inline-block",
-        "@media screen and (max-width: 700px)": {
-            width: "55% ",
-        },
-        "@media screen and (max-width: 490px)": {
-            width: "41% ",
-        },
-        "@media screen and (max-width: 330px)": {
-            width: "60% ",
-        },
-        "@media screen and (max-width: 295px)": {
-            width: "50% ",
-        },
-    },
-    textbox: {
-        border: "0",
-        height: "34px",
-        width: "100%",
-        position: "relative",
-        fontSize: "20px",
-        padding: "8px",
-        marginTop: "3px",
-        borderRadius: "5px",
-    }
-}
+import styles from "~/styles/navbar";
 
 @Radium
 export default class SearchBox extends React.Component {
@@ -75,9 +45,9 @@ export default class SearchBox extends React.Component {
 
     render() {
         return (
-            <li style={styles.li}>
+            <li style={styles.search.li}>
                 <TextBox
-                    style={styles.textbox}
+                    style={styles.search.textBox}
                     placeholder={"search"}
                     onChange={this.onChange}
                     value={this.state.query}

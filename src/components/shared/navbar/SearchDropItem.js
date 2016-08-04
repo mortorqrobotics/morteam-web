@@ -2,30 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import ajax from "~/util/ajax";
-
-let styles = {
-    li: {
-        listStyle: "none",
-        height: "auto",
-        fontSize: "16px",
-        padding: "5px",
-        cursor: "pointer",
-        borderBottom: "1px solid #c9c9c9",
-        //TODO: fix styling
-        ":hover": {
-            backgroundColor: "#ffcc80",
-        }
-    },
-    span: {
-        verticalAlign: "middle",
-    },
-    img: {
-        width: "30px",
-        height: "30px",
-        objectFit: "cover",
-        borderRadius: "5px",
-    }
-}
+import styles from "~/styles/navbar";
 
 @Radium
 export default class SearchDropItem extends React.Component {
@@ -42,12 +19,12 @@ export default class SearchDropItem extends React.Component {
 
     render() {
         return (
-            <li onClick={this.onClick} style={styles.li}>
+            <li onClick={this.onClick} style={styles.searchDropItem.li}>
         	    <img 
-        	        style={styles.img}
+        	        style={styles.searchDropItem.img}
         	        src={this.props.profpicpath}
         	    />
-        	    <span style={styles.span}>{this.props.name}</span>
+        	    <span style={styles.searchDropItem.span}>{this.props.name}</span>
         	</li>
         )
     }
