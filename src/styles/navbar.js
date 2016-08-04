@@ -78,6 +78,7 @@ export default {
     },
     searchDropItem: {
         li: {
+            marginLeft: "-40px",
             listStyle: "none",
             height: "auto",
             fontSize: "16px",
@@ -90,6 +91,7 @@ export default {
             }
         },
         span: {
+            paddingLeft: "10px",
             verticalAlign: "middle",
         },
         img: {
