@@ -10,16 +10,12 @@ let styles = {
         position: "fixed",
         width: "100%",
         top: "0",
-        zIndex: "96",
         boxShadow: "1px 1px 12px -7px black",
         zIndex: "89",
         borderRadius: "1px",
         WebkitUserSelect: "none",
-        /* Chrome/Safari */
         MozUserSelect: "none",
-        /* Firefox */
-        MsUserSelect: "none",
-        /* IE10+ */
+        msUserSelect: "none",
     }
 }
 

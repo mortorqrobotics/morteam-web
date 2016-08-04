@@ -7,6 +7,7 @@ let overlayStyle = {
     left: "0",
     backgroundColor: "rgba(0, 0, 0, .6)",
     display: "block",
+    zIndex: "100",
 }
 
 export default class DimModal extends React.Component {
