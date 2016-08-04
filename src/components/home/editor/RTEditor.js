@@ -33,7 +33,7 @@ export default class RTEditor extends React.Component {
             });
             $elem.css("outline", "none");
             $elem.css("font-size", "16px");
-            this.props.registerClear(() => {
+            this.props.registerClear(() => { // hack
                 $elem.html("");
             });
         });

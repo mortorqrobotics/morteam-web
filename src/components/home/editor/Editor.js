@@ -6,6 +6,7 @@ import RTEditor from "./RTEditor";
 import { EditorButton } from "./shared";
 import { connect } from "react-redux";
 import { addAnnouncement } from "~/actions/home";
+import AudienceModal from "./AudienceModal";
 import styles from "~/styles/home/editor";
 
 @Radium
@@ -21,12 +22,11 @@ class Editor extends React.Component {
 
         this.state = {
             audience: {
-                users: [],
+                users: [], // this.context.user._id
                 groups: [],
             },
+            isModalOpen: false,
         }
-
-        // TODO: add audience selection button
     }
 
     post = () => {
@@ -36,11 +36,9 @@ class Editor extends React.Component {
         }));
         this.clear();
     }
-    
+
     render() {
         return (
-            <div>
-            <div style={styles.test2} />
             <div style={styles.container}>
                 <RTEditor
                     onChange={html => this.content = html}
@@ -53,10 +51,16 @@ class Editor extends React.Component {
                 {/* order is switched because of float: right */}
                 <EditorButton
                     text="Select audience"
-                    onClick={() => {}}
+                    onClick={() => this.setState({ isModalOpen: true })}
                 />
-            </div>
-            <div style={styles.test} />
+
+                <AudienceModal
+                    isOpen={this.state.isModalOpen}
+                    onAfterOpen={() => this.setState({ isModalOpen: true })}
+                    onRequestClose={() => this.setState({ isModalOpen: false })}
+                    selected={this.state.audience}
+                    onChange={audience => this.setState({ audience: audience })}
+                />
             </div>
         )
     }

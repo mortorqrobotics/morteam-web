@@ -55,8 +55,19 @@ export default class Leftbar extends React.Component {
         user: React.PropTypes.object,
     }
 
-    componentDidMount = () => {
-        this.updateGroups();
+    componentDidMount = async() => {
+        try {
+            let [userGroupsRes, publicGroupsRes] = await Promise.all([
+                ajax.request("get", "/groups/normal"),
+                ajax.request("get", "/groups/public")
+            ]);
+            this.setState({
+                userGroups: userGroupsRes.data,
+                publicGroups: publicGroupsRes.data
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     displayMakeGroupButton = () => {
@@ -73,12 +84,22 @@ export default class Leftbar extends React.Component {
                         isOpen={this.state.modalIsOpen}
                         onAfterOpen={this.openModal}
                         onRequestClose={this.closeModal}
-                        updateGroups={this.updateGroups}
+                        addGroup={this.addGroup}
                     />
 
                 </div>
             )
         }
+    }
+
+    addGroup = (group) => {
+        let change = {
+            userGroups: this.state.userGroups.concat([group]),
+        }
+        if (group.isPublic) {
+            change.publicGroups = this.state.publicGroups.concat([group]);
+        }
+        this.setState(change);
     }
 
     openModal = () => {
@@ -91,21 +112,6 @@ export default class Leftbar extends React.Component {
         this.setState({
             modalIsOpen: false
         });
-    }
-
-    updateGroups = async() => {
-        try {
-            let [userGroupsRes, publicGroupsRes] = await Promise.all([
-                ajax.request("get", "/groups/normal"),
-                ajax.request("get", "/groups/public")
-            ]);
-            this.setState({
-                userGroups: userGroupsRes.data,
-                publicGroups: publicGroupsRes.data
-            });
-        } catch (err) {
-            console.log(err);
-        }
     }
 
     render() {
