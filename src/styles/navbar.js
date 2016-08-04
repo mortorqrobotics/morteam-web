@@ -15,7 +15,7 @@ export default {
             msUserSelect: "none",
     },
     ul: {
-        height: "45px",
+        height: "100%",
         padding: "0",
     },
     title: {
@@ -41,7 +41,7 @@ export default {
     search: {
         li: {
             width: "360px",
-            marginRight: "10px",
+            margin: "0px 10px 0px 2px",
             position: "relative",
             display: "inline-block",
             "@media screen and (max-width: 700px)": {
@@ -106,9 +106,9 @@ export default {
             width: "35px",
             fontSize: "20px",
             height: "100%",
-            paddingTop: "7px",
+            paddingTop: "8px",
             position: "relative",
-            marginLeft: "-5px",
+            marginLeft: "0px 2px 0px -5px",
             ":hover": {
                 backgroundColor: "#FFB524",
                 cursor: "pointer",
