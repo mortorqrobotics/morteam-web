@@ -42,8 +42,8 @@ export default class MakeGroupModal extends React.Component {
     createGroup = async() => {
         try {
             let { data } = await ajax.request("post", "/groups", {
-                users: this.state.selectedUsers,
-                groups: this.state.selectedGroups,
+                users: this.state.audience.users,
+                groups: this.state.audience.groups,
                 name: this.state.groupName,
                 isPublic: this.state.isPublic,
             });
