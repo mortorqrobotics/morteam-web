@@ -10,9 +10,9 @@ let styles = {
         width: "35px",
         fontSize: "20px",
         height: "100%",
-        paddingTop: "7px",
+        paddingTop: "8px",
         position: "relative",
-        marginLeft: "-5px",
+        marginLeft: "0px 2px 0px -5px",
         ":hover": {
             backgroundColor: "#FFB524",
             cursor: "pointer",
@@ -20,20 +20,8 @@ let styles = {
         "@media screen and (max-width: 820px)": {
             display: "none",
         }
-    },
-    glyph: {
-        position: "relative",
-        top: "1px",
-        display: "inline-block",
-        fontFamily: "'Glyphicons Halflings'",
-        fontStyle: "normal",
-        fontWeight: "400",
-        lineHeight: "1",
-        WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
     }
 }
-    //TODO: fix styling
 
 @Radium
 export default class SearchBox extends React.Component {

@@ -11,6 +11,7 @@ let styles = {
         marginRight: "10px",
         position: "relative",
         display: "inline-block",
+        margin: "0px 10px 0px 2px",
         "@media screen and (max-width: 700px)": {
             width: "55% ",
         },

@@ -7,7 +7,7 @@ import GlyphLink from "./GlyphLink";
 
 let styles = {
     ul: {
-        height: "45px",
+        height: "100%",
         padding: "0",
     },
 }
