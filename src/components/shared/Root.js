@@ -32,6 +32,7 @@ export default class Root extends React.Component {
     static childContextTypes = {
         user: React.PropTypes.object,
         pageName: React.PropTypes.string,
+        options: React.PropTypes.object,
     }
 
     getChildContext() {
@@ -44,6 +45,7 @@ export default class Root extends React.Component {
         return {
             user: user,
             pageName: this.props.pageName,
+            options: window.__options,
         }
     }
 
