@@ -24,6 +24,7 @@ gulp.task("build", function() {
         "login",
         "void",
         "home",
+        "user",
     ];
     for (let page of pages) {
         let bundler = browserify({

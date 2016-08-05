@@ -23,4 +23,3 @@ export const fetchAnnouncements = () => {
             .then(({ data }) => dispatch(setAnnouncements(data)))
     }
 }
-

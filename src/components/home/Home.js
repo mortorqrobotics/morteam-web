@@ -19,10 +19,6 @@ store.dispatch(fetchAnnouncements());
 @Radium
 export default class Home extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Root pageName="home">

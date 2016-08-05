@@ -8,7 +8,7 @@ export default ajax;
 export function request(method, path, data) {
     return axios({
         method: method,
-        url: path,
+        url: "/api" + path,
         data: data,
     });
 }
@@ -23,7 +23,7 @@ export function cancellableRequestFactory() {
         cancellation = new Cancellation();
         return axios({
             method: method,
-            url: path,
+            url: "/api" + path,
             data: data,
             adapter: cancelAdapter,
             cancellation: cancellation,

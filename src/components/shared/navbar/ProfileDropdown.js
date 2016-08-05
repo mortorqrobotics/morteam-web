@@ -37,7 +37,7 @@ export default class ProfileDropdown extends React.Component {
                     style={styles.profileDropdown.span}
                     onClick={this.openModal}
                 >
-                    {this.context.user.firstname} {this.context.user.lastname}
+                    {this.context.user.firstname}
                 </span>
 
                 <DropdownModal
