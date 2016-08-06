@@ -23,3 +23,14 @@ export const modalPropTypes = {
     onAfterOpen: React.PropTypes.func,
     onRequestClose: React.PropTypes.func,
 }
+
+export const range = (a, b) => {
+    const arr = [];
+    while (a < b) arr.push(a++);
+    return arr;
+}
+
+// month is 0 indexed
+export const daysInMonth = (year, month) => (
+    new Date(year, month + 1, 0).getDate()
+)

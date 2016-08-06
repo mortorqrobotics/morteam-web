@@ -21,8 +21,8 @@ export default class ChangePassword extends React.Component {
         ...modalPropTypes,
     }
 
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 

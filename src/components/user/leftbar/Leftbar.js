@@ -6,6 +6,7 @@ import styles from "~/styles/user/leftbar";
 import Button from "~/components/shared/forms/Button";
 import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
+import AssignTask from "./AssignTask";
 import { withCss } from "~/util/component";
 
 const Item = withCss("div", styles.item);
@@ -26,6 +27,7 @@ export default class Leftbar extends React.Component {
         loaded: false,
         isEditProfileOpen: false,
         isChangePasswordOpen: false,
+        isAssignTaskOpen: false,
     }
 
     static contextTypes = {
@@ -68,6 +70,7 @@ export default class Leftbar extends React.Component {
                     <Item>
                         <ButtonItem
                             text="Assign Task"
+                            onClick={() => this.setState({ isAssignTaskOpen: true })}
                         />
                     </Item>
                 </div>
@@ -116,6 +119,11 @@ export default class Leftbar extends React.Component {
                     isOpen={this.state.isChangePasswordOpen}
                     onAfterOpen={() => this.setState({ isChangePasswordOpen: true })}
                     onRequestClose={() => this.setState({ isChangePasswordOpen: false })}
+                />
+                <AssignTask
+                    isOpen={this.state.isAssignTaskOpen}
+                    onAfterOpen={() => this.setState({ isAssignTaskOpen: true })}
+                    onRequestClose={() => this.setState({ isAssignTaskOpen: false })}
                 />
             </div>
         )

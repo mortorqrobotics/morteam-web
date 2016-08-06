@@ -10,10 +10,16 @@ const item = {
     },
 }
 
+const textBox = [item, {
+    padding: "8px 4px 8px 4px",
+    fontSize: "15px",
+}]
+
 export default {
-    textBox: [item, {
-        padding: "8px 4px 8px 4px",
-        fontSize: "15px",
+    textBox: textBox,
+    taskDescription: [textBox, {
+        height: "84px",
+        resize: "none",
     }],
     button: [item, {
         height: "37px",
@@ -30,5 +36,10 @@ export default {
         marginTop: "10px",
         marginBottom: "-5px",
         display: "inline-block",
-    }
+    },
+    dropdown: {
+        ":focus": {
+            outline: "none",
+        },
+    },
 }
