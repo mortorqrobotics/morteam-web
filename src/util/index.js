@@ -1,3 +1,5 @@
+import React from "react";
+
 export function makeChangeHandlerFactory(ctx) {
     let handlerCache = {};
     return function(name, propName) {
@@ -15,3 +17,9 @@ export function makeChangeHandlerFactory(ctx) {
 }
 
 export const REDIR_TIME = 700;
+
+export const modalPropTypes = {
+    isOpen: React.PropTypes.bool,
+    onAfterOpen: React.PropTypes.func,
+    onRequestClose: React.PropTypes.func,
+}

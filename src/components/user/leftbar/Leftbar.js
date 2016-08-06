@@ -3,23 +3,29 @@ import Radium from "radium";
 
 import ajax from "~/util/ajax";
 import styles from "~/styles/user/leftbar";
+import Button from "~/components/shared/forms/Button";
+import EditProfile from "./EditProfile";
+import ChangePassword from "./ChangePassword";
+import { withCss } from "~/util/component";
 
-const Item = (props) => (
-    <div style={styles.item}>
-        {props.children}
-    </div>
+const Item = withCss("div", styles.item);
+const ButtonItem = (props) => (
+    <Item>
+        {React.createElement(Button, {
+            style: styles.button,
+            ...props,
+        })}
+    </Item>
 )
 
 @Radium
 export default class Leftbar extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-
-        this.state = {
-            user: {},
-            loaded: false,
-        }
+    state = {
+        user: {},
+        loaded: false,
+        isEditProfileOpen: false,
+        isChangePasswordOpen: false,
     }
 
     static contextTypes = {
@@ -46,26 +52,28 @@ export default class Leftbar extends React.Component {
         if (this.context.user._id == this.state.user._id) {
             return (
                 <div>
-                    <Item>
-                        put edit profile button here
-                    </Item>
-                    <Item>
-                        put change password button here
-                    </Item>
+                    <ButtonItem
+                        text="Edit Profile"
+                        onClick={() => this.setState({ isEditProfileOpen: true })}
+                    />
+                    <ButtonItem
+                        text="Change Password"
+                        onClick={() => this.setState({ isChangePasswordOpen: true })}
+                    />
                 </div>
             )
         } else if (this.context.user.isAdmin()) {
             return (
                 <div>
                     <Item>
-                        put assign task button here
+                        <ButtonItem
+                            text="Assign Task"
+                        />
                     </Item>
                 </div>
             )
         }
     }
-
-    renderIfAdmin
 
     render() {
         if (!this.state.loaded) {
@@ -90,10 +98,25 @@ export default class Leftbar extends React.Component {
                         {this.state.user.phone}
                     </span>
                 </Item>
-                <Item>
-                    View morscout profile
-                </Item>
+                <ButtonItem
+                    text="View MorScout Profile"
+                    onClick={() => window.location.assign(
+                        "http://www.scout.morteam.com/profile.html?id="
+                        + this.context.options.userId
+                    )}
+                />
                 {this.renderConditionalButtons()}
+
+                <EditProfile
+                    isOpen={this.state.isEditProfileOpen}
+                    onAfterOpen={() => this.setState({ isEditProfileOpen: true })}
+                    onRequestClose={() => this.setState({ isEditProfileOpen: false })}
+                />
+                <ChangePassword
+                    isOpen={this.state.isChangePasswordOpen}
+                    onAfterOpen={() => this.setState({ isChangePasswordOpen: true })}
+                    onRequestClose={() => this.setState({ isChangePasswordOpen: false })}
+                />
             </div>
         )
     }

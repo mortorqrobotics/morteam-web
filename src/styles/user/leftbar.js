@@ -32,4 +32,16 @@ export default {
         fontSize: "18px",
         padding: "3px 6px 3px 6px",
     },
+    button: {
+        backgroundColor: "#ffb524",
+        border: "none",
+        borderRadius: "1px",
+        padding: "3px 8px 3px 8px",
+        ":hover": {
+            backgroundColor: "orange",
+        },
+        ":focus": {
+            outline: "none",
+        },
+    },
 }

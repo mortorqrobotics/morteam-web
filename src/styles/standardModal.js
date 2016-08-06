@@ -24,7 +24,6 @@ export default {
     content: {
         padding: "12px 15px",
         width: "350px",
-        height: "373px",
         color: "#333",
     },
 }

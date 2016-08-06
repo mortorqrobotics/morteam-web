@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "~/styles/shared/standardModal";
+import styles from "~/styles/standardModal";
 import DimModal from "./DimModal";
 
 const StandardModal = (props) => {
