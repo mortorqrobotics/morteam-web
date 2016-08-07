@@ -1,9 +1,11 @@
 import ajax from "~/util/ajax";
 
-const addAnnouncementSync = (announcement) => ({
-    type: "ADD_ANNOUNCEMENT",
-    announcement: announcement,
-})
+const addAnnouncementSync = (announcement) => {
+    return {
+        type: "ADD_ANNOUNCEMENT",
+        announcement,
+    }
+}
 
 export const addAnnouncement = (announcement) => {
     return (dispatch) => {
@@ -12,10 +14,12 @@ export const addAnnouncement = (announcement) => {
     }
 }
 
-const setAnnouncements = (announcements) => ({
-    type: "SET_ANNOUNCEMENTS",
-    announcements: announcements,
-})
+const setAnnouncements = (announcements) => {
+    return {
+        type: "SET_ANNOUNCEMENTS",
+        announcements,
+    }
+}
 
 export const fetchAnnouncements = () => {
     return (dispatch) => {

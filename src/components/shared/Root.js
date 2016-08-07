@@ -31,7 +31,6 @@ export default class Root extends React.Component {
 
     static childContextTypes = {
         user: React.PropTypes.object,
-        setUser: React.PropTypes.func,
         pageName: React.PropTypes.string,
         options: React.PropTypes.object,
     }

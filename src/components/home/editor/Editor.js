@@ -29,11 +29,11 @@ class Editor extends React.Component {
         }
     }
 
-    post = () => {
-        this.props.dispatch(addAnnouncement({
+    post = async() => {
+        await this.props.dispatch(addAnnouncement({
             content: this.content,
             audience: this.state.audience,
-        }));
+        }))
         this.clear();
     }
 

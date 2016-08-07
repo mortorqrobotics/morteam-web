@@ -17,9 +17,6 @@ export default {
         boxShadow: "1.5px 3px 8px -2px #a9a9a9",
         whiteSpace: "pre-wrap",
     },
-    announcementTop: {
-        marginBottom: "-25px",
-    },
     author: {
         fontSize: "18px",
         marginLeft: "8px",

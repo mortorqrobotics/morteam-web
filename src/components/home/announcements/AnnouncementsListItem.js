@@ -22,12 +22,13 @@ export default class AnnouncementsListItem extends React.Component {
                         style={styles.image}
                     />
                     <span style={styles.author}>
-                        {this.props.author.firstname + " "
-                            + this.props.author.lastname}
+                        {this.props.author.firstname} {this.props.author.lastname}
                     </span>
                     <span style={styles.time}>
                         {" - " + this.props.timestamp.toLocaleString()}
                     </span>
+                    {/*
+                    TODO: show recipient list
                     {this.props.audience.groups.map(group => (
                         <p key={group._id}>
                             {group.name}
@@ -38,6 +39,7 @@ export default class AnnouncementsListItem extends React.Component {
                             {user.firstname} {user.lastname}
                         </p>
                     ))}
+                    */}
                 </div>
                 <span dangerouslySetInnerHTML={{ __html: this.props.content }} />
             </div>

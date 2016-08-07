@@ -12,5 +12,5 @@ const announcements = (state = [], action) => {
 }
 
 export default combineReducers({
-    announcements: announcements,
+    announcements,
 })
