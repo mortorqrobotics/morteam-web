@@ -14,3 +14,31 @@ export const showDate = (dateStr) => {
         " " + date.getDate() +
         ", " + date.getFullYear()
 }
+
+export const nextAbsMonth = (month, year) => {
+    if (month == 11) {
+        return {
+            month: 0,
+            year: year + 1,
+        }
+    } else {
+        return {
+            month: month + 1,
+            year,
+        }
+    }
+}
+
+export const prevAbsMonth = (month, year) => {
+    if (month == 0) {
+        return {
+            month: 12,
+            year: year - 1,
+        }
+    } else {
+        return {
+            month: month - 1,
+            year,
+        }
+    }
+}
