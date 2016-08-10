@@ -4,6 +4,7 @@ import Radium from "radium";
 import Root, { pageInit } from "~/components/shared/Root";
 import Navbar from "~/components/shared/navbar/Navbar";
 import Middle from "./middle/Middle";
+import Leftbar from "./Leftbar";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/reducers/calendar";
@@ -19,6 +20,7 @@ export default class Calendar extends React.Component {
         return (
             <Root pageName="calendar" store={store}>
                 <Navbar />
+                <Leftbar />
                 <Middle />
             </Root>
         )

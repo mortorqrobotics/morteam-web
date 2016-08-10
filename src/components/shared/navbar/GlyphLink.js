@@ -19,7 +19,7 @@ export default class SearchBox extends React.Component {
     render() {
         return (
             <li style={styles.glyphLink.li} onClick={this.onClick}>
-                <Glyphicon style={styles.glyphLink.glyph} glyph={this.props.glyph} />
+                <Glyphicon glyph={this.props.glyph} />
             </li>
         )
     }

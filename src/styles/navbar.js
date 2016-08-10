@@ -119,17 +119,6 @@ export default {
                 display: "none",
             },
         },
-        glyph: {
-            position: "relative",
-            top: "1px",
-            display: "inline-block",
-            fontFamily: "'Glyphicons Halflings'",
-            fontStyle: "normal",
-            fontWeight: "400",
-            lineHeight: "1",
-            WebkitFontSmoothing: "antialiased",
-            MozOsxFontSmoothing: "grayscale",
-        },
     },
     profileDropdown: {
         div: {
