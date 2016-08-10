@@ -6,7 +6,7 @@ const initialEvents = {};
 const events = (state = initialEvents, action) => {
     switch (action.type) {
         case "SET_ABS_MONTH":
-            return action.eventsList.reduce((state, { year, month, events }) => {
+            return action.eventLists.reduce((state, { year, month, events }) => {
                 return {
                     ...state,
                     [year]: {

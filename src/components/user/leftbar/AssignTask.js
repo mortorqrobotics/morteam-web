@@ -8,7 +8,7 @@ import {
     REDIR_TIME,
     range
 } from "~/util";
-import { allMonths, daysInMonth } from "~/util/date";
+import { allMonths, daysInAbsMonth } from "~/util/date";
 import styles from "~/styles/user/modal";
 import Form from "~/components/shared/forms/Form";
 import TextBox from "~/components/shared/forms/TextBox";
@@ -110,7 +110,7 @@ class AssignTask extends React.Component {
                         style={styles.dropdown}
                         selected={this.state.day}
                         onChange={day => this.setState({ day: parseInt(day) })}
-                        options={range(1, 1 + daysInMonth(this.state.year, this.state.month))}
+                        options={range(1, 1 + daysInAbsMonth(this.state.year, this.state.month))}
                         display={day => day}
                     />
                     <Dropdown

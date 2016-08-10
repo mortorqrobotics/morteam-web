@@ -1,5 +1,5 @@
 // month is 0 indexed
-export const daysInMonth = (year, month) => (
+export const daysInAbsMonth = ({ year, month }) => (
     new Date(year, month + 1, 0).getDate()
 )
 
@@ -15,7 +15,7 @@ export const showDate = (dateStr) => {
         ", " + date.getFullYear()
 }
 
-export const nextAbsMonth = (month, year) => {
+export const nextAbsMonth = ({ month, year }) => {
     if (month == 11) {
         return {
             month: 0,
@@ -29,7 +29,7 @@ export const nextAbsMonth = (month, year) => {
     }
 }
 
-export const prevAbsMonth = (month, year) => {
+export const prevAbsMonth = ({ month, year }) => {
     if (month == 0) {
         return {
             month: 12,
@@ -42,3 +42,8 @@ export const prevAbsMonth = (month, year) => {
         }
     }
 }
+
+export const dayName = ({ month, year, day }) => (
+    ["Sunday", "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday"][new Date(year, month, day).getDay()]
+)

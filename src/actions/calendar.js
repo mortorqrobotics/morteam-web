@@ -17,7 +17,7 @@ export const addEvent = (event) => {
 
 // absolute month contains the month from 0..11 and year
 
-const setAbsMonthSync = (month, year, eventLists) => {
+const setAbsMonthSync = ({ month, year }, eventLists) => {
     return {
         type: "SET_ABS_MONTH",
         month,
@@ -37,7 +37,7 @@ export const setAbsMonth = ({ month, year }) => {
             .filter(({ month, year }) => !(year in state) || !(month in state[year]))
             .map(({ month, year }) =>
                 ajax.request("GET", "/events/year/" + year + "/month/" + month)
-                    .then(({ data }) => Promise.resolve({ month, year, events: data }))
-        ).then(eventLists => dispatch(setAbsMonthSync(month, year, eventLists)));
+                    .then(({ data }) => Promise.resolve({ month, year, events: data })))
+        ).then(eventLists => dispatch(setAbsMonthSync({ month, year }, eventLists)));
     }
 }

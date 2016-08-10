@@ -29,3 +29,11 @@ export const range = (a, b) => {
     while (a < b) arr.push(a++);
     return arr;
 }
+
+export const flatMap = (arr, func) => {
+    const result = [];
+    for (const elem of arr) {
+        Array.prototype.push.call(result, func(elem));
+    }
+    return result;
+}
