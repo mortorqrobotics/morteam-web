@@ -13,6 +13,9 @@ export default {
                 backgroundColor: "orange"
             }
         },
+        buttonShadow: { // for when dropdown is open
+            boxShadow: "inset 0 3px 5px rgba(0,0,0,.125)"
+        },
         caret: {
             display: "inline-block",
             width: "0",
@@ -28,6 +31,7 @@ export default {
             width: "84px",
             backgroundColor: "f5f5f5",
             zIndex: "1000",
+            position: "relative",
             padding: "5px 0",
             margin: "2px 0 0",
             backgroundClip: "padding-box",

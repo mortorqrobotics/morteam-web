@@ -29,7 +29,10 @@ export default {
         }
     },
     selected: {
-        backgroundColor: "orange"
+        backgroundColor: "orange",
+        ":hover": {
+            backgroundColor: "orange"
+        }
     },
     glyph: {
         marginRight: "5px",

@@ -24,7 +24,6 @@ export default class Leftbar extends React.Component {
         if (month === this.state.selectedMonth) {
             return styles.selected;
         }
-        return styles.button;
     }
 
     onClick = (month) => {
@@ -44,7 +43,7 @@ export default class Leftbar extends React.Component {
 
                     {allMonths.map(month => (
                         <li
-                            style={[styles.li, this.getStyle(month)]}
+                            style={[styles.li, styles.button, this.getStyle(month)]}
                             key={month}
                             onClick={() => this.onClick(month)}
                         >

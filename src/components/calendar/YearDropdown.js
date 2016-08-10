@@ -20,7 +20,13 @@ export default class YearDropdown extends React.Component {
         };
     }
 
-    getStyle = (year) => {
+    getButtonStyle = () => {
+        if (this.state.isDropdownOpen) {
+            return styles.dropdown.buttonShadow;
+        }
+    }
+
+    getItemStyle = (year) => {
         if (year === this.state.selectedYear) {
             return styles.dropdown.selected;
         }
@@ -45,7 +51,7 @@ export default class YearDropdown extends React.Component {
                     {years.map(year => (
                         <li
                             onClick={() => this.onItemClick(year)}
-                            style={[styles.dropdown.item, this.getStyle(year)]}
+                            style={[styles.dropdown.item, this.getItemStyle(year)]}
                             key={year}
                         >
                             {year}
@@ -59,7 +65,10 @@ export default class YearDropdown extends React.Component {
     render() {
         return (
             <div>
-                <div style={styles.dropdown.button} onClick={this.onButtonClick}>
+                <div
+                    style={[styles.dropdown.button, this.getButtonStyle()]}
+                    onClick={this.onButtonClick}
+                >
                     {this.state.selectedYear}
                     <span style={styles.dropdown.caret} />
                 </div>
