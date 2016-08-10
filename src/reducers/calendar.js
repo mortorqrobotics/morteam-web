@@ -11,15 +11,18 @@ const events = (state = initialEvents, action) => {
                     ...state,
                     [year]: {
                         ...(state[year] || {}),
-                        [month]: events,
-                    }
+                        [month]: events.map(event => ({
+                            ...event,
+                            date: new Date(event.date),
+                        })),
+                    },
                 }
             }, state)
         case "ADD_EVENT":
             const event = action.event;
-            const date = event.date;
-            const year = date.getFullYear();
-            const month = date.getMonth();
+            event.date = new Date(event.date);
+            const year = event.date.getFullYear();
+            const month = event.date.getMonth();
             if (!state[year] || !state[year][month]) {
                 // this should never happen!
                 throw new Error(
@@ -30,8 +33,8 @@ const events = (state = initialEvents, action) => {
                 ...state,
                 [year]: {
                     ...state[year],
-                    [month]: state[year][month].concat([event])
-                }
+                    [month]: state[year][month].concat([event]),
+                },
             }
         default:
             return state

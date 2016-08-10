@@ -21,6 +21,9 @@ let styles = {
         fontSize: "15px",
         boxShadow: "1.5px 3px 8px -2px #a9a9a9",
         borderRadius: "1px",
+        ":focus": {
+            outline: "none",
+        },
     },
 }
 

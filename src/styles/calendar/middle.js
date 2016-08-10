@@ -1,3 +1,21 @@
+const topButton = {
+    fontSize: "20px",
+    borderTop: "1px",
+    borderLeft: "1px",
+    borderRight: "1px",
+    borderBottom: "0px",
+    borderStyle: "solid",
+    borderColor: "orange",
+    width: "30px",
+    height: "30px",
+    textAlign: "center",
+    color: "black",
+    backgroundColor: "orange",
+    display: "inline-block",
+    boxShadow: "-1px -1px 4px -3px black",
+    borderRadius: "0.1px",
+}
+
 export default {
     day: {
         maxWidth: "500px",
@@ -6,18 +24,7 @@ export default {
         marginRight: "auto",
         marginBottom: "10px",
     },
-    dayNum: {
-        fontSize: "20px",
-        border: "1px 1px 1px 0px solid orange",
-        width: "30px",
-        height: "30px",
-        textAlign: "center",
-        color: "black",
-        backgroundColor: "orange",
-        display: "inline-block",
-        boxShadow: "-1px -1px 4px -3px black",
-        borderRadius: "0.1px",
-    },
+    dayNum: topButton,
     dayContent: {
         paddingTop: "7px",
         paddingLeft: "7px",
@@ -37,4 +44,14 @@ export default {
         marginLeft: "5px",
         display: "inline-block",
     },
+    addButton: [topButton, {
+        // TODO: this seems a few pixels too high
+        opacity: "0.3",
+        ":hover": {
+            opacity: "0.7",
+        },
+        ":focus": {
+            outline: "none",
+        },
+    }],
 }
