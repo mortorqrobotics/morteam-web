@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import { connect } from "react-redux";
 import { flatMap, range } from "~/util";
-import { daysInAbsMonth } from "~/util/date";
+import { daysInAbsMonth, prevAbsMonth, nextAbsMonth } from "~/util/date";
 import Day from "./Day";
 import styles from "~/styles/calendar/middle";
 
@@ -40,20 +40,26 @@ class Middle extends React.Component {
     }
 
     render() {
+        if (Object.keys(this.props.events).length === 0) {
+            // hack
+            return null;
+        }
         return (
             <div style={styles.container}>
-                {flatMap(Object.keys(this.props.events), year => (
-                    flatMap(Object.keys(this.props.events[year]), month => (
-                        flatMap(range(1, 1 + daysInAbsMonth({ month, year })), day => (
-                            <Day
-                                day={day}
-                                month={parseInt(month)}
-                                year={parseInt(year)}
-                                events={this.props.events[year][month].filter(event => (
-                                    event.date.getDate() == day
-                                ))}
-                            />
-                        ))
+                {flatMap([
+                    prevAbsMonth(this.props.absMonth),
+                    this.props.absMonth,
+                    nextAbsMonth(this.props.absMonth),
+                ], ({ month, year }) => (
+                    flatMap(range(1, 1 + daysInAbsMonth({ month, year })), day => (
+                        <Day
+                            day={day}
+                            month={month}
+                            year={year}
+                            events={this.props.events[year][month].filter(event => (
+                                event.date.getDate() == day
+                            ))}
+                        />
                     ))
                 ))}
             </div>

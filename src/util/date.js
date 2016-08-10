@@ -1,7 +1,7 @@
 // month is 0 indexed
-export const daysInAbsMonth = ({ year, month }) => (
-    new Date(year, month + 1, 0).getDate()
-)
+export const daysInAbsMonth = ({ year, month }) => {
+    return new Date(year, month + 1, 0).getDate()
+}
 
 export const allMonths = [
     "January", "February", "March", "April", "May", "June",

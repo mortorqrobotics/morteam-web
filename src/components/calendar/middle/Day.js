@@ -4,7 +4,7 @@ import Radium from "radium";
 import styles from "~/styles/calendar/middle";
 import EventItem from "./EventItem";
 import Button from "~/components/shared/forms/Button";
-import { dayName } from "~/util/date";
+import { dayName, allMonths } from "~/util/date";
 import AddModal from "./AddModal";
 
 @Radium
@@ -53,7 +53,7 @@ export default class Day extends React.Component {
                             year: this.props.year,
                             month: this.props.month,
                             day: this.props.day,
-                        })}
+                        })}, {allMonths[this.props.month]}
                         <ul style={styles.eventList}>
                             {this.props.events.map(event => (
                                 <EventItem
