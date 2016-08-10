@@ -37,3 +37,12 @@ export const flatMap = (arr, func) => {
     }
     return result;
 }
+
+// useful for debugging method chains
+Object.defineProperty(Object.prototype, "_tap", {
+    value: function(func) {
+        func(this);
+        return this;
+    },
+    enumerable: false,
+});

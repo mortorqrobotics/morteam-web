@@ -2,34 +2,35 @@ import React from "react";
 import Radium from "radium";
 
 import { withCss } from "~/util/component";
+import { range } from "~/util";
 import { allMonths } from "~/util/date";
 import styles from "~/styles/leftbar";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import YearDropdown from "./YearDropdown";
-
-const currentMonth = new Date().getMonth();
+import { connect } from "react-redux";
+import { setAbsMonth } from "~/actions/calendar";
 
 @Radium
-export default class Leftbar extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedMonth: allMonths[currentMonth],
-        };
-    }
+class Leftbar extends React.Component {
 
     getStyle = (month) => {
-        if (month === this.state.selectedMonth) {
+        if (month === this.props.selectedMonth) {
             return styles.selected;
         }
     }
 
-    onClick = (month) => {
-        this.setState({
-            selectedMonth: month
-        });
+    handleMonthChange = (month) => {
+        this.props.dispatch(setAbsMonth({
+            year: this.props.selectedYear,
+            month,
+        }));
+    }
+
+    handleYearChange = (year) => {
+        this.props.dispatch(setAbsMonth({
+            year,
+            month: this.props.selectedMonth,
+        }));
     }
 
     render() {
@@ -38,17 +39,20 @@ export default class Leftbar extends React.Component {
                 <ul style={styles.ul}>
 
                     <li style={styles.li}>
-                        <YearDropdown />
+                        <YearDropdown
+                            selectedYear={this.props.selectedYear}
+                            onYearChange={this.handleYearChange}
+                        />
                     </li>
 
-                    {allMonths.map(month => (
+                    {range(0, 12).map(month => (
                         <li
                             style={[styles.li, styles.button, this.getStyle(month)]}
                             key={month}
-                            onClick={() => this.onClick(month)}
+                            onClick={() => this.handleMonthChange(month)}
                         >
                             <Glyphicon glyph="calendar" style={styles.glyph}/>
-                            {month}
+                            {allMonths[month]}
                         </li>
                     ))}
 
@@ -57,3 +61,12 @@ export default class Leftbar extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        selectedMonth: state.absMonth.month,
+        selectedYear: state.absMonth.year,
+    }
+}
+
+export default connect(mapStateToProps)(Leftbar);

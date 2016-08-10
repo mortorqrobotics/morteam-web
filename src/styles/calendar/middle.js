@@ -17,7 +17,13 @@ const topButton = {
 }
 
 export default {
+    container: {
+        position: "absolute",
+        top: "40px",
+        left: "300px",
+    },
     day: {
+        width: "500px",
         maxWidth: "500px",
         marginTop: "auto",
         marginLeft: "auto",

@@ -2,20 +2,24 @@ import React from "react";
 import Radium from "radium";
 
 import { withCss } from "~/util/component";
+import { range } from "~/util";
 import styles from "~/styles/calendar";
 
 const currentYear = new Date().getFullYear();
-const years = Array.from({ length: 6 }, (x, i) => i + currentYear - 1);
-// currentYear - 1 to currentYear + 4
+const years = range(currentYear - 1, currentYear + 5);
 
 @Radium
 export default class YearDropdown extends React.Component {
+
+    static propTypes = {
+        selectedYear: React.PropTypes.number,
+        onYearChange: React.PropTypes.func,
+    }
 
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedYear: currentYear,
             isDropdownOpen: false
         };
     }
@@ -27,7 +31,7 @@ export default class YearDropdown extends React.Component {
     }
 
     getItemStyle = (year) => {
-        if (year === this.state.selectedYear) {
+        if (year === this.props.selectedYear) {
             return styles.dropdown.selected;
         }
     }
@@ -38,19 +42,13 @@ export default class YearDropdown extends React.Component {
         });
     }
 
-    onItemClick = (year) => {
-        this.setState({
-            selectedYear: year
-        });
-    }
-
     displayMenu = () => {
         if (this.state.isDropdownOpen) {
             return (
                 <ul style={styles.dropdown.ul}>
                     {years.map(year => (
                         <li
-                            onClick={() => this.onItemClick(year)}
+                            onClick={() => this.props.onYearChange(year)}
                             style={[styles.dropdown.item, this.getItemStyle(year)]}
                             key={year}
                         >
@@ -69,7 +67,7 @@ export default class YearDropdown extends React.Component {
                     style={[styles.dropdown.button, this.getButtonStyle()]}
                     onClick={this.onButtonClick}
                 >
-                    {this.state.selectedYear}
+                    {this.props.selectedYear}
                     <span style={styles.dropdown.caret} />
                 </div>
                 {this.displayMenu()}
