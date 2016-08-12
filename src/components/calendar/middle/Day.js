@@ -42,6 +42,7 @@ export default class Day extends React.Component {
             <div
                 style={styles.day}
                 id={`day-div-${this.props.year}-${this.props.month}-${this.props.day}`}
+                className="day"
             >
                 <div style={styles.dayNum}>
                     {this.props.day}
