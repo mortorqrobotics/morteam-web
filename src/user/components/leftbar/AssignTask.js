@@ -11,13 +11,14 @@ import {
 import { allMonths, daysInAbsMonth } from "~/util/date";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
-import TextBox from "~/shared/components/forms/TextBox";
-import SubmitButton from "~/shared/components/forms/SubmitButton";
-import Button from "~/shared/components/forms/Button";
-import ErrorMsg from "~/shared/components/forms/ErrorMsg";
+import {
+    ModalTextBox,
+    ModalTextArea,
+    ModalSubmitButton,
+    ModalErrorMsg,
+} from "~/shared/components/modal";
 import Dropdown from "~/shared/components/forms/Dropdown";
 import ajax from "~/util/ajax";
-import { withCss } from "~/util/component";
 import { connect } from "react-redux";
 import { addTask } from "~/user/actions";
 
@@ -86,14 +87,12 @@ class AssignTask extends React.Component {
                 onRequestClose={this.props.onRequestClose}
             >
                 <Form onSubmit={this.onSubmit}>
-                    <TextBox
-                        style={styles.textBox}
+                    <ModalTextBox
                         placeholder="Title"
                         value={this.state.name}
                         onChange={this.getChangeHandler("name")}
                     />
-                    <textarea
-                        style={styles.taskDescription}
+                    <ModalTextArea
                         placeholder="Short Description (Optional)"
                         value={this.state.description}
                         onChange={this.getChangeHandler("description")}
@@ -120,15 +119,9 @@ class AssignTask extends React.Component {
                         options={range(currentYear, currentYear + 4)}
                         display={year => year}
                     />
-                    <SubmitButton
-                        style={styles.button}
-                        text="Save"
-                    />
+                    <ModalSubmitButton text="Save" />
                     {this.state.errorMsg && (
-                        <ErrorMsg
-                            style={styles.errorMsg}
-                            message={this.state.errorMsg}
-                        />
+                        <ModalErrorMsg message={this.state.errorMsg} />
                     )}
                 </Form>
             </StandardModal>

@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/home/styles/announcements";
+import { fullName } from "~/util";
 
 @Radium
 export default class AnnouncementsListItem extends React.Component {
@@ -22,7 +23,7 @@ export default class AnnouncementsListItem extends React.Component {
                         style={styles.image}
                     />
                     <span style={styles.author}>
-                        {this.props.author.firstname} {this.props.author.lastname}
+                        {fullName(this.props.author)}
                     </span>
                     <span style={styles.time}>
                         {" - " + this.props.timestamp.toLocaleString()}

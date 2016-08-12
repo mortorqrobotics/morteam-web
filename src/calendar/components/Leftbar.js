@@ -4,20 +4,14 @@ import Radium from "radium";
 import { withCss } from "~/util/component";
 import { range } from "~/util";
 import { allMonths } from "~/util/date";
-import styles from "~/shared/styles/leftbar";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import YearDropdown from "./YearDropdown";
 import { connect } from "react-redux";
 import { setAbsMonth } from "~/calendar/actions";
+import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
 
 @Radium
 class Leftbar extends React.Component {
-
-    getStyle = (month) => {
-        if (month === this.props.selectedMonth) {
-            return styles.selected;
-        }
-    }
 
     handleMonthChange = (month) => {
         this.props.dispatch(setAbsMonth({
@@ -35,29 +29,27 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <div style={styles.div}>
-                <ul style={styles.ul}>
+            <LeftbarContainer>
 
-                    <li style={styles.li}>
-                        <YearDropdown
-                            selectedYear={this.props.selectedYear}
-                            onYearChange={this.handleYearChange}
-                        />
-                    </li>
+                <LeftbarItem>
+                    <YearDropdown
+                        selectedYear={this.props.selectedYear}
+                        onYearChange={this.handleYearChange}
+                    />
+                </LeftbarItem>
 
-                    {range(0, 12).map(month => (
-                        <li
-                            style={[styles.li, styles.button, this.getStyle(month)]}
-                            key={month}
-                            onClick={() => this.handleMonthChange(month)}
-                        >
-                            <Glyphicon glyph="calendar" style={styles.glyph}/>
-                            {allMonths[month]}
-                        </li>
-                    ))}
+                {range(0, 12).map(month => (
+                    <LeftbarButton
+                        isSelected={month === this.props.selectedMonth}
+                        key={month}
+                        onClick={() => this.handleMonthChange(month)}
+                    >
+                        <Glyphicon glyph="calendar" style={{ marginRight: "5px" }} />
+                        {allMonths[month]}
+                    </LeftbarButton>
+                ))}
 
-                </ul>
-            </div>
+            </LeftbarContainer>
         )
     }
 }

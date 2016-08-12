@@ -8,6 +8,7 @@ import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
 import AssignTask from "./AssignTask";
 import { withCss } from "~/util/component";
+import { fullName } from "~/util";
 
 const Item = withCss("div", styles.item);
 const ButtonItem = (props) => (
@@ -89,7 +90,7 @@ export default class Leftbar extends React.Component {
                     style={styles.img}
                 />
                 <div style={styles.name}>
-                    {this.state.user.firstname} {this.state.user.lastname}
+                    {fullName(this.state.user)}
                 </div>
                 <Item>
                     <span style={styles.emailPhone}>

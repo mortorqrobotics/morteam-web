@@ -38,6 +38,18 @@ export const flatMap = (arr, func) => {
     return result;
 }
 
+export const fullName = (user) => {
+    return user.firstname + " " + user.lastname;
+}
+
+export const otherUser = (users, ownId) => {
+    if (users[0]._id == ownId) {
+        return users[1]
+    } else {
+        return users[0]
+    }
+}
+
 // useful for debugging method chains
 Object.defineProperty(Object.prototype, "_tap", {
     value: function(func) {

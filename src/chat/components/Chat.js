@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
+import Leftbar from "./leftbar/Leftbar";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/chat/reducers";
@@ -17,6 +18,7 @@ export default class Chat extends React.Component {
         return (
             <Root pageName="chat" store={store}>
                 <Navbar />
+                <Leftbar />
             </Root>
         )
     }

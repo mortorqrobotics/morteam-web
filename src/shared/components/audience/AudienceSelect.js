@@ -6,6 +6,7 @@ import ajax from "~/util/ajax";
 import TextBox from "~/shared/components/forms/TextBox";
 import AudienceItem from "./AudienceItem";
 import { getGroupName } from "~/util/groups";
+import { fullName } from "~/util";
 
 let styles = {
     div: {
@@ -152,7 +153,7 @@ export default class AudienceSelect extends React.Component {
                     {shownUsers.map(user => (
                         <AudienceItem
                             key={user._id}
-                            text={user.firstname + " " + user.lastname}
+                            text={fullName(user)}
                             id={user._id}
                             onClick={this.onUserClick}
                             isSelected={this.isUserSelected(user._id)}

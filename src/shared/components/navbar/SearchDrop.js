@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import SearchDropItem from "./SearchDropItem";
 import styles from "~/shared/styles/navbar";
+import { fullName } from "~/util";
 
 @Radium
 export default class SearchDrop extends React.Component {
@@ -19,7 +20,7 @@ export default class SearchDrop extends React.Component {
                         <SearchDropItem
                             key={user._id}
                             userid={user._id}
-                            name={user.firstname + " " + user.lastname}
+                            name={fullName(user)}
                             profpicpath={user.profpicpath}
                         />
                     ))}

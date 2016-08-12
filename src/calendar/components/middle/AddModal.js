@@ -3,13 +3,15 @@ import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
 import { makeChangeHandlerFactory } from "~/util";
-import TextBox from "~/shared/components/forms/TextBox";
+import {
+    ModalTextBox,
+    ModalTextArea,
+    ModalButton,
+} from "~/shared/components/modal";
 import CheckBox from "~/shared/components/forms/CheckBox";
-import Button from "~/shared/components/forms/Button";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { connect } from "react-redux";
 import { addEvent } from "~/calendar/actions";
-import styles from "~/calendar/styles/addModal";
 
 @Radium
 class AddModal extends React.Component {
@@ -60,16 +62,13 @@ class AddModal extends React.Component {
                 isOpen={this.props.isOpen}
                 onAfterOpen={this.props.onAfterOpen}
                 onRequestClose={this.props.onRequestClose}
-                style={styles.container}
             >
-                <TextBox
-                    style={styles.textBox}
+                <ModalTextBox
                     placeholder="Title"
                     value={this.state.name}
                     onChange={this.getChangeHandler("name")}
                 />
-                <textarea
-                    style={styles.textArea}
+                <ModalTextArea
                     placeholder="Description (Optional)"
                     value={this.state.description}
                     onChange={this.getChangeHandler("description")}
@@ -95,8 +94,7 @@ class AddModal extends React.Component {
                     selected={this.state.audience}
                     onChange={audience => this.setState({ audience })}
                 />
-                <Button
-                    style={styles.button}
+                <ModalButton
                     text="Done"
                     onClick={this.onSubmit}
                 />
