@@ -29,7 +29,7 @@ gulp.task("build", function() {
     ];
     for (let page of pages) {
         let bundler = browserify({
-            entries: ["./src/components/" + page + "/" + page.capitalize() + ".js"],
+            entries: ["./src/" + page + "/components/" + page.capitalize() + ".js"],
             debug: true,
             cache: {},
             packageCache: {},
