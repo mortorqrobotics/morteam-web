@@ -9,6 +9,7 @@ import ChangePassword from "./ChangePassword";
 import AssignTask from "./AssignTask";
 import { withCss } from "~/util/component";
 import { fullName } from "~/util";
+import { modalProps } from "~/util/modal";
 
 const Item = withCss("div", styles.item);
 const ButtonItem = (props) => (
@@ -112,19 +113,13 @@ export default class Leftbar extends React.Component {
                 {this.renderConditionalButtons()}
 
                 <EditProfile
-                    isOpen={this.state.isEditProfileOpen}
-                    onAfterOpen={() => this.setState({ isEditProfileOpen: true })}
-                    onRequestClose={() => this.setState({ isEditProfileOpen: false })}
+                    { ...modalProps(this, "isEditProfileOpen") }
                 />
                 <ChangePassword
-                    isOpen={this.state.isChangePasswordOpen}
-                    onAfterOpen={() => this.setState({ isChangePasswordOpen: true })}
-                    onRequestClose={() => this.setState({ isChangePasswordOpen: false })}
+                    { ...modalProps(this, "isChangePasswordOpen") }
                 />
                 <AssignTask
-                    isOpen={this.state.isAssignTaskOpen}
-                    onAfterOpen={() => this.setState({ isAssignTaskOpen: true })}
-                    onRequestClose={() => this.setState({ isAssignTaskOpen: false })}
+                    { ...modalProps(this, "isAssignTaskOpen") }
                 />
             </div>
         )

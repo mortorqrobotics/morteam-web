@@ -2,17 +2,17 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { modalPropTypes, makeChangeHandlerFactory, REDIR_TIME } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
-import TextBox from "~/shared/components/forms/TextBox";
-import SubmitButton from "~/shared/components/forms/SubmitButton";
-import Button from "~/shared/components/forms/Button";
-import ErrorMsg from "~/shared/components/forms/ErrorMsg";
+import {
+    ModalTextBox,
+    ModalButton,
+    ModalSubmitButton,
+    ModalErrorMsg,
+} from "~/shared/components/modal";
 import ajax from "~/util/ajax";
-import { withCss } from "~/util/component";
-
-const TextItem = withCss(TextBox, styles.textBox);
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 
 @Radium
 export default class EditProfile extends React.Component {
@@ -65,27 +65,25 @@ export default class EditProfile extends React.Component {
         return (
             <StandardModal
                 title="Edit Profile"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
                 <Form onSubmit={this.onSubmit}>
-                    <TextItem
+                    <ModalTextBox
                         placeholder="First Name"
                         value={this.state.firstname}
                         onChange={this.getChangeHandler("firstname")}
                     />
-                    <TextItem
+                    <ModalTextBox
                         placeholder="Last name"
                         value={this.state.lastname}
                         onChange={this.getChangeHandler("lastname")}
                     />
-                    <TextItem
+                    <ModalTextBox
                         placeholder="Email"
                         value={this.state.email}
                         onChange={this.getChangeHandler("email")}
                     />
-                    <TextItem
+                    <ModalTextBox
                         placeholder="Phone Number"
                         value={this.state.phone}
                         onChange={this.getChangeHandler("phone")}
@@ -94,24 +92,19 @@ export default class EditProfile extends React.Component {
                         becomes a mentor later, then wants to remove
                         the parent email? */}
                     {this.context.user.position != "mentor" && (
-                        <TextItem
+                        <ModalTextBox
                             placeholder="Parent Email"
                             value={this.state.parentEmail}
                             onChange={this.getChangeHandler("parentEmail")}
                         />
                     )}
-                    <Button
-                        style={styles.button}
+                    <ModalButton
                         text="Change Profile Picture"
                         onClick={() => alert("TODO: actually make this work")}
                     />
-                    <SubmitButton
-                        style={styles.button}
-                        text="Save"
-                    />
+                    <ModalSubmitButton text="Save" />
                     {this.state.errorMsg && (
-                        <ErrorMsg
-                            style={styles.errorMsg}
+                        <ModalErrorMsg
                             message={this.state.errorMsg}
                         />
                     )}

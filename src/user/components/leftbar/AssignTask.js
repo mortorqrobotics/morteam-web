@@ -2,12 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import {
-    modalPropTypes,
-    makeChangeHandlerFactory,
-    REDIR_TIME,
-    range
-} from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME, range } from "~/util";
 import { allMonths, daysInAbsMonth } from "~/util/date";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
@@ -19,6 +14,7 @@ import {
 } from "~/shared/components/modal";
 import Dropdown from "~/shared/components/forms/Dropdown";
 import ajax from "~/util/ajax";
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addTask } from "~/user/actions";
 
@@ -82,9 +78,7 @@ class AssignTask extends React.Component {
         return (
             <StandardModal
                 title="Assign Task"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
                 <Form onSubmit={this.onSubmit}>
                     <ModalTextBox

@@ -10,6 +10,7 @@ import {
 } from "~/shared/components/modal";
 import CheckBox from "~/shared/components/forms/CheckBox";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addEvent } from "~/calendar/actions";
 
@@ -20,9 +21,7 @@ class AddModal extends React.Component {
         year: PropTypes.number.isRequired,
         month: PropTypes.number.isRequired,
         day: PropTypes.number.isRequired,
-        isOpen: PropTypes.bool.isRequired,
-        onAfterOpen: PropTypes.func.isRequired,
-        onRequestClose: PropTypes.func.isRequired,
+        ...modalPropTypes,
     }
 
     initialState = {
@@ -59,9 +58,7 @@ class AddModal extends React.Component {
         return (
             <StandardModal
                 title="New Event"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
                 <ModalTextBox
                     placeholder="Title"

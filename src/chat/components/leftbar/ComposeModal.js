@@ -5,11 +5,16 @@ import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { makeChangeHandlerFactory, otherUser } from "~/util";
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addChat } from "~/chat/actions";
 
 @Radium
 class ComposeModal extends React.Component {
+
+    static propTypes = {
+        ...modalPropTypes,
+    }
 
     static contextTypes = {
         user: React.PropTypes.object,
@@ -51,9 +56,7 @@ class ComposeModal extends React.Component {
         return (
             <StandardModal
                 title="Compose"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
                 {(() => {
                     if (!this.state.isEditingName) {

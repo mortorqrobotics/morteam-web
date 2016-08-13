@@ -5,6 +5,7 @@ import styles from "~/calendar/styles/middle";
 import EventItem from "./EventItem";
 import Button from "~/shared/components/forms/Button";
 import { dayName, allMonths } from "~/util/date";
+import { modalProps } from "~/util/modal";
 import AddModal from "./AddModal";
 
 @Radium
@@ -22,7 +23,7 @@ export default class Day extends React.Component {
     }
 
     state = {
-        isModalOpen: false,
+        isAddModalOpen: false,
     }
 
     renderAddButton = () => {
@@ -31,7 +32,7 @@ export default class Day extends React.Component {
                 <Button
                     style={styles.addButton}
                     text="+"
-                    onClick={() => this.setState({ isModalOpen: true })}
+                    onClick={() => this.setState({ isAddModalOpen: true })}
                 />
             )
         }
@@ -69,9 +70,7 @@ export default class Day extends React.Component {
                     day={this.props.day}
                     month={this.props.month}
                     year={this.props.year}
-                    isOpen={this.state.isModalOpen}
-                    onAfterOpen={() => this.setState({ isModalOpen: true })}
-                    onRequestClose={() => this.setState({ isModalOpen: false })}
+                    { ...modalProps(this, "isAddModalOpen") }
                 />
             </div>
         )

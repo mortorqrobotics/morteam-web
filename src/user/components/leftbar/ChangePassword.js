@@ -2,17 +2,16 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { modalPropTypes, makeChangeHandlerFactory, REDIR_TIME } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
-import TextBox from "~/shared/components/forms/TextBox";
-import SubmitButton from "~/shared/components/forms/SubmitButton";
-import Button from "~/shared/components/forms/Button";
-import ErrorMsg from "~/shared/components/forms/ErrorMsg";
+import {
+    ModalTextBox,
+    ModalSubmitButton,
+    ModalErrorMsg,
+} from "~/shared/components/modal";
 import ajax from "~/util/ajax";
-import { withCss } from "~/util/component";
-
-const TextItem = withCss(TextBox, styles.textBox);
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 
 @Radium
 export default class ChangePassword extends React.Component {
@@ -69,32 +68,30 @@ export default class ChangePassword extends React.Component {
         return (
             <StandardModal
                 title="Change Password"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
                 <Form onSubmit={this.onSubmit}>
-                    <TextItem
+                    <ModalTextBox
                         placeholder="Old Password"
                         value={this.state.oldPassword}
                         onChange={this.getChangeHandler("oldPassword")}
                     />
-                    <TextItem
+                    <ModalTextBox
                         placeholder="New Password"
                         value={this.state.newPassword}
                         onChange={this.getChangeHandler("newPassword")}
                     />
-                    <TextItem
+                    <ModalTextBox
                         placeholder="Confirm New Password"
                         value={this.state.confirmPassword}
                         onChange={this.getChangeHandler("confirmPassword")}
                     />
-                    <SubmitButton
+                    <ModalSubmitButton
                         style={styles.button}
                         text="Save"
                     />
                     {this.state.errorMsg && (
-                        <ErrorMsg
+                        <ModalErrorMsg
                             style={styles.errorMsg}
                             message={this.state.errorMsg}
                         />

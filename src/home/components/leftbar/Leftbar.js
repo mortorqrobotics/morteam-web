@@ -9,6 +9,7 @@ import GroupList from "./GroupList";
 import MakeGroupModal from "./groupModal/MakeGroupModal";
 import Link from "~/shared/components/Link";
 import ajax from "~/util/ajax";
+import { modalProps } from "~/util/modal";
 
 var styles = {
     div: {
@@ -81,9 +82,7 @@ export default class Leftbar extends React.Component {
                     <hr />
 
                     <MakeGroupModal
-                        isOpen={this.state.modalIsOpen}
-                        onAfterOpen={this.openModal}
-                        onRequestClose={this.closeModal}
+                        { ...modalProps(this, "modalIsOpen") }
                         addGroup={this.addGroup}
                     />
 

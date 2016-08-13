@@ -27,3 +27,26 @@ export const addChat = (chat) => {
             .then(({ data }) => dispatch(addChatSync(data)))
     }
 }
+
+const setChatNameSync = ({ chatId, name }) => {
+    return {
+        type: "SET_CHAT_NAME",
+        chatId,
+        name,
+    }
+}
+
+export const setChatName = ({ chatId, name }) => {
+    return (dispatch) => {
+        return ajax.request("PUT", "/chats/group/id/" + chatId + "/name", {
+            newName: name,
+        }).then(() => dispatch(setChatNameSync({ chatId, name })))
+    }
+}
+
+export const setCurrentChatId = (chatId) => {
+    return {
+        type: "SET_CURRENT_CHAT_ID",
+        chatId,
+    }
+}

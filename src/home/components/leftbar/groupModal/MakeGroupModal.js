@@ -7,6 +7,7 @@ import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import ajax, { cancellableRequestFactory } from "~/util/ajax";
+import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { makeChangeHandlerFactory } from "~/util";
 import { getGroupName } from "~/util/groups";
 
@@ -14,9 +15,7 @@ import { getGroupName } from "~/util/groups";
 export default class MakeGroupModal extends React.Component {
 
     static propTypes = {
-        isOpen: React.PropTypes.bool,
-        onAfterOpen: React.PropTypes.func,
-        onRequestClose: React.PropTypes.func,
+        ...modalPropTypes,
         addGroup: React.PropTypes.func
     }
 
@@ -78,9 +77,7 @@ export default class MakeGroupModal extends React.Component {
         return (
             <StandardModal
                 title="New Group"
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
+                { ...modalPropsForward(this) }
             >
 
                 <ModalTextBox
