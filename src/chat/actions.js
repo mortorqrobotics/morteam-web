@@ -28,6 +28,26 @@ export const addChat = (chat) => {
     }
 }
 
+const sendMessageSync = ({ chatId, message }) => {
+    return {
+        type: "ADD_MESSAGE",
+        chatId,
+        message,
+    }
+}
+
+export const sendMessage = (content) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        console.log(state)
+        return ajax.request("POST", "/chats/id/" + state.currentChatId + "/messages", {
+            content,
+        }).then(({ data }) => {
+            dispatch(sendMessageSync({ chatId: state.currentChatId, message: data }));
+        })
+    }
+}
+
 const setChatNameSync = ({ chatId, name }) => {
     return {
         type: "SET_CHAT_NAME",

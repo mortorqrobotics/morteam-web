@@ -3,16 +3,23 @@ import { combineReducers } from "redux";
 const initialChats = [];
 
 const chats = (state = initialChats, action) => {
+    let index;
     switch (action.type) {
         case "SET_CHATS":
             return action.chats
         case "ADD_CHAT":
             return [action.chat].concat(state)
         case "SET_CHAT_NAME":
-            const index = state.findIndex(chat => chat._id == action.chatId)
+            index = state.findIndex(chat => chat._id == action.chatId)
             return state.slice(0, index).concat([{
                 ...state[index],
                 name: action.name,
+            }]).concat(state.slice(index + 1))
+        case "ADD_MESSAGE":
+            index = state.findIndex(chat => chat._id == action.chatId)
+            return state.slice(0, index).concat([{
+                ...state[index],
+                messages: state[index].messages.concat([action.message])
             }]).concat(state.slice(index + 1))
         default:
             return state

@@ -1,0 +1,57 @@
+export default {
+    container: {
+        width: "calc(100vw - 460px)",
+        minWidth: "400px",
+    },
+    messagesDiv: {
+        maxWidth: "700px",
+        width: "95%",
+        minWidth: "380px",
+        height: "calc(100% - 48px)",
+        minHeight: "250px",
+        position: "relative",
+        margin: "0 auto",
+        zIndex: "-1",
+        overflow: "auto",
+        borderLeft: "2px solid #cccccc",
+        borderRight: "2px solid #ffc547",
+        WebkitOverflowScrolling: "touch",
+    },
+    inputDiv: {
+        position: "relative",
+        maxWidth: "700px",
+        width: "95%",
+        minWidth: "380px",
+        margin: "9px auto",
+        zIndex: "80",
+        overflow: "hidden",
+    },
+    inputTextArea: {
+        width: "85%",
+        verticalAlign: "top",
+        padding: "5px",
+        resize: "none",
+        border: "none",
+        overflow: "hidden",
+        height: "30px",
+        marginLeft: "8px",
+        borderRadius: "5px",
+        maxHeight: "260px",
+        fontWeight: "bolder", // finally
+        ":focus": {
+            border: "1px solid #ffb524",
+        },
+    },
+    sendButton: {
+        backgroundColor: "#ffc547",
+        border: "none",
+        height: "30px",
+        width: "12%",
+        fontSize: "18px",
+        borderRadius: "5px",
+        marginLeft: "3px",
+        ":hover": {
+            backgroundColor: "orange",
+        },
+    },
+}
