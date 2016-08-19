@@ -22,15 +22,17 @@ export default {
         marginTop: "20px",
     },
     userDisplay: {
-        padding: "20px",
-        textAlign: "left",
-        display: "inline-block",
-        backgroundColor: "#c9c9c9",
-        border: "1px solid #ababab",
-        width: "90%",
-        cursor: "pointer",
-        ":hover": {
-            backgroundColor: "#ffc547",
+        span: {
+            padding: "20px",
+            textAlign: "left",
+            display: "inline-block",
+            backgroundColor: "#c9c9c9",
+            border: "1px solid #ababab",
+            width: "90%",
+            cursor: "pointer",
+            ":hover": {
+                backgroundColor: "#ffc547",
+            },
         },
         profPic: {
             width: "30px",

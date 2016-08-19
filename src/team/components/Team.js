@@ -1,32 +1,28 @@
 import React from "react";
 import Radium from "radium";
 
-import Col from "react-bootstrap/lib/Col";
 import Grid from "react-bootstrap/lib/Grid";
+import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
 import UserLabel from "./UserLabel";
-import styles from "./styles";
+import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 
 @Radium
 export default class Team extends React.Component {
     
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         
         this.state = {
             users: [],
-            teamName: this.context.user.team.name,
-            teamNumber: this.context.user.team.number,
+            teamName: window.__userInfo.team.name,
+            teamNumber: window.__userInfo.team.number,
         }
     }
     
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-    
-    componentDidMount = async() => {
-        let { data } = ajax.await("get", "/teams/current/users");
+    componentDidMount = async () => {
+        let { data } = await ajax.request("get", "/teams/current/users");
         this.setState({
            users: data,
         });
@@ -34,7 +30,8 @@ export default class Team extends React.Component {
 
     render() {
         return (
-            <Root>
+            <Root pageName="team">
+                <Navbar />
                 <div style={styles.wideBody}>
                     <span style={styles.teamInfo}>
                         <h1 style={styles.teamInfo.h1}>
@@ -46,14 +43,12 @@ export default class Team extends React.Component {
                     
                     <Grid fluid={true}>
                         <div style={styles.memberList}>
-                            {this.state.users.map(user=>{
+                            {this.state.users.map(user => (
                                 <UserLabel
-                                    name={user.firstname + " " + user.lastname}
-                                    profpicpath={user.profpicpath}
-                                    userid={user._id}
+                                    user={user}
                                     key={user._id}
                                 />
-                            })}
+                            ))}
                         </div>
                     </Grid>
                 
