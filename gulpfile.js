@@ -6,6 +6,7 @@ let browserify = require("browserify");
 let babelify = require("babelify");
 let streamify = require("gulp-streamify");
 let uglify = require("gulp-uglify");
+let logger = require("gulp-logger");
 
 let libs = [
     "react",
@@ -29,6 +30,7 @@ gulp.task("build", function() {
         "chat",
         "team",
     ];
+    let remaining = pages.length;
     for (let page of pages) {
         let bundler = browserify({
             entries: ["./src/" + page + "/components/" + page.capitalize() + ".js"],
@@ -40,7 +42,7 @@ gulp.task("build", function() {
         for (let lib of libs) {
             bundler.external(lib);
         }
-        bundler
+        let stream = bundler
             .transform(babelify, {
                 presets: ["es2015", "react"],
                 plugins: [
@@ -61,6 +63,11 @@ gulp.task("build", function() {
             .pipe(source(page.capitalize() + ".js"))
 //            .pipe(streamify(uglify()))
             .pipe(gulp.dest("./build/"));
+        stream.on("end", () => {
+            if (!--remaining) {
+                console.log("done");
+            }
+        });
     }
 });
 

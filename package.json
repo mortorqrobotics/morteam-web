@@ -47,6 +47,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "gulp": "^3.9.1",
+    "gulp-logger": "0.0.2",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.4",
     "js-beautify": "^1.6.3",
