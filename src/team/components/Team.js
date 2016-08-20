@@ -16,8 +16,7 @@ export default class Team extends React.Component {
         
         this.state = {
             users: [],
-            teamName: window.__userInfo.team.name,
-            teamNumber: window.__userInfo.team.number,
+            team: window.__userInfo.team,
         }
     }
     
@@ -33,12 +32,12 @@ export default class Team extends React.Component {
             <Root pageName="team">
                 <Navbar />
                 <div style={styles.wideBody}>
-                    <span style={styles.teamInfo}>
+                    <span style={styles.teamInfo.span}>
                         <h1 style={styles.teamInfo.h1}>
-                            {this.state.teamName}
+                            {this.state.team.name}
                             <br />
                         </h1>
-                        <h2>{this.state.teamNumber}</h2>
+                        <h2>Team {this.state.team.number}</h2>
                     </span>
                     
                     <Grid fluid={true}>
