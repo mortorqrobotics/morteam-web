@@ -18,12 +18,6 @@ export function makeChangeHandlerFactory(ctx) {
 
 export const REDIR_TIME = 700;
 
-export const modalPropTypes = {
-    isOpen: React.PropTypes.bool,
-    onAfterOpen: React.PropTypes.func,
-    onRequestClose: React.PropTypes.func,
-}
-
 export const range = (a, b) => {
     const arr = [];
     while (a < b) arr.push(a++);
@@ -36,6 +30,18 @@ export const flatMap = (arr, func) => {
         Array.prototype.push.call(result, func(elem));
     }
     return result;
+}
+
+export const fullName = (user) => {
+    return user.firstname + " " + user.lastname;
+}
+
+export const otherUser = (users, ownId) => {
+    if (users[0]._id == ownId) {
+        return users[1]
+    } else {
+        return users[0]
+    }
 }
 
 // useful for debugging method chains
