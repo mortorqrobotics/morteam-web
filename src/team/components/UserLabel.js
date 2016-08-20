@@ -5,6 +5,7 @@ import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName } from "~/util";
 import styles from "~/team/styles";
+import ajax from "~/util/ajax";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
@@ -16,14 +17,14 @@ export default class UserLabel extends React.Component {
     }
 
     handleUserClick = () => {
-        $(event).stopPropagation();
         window.location.assign("/profiles/id/" + this.props.user._id);
     }
 
-    handleDeleteUser = async () => {
+    handleDeleteUser = async (event) => {
+        event.stopPropagation();
         if (window.confirm("Are you sure?")) {
             try {
-                let { data } = await ajax.request("delete", "/teams/current/users/id" + this.props.user._id);
+                let { data } = await ajax.request("delete", "/teams/current/users/id/" + this.props.user._id);
                 console.log(data);
             } catch (err) {
                 console.log(err);
