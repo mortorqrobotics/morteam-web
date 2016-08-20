@@ -25,13 +25,13 @@ export default class YearDropdown extends React.Component {
 
     getButtonStyle = () => {
         if (this.state.isDropdownOpen) {
-            return styles.dropdown.buttonShadow;
+            return styles.buttonShadow;
         }
     }
 
     getItemStyle = (year) => {
         if (year === this.props.selectedYear) {
-            return styles.dropdown.selected;
+            return styles.selected;
         }
     }
 

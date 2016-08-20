@@ -29,6 +29,7 @@ gulp.task("build", function() {
         "calendar",
         "chat",
         "team",
+        "group",
     ];
     let remaining = pages.length;
     for (let page of pages) {

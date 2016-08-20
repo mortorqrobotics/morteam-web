@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "./styles/styles";
+import styles from "~/group/styles/styles";
 
 @Radium
 export default class GroupHeadings extends React.Component {
@@ -10,16 +10,16 @@ export default class GroupHeadings extends React.Component {
         name: React.PropTypes.string,
         type: React.PropTypes.string
     }
-    
+
     render() {
         return (
-            <div style={styles.group_name}>
-                {this.propTypes.name}
-            </div>
-            <div style={styles.group_type}>
-                {this.propTypes.type}
+            <div>
+                <h1 style={styles.groupName}>
+                    {this.props.name}
+                </h1>
+                <h4>{this.props.type}</h4>
             </div>
         )
     }
-    
+
 }

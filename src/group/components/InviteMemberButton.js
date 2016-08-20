@@ -11,5 +11,4 @@ export default class LeaveGroupButton extends React.Component {
             <Button value="Invite Members" />
         )
     }
-    
 }
