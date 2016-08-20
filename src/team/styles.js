@@ -46,5 +46,14 @@ export default {
             margin: "8px",
             verticalAlign: "middle",
         },
+        glyph: {
+            float: "right",
+            marginTop: "10px",
+            marginRight: "-10px",
+            opacity: ".5",
+            ":hover": {
+                opacity: "1",
+            },
+        },
     },
 }

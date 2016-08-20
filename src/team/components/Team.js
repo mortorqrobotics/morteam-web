@@ -32,6 +32,7 @@ export default class Team extends React.Component {
             <Root pageName="team">
                 <Navbar />
                 <div style={styles.wideBody}>
+                
                     <span style={styles.teamInfo.span}>
                         <h1 style={styles.teamInfo.h1}>
                             {this.state.team.name}
