@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import Col from "react-bootstrap/lib/Col";
 import Grid from "react-bootstrap/lib/Grid";
-import Root from "~/shared/components/Root";
+import Root, { pageInit } from "~/shared/components/Root";
 import UserLabel from "./UserLabel";
 import styles from "./styles";
 import ajax from "~/util/ajax";
