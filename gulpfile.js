@@ -27,6 +27,7 @@ gulp.task("build", function() {
         "user",
         "calendar",
         "chat",
+        "team",
     ];
     for (let page of pages) {
         let bundler = browserify({
