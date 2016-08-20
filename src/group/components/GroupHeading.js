@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/group/styles/styles";
+import styles from "~/group/styles";
 
 @Radium
 export default class GroupHeadings extends React.Component {

@@ -7,7 +7,7 @@ import GroupHeading from "./GroupHeading";
 import GroupMember from "./GroupMember";
 import LeaveGroupButton from "./LeaveGroupButton";
 import InviteMemberButton from "./InviteMemberButton";
-import styles from "~/group/styles/styles";
+import styles from "~/group/styles";
 import Navbar from "~/shared/components/navbar/Navbar";
 
 @Radium

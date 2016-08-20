@@ -1,12 +1,13 @@
 "use strict";
 
 let gulp = require("gulp");
+let gutil = require("gulp-util");
 let source = require("vinyl-source-stream");
 let browserify = require("browserify");
 let babelify = require("babelify");
-let streamify = require("gulp-streamify");
-let uglify = require("gulp-uglify");
-let logger = require("gulp-logger");
+let watchify = require("watchify");
+let tap = require("gulp-tap");
+let eventStream = require("event-stream");
 
 let libs = [
     "react",
@@ -19,61 +20,75 @@ let libs = [
     "redux-thunk",
 ];
 
-gulp.task("build", function() {
-    let pages = [
-        "signup",
-        "login",
-        "void",
-        "home",
-        "user",
-        "calendar",
-        "chat",
-        "team",
-        "group",
-    ];
-    let remaining = pages.length;
-    for (let page of pages) {
-        let bundler = browserify({
-            entries: ["./src/" + page + "/components/" + page.capitalize() + ".js"],
-            debug: true,
-            cache: {},
-            packageCache: {},
-            fullPaths: true // TODO: I think this should be false
-        });
-        for (let lib of libs) {
-            bundler.external(lib);
-        }
-        let stream = bundler
-            .transform(babelify, {
-                presets: ["es2015", "react"],
-                plugins: [
-                    "syntax-async-functions",
-                    "transform-regenerator",
-                    "transform-decorators-legacy",
-                    "transform-class-properties",
-                    "transform-object-rest-spread",
-                    ["babel-root-import", { rootPathSuffix: "src" }],
-                    ["transform-runtime", { polyfill: false, regenerator: true }],
-                ]
-            })
-            .bundle()
-            .on("error", function(err) {
-                console.log(err.toString());
-                console.log(err.codeFrame);
-            })
-            .pipe(source(page.capitalize() + ".js"))
-//            .pipe(streamify(uglify()))
-            .pipe(gulp.dest("./build/"));
-        stream.on("end", () => {
-            if (!--remaining) {
-                console.log("done");
-            }
-        });
+let pages = [
+    "signup",
+    "login",
+    "void",
+    "home",
+    "user",
+    "calendar",
+    "chat",
+    "team",
+    "group",
+];
+
+function stuff(bundler) {
+    for (let lib of libs) {
+        bundler.external(lib);
     }
+    return bundler
+        .transform(babelify, {
+            presets: ["es2015", "react"],
+            plugins: [
+                "syntax-async-functions",
+                "transform-regenerator",
+                "transform-decorators-legacy",
+                "transform-class-properties",
+                "transform-object-rest-spread",
+                ["babel-root-import", { rootPathSuffix: "src" }],
+                ["transform-runtime", { polyfill: false, regenerator: true }],
+            ],
+        })
+}
+
+gulp.task("build", function() {
+    return gulp.src(pages.map(page => (
+        "./src/" + page + "/components/" + capitalize(page) + ".js"
+    )), { read: false, })
+        .pipe(tap(file => {
+            let bundler = browserify(file.path, { debug: true, });
+            file.contents = stuff(bundler).bundle();
+        }))
+        .on("error", function(err) {
+            console.log(err.toString());
+            console.log(err.codeFrame);
+        })
+        .pipe(gulp.dest("./build/"));
 });
 
-gulp.task("watch", function() {
-    gulp.watch("src/**/*.js", ["build"]);
+gulp.task("watch", () => {
+    let streams = pages.map(page => {
+        let path = "./src/" + page + "/components/" + capitalize(page) + ".js";
+        let bundler = watchify(browserify({
+            entries: [path],
+            debug: true,
+        }))
+        bundler = stuff(bundler);
+        let watcher = () => {
+            return bundler.bundle()
+                .on("error", function(err) {
+                    console.log(err.toString());
+                    console.log(err.codeFrame);
+                    this.emit("end");
+                })
+                .pipe(source(capitalize(page) + ".js"))
+                .pipe(gulp.dest("./build/"));
+        }
+        bundler.on("update", watcher);
+        bundler.on("log", gutil.log);
+        return watcher();
+    });
+    return eventStream.merge(streams);
 });
 
 gulp.task("vendor", function() {
@@ -91,6 +106,6 @@ gulp.task("vendor", function() {
         .pipe(gulp.dest("./build/"));
 });
 
-String.prototype.capitalize = function() {
-    return this[0].toUpperCase() + this.substring(1);
+function capitalize(str) {
+    return str[0].toUpperCase() + str.substring(1);
 };
