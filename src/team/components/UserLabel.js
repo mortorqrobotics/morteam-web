@@ -10,15 +10,16 @@ const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
 export default class UserLabel extends React.Component {
-    
+
     static propTypes = {
         user: React.PropTypes.object,
     }
-    
+
     handleUserClick = () => {
+        $(event).stopPropagation();
         window.location.assign("/profiles/id/" + this.props.user._id);
     }
-    
+
     handleDeleteUser = async () => {
         if (window.confirm("Are you sure?")) {
             try {
@@ -29,21 +30,21 @@ export default class UserLabel extends React.Component {
             }
         }
     }
-    
+
     render() {
         return (
             <Col sm={6} md={4} lg={3}>
                 <span style={styles.userDisplay.span} onClick={this.handleUserClick}>
-                    <img 
-                        src={this.props.user.profpicpath} 
-                        style={styles.userDisplay.profPic} 
+                    <img
+                        src={this.props.user.profpicpath}
+                        style={styles.userDisplay.profPic}
                     />
                     <span style={styles.userDisplay.name}>
                         {fullName(this.props.user)}
                     </span>
-                    <RadiumGlyphicon 
-                        glyph="trash" 
-                        style={styles.userDisplay.glyph} 
+                    <RadiumGlyphicon
+                        glyph="trash"
+                        style={styles.userDisplay.glyph}
                         onClick={this.handleDeleteUser}
                     />
                 </span>
