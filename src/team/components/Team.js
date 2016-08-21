@@ -16,11 +16,8 @@ store.dispatch(fetchUsers());
 @Radium
 export default class Team extends React.Component {
     
-    state = {
-        team: window.__userInfo.team,
-    }
-    
     render() {
+        const team = window.__userInfo.team;
         return (
             <Root pageName="team" store={store}>
                 <Navbar />
@@ -28,10 +25,10 @@ export default class Team extends React.Component {
                 
                     <span style={styles.teamInfo.span}>
                         <h1 style={styles.teamInfo.h1}>
-                            {this.state.team.name}
+                            {team.name}
                             <br />
                         </h1>
-                        <h2>Team {this.state.team.number}</h2>
+                        <h2>Team {team.number}</h2>
                     </span>
                     
                     <UserList />

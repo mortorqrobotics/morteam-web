@@ -6,7 +6,9 @@ const users = (state = [], action) => {
         case "DELETE_USER":
             return update(state, {
                 $splice: [
-                    [state.indexOf(action.user._id), 1]
+                    [state.findIndex(user => (
+                        user._id == action.user._id
+                    )), 1]
                 ]
             });
         case "SET_USERS":

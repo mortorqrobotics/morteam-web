@@ -24,6 +24,6 @@ const deleteUserSync = (user) => {
 export const deleteUser = (user) => {
     return (dispatch) => {
         return ajax.request("delete", "/teams/current/users/id/" + user._id)
-            .then(dispatch(deleteUserSync(user)))
+            .then(() => dispatch(deleteUserSync(user)))
     }
 }

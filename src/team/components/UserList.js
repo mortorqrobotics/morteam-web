@@ -7,7 +7,7 @@ import styles from "~/team/styles";
 import { connect } from "react-redux";
 
 @Radium
-export default class UserList extends React.Component {
+class UserList extends React.Component {
 
     render() {
         return (

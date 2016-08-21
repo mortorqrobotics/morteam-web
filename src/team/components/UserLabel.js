@@ -12,7 +12,7 @@ import { deleteUser } from "~/team/actions";
 const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
-export default class UserLabel extends React.Component {
+class UserLabel extends React.Component {
 
     static propTypes = {
         user: React.PropTypes.object,
