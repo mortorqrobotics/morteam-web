@@ -20,9 +20,9 @@ class MessageInput extends React.Component {
 
     handleSend = () => {
         if (this.state.message.length === 0) {
-            return
+            return;
         }
-        this.props.dispatch(sendMessage(this.state.message))
+        this.props.dispatch(sendMessage(this.state.message));
     }
 
     // this is necessary because the input box is a textarea, not an input type="text"
