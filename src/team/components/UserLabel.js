@@ -16,6 +16,10 @@ export default class UserLabel extends React.Component {
         user: React.PropTypes.object,
     }
 
+    static contextTypes = {
+        user: React.PropTypes.object,
+    }
+
     handleUserClick = () => {
         window.location.assign("/profiles/id/" + this.props.user._id);
     }
@@ -32,6 +36,18 @@ export default class UserLabel extends React.Component {
         }
     }
 
+    renderDeleteButton = () => {
+        if (this.context.user.isAdmin()) {
+            return (
+                <RadiumGlyphicon
+                    glyph="trash"
+                    style={styles.userDisplay.glyph}
+                    onClick={this.handleDeleteUser}
+                />
+            )
+        }
+    }
+
     render() {
         return (
             <Col sm={6} md={4} lg={3}>
@@ -43,11 +59,7 @@ export default class UserLabel extends React.Component {
                     <span style={styles.userDisplay.name}>
                         {fullName(this.props.user)}
                     </span>
-                    <RadiumGlyphicon
-                        glyph="trash"
-                        style={styles.userDisplay.glyph}
-                        onClick={this.handleDeleteUser}
-                    />
+                    {this.renderDeleteButton()}
                 </span>
             </Col>
         )
