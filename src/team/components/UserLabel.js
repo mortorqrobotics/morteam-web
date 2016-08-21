@@ -6,6 +6,8 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName } from "~/util";
 import styles from "~/team/styles";
 import ajax from "~/util/ajax";
+import { connect } from "react-redux";
+import { deleteUser } from "~/team/actions";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
@@ -27,12 +29,7 @@ export default class UserLabel extends React.Component {
     handleDeleteUser = async (event) => {
         event.stopPropagation();
         if (window.confirm("Are you sure?")) {
-            try {
-                let { data } = await ajax.request("delete", "/teams/current/users/id/" + this.props.user._id);
-                console.log(data);
-            } catch (err) {
-                console.log(err);
-            }
+            await this.props.dispatch(deleteUser(this.props.user));
         }
     }
 
@@ -65,3 +62,5 @@ export default class UserLabel extends React.Component {
         )
     }
 }
+
+export default connect()(UserLabel);
