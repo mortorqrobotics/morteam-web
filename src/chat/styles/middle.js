@@ -9,7 +9,6 @@ export default {
         minWidth: "380px",
         height: "calc(100% - 48px)",
         minHeight: "250px",
-        position: "relative",
         margin: "0 auto",
         zIndex: "-1",
         overflow: "auto",

@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 const initialChats = [];
 
-const chats = (state = initialChats, action) => {
+function chats(state = initialChats, action) {
     let index;
     switch (action.type) {
         case "SET_CHATS":
@@ -19,7 +19,13 @@ const chats = (state = initialChats, action) => {
             index = state.findIndex(chat => chat._id == action.chatId)
             return state.slice(0, index).concat([{
                 ...state[index],
-                messages: state[index].messages.concat([action.message])
+                messages: state[index].messages.concat([action.message]),
+            }]).concat(state.slice(index + 1))
+        case "ADD_MESSAGES":
+            index = state.findIndex(chat => chat._id == action.chatId)
+            return state.slice(0, index).concat([{
+                ...state[index],
+                messages: action.messages.concat(state[index].messages),
             }]).concat(state.slice(index + 1))
         default:
             return state
@@ -28,7 +34,7 @@ const chats = (state = initialChats, action) => {
 
 const initialCurrentChatId = null;
 
-const currentChatId = (state = initialCurrentChatId, action) => {
+function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
         case "SET_CHATS":
             if (action.chats.length > 0) {
