@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/shared/styles/navbar";
-import DropdownModal from "./DropdownModal";
+import ProfileDropdownModal from "./ProfileDropdownModal";
 
 @Radium
 export default class ProfileDropdown extends React.Component {

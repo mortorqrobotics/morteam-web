@@ -6,7 +6,7 @@ import DimModal from "~/shared/components/DimModal";
 import styles from "~/shared/styles/navbar";
 
 @Radium
-export default class DropdownModal extends React.Component {
+export default class ProfileDropdownModal extends React.Component {
 
     static propTypes = {
         isOpen: React.PropTypes.bool,
