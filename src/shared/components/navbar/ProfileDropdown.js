@@ -40,7 +40,7 @@ export default class ProfileDropdown extends React.Component {
                     {this.context.user.firstname}
                 </span>
 
-                <DropdownModal
+                <ProfileDropdownModal
                     isOpen={this.state.isModalOpen}
                     onAfterOpen={() => this.setState({ isModalOpen: true })}
                     onRequestClose={() => this.setState({ isModalOpen: false })}
