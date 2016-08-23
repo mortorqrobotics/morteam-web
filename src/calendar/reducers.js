@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import { prevAbsMonth, nextAbsMonth } from "~/util/date";
+import update from "react/lib/update";
 
 const initialEvents = {};
 // initialEvents :: Map Year (Map Month [Event])
@@ -46,13 +47,13 @@ const events = (state = initialEvents, action) => {
                     "year or month was missing in the store when creating a new event"
                 );
             }
-            return {
-                ...state,
+            return update(state, {
                 [year]: {
-                    ...state[year],
-                    [month]: state[year][month].concat([event]),
+                    [month]: {
+                        $push: [event],
+                    },
                 },
-            }
+            })
         default:
             return state
     }

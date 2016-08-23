@@ -1,56 +1,37 @@
 import React from "react";
 import Radium from "radium";
 
-import Grid from "react-bootstrap/lib/Grid";
+import UserList from "./UserList";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
-import UserLabel from "./UserLabel";
 import styles from "~/team/styles";
 import ajax from "~/util/ajax";
+
+import { makeStore } from "~/util/redux";
+import reducers from "~/team/reducers";
+import { fetchUsers } from "~/team/actions";
+const store = makeStore(reducers);
+store.dispatch(fetchUsers());
 
 @Radium
 export default class Team extends React.Component {
     
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            users: [],
-            team: window.__userInfo.team,
-        }
-    }
-    
-    componentDidMount = async () => {
-        let { data } = await ajax.request("get", "/teams/current/users");
-        this.setState({
-           users: data,
-        });
-    }
-
     render() {
+        const team = window.__userInfo.team;
         return (
-            <Root pageName="team">
+            <Root pageName="team" store={store}>
                 <Navbar />
                 <div style={styles.wideBody}>
                 
                     <span style={styles.teamInfo.span}>
                         <h1 style={styles.teamInfo.h1}>
-                            {this.state.team.name}
+                            {team.name}
                             <br />
                         </h1>
-                        <h2>Team {this.state.team.number}</h2>
+                        <h2>Team {team.number}</h2>
                     </span>
                     
-                    <Grid fluid={true}>
-                        <div style={styles.memberList}>
-                            {this.state.users.map(user => (
-                                <UserLabel
-                                    user={user}
-                                    key={user._id}
-                                />
-                            ))}
-                        </div>
-                    </Grid>
+                    <UserList />
                 
                 </div>
             </Root>
