@@ -178,4 +178,42 @@ export default {
             },
         },
     },
+    navbarDropdown: {
+        width: "100px",
+        textAlign: "center",
+        backgroundColor: "ffc547",
+        left: "0px",
+        top: "40px",
+        height: "auto",
+        padding: "10px 0 5px 0",
+        zIndex: "88",
+        boxShadow: "0 3px 8px -5px black",
+        item: {
+            fontWeight: "300",
+            width: "100%",
+            lineHeight: "40px",
+            cursor: "pointer",
+            margin: "0px",
+        },
+        container: {
+            "@media screen and (min-width: 821px)":{
+                display:"none",
+            }
+        },
+        Glyphicon: {
+            textAlign: "center",
+            display: "inline-block",
+            width: "35px",
+            fontSize: "20px",
+            height: "100%",
+            paddingTop: "8px",
+            
+            position: "relative",
+            marginLeft: "0px 2px 0px -5px",
+            ":hover": {
+                backgroundColor: "#FFB524",
+                cursor: "pointer",
+            },
+        }
+    },
 }

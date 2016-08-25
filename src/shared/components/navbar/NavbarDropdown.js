@@ -9,34 +9,38 @@ import NavbarDropdownItem from "./NavbarDropdownItem";
 @Radium
 export default class NavbarDropdown extends React.Component {
 
-    constructor(props) {
-        super(props);
-    this.state = {
-        isModalOpen: true, 
-        }
+    
+    state = {
+        isDropdownOpen: false, 
     }
-    openModal = () => {
+    
+    toggleDropdown = () => {
         this.setState({
-            isModalOpen: true, 
+            isDropdownOpen: !this.state.isDropdownOpen, 
         });
+    }
+    renderDropdown = () => {
+        if(this.state.isDropdownOpen){
+            return(
+                <div>
+                    <NavbarDropdownItem path="/" text="Home"/>
+                    <NavbarDropdownItem path="/chat" text="Chat" />
+                    <NavbarDropdownItem path="/drive" text="Drive"/>
+                    <NavbarDropdownItem path="/cal" text="Calendar"/>
+                    <NavbarDropdownItem path="/networks" text="Networks"/>
+                </div>
+            )
+        }
     }
     render() {
         return (
-            <div>
-                <Glyphicon glyph="menu" />
-                <Modal
-                    isOpen={this.state.isModalOpen}
-                    onAfterOpen={() => this.setState({ isModalOpen: true })}
-                    onRequestClose={() => this.setState({ isModalOpen: false })}
-                >
-                    <div>
-                        <NavbarDropdownItem path="/" text="Home"/>
-                        <NavbarDropdownItem path="/chat" text="Chat" />
-                        <NavbarDropdownItem path="/drive" text="Drive"/>
-                        <NavbarDropdownItem path="/cal" text="Calendar"/>
-                        <NavbarDropdownItem path="/networks" text="Networks"/>
-                    </div>
-                </Modal>
+            <div style={styles.navbarDropdown.container}>
+                <Glyphicon 
+                    glyph="menu" 
+                    onClick= {this.toggleDropDown} 
+                    style={styles.navbarDropdown.Glyphicon}
+                />
+                {this.renderDropdown}
             </div>
         )
     }

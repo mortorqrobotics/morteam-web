@@ -15,7 +15,7 @@ export default class NavbarDropdownItem extends React.Component {
     }
     render() {
         return (
-            <p path={this.props.paths}>
+            <p style={styles.navbarDropdown.item}path={this.props.paths}>
                 {this.props.text}
             </p>
         )
