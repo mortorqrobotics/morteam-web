@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import update from "react/lib/update";
+import { reverse } from "~/util";
 
 const initialChats = [];
 
@@ -25,7 +27,7 @@ function chats(state = initialChats, action) {
             index = state.findIndex(chat => chat._id == action.chatId)
             return state.slice(0, index).concat([{
                 ...state[index],
-                messages: action.messages.concat(state[index].messages),
+                messages: reverse(action.messages).concat(state[index].messages),
             }]).concat(state.slice(index + 1))
         default:
             return state
