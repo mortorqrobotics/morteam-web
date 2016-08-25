@@ -31,6 +31,7 @@ let pages = [
     "chat",
     "team",
     "group",
+    "drive",
 ];
 
 function stuff(bundler) {
