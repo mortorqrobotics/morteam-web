@@ -18,7 +18,6 @@ let libs = [
     "react-modal",
     "react-redux",
     "redux-thunk",
-    "react-infinite-scroller",
 ];
 
 let pages = [

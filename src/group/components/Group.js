@@ -7,7 +7,7 @@ import GroupHeading from "./GroupHeading";
 import GroupMember from "./GroupMember";
 import LeaveGroupButton from "./LeaveGroupButton";
 import InviteMemberButton from "./InviteMemberButton";
-import styles from "./styles/index";
+import styles from "~/group/styles/index";
 import Navbar from "~/shared/components/navbar/Navbar";
 
 @Radium
@@ -25,8 +25,8 @@ export default class Group extends React.Component {
     componentDidMount = async() => {
         try {
             let [ { data: users, }, { data: group, } ] = await Promise.all([
-              ajax.request("get", "/teams/current/users");
-              ajax.request("get", "/groups");
+              ajax.request("get", "/teams/current/users"),
+              ajax.request("get", "/groups"),
             ])
             this.setState({
               users: users,
@@ -49,7 +49,7 @@ export default class Group extends React.Component {
                 <div>
                   {this.state.users.map(user => (
                     <GroupMember
-                      user:{user}
+                      user={user}
                       key={user._id}
                     />
                   ))}
