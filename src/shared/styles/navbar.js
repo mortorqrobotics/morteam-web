@@ -196,18 +196,17 @@ export default {
             margin: "0px",
         },
         container: {
-            "@media screen and (min-width: 821px)":{
+            "@media screen and (min-width: 821px)": {
                 display:"none",
             }
         },
-        Glyphicon: {
+        li: {
             textAlign: "center",
             display: "inline-block",
             width: "35px",
             fontSize: "20px",
             height: "100%",
             paddingTop: "8px",
-            
             position: "relative",
             marginLeft: "0px 2px 0px -5px",
             ":hover": {
