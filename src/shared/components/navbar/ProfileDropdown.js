@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/shared/styles/navbar";
-import DropdownModal from "./DropdownModal";
+import ProfileDropdownModal from "./ProfileDropdownModal";
 
 @Radium
 export default class ProfileDropdown extends React.Component {
@@ -40,7 +40,7 @@ export default class ProfileDropdown extends React.Component {
                     {this.context.user.firstname}
                 </span>
 
-                <DropdownModal
+                <ProfileDropdownModal
                     isOpen={this.state.isModalOpen}
                     onAfterOpen={() => this.setState({ isModalOpen: true })}
                     onRequestClose={() => this.setState({ isModalOpen: false })}

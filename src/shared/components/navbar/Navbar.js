@@ -5,6 +5,7 @@ import NavbarTitle from "./NavbarTitle";
 import SearchBox from "./SearchBox";
 import GlyphLink from "./GlyphLink";
 import ProfileDropdown from "./ProfileDropdown";
+import NavbarDropdown from "./NavbarDropdown";
 import styles from "~/shared/styles/navbar";
 
 @Radium
@@ -22,6 +23,7 @@ export default class Navbar extends React.Component {
                     <GlyphLink path="/networks" glyph="globe"/>
                     <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
                     <ProfileDropdown />
+                    <NavbarDropdown />
                 </ul>
             </div>
         )

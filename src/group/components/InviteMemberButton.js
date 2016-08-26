@@ -1,14 +1,15 @@
 import React from "react";
 import Radium from "radium";
 
+import styles from "~/group/styles/index";
 import Button from "~/shared/components/forms/Button";
 
 @Radium
 export default class LeaveGroupButton extends React.Component {
-    
+
     render() {
         return (
-            <Button value="Invite Members" />
+            <Button style={styles.inviteButton} value="Invite Members" />
         )
     }
 }
