@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
+import FileUpload from "~/shared/components/forms/FileUpload";
 import { makeChangeHandlerFactory } from "~/util";
 import {
     ModalTextBox,
@@ -16,12 +17,12 @@ import { addFile } from "~/drive/actions";
 class AddFileModal extends React.Component {
 
     static propTypes = {
-        folder: React.PropTypes.object,
         ...modalPropTypes,
     }
 
     initialState = {
         name: "",
+        file: {},
     }
 
     state = {
@@ -30,11 +31,22 @@ class AddFileModal extends React.Component {
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    onSubmit = async() => {
-        await this.props.dispatch(addFile({
-            name: this.state.name,
-            folder: this.props.folder,
-        }))
+    handleChange = (event) => {
+        this.setState({
+            file: event.target.files[0]
+        });
+    }
+
+    onSubmit = async () => {
+        try {
+            let formData = new FormData();
+            formData.append("uploadedFile", this.state.file);
+            formData.append("fileName", this.state.name);
+            formData.append("currentFolderId", this.props.selectedFolder._id);
+            await this.props.dispatch(addFile(formData))
+        } catch (err) {
+            console.log(err);
+        }
         this.setState(this.initialState);
         this.props.onRequestClose();
     }
@@ -45,8 +57,8 @@ class AddFileModal extends React.Component {
                 title="Upload a File"
                 { ...modalPropsForward(this) }
             >
-                <input type="file" accept="*" />
-                
+                <FileUpload accept="*" onChange={this.handleChange} />
+
                 <ModalTextBox
                     placeholder="File Name"
                     value={this.state.name}
@@ -63,4 +75,10 @@ class AddFileModal extends React.Component {
     }
 }
 
-export default connect()(AddFileModal);
+const mapStateToProps = (state) => {
+    return {
+        selectedFolder: state.selectedFolder,
+    }
+}
+
+export default connect(mapStateToProps)(AddFileModal);

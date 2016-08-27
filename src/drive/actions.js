@@ -51,8 +51,8 @@ const addFileSync = (file) => {
 }
 
 export const addFile = (file) => {
-    return (dispath) => {
-        return ajax.request("post", "/files/upload", file) // TODO: how to post files?
+    return (dispatch) => {
+        return ajax.request("post", "/files/upload", file)
             .then(() => dispatch(addFileSync(file)))
     }
 }

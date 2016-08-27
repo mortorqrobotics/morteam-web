@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 @Radium
 export default class Middle extends React.Component {
-    
+
     state = {
         isModalOpen: false,
     }
@@ -20,23 +20,22 @@ export default class Middle extends React.Component {
         return (
             <div>
                 <Grid fluid={true} style={styles.docList}>
-                    
-                    <div 
-                        style={[styles.frame, styles.addFile]} 
+
+                    <div
+                        style={[styles.frame, styles.addFile]}
                         onClick={() => this.setState({ isModalOpen: true })}
                     >
-                        <Glyphicon glyph="plus" style={styles.glyph} /> 
+                        <Glyphicon glyph="plus" style={styles.glyph} />
                     </div>
-                    
+
                     {this.props.files.map(file => (
-                        <File key={file._id} />
+                        <File file={file} key={file._id} />
                     ))}
-                    
+
                 </Grid>
-                
+
                 <AddFileModal
                     { ...modalProps(this, "isModalOpen") }
-                    folder={this.props.selectedFolder}
                 />
             </div>
         )

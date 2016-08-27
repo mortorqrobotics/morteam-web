@@ -4,11 +4,16 @@ import Radium from "radium";
 import styles from "~/drive/styles";
 
 @Radium
-class File extends React.Component {
+export default class File extends React.Component {
+
+    static propTypes = {
+        file: React.PropTypes.object,
+    }
 
     render() {
         return (
-            <div style={stlyes.frame}>
+            <div style={styles.frame}>
+                {this.props.file.name}
             </div>
         )
     }
