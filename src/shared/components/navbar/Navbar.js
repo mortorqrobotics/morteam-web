@@ -22,8 +22,8 @@ export default class Navbar extends React.Component {
                     <GlyphLink path="/cal" glyph="calendar"/>
                     <GlyphLink path="/networks" glyph="globe"/>
                     <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
-                    <ProfileDropdown />
                     <NavbarDropdown />
+                    <ProfileDropdown />
                 </ul>
             </div>
         )

@@ -13,17 +13,17 @@ import { sendMessage } from "~/chat/actions";
 class MessageInput extends React.Component {
 
     state = {
-        message: "",
+        content: "",
     }
 
     getChangeHandler = makeChangeHandlerFactory(this)
 
     handleSend = () => {
-        if (this.state.message.length === 0) {
+        if (this.state.content.length === 0) {
             return;
         }
-        this.props.dispatch(sendMessage(this.state.message))
-            .then(() => this.setState({ message: "", }))
+        this.props.dispatch(sendMessage(this.state.content))
+            .then(() => this.setState({ content: "", }))
     }
 
     // this is necessary because the input box is a textarea, not an input type="text"
@@ -43,8 +43,8 @@ class MessageInput extends React.Component {
                         rows="1"
                         style={styles.inputTextArea}
                         onKeyDown={this.handleKeyDown}
-                        value={this.state.message}
-                        onChange={this.getChangeHandler("message")}
+                        value={this.state.content}
+                        onChange={this.getChangeHandler("content")}
                     />
                     <SubmitButton
                         style={styles.sendButton}

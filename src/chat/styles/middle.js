@@ -1,6 +1,7 @@
 export default {
     container: {
         width: "calc(100vw - 460px)",
+        marginLeft: "300px",
         minWidth: "400px",
     },
     messagesDiv: {
