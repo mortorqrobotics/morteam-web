@@ -9,7 +9,9 @@ import Middle from "./middle/Middle";
 import { makeStore } from "~/util/redux";
 import reducers from "~/chat/reducers";
 import { fetchChats } from "~/chat/actions";
+import { initSIO } from "~/chat/sio";
 const store = makeStore(reducers);
+initSIO(action => store.dispatch(action));
 store.dispatch(fetchChats());
 
 @Radium

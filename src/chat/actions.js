@@ -28,7 +28,7 @@ export function addChat(chat) {
     }
 }
 
-function sendMessageSync({ chatId, message }) {
+export function addMessage({ chatId, message }) {
     return {
         type: "ADD_MESSAGE",
         chatId,
@@ -41,12 +41,13 @@ export function sendMessage(content) {
         const state = getState();
         return ajax.request("POST", "/chats/id/" + state.currentChatId + "/messages", {
             content,
-        }).then(({ data }) => {
-            return dispatch(sendMessageSync({
-                chatId: state.currentChatId,
-                message: data,
-            }));
         })
+		//.then(({ data }) => {
+            //return dispatch(addMessage({
+                //chatId: state.currentChatId,
+                //message: data,
+            //}))
+        //})
     }
 }
 

@@ -18,6 +18,7 @@ let libs = [
     "react-modal",
     "react-redux",
     "redux-thunk",
+    "socket.io-client",
 ];
 
 let pages = [
