@@ -4,6 +4,7 @@ import Radium from "radium";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/drive/components/Leftbar";
+import Middle from "~/drive/components/Middle";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/drive/reducers";
@@ -19,6 +20,7 @@ class Drive extends React.Component {
             <Root pageName="drive" store={store}>
                 <Navbar />
                 <Leftbar />
+                <Middle />
             </Root>
         )
     }

@@ -8,24 +8,20 @@ import {
     ModalTextArea,
     ModalButton,
 } from "~/shared/components/modal";
-import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
-import { addFolder } from "~/drive/actions";
+import { addFile } from "~/drive/actions";
 
 @Radium
-class AddModal extends React.Component {
+class AddFileModal extends React.Component {
 
     static propTypes = {
+        folder: React.PropTypes.object,
         ...modalPropTypes,
     }
 
     initialState = {
         name: "",
-        audience: {
-            users: [],
-            groups: [],
-        },
     }
 
     state = {
@@ -35,10 +31,9 @@ class AddModal extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     onSubmit = async() => {
-        await this.props.dispatch(addFolder({
+        await this.props.dispatch(addFile({
             name: this.state.name,
-            audience: this.state.audience,
-            type: "teamFolder",
+            folder: this.props.folder,
         }))
         this.setState(this.initialState);
         this.props.onRequestClose();
@@ -47,21 +42,19 @@ class AddModal extends React.Component {
     render() {
         return (
             <StandardModal
-                title="New Group"
+                title="Upload a File"
                 { ...modalPropsForward(this) }
             >
+                <input type="file" accept="*" />
+                
                 <ModalTextBox
-                    placeholder="Group Name"
+                    placeholder="File Name"
                     value={this.state.name}
                     onChange={this.getChangeHandler("name")}
                 />
                 <br />
-                <AudienceSelect
-                    selected={this.state.audience}
-                    onChange={audience => this.setState({ audience })}
-                />
                  <ModalButton
-                    text="Done"
+                    text="Upload"
                     onClick={this.onSubmit}
                 />
 
@@ -70,4 +63,4 @@ class AddModal extends React.Component {
     }
 }
 
-export default connect()(AddModal);
+export default connect()(AddFileModal);

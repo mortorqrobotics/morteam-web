@@ -27,3 +27,32 @@ export const addFolder = (folder) => {
             .then(() => dispatch(addFolderSync(folder)))
     }
 }
+
+const setFolderSync = (folder, files) => {
+    return {
+        type: "SET_FOLDER",
+        folder,
+        files,
+    }
+}
+
+export const setFolder = (folder) => {
+    return (dispatch) => {
+        return ajax.request("get", "/folders/id/"+ folder._id + "/files")
+            .then(({ data }) => dispatch(setFolderSync(folder, data)));
+    }
+}
+
+const addFileSync = (file) => {
+    return {
+        type: "ADD_FILE",
+        file,
+    }
+}
+
+export const addFile = (file) => {
+    return (dispath) => {
+        return ajax.request("post", "/files/upload", file) // TODO: how to post files?
+            .then(() => dispatch(addFileSync(file)))
+    }
+}
