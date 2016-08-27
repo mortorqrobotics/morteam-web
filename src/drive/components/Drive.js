@@ -16,7 +16,7 @@ class Drive extends React.Component {
 
     render() {
         return (
-            <Root pageName="drive">
+            <Root pageName="drive" store={store}>
                 <Navbar />
                 <Leftbar />
             </Root>

@@ -11,13 +11,13 @@ import {
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
-import { addFolder } from "~/calendar/actions";
+import { addFolder } from "~/drive/actions";
 
 @Radium
 class AddModal extends React.Component {
 
     static propTypes = {
-        name: PropTypes.string.isRequired,
+        ...modalPropTypes,
     }
 
     initialState = {
@@ -38,6 +38,7 @@ class AddModal extends React.Component {
         await this.props.dispatch(addFolder({
             name: this.state.name,
             audience: this.state.audience,
+            type: "teamFolder",
         }))
         this.setState(this.initialState);
         this.props.onRequestClose();

@@ -7,7 +7,7 @@ const folders = (state = [], action) => {
             return update(state, {
                 $push: [action.folder]
             });
-        case "SET_FODLER":
+        case "SET_FOLDERS":
             return action.folders
         default:
             return state

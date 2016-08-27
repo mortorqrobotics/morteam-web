@@ -5,6 +5,9 @@ import { withCss } from "~/util/component";
 import { range } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
+import { modalProps } from "~/util/modal";
+import AddModal from "~/drive/components/AddModal";
+import styles from "~/drive/styles";
 import ajax from "~/util/ajax";
 import { connect } from "react-redux";
 
@@ -13,7 +16,7 @@ class Leftbar extends React.Component {
     
     state = {
         selectedFolder: {},
-        modalIsOpen: false,
+        isModalOpen: false,
     }
     
     handleFolderChange = (folder) => {
@@ -30,8 +33,10 @@ class Leftbar extends React.Component {
                     
                 </LeftbarItem>
                 
-                <LeftbarButton onClick>
-                    <Glyphicon glyph="plus" />
+                <LeftbarButton
+                    onClick={() => this.setState({ isModalOpen: true })}
+                >
+                    <Glyphicon glyph="plus" style={styles.glyph} />
                     New Drive Group
                 </LeftbarButton>
 
@@ -41,9 +46,14 @@ class Leftbar extends React.Component {
                         key={folder._id}
                         onClick={() => this.handleFolderChange(folder)}
                     >
-                        <Glyphicon glyph="folder" />
+                        <Glyphicon glyph="folder-open" style={styles.glyph} />
+                        {folder.name}
                     </LeftbarButton>
                 ))}
+
+                <AddModal
+                    { ...modalProps(this, "isModalOpen") }
+                />
 
             </LeftbarContainer>
         )
