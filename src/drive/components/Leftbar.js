@@ -7,6 +7,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
 import { modalProps } from "~/util/modal";
 import AddModal from "~/drive/components/AddModal";
+import SortDropdown from "~/drive/components/SortDropdown";
 import styles from "~/drive/styles";
 import ajax from "~/util/ajax";
 import { connect } from "react-redux";
@@ -30,7 +31,7 @@ class Leftbar extends React.Component {
             <LeftbarContainer>
 
                 <LeftbarItem>
-                    
+                    <SortDropdown />
                 </LeftbarItem>
                 
                 <LeftbarButton

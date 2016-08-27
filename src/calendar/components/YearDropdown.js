@@ -1,8 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
+import { Dropdown } from "~/shared/components/leftbar";
 import { range } from "~/util";
-import styles from "~/calendar/styles/yearDrop";
 
 const currentYear = new Date().getFullYear();
 const years = range(currentYear - 1, currentYear + 5);
@@ -15,62 +15,26 @@ export default class YearDropdown extends React.Component {
         onYearChange: React.PropTypes.func,
     }
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isDropdownOpen: false
-        };
+    state = {
+        isDropdownOpen: false,
     }
 
-    getButtonStyle = () => {
-        if (this.state.isDropdownOpen) {
-            return styles.buttonShadow;
-        }
-    }
-
-    getItemStyle = (year) => {
-        if (year === this.props.selectedYear) {
-            return styles.selected;
-        }
-    }
-
-    onButtonClick = () => {
+    handleButtonClick = () => {
         this.setState({
             isDropdownOpen: !this.state.isDropdownOpen
         });
     }
 
-    displayMenu = () => {
-        if (this.state.isDropdownOpen) {
-            return (
-                <ul style={styles.ul}>
-                    {years.map(year => (
-                        <li
-                            onClick={() => this.props.onYearChange(year)}
-                            style={[styles.item, this.getItemStyle(year)]}
-                            key={year}
-                        >
-                            {year}
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
-    }
-
     render() {
         return (
-            <div>
-                <div
-                    style={[styles.button, this.getButtonStyle()]}
-                    onClick={this.onButtonClick}
-                >
-                    {this.props.selectedYear}
-                    <span style={styles.caret} />
-                </div>
-                {this.displayMenu()}
-            </div>
+            <Dropdown
+                isOpen={this.state.isDropdownOpen}
+                options={years}
+                selectedOption={this.props.selectedYear}
+                text={this.props.selectedYear}
+                onClick={this.handleButtonClick}
+                onOptionClick={this.props.onYearChange}
+            />
         )
     }
 }
