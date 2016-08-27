@@ -21,9 +21,8 @@ export default class NavbarDropdown extends React.Component {
     
     renderDropdown = () => {
         if(this.state.isDropdownOpen) {
-            console.log("hi");
             return (
-                <div>
+                <div style={styles.navbarDropdown.div}>
                     <NavbarDropdownItem path="/" text="Home" />
                     <NavbarDropdownItem path="/chat" text="Chat" />
                     <NavbarDropdownItem path="/drive" text="Drive" />

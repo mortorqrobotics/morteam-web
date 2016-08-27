@@ -14,9 +14,10 @@ export default class NavbarDropdownItem extends React.Component {
     onClick = () => {
         window.location.assign(this.props.path);
     }
+    
     render() {
         return (
-            <p style={styles.navbarDropdown.item}>
+            <p style={styles.navbarDropdown.item} onClick={this.onClick}>
                 {this.props.text}
             </p>
         )
