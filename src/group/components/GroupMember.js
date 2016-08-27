@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
+import styles from "~/group/styles/index";
 import { fullName } from "~/util";
 
 @Radium
@@ -11,13 +12,16 @@ export default class GroupMember extends React.Component {
     }
 
     handleClick = () => {
-      window.assignLocation("/profiles/users/" + this.props.user._id);
+      window.location.assign("/profiles/id/" + this.props.user._id);
     }
 
     render() {
         return (
-            <div onClick={this.handleClick}>
-                <img src={this.props.user.profpicpath}/>
+            <div style={styles.groupMember} onClick={this.handleClick}>
+                <img 
+                    style={styles.profPic} 
+                    src={this.props.user.profpicpath}
+                />
                 {fullName(this.props.user)}
             </div>
         )

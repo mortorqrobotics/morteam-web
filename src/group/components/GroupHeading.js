@@ -24,7 +24,9 @@ export default class GroupHeadings extends React.Component {
                 <h1 style={styles.groupName}>
                     {this.props.group.name}
                 </h1>
-                <h4 style={styles.groupType}>{this.renderPublicLabel()}</h4>
+                <h4 style={styles.groupType}>
+                    {this.renderPublicLabel()}
+                </h4>
             </div>
         )
     }

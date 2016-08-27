@@ -19,6 +19,7 @@ export default class Group extends React.Component {
     this.state = {
       users: null,
       group: null,
+      loaded: false,
     }
   }
 
@@ -26,11 +27,12 @@ export default class Group extends React.Component {
         try {
             let [ { data: users, }, { data: group, } ] = await Promise.all([
               ajax.request("get", "/teams/current/users"),
-              ajax.request("get", "/groups"),
+              ajax.request("get", "/groups/id/" + window.__options.groupId),
             ])
             this.setState({
               users: users,
               group: group,
+              loaded: true,
             })
         } catch (err) {
             console.log(err);
@@ -41,19 +43,23 @@ export default class Group extends React.Component {
         return(
             <Root pageName="group">
                 <Navbar />
-                <GroupHeading
-                  group={group}
-                />
-                <LeaveGroupButton />
-                <InviteMemberButton />
-                <div>
-                  {this.state.users.map(user => (
-                    <GroupMember
-                      user={user}
-                      key={user._id}
+                {this.state.loaded && (
+                  <div>
+                    <GroupHeading
+                      group={this.state.group}
                     />
-                  ))}
-                </div>
+                    <LeaveGroupButton />
+                    <div>
+                      <InviteMemberButton />
+                      {this.state.users.map(user => (
+                        <GroupMember
+                          user={user}
+                          key={user._id}
+                        />
+                       ))}
+                      </div>
+                    </div>
+                  )}
             </Root>
         )
     }
