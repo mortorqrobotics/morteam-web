@@ -6,23 +6,22 @@ import { range } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
 import { modalProps } from "~/util/modal";
-import AddModal from "~/drive/components/AddModal";
+import AddFolderModal from "~/drive/components/AddFolderModal";
+import SortDropdown from "~/drive/components/SortDropdown";
 import styles from "~/drive/styles";
 import ajax from "~/util/ajax";
+import { setFolder } from "~/drive/actions";
 import { connect } from "react-redux";
 
 @Radium
 class Leftbar extends React.Component {
     
     state = {
-        selectedFolder: {},
         isModalOpen: false,
     }
     
-    handleFolderChange = (folder) => {
-        this.setState({
-            selectedFolder: folder
-        });
+    handleFolderChange = async (folder) => {
+        await this.props.dispatch(setFolder(folder));
     }
     
     render() {
@@ -30,28 +29,28 @@ class Leftbar extends React.Component {
             <LeftbarContainer>
 
                 <LeftbarItem>
-                    
+                    <SortDropdown />
                 </LeftbarItem>
                 
                 <LeftbarButton
                     onClick={() => this.setState({ isModalOpen: true })}
                 >
-                    <Glyphicon glyph="plus" style={styles.glyph} />
+                    <Glyphicon glyph="plus" style={styles.left.glyph} />
                     New Drive Group
                 </LeftbarButton>
 
                 {this.props.folders.map(folder => (
                     <LeftbarButton
-                        isSelected={folder === this.state.selectedFolder}
+                        isSelected={folder === this.props.selectedFolder}
                         key={folder._id}
                         onClick={() => this.handleFolderChange(folder)}
                     >
-                        <Glyphicon glyph="folder-open" style={styles.glyph} />
+                        <Glyphicon glyph="folder-open" style={styles.left.glyph} />
                         {folder.name}
                     </LeftbarButton>
                 ))}
 
-                <AddModal
+                <AddFolderModal
                     { ...modalProps(this, "isModalOpen") }
                 />
 
@@ -63,6 +62,7 @@ class Leftbar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         folders: state.folders,
+        selectedFolder: state.selectedFolder,
     }
 }
 

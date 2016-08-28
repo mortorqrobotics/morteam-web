@@ -2,19 +2,19 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
+import FileUpload from "~/shared/components/forms/FileUpload";
 import { makeChangeHandlerFactory } from "~/util";
 import {
     ModalTextBox,
     ModalTextArea,
     ModalButton,
 } from "~/shared/components/modal";
-import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
-import { addFolder } from "~/drive/actions";
+import { addFile } from "~/drive/actions";
 
 @Radium
-class AddModal extends React.Component {
+class AddFileModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
@@ -22,10 +22,7 @@ class AddModal extends React.Component {
 
     initialState = {
         name: "",
-        audience: {
-            users: [],
-            groups: [],
-        },
+        file: {},
     }
 
     state = {
@@ -34,12 +31,22 @@ class AddModal extends React.Component {
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    onSubmit = async() => {
-        await this.props.dispatch(addFolder({
-            name: this.state.name,
-            audience: this.state.audience,
-            type: "teamFolder",
-        }))
+    handleChange = (event) => {
+        this.setState({
+            file: event.target.files[0]
+        });
+    }
+
+    onSubmit = async () => {
+        try {
+            let formData = new FormData();
+            formData.append("uploadedFile", this.state.file);
+            formData.append("fileName", this.state.name);
+            formData.append("currentFolderId", this.props.selectedFolder._id);
+            await this.props.dispatch(addFile(formData))
+        } catch (err) {
+            console.log(err);
+        }
         this.setState(this.initialState);
         this.props.onRequestClose();
     }
@@ -47,21 +54,19 @@ class AddModal extends React.Component {
     render() {
         return (
             <StandardModal
-                title="New Group"
+                title="Upload a File"
                 { ...modalPropsForward(this) }
             >
+                <FileUpload accept="*" onChange={this.handleChange} />
+
                 <ModalTextBox
-                    placeholder="Group Name"
+                    placeholder="File Name"
                     value={this.state.name}
                     onChange={this.getChangeHandler("name")}
                 />
                 <br />
-                <AudienceSelect
-                    selected={this.state.audience}
-                    onChange={audience => this.setState({ audience })}
-                />
                  <ModalButton
-                    text="Done"
+                    text="Upload"
                     onClick={this.onSubmit}
                 />
 
@@ -70,4 +75,10 @@ class AddModal extends React.Component {
     }
 }
 
-export default connect()(AddModal);
+const mapStateToProps = (state) => {
+    return {
+        selectedFolder: state.selectedFolder,
+    }
+}
+
+export default connect(mapStateToProps)(AddFileModal);
