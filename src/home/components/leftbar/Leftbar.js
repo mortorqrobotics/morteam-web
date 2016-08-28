@@ -1,10 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import ProfileButton from "./ProfileButton";
-import LogoutButton from "./LogoutButton";
-import TeamButton from "./TeamButton";
-import MakeGroupButton from "./MakeGroupButton";
+import LeftbarButton from "./LeftbarButton";
 import GroupList from "./GroupList";
 import MakeGroupModal from "./groupModal/MakeGroupModal";
 import Link from "~/shared/components/Link";
@@ -42,14 +39,10 @@ var styles = {
 @Radium
 export default class Leftbar extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-
-        this.state = {
-            userGroups: [],
-            publicGroups: [],
-            modalIsOpen: false,
-        }
+    state = {
+        userGroups: [],
+        publicGroups: [],
+        isModalOpen: false,
     }
 
     static contextTypes = {
@@ -71,18 +64,20 @@ export default class Leftbar extends React.Component {
         }
     }
 
-    displayMakeGroupButton = () => {
+    renderMakeGroupButton = () => {
         if (this.context.user.isAdmin()) {
             return (
                 <div>
 
-                    <MakeGroupButton
-                        onClick={this.openModal}
+                    <LeftbarButton
+                        text="Make a Group"
+                        glyph="plus"
+                        onClick={() => this.setState({ isModalOpen: true })}
                     />
                     <hr />
 
                     <MakeGroupModal
-                        { ...modalProps(this, "modalIsOpen") }
+                        { ...modalProps(this, "isModalOpen") }
                         addGroup={this.addGroup}
                     />
 
@@ -101,25 +96,25 @@ export default class Leftbar extends React.Component {
         this.setState(change);
     }
 
-    openModal = () => {
-        this.setState({
-            modalIsOpen: true
-        });
-    }
-
-    closeModal = () => {
-        this.setState({
-            modalIsOpen: false
-        });
-    }
-
     render() {
         return (
             <div style={styles.div}>
 
-                <ProfileButton />
-                <LogoutButton />
-                <TeamButton />
+                <LeftbarButton
+                    text="View Profile"
+                    onClick={() => window.location.assign("/profiles/id/" + this.context.user._id)}
+                />
+                <LeftbarButton
+                    text="Log Out"
+                    onClick={async() => (
+                        await ajax.request("post", "/logout"),
+                        window.location.assign("/login")
+                    )}
+                />
+                <LeftbarButton
+                    text="Team"
+                    onClick={() => window.location.assign("teams/current")}
+                />
                 <hr />
 
                 <h5 style={styles.h5}>Your Groups</h5>
@@ -134,7 +129,7 @@ export default class Leftbar extends React.Component {
                 />
                 <hr />
 
-                {this.displayMakeGroupButton()}
+                {this.renderMakeGroupButton()}
 
                 <span style={styles.span}>© 2015 MorTeam</span>
                 <br />
