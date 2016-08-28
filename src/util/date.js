@@ -32,7 +32,7 @@ export const nextAbsMonth = ({ month, year }) => {
 export const prevAbsMonth = ({ month, year }) => {
     if (month == 0) {
         return {
-            month: 12,
+            month: 11,
             year: year - 1,
         }
     } else {
