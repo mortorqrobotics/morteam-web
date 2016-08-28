@@ -24,7 +24,7 @@ const addFolderSync = (folder) => {
 export const addFolder = (folder) => {
     return (dispatch) => {
         return ajax.request("post", "/folders", folder)
-            .then(() => dispatch(addFolderSync(folder)))
+            .then(({ data }) => dispatch(addFolderSync(data)))
     }
 }
 
@@ -53,6 +53,6 @@ const addFileSync = (file) => {
 export const addFile = (file) => {
     return (dispatch) => {
         return ajax.request("post", "/files/upload", file)
-            .then(() => dispatch(addFileSync(file)))
+            .then(({ data }) => dispatch(addFileSync(data)))
     }
 }
