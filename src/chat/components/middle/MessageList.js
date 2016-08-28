@@ -42,6 +42,7 @@ class MessageList extends React.Component {
         this.fetching = false;
     }
 
+    // TODO: cancel this handler on unmount
     handleScroll = () => {
         if (this.fetching) {
             return;

@@ -24,14 +24,6 @@ export const range = (a, b) => {
     return arr;
 }
 
-export const flatMap = (arr, func) => {
-    const result = [];
-    for (const elem of arr) {
-        Array.prototype.push.call(result, func(elem));
-    }
-    return result;
-}
-
 export const fullName = (user) => {
     return user.firstname + " " + user.lastname;
 }
