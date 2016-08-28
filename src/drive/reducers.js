@@ -27,10 +27,18 @@ const files = (state = [], action) => {
     }
 }
 
-const selectedFolder = (state = {}, action) => { // TODO: how to make initalstate first folder?
+const selectedFolder = (state = null, action) => {
     switch (action.type) {
         case "SET_FOLDER":
             return action.folder
+        case "ADD_FOLDER":
+            if (!state) {
+                return action.folder
+            }
+        case "SET_FOLDERS":
+            if (!state) {
+                return action.folders[0]
+            }
         default:
             return state
     }
