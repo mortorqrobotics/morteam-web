@@ -24,14 +24,6 @@ export const range = (a, b) => {
     return arr;
 }
 
-export const flatMap = (arr, func) => {
-    const result = [];
-    for (const elem of arr) {
-        Array.prototype.push.call(result, func(elem));
-    }
-    return result;
-}
-
 export const fullName = (user) => {
     return user.firstname + " " + user.lastname;
 }
@@ -57,6 +49,18 @@ export function reverse(arr) {
     const result = [];
     for (let i = arr.length - 1; i >= 0; i--) {
         result.push(arr[i]);
+    }
+    return result;
+}
+
+export function last(arr) {
+    return arr[arr.length - 1];
+}
+
+export function flatMap(arr, func) {
+    const result = [];
+    for (const elem of arr) {
+        Array.prototype.push.apply(result, func(elem));
     }
     return result;
 }

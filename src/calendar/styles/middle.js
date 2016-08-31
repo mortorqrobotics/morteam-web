@@ -19,8 +19,11 @@ const topButton = {
 export default {
     container: {
         position: "absolute",
-        top: "40px",
+        top: "0",
+        marginTop: "40px",
         left: "300px",
+        overflowY: "scroll",
+        height: "calc(100vh - 40px)",
     },
     day: {
         width: "500px",

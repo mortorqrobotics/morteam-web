@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
+import VertAlign from "~/shared/components/VertAlign";
 import FirstScreen from "./FirstScreen";
 import JoinScreen from "./JoinScreen";
 import CreateScreen from "./CreateScreen";
@@ -43,26 +44,28 @@ export default class Void extends React.Component {
 
     render() {
         return (
-            <Root pageName="void" verticalAlignMiddle>
-                <Grid style={{ width: "100%" }}>
-                    <Row>
-                        <Col>
-                            <MessageBox>
-                                {message}
-                            </MessageBox>
-                        </Col>
-                    </Row>
-                    {(() => {
-                        switch (this.state.screen) {
-                            case "first": return <FirstScreen
-                                onJoin={this.onJoin}
-                                onCreate={this.onCreate}
-                            />
-                            case "join": return <JoinScreen onBack={this.onBack} />
-                            case "create": return <CreateScreen onBack={this.onBack} />
-                        }
-                    })()}
-                </Grid>
+            <Root pageName="void">
+                <VertAlign>
+                    <Grid style={{ width: "100%" }}>
+                        <Row>
+                            <Col>
+                                <MessageBox>
+                                    {message}
+                                </MessageBox>
+                            </Col>
+                        </Row>
+                        {(() => {
+                            switch (this.state.screen) {
+                                case "first": return <FirstScreen
+                                    onJoin={this.onJoin}
+                                    onCreate={this.onCreate}
+                                />
+                                case "join": return <JoinScreen onBack={this.onBack} />
+                                case "create": return <CreateScreen onBack={this.onBack} />
+                            }
+                        })()}
+                    </Grid>
+                </VertAlign>
             </Root>
         )
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import GroupItem from "./GroupItem";
+import LeftbarButton from "./LeftbarButton";
 
 @Radium
 export default class GroupList extends React.Component {
@@ -14,10 +14,11 @@ export default class GroupList extends React.Component {
         return (
             <div>
                 {this.props.groups.map(group => (
-                    <GroupItem
+                    <LeftbarButton
+                        text={group.name}
+                        glyph="screenshot"
+                        onClick={() => window.location.assign("/groups/id/" + group._id)}
                         key={group._id}
-                        id={group._id}
-                        name={group.name}
                     />
                 ))}
             </div>

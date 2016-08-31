@@ -40,6 +40,7 @@ class MessageInput extends React.Component {
             <div style={styles.inputDiv}>
                 <Form onSubmit={this.handleSend}>
                     <TextArea
+                        autoFocus
                         rows="1"
                         style={styles.inputTextArea}
                         onKeyDown={this.handleKeyDown}

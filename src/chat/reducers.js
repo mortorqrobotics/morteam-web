@@ -39,10 +39,14 @@ const initialCurrentChatId = null;
 function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
         case "SET_CHATS":
-            if (action.chats.length > 0) {
+            if (!state && action.chats.length > 0) {
                 return action.chats[0]._id
             } else {
                 return null
+            }
+        case "ADD_CHAT":
+            if (!state) {
+                return action.chat._id
             }
         case "SET_CURRENT_CHAT_ID":
             return action.chatId

@@ -7,8 +7,38 @@ const folders = (state = [], action) => {
             return update(state, {
                 $push: [action.folder]
             });
-        case "SET_FODLER":
+        case "SET_FOLDERS":
             return action.folders
+        default:
+            return state
+    }
+}
+
+const files = (state = [], action) => {
+    switch (action.type) {
+        case "ADD_FILE":
+            return update(state, {
+                $push: [action.file]
+            });
+        case "SET_FOLDER":
+            return action.files
+        default:
+            return state
+    }
+}
+
+const selectedFolder = (state = null, action) => {
+    switch (action.type) {
+        case "SET_FOLDER":
+            return action.folder
+        case "ADD_FOLDER":
+            if (!state) {
+                return action.folder
+            }
+        case "SET_FOLDERS":
+            if (!state) {
+                return action.folders[0]
+            }
         default:
             return state
     }
@@ -16,4 +46,6 @@ const folders = (state = [], action) => {
 
 export default combineReducers({
     folders,
+    files,
+    selectedFolder,
 })

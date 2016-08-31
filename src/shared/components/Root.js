@@ -12,15 +12,6 @@ const styles = {
         fontWeight: "200",
         outline: "0",
     },
-    alignDiv1: {
-        display: "table",
-        width: "100%",
-        height: "100vh",
-    },
-    alignDiv2: {
-        verticalAlign: "middle",
-        display: "table-cell",
-    },
 }
 
 
@@ -69,19 +60,7 @@ export default class Root extends React.Component {
     render() {
         return (
             <StyleRoot style={styles.global}>
-                {this.wrap((() => {
-                    if (this.props.verticalAlignMiddle) {
-                        return (
-                            <div style={styles.alignDiv1}>
-                                <div style={styles.alignDiv2}>
-                                    {this.props.children}
-                                </div>
-                            </div>
-                        )
-                    } else {
-                        return this.props.children
-                    }
-                })())}
+                {this.wrap(this.props.children)}
             </StyleRoot>
         )
     }

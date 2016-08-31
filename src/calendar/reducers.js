@@ -6,7 +6,7 @@ import update from "react/lib/update";
 const initialEvents = {};
 // initialEvents :: Map Year (Map Month [Event])
 
-const events = (state = initialEvents, action) => {
+function events(state = initialEvents, action) {
     switch (action.type) {
         case "SET_ABS_MONTH":
             const newState = {};
@@ -63,7 +63,7 @@ const events = (state = initialEvents, action) => {
 const now = new Date();
 const initialAbsMonth = { month: now.getMonth(), year: now.getFullYear() }
 
-const absMonth = (state = initialAbsMonth, action) => {
+function absMonth(state = initialAbsMonth, action) {
     switch (action.type) {
         case "SET_ABS_MONTH":
             return {
@@ -75,7 +75,19 @@ const absMonth = (state = initialAbsMonth, action) => {
     }
 }
 
+const initialPendingTasks = [];
+
+function pendingTasks(state = initialPendingTasks, action) {
+    switch (action.type) {
+        case "SET_PENDING_TASKS":
+            return action.tasks
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     events,
     absMonth,
+    pendingTasks,
 })
