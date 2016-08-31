@@ -1,14 +1,14 @@
 import ajax from "~/util/ajax";
 import { prevAbsMonth, nextAbsMonth } from "~/util/date";
 
-const addEventSync = (event) => {
+function addEventSync(event) {
     return {
         type: "ADD_EVENT",
         event,
     }
 }
 
-export const addEvent = (event) => {
+export function addEvent(event) {
     return (dispatch) => {
         return ajax.request("POST", "/events", event)
             .then(({ data }) => dispatch(addEventSync(data)))
@@ -17,7 +17,7 @@ export const addEvent = (event) => {
 
 // absolute month contains the month from 0..11 and year
 
-const setAbsMonthSync = ({ month, year }, events) => {
+function setAbsMonthSync({ month, year }, events) {
     return {
         type: "SET_ABS_MONTH",
         month,
@@ -26,7 +26,7 @@ const setAbsMonthSync = ({ month, year }, events) => {
     }
 }
 
-export const setAbsMonth = ({ month, year }) => {
+export function setAbsMonth({ month, year }) {
     return (dispatch, getState) => {
         const state = getState();
         const absMonths = [
@@ -44,5 +44,19 @@ export const setAbsMonth = ({ month, year }) => {
                 + "/endYear/" + last.year + "/endMonth/" + last.month
             ).then(({ data }) => dispatch(setAbsMonthSync({ month, year }, data)));
         }
+    }
+}
+
+function setPendingTasksSync(tasks) {
+    return {
+        type: "SET_PENDING_TASKS",
+        tasks,
+    }
+}
+
+export function fetchPendingTasks() {
+    return (dispatch) => {
+        return ajax.request("GET", "/users/id/" + window.__userInfo._id + "/tasks/pending")
+            .then(({ data }) => dispatch(setPendingTasksSync(data)))
     }
 }

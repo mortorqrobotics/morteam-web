@@ -43,6 +43,14 @@ export const prevAbsMonth = ({ month, year }) => {
     }
 }
 
+export function currentAbsMonth() {
+    const now = new Date();
+    return {
+        month: now.getMonth(),
+        year: now.getFullYear(),
+    }
+}
+
 export const dayName = ({ month, year, day }) => (
     ["Sunday", "Monday", "Tuesday", "Wednesday",
         "Thursday", "Friday", "Saturday"][new Date(year, month, day).getDay()]

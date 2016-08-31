@@ -103,7 +103,10 @@ class AssignTask extends React.Component {
                         style={styles.dropdown}
                         selected={this.state.day}
                         onChange={day => this.setState({ day: parseInt(day) })}
-                        options={range(1, 1 + daysInAbsMonth(this.state.year, this.state.month))}
+                        options={range(1, 1 + daysInAbsMonth({
+                            year: this.state.year,
+                            month: this.state.month,
+                        }))}
                         display={day => day}
                     />
                     <Dropdown

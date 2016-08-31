@@ -1,0 +1,50 @@
+export default {
+    container: {
+        height: "100%",
+    },
+    item: {
+        height: "50%",
+        display: "inline-block",
+        padding: "15px",
+        width: "100%",
+        display: "block",
+        maxWidth: "600px",
+        margin: "auto",
+    },
+    title: {
+        marginTop: "10px",
+        marginBottom: "0px",
+        borderBottom: "1px solid orange",
+        width: "200px",
+        padding: "6px",
+        backgroundColor: "orange",
+        color: "black",
+        fontWeight: "100",
+        display: "inline-block",
+    },
+    listContainer: {
+        borderTop: "1px solid orange",
+        marginTop: "0px",
+        height: "80%",
+        boxShadow: "0px 0px 8px -4px black",
+        borderRadius: "0.1px",
+        backgroundColor: "#f5f5f5",
+    },
+    ul: {
+        padding: "30px 7px 7px 7px",
+        height: "100%",
+        marginBottom: "0px",
+        overflow: "auto",
+        WebkitOverflowScrolling: "touch",
+        listStyleType: "disc",
+        listStylePosition: "inside",
+    },
+    li: {
+        marginTop: "20px",
+        display: "list-item",
+    },
+    indented: {
+        paddingLeft: "15px",
+        wordWrap: "break-word",
+    },
+}

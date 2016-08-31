@@ -52,3 +52,15 @@ export function reverse(arr) {
     }
     return result;
 }
+
+export function last(arr) {
+    return arr[arr.length - 1];
+}
+
+export function flatMap(arr, func) {
+    const result = [];
+    for (const elem of arr) {
+        Array.prototype.push.apply(result, func(elem));
+    }
+    return result;
+}
