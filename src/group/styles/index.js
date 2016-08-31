@@ -17,6 +17,7 @@ export default {
       backgroundColor: "#C71111",
       color: "white",
       border: "none",
+      marginBottom: "3em",
     },
     inviteButton: {
       borderTop: "1px solid #999999",
@@ -40,6 +41,9 @@ export default {
       marginRight: "100px",
     },
     leaveButtonWrapper: {
+      textAlign: "center",
+    },
+    memberWrapper: {
       textAlign: "center",
     }
 }
