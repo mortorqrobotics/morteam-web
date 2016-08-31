@@ -48,7 +48,9 @@ export default class Group extends React.Component {
                     <GroupHeading
                       group={this.state.group}
                     />
-                    <LeaveGroupButton />
+                    <div style={styles.leaveButtonWrapper}>
+                      <LeaveGroupButton />
+                    </div>
                     <div>
                       <InviteMemberButton />
                       {this.state.users.map(user => (

@@ -23,7 +23,7 @@ export default class GroupMember extends React.Component {
                     style={styles.profPic} 
                     src={this.props.user.profpicpath}
                 />
-                {fullName(this.props.user)}
+                <span>{fullName(this.props.user)}</span>
             </div>
         )
     }
