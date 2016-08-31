@@ -36,6 +36,6 @@ export default {
       textAlign: "center",
       objectFit: "cover",
       borderRadius: "5px",
-      margianRight: "0px",
+      margianRight: "100px",
     }
 }
