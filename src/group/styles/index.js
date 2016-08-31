@@ -21,12 +21,12 @@ export default {
     },
     inviteButton: {
       borderTop: "1px solid #999999",
-      width: "20em",
+      width: "250px", //20px
       textAlign: "center",
     },
     groupMember: {
       borderTop: "1px solid #999999",
-      width: "20em",
+      width: "250px", //20px
       paddingLeft: "9em",
       cursor: "pointer",
     },
