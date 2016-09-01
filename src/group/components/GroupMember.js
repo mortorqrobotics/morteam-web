@@ -18,11 +18,12 @@ export default class GroupMember extends React.Component {
     render() {
         return (
             <div style={styles.groupMember} onClick={this.handleClick}>
-                <img 
+                <img
+                    class="profPic"
                     style={styles.profPic} 
                     src={this.props.user.profpicpath}
                 />
-                {fullName(this.props.user)}
+                <span>{fullName(this.props.user)}</span>
             </div>
         )
     }

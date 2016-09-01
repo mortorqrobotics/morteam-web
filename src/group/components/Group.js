@@ -48,8 +48,10 @@ export default class Group extends React.Component {
                     <GroupHeading
                       group={this.state.group}
                     />
-                    <LeaveGroupButton />
-                    <div>
+                    <div style={styles.leaveButtonWrapper}>
+                      <LeaveGroupButton />
+                    </div>
+                    <div style={styles.memberWrapper}>
                       <InviteMemberButton />
                       {this.state.users.map(user => (
                         <GroupMember
@@ -57,8 +59,8 @@ export default class Group extends React.Component {
                           key={user._id}
                         />
                        ))}
-                      </div>
                     </div>
+                  </div>
                   )}
             </Root>
         )
