@@ -56,3 +56,17 @@ export const addFile = (file) => {
             .then(({ data }) => dispatch(addFileSync(data)))
     }
 }
+
+const getFileSync = (path) => {
+    return {
+        type: "GET_FILE",
+        path,
+    }
+}
+
+export const getFile = (file) => {
+    return (dispatch) => {
+        return ajax.request("get", "/files/id", file._id)
+            .then(({ data }) => dispatch(getFileSync(data)))
+    }
+}
