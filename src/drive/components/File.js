@@ -2,8 +2,6 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/drive/styles";
-import { connect } from "react-redux";
-import { getFile } from "~/drive/actions";
 
 @Radium
 export default class File extends React.Component {
