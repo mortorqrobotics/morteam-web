@@ -9,6 +9,10 @@ const positions = ["Member", "Leader", "Mentor", "Alumnus"];
 @Radium
 export default class ChangePosition extends React.Component {
     
+     static contextTypes = {
+        options: React.PropTypes.object,
+    }
+    
     constructor(props) {
         super(props);
         
@@ -22,6 +26,17 @@ export default class ChangePosition extends React.Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
+    }
+    
+    handleOptionClick = async(position) => {
+        this.setState({
+            selectedOption: position,
+        })
+        try {
+            await ajax.request("put", "/users/id/" + this.context.options.userId + "/position/" + this.state.selectedOption);
+        } catch(err) {
+            console.log(err);
+        }
     }
     
     render() {

@@ -7,6 +7,7 @@ import Button from "~/shared/components/forms/Button";
 import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
 import AssignTask from "./AssignTask";
+import Position from "./Position";
 import ChangePosition from "./ChangePosition";
 import { withCss } from "~/util/component";
 import { fullName } from "~/util";
@@ -123,6 +124,9 @@ export default class Leftbar extends React.Component {
                 />
                 <AssignTask
                     { ...modalProps(this, "isAssignTaskOpen") }
+                />
+                <Position
+                    position={this.context.options.user.position}
                 />
             </div>
         )
