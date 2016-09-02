@@ -4,7 +4,8 @@ import ajax from "~/util/ajax";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import GroupHeading from "./GroupHeading";
-import GroupMember from "./GroupMember";
+// import GroupMember from "./GroupMember";
+import UserList from "~/group/components/UserList";
 import LeaveGroupButton from "./LeaveGroupButton";
 import InviteMemberButton from "./InviteMemberButton";
 import styles from "~/group/styles/index";
@@ -13,30 +14,37 @@ import Navbar from "~/shared/components/navbar/Navbar";
 @Radium
 export default class Group extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      users: null,
-      group: null,
-      loaded: false,
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+            users: null,
+            group: null,
+            loaded: false,
+        }
     }
-  }
 
-    componentDidMount = async() => {
+    componentDidMount = async () => {
         try {
             let [ { data: users, }, { data: group, } ] = await Promise.all([
-              ajax.request("get", "/teams/current/users"),
-              ajax.request("get", "/groups/id/" + window.__options.groupId),
+                ajax.request("get", "/teams/current/users"),
+                ajax.request("get", "/groups/id/" + window.__options.groupId),
             ])
             this.setState({
-              users: users,
-              group: group,
-              loaded: true,
+                users: users,
+                group: group,
+                loaded: true,
             })
         } catch (err) {
             console.log(err);
         }
+    }
+    
+    handleDeleted = async () => {
+        // try {
+        //    ajax.request("delete", "/groups/users")
+        // }
+        alert("UNFINISHED");
     }
 
     render() {
@@ -53,12 +61,7 @@ export default class Group extends React.Component {
                     </div>
                     <div style={styles.memberWrapper}>
                       <InviteMemberButton />
-                      {this.state.users.map(user => (
-                        <GroupMember
-                          user={user}
-                          key={user._id}
-                        />
-                       ))}
+                      <UserList users={this.state.users} onDeleted={this.handleDeleted} />
                     </div>
                   </div>
                   )}

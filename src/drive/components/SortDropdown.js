@@ -21,7 +21,7 @@ export default class SortDropdown extends React.Component {
     
     handleOptionClick = (sort) => {
         this.setState({
-            chosenSort: sort
+            chosenSort: sort,
         });
     }
 

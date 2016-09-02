@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import ajax from "~/util/ajax";
 
 import { Dropdown } from "~/shared/components/leftbar";
 
@@ -21,10 +22,6 @@ export default class ChangePosition extends React.Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
-    
-    handleOptionClick = () => {
-        
     }
     
     render() {

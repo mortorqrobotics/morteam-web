@@ -115,7 +115,6 @@ export default class Leftbar extends React.Component {
                     )}
                 />
                 {this.renderConditionalButtons()}
-
                 <EditProfile
                     { ...modalProps(this, "isEditProfileOpen") }
                 />

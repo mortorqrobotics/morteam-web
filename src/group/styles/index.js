@@ -25,13 +25,13 @@ export default {
       textAlign: "center",
       paddingLeft: "20px",
     },
-    groupMember: {
-      borderTop: "1px solid #999999",
-      width: "200px", //20em
-      paddingLeft: "9em",
-      cursor: "pointer",
-      textAlign: "center",
-    },
+    // groupMember: {
+    //   borderTop: "1px solid #999999",
+    //   width: "200px", //20em
+    //   paddingLeft: "9em",
+    //   cursor: "pointer",
+    //   textAlign: "center",
+    // },
     profPic: {
       width: "30px",
       height: "30px",
