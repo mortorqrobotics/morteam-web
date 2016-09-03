@@ -44,4 +44,9 @@ export default {
             outline: "none",
         },
     },
+    
+    ChangePosition: {
+      backgroundColor: "#ffb524",
+      boxShawdow: "0px 0px 0px 0px black",
+    },
 }
