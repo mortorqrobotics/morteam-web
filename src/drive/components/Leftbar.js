@@ -15,15 +15,15 @@ import { connect } from "react-redux";
 
 @Radium
 class Leftbar extends React.Component {
-    
+
     state = {
         isModalOpen: false,
     }
-    
+
     handleFolderChange = async (folder) => {
         await this.props.dispatch(setFolder(folder));
     }
-    
+
     render() {
         return (
             <LeftbarContainer>
@@ -31,7 +31,7 @@ class Leftbar extends React.Component {
                 <LeftbarItem>
                     <SortDropdown />
                 </LeftbarItem>
-                
+
                 <LeftbarButton
                     onClick={() => this.setState({ isModalOpen: true })}
                 >

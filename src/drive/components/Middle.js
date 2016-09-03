@@ -17,12 +17,12 @@ export default class Middle extends React.Component {
     state = {
         isModalOpen: false,
     }
-    
+
     render() {
         return (
             <div>
                 <Grid fluid={true} style={styles.docList}>
-                
+
                     <Masonry>
                         <div
                             style={[styles.frame, styles.addFile]}
@@ -30,7 +30,7 @@ export default class Middle extends React.Component {
                         >
                             <Glyphicon glyph="plus" style={styles.glyph} />
                         </div>
-    
+
                         {this.props.files.map(file => (
                             <File file={file} key={file._id} />
                         ))}

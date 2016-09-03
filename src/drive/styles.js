@@ -29,6 +29,44 @@ export default {
         verticalAlign: "middle",
         display: "table",
     },
+    fileTitle: {
+        fontSize: "14px",
+        position: "absolute",
+        left: "4px",
+        top: "145px",
+        color: "white",
+        width: "140px",
+        height: "60px",
+        wordWrap: "break-word",
+        textAlign: "center",
+    },
+    description: {
+        name: {
+            display: "inline-block",
+            lineHeight: "4",
+            maxHeight: "37px",
+            overflow: "hidden",
+        },
+        size: {
+            position: "absolute",
+            left: "0px",
+            top: "43px",
+            opacity: "0.8",
+            fontSize: "14px",
+            fontWeight: "300",
+        },
+        trash: {
+            display: "inline-block",
+            lineHeight: "1.3em",
+            maxHeight: "37px",
+            position: "absolute",
+            right: "0px",
+            top: "43px",
+            ":hover": {
+                color: "#a9a9a9",
+            }
+        }
+    },
     glyph: {
         color: "gray",
         fontSize: "60px",
