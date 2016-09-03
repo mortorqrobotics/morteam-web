@@ -6,7 +6,7 @@ import Grid from "react-bootstrap/lib/Grid";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import File from "~/drive/components/File";
 import AddFileModal from "~/drive/components/AddFileModal";
-//import Isotope from "isotope-layout/js/isotope";
+import Masonry from "react-masonry-component";
 
 import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
@@ -18,16 +18,12 @@ export default class Middle extends React.Component {
         isModalOpen: false,
     }
     
-    componentDidMount = () => {
-        $(this.refs.list).isotope();
-    }
-
     render() {
         return (
             <div>
                 <Grid fluid={true} style={styles.docList}>
                 
-                    <div  ref="list">
+                    <Masonry>
                         <div
                             style={[styles.frame, styles.addFile]}
                             onClick={() => this.setState({ isModalOpen: true })}
@@ -38,7 +34,7 @@ export default class Middle extends React.Component {
                         {this.props.files.map(file => (
                             <File file={file} key={file._id} />
                         ))}
-                    </div>
+                    </Masonry>
 
                 </Grid>
 
