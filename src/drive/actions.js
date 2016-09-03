@@ -8,9 +8,19 @@ const setFolders = (folders) => {
 }
 
 export const fetchFolders = () => {
-    return (dispatch) => {
+    return (dispatch, getStore) => {
+        const store = getStore();
+        let folders;
         return ajax.request("GET", "/folders")
-            .then(({ data }) => dispatch(setFolders(data)))
+            .then(({ data }) => {
+                folders = data;
+                return dispatch(setFolders(data))
+            })
+            .then(() => {
+                if (!store.selectedFolder) {
+                    dispatch(setFolder(folders[0]))
+                }
+            })
     }
 }
 

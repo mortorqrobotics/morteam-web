@@ -36,7 +36,7 @@ class Leftbar extends React.Component {
                     onClick={() => this.setState({ isModalOpen: true })}
                 >
                     <Glyphicon glyph="plus" style={styles.left.glyph} />
-                    New Drive Group
+                    New Folder
                 </LeftbarButton>
 
                 {this.props.folders.map(folder => (
