@@ -35,10 +35,6 @@ const selectedFolder = (state = null, action) => {
             if (!state) {
                 return action.folder
             }
-        case "SET_FOLDERS":
-            if (!state) {
-                return action.folders[0]
-            }
         default:
             return state
     }

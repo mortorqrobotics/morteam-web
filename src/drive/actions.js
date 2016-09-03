@@ -17,7 +17,7 @@ export const fetchFolders = () => {
                 return dispatch(setFolders(data))
             })
             .then(() => {
-                if (!store.selectedFolder) {
+                if (!store.selectedFolder && folders.length !== 0) {
                     dispatch(setFolder(folders[0]))
                 }
             })
