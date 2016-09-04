@@ -4,6 +4,7 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
+import { ModalButton } from "~/shared/components/modal";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import styles from "~/home/styles/editor";
 
@@ -24,6 +25,10 @@ export default class AudienceModal extends React.Component {
                 <AudienceSelect
                     selected={this.props.selected}
                     onChange={this.props.onChange}
+                />
+                <ModalButton
+                    text="Done"
+                    onClick={this.props.onRequestClose}
                 />
             </StandardModal>
         )
