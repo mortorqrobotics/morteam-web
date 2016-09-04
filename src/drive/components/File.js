@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import styles from "~/drive/styles";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-import { getSize } from "~/util/size";
+import { getSize, getColor, getHoverColor, getPreviewSrc } from "~/util/file";
 
 @Radium
 export default class File extends React.Component {
@@ -16,6 +16,14 @@ export default class File extends React.Component {
         user: React.PropTypes.object,
     }
 
+    getStyle = () => {
+        return {
+            backgroundColor: getColor(this.props.file),
+            ":hover": {
+                backgroundColor: getHoverColor(this.props.file),
+            }
+        }
+    }
 
     renderDelete = () => {
         if (this.context.user._id === this.props.file.creator
@@ -26,25 +34,6 @@ export default class File extends React.Component {
         }
     }
 
-    getColor = () => {
-        switch (this.props.file.type) {
-            case "image":
-                return "#b9b9b9"
-            case "word":
-                return "#268dd7"
-            case "pdf":
-                return "#FF5930"
-            case "audio":
-                return "#ff6666"
-            case "keynote":
-                return "#c62400"
-            case "spreadsheet":
-                return "#33B533"
-            default:
-                return "#ffc547"
-        }
-    }
-
     handleDownload = () => {
         window.location.assign("/api/files/id/" + this.props.file._id);
     }
@@ -52,9 +41,10 @@ export default class File extends React.Component {
     render() {
         return (
             <div
-                style={[styles.frame, { backgroundColor: this.getColor() }]}
+                style={[styles.frame, this.getStyle()]}
                 onClick={this.handleDownload}
             >
+
                 <span style={styles.fileTitle}>
                     <span style={styles.description.name}>
                         {this.props.file.name}
@@ -64,6 +54,12 @@ export default class File extends React.Component {
                     </span>
                     {this.renderDelete()}
                 </span>
+
+                <img
+                    src={getPreviewSrc(this.props.file)}
+                    style={styles.preview}
+                />
+
             </div>
         )
     }

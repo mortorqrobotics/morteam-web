@@ -22,12 +22,27 @@ export default {
         boxShadow: "3px 3px 8px #a9a9a9",
         display: "inline-block",
     },
+    preview: {
+        width: "140px",
+        height: "140px",
+        margin: "0 auto",
+        objectFit: "cover",
+        position: "absolute",
+        top: "5px",
+        left: "0",
+        right: "0",
+        bottom: "0",
+
+    },
     addFile: {
-        background: "#e9e9e9",
+        backgroundColor: "#e9e9e9",
         border: "3px dashed gray",
         textAlign: "center",
         verticalAlign: "middle",
         display: "table",
+        ":hover": {
+            backgroundColor: "#D0D0D0"
+        }
     },
     fileTitle: {
         fontSize: "14px",
