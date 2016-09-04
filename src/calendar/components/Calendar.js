@@ -7,14 +7,10 @@ import Middle from "./middle/Middle";
 import Leftbar from "./Leftbar";
 import Right from "./right/Right";
 
-import { makeStore } from "~/util/redux";
+import { makeStoreSaga } from "~/util/redux";
 import reducers from "~/calendar/reducers";
-import { setAbsMonth, fetchPendingTasks } from "~/calendar/actions";
-import { currentAbsMonth } from "~/util/date";
-const store = makeStore(reducers);
-const now = new Date();
-store.dispatch(setAbsMonth(currentAbsMonth()));
-store.dispatch(fetchPendingTasks());
+import sagas from "~/calendar/sagas";
+const store = makeStoreSaga(reducers, sagas);
 
 @Radium
 export default class Calendar extends React.Component {

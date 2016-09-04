@@ -7,13 +7,10 @@ import Root, { pageInit } from "~/shared/components/Root";
 import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 
-import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-const sagaMiddleware = createSagaMiddleware();
+import { makeStoreSaga } from "~/util/redux";
 import reducers from "~/team/reducers";
 import sagas from "~/team/sagas";
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(sagas);
+const store = makeStoreSaga(reducers, sagas);
 
 @Radium
 export default class Team extends React.Component {

@@ -1,6 +1,7 @@
-import { put, call, fork, take } from "redux-saga/effects";
+import { put, call, fork } from "redux-saga/effects";
 import { takeEvery } from "redux-saga";
 import ajax from "~/util/ajax";
+import { createWatcher } from "~/util/redux";
 
 function* loadUsers() {
     const { data } = yield call(ajax.request, "GET", "/teams/current/users");
@@ -10,7 +11,7 @@ function* loadUsers() {
     });
 }
 
-function* deleteUser({ userId }) {
+function* deleteUser(userId) {
     yield call(ajax.request, "DELETE", "/teams/current/users/id/" + userId);
     yield put({
         type: "DELETE_USER_SUCCESS",
@@ -19,7 +20,10 @@ function* deleteUser({ userId }) {
 }
 
 function* watchDeleteUser() {
-    yield takeEvery("DELETE_USER", deleteUser);
+    while (true) {
+        const { userId } = yield take("DELETE_USER");
+        yield fork(deleteUser, userId);
+    }
 }
 
 function* start() {

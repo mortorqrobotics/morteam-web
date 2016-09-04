@@ -8,7 +8,7 @@ const initialEvents = {};
 
 function events(state = initialEvents, action) {
     switch (action.type) {
-        case "SET_ABS_MONTH":
+        case "SET_ABS_MONTH_SUCCESS":
             const newState = {};
             for (const year of Object.keys(state)) {
                 newState[year] = {};
@@ -36,7 +36,7 @@ function events(state = initialEvents, action) {
                 newState[year][month].push(event);
             }
             return newState
-        case "ADD_EVENT":
+        case "ADD_EVENT_SUCCESS":
             const event = action.event;
             event.date = new Date(event.date);
             const year = event.date.getFullYear();
@@ -65,7 +65,7 @@ const initialAbsMonth = { month: now.getMonth(), year: now.getFullYear() }
 
 function absMonth(state = initialAbsMonth, action) {
     switch (action.type) {
-        case "SET_ABS_MONTH":
+        case "SET_ABS_MONTH_SUCCESS":
             return {
                 year: action.year,
                 month: action.month,
@@ -79,7 +79,7 @@ const initialPendingTasks = [];
 
 function pendingTasks(state = initialPendingTasks, action) {
     switch (action.type) {
-        case "SET_PENDING_TASKS":
+        case "LOAD_PENDING_TASKS_SUCCESS":
             return action.tasks
         default:
             return state
