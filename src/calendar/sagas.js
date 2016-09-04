@@ -17,7 +17,7 @@ function* addEvent(event) {
 }
 
 function* setAbsMonth({ month, year }) {
-    const state = yield select(state => state);
+    const state = yield select(state => state.events);
     const absMonths = [
         prevAbsMonth({ month, year }),
         { month, year },

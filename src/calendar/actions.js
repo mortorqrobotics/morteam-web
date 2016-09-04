@@ -1,7 +1,4 @@
-import ajax from "~/util/ajax";
-import { prevAbsMonth, nextAbsMonth } from "~/util/date";
-
-function addEvent(event) {
+export function addEvent(event) {
     return {
         type: "ADD_EVENT",
         event,
