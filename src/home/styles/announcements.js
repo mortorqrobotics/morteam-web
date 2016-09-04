@@ -33,4 +33,14 @@ export default {
         borderRadius: "5px",
         cursor: "pointer",
     },
+    deleteIcon: {
+        position: "absolute",
+        top: "8px",
+        right: "8px",
+        color: "#e9e9e9",
+        ":hover": {
+            color: "#c11d20",
+            cursor: "pointer",
+        },
+    },
 }

@@ -12,13 +12,10 @@ class AnnouncementsList extends React.Component {
     render() {
         return (
             <div style={styles.container}>
-                {this.props.announcements.map(listItem => (
+                {this.props.announcements.map(announcement => (
                     <AnnouncementsListItem 
-                        key={listItem._id}
-                        author={listItem.author}
-                        content={listItem.content}
-                        audience={listItem.audience}
-                        timestamp={new Date(listItem.timestamp)}
+                        key={announcement._id}
+                        announcement={announcement}
                     />
                 ))}
             </div>

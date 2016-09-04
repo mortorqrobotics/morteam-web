@@ -1,32 +1,53 @@
 import React from "react";
 import Radium from "radium";
 
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/home/styles/announcements";
 import { fullName } from "~/util";
+import { connect } from "react-redux";
+import { deleteAnnouncement } from "~/home/actions";
+
+const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
-export default class AnnouncementsListItem extends React.Component {
+class AnnouncementsListItem extends React.Component {
 
     static propTypes = {
-        author: React.PropTypes.object, // User object
-        content: React.PropTypes.string,
-        audience: React.PropTypes.object,
-        timestamp: React.PropTypes.object, // Date object
+        announcement: React.PropTypes.object,
+    }
+
+    static contextTypes = {
+        user: React.PropTypes.object,
+    }
+
+    renderDeleteButton = () => {
+        if (this.context.user.isAdmin()) {
+            return (
+                <RadiumGlyphicon
+                    glyph="remove"
+                    style={styles.deleteIcon}
+                    onClick={() => {
+                        this.props.dispatch(deleteAnnouncement(this.props.announcement._id))
+                    }}
+                />
+            )
+        }
     }
 
     render() {
+        const announcement = this.props.announcement;
         return (
             <div style={styles.announcement}>
                 <div style={styles.announcementTop}>
                     <img
-                        src={this.props.author.profpicpath + "-60"}
+                        src={announcement.author.profpicpath + "-60"}
                         style={styles.image}
                     />
                     <span style={styles.author}>
-                        {fullName(this.props.author)}
+                        {fullName(announcement.author)}
                     </span>
                     <span style={styles.time}>
-                        {" - " + this.props.timestamp.toLocaleString()}
+                        {" - " + announcement.timestamp.toLocaleString()}
                     </span>
                     {/*
                     TODO: show recipient list
@@ -41,10 +62,13 @@ export default class AnnouncementsListItem extends React.Component {
                         </p>
                     ))}
                     */}
+                    {this.renderDeleteButton()}
                 </div>
-                <span dangerouslySetInnerHTML={{ __html: this.props.content }} />
+                <span dangerouslySetInnerHTML={{ __html: announcement.content }} />
             </div>
         )
     }
 
 }
+
+export default connect()(AnnouncementsListItem);
