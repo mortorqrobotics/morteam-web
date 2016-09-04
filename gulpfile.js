@@ -20,6 +20,7 @@ let libs = [
     "redux-thunk",
     "socket.io-client",
     "react-masonry-component",
+    "redux-saga",
 ];
 
 let pages = [

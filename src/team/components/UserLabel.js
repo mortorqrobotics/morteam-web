@@ -29,7 +29,7 @@ class UserLabel extends React.Component {
     handleDeleteUser = async (event) => {
         event.stopPropagation();
         if (window.confirm("Are you sure?")) {
-            await this.props.dispatch(deleteUser(this.props.user));
+            await this.props.dispatch(deleteUser(this.props.user._id));
         }
     }
 
