@@ -7,12 +7,11 @@ export function addEvent(event) {
 
 // absolute month contains the month from 0..11 and year
 
-export function setAbsMonth({ month, year }, events) {
+export function setAbsMonth({ month, year }) {
     return {
         type: "SET_ABS_MONTH",
         month,
         year,
-        events,
     }
 }
 

@@ -20,15 +20,19 @@ class AnnouncementsListItem extends React.Component {
         user: React.PropTypes.object,
     }
 
+    handleDelete = () => {
+        if (window.confirm("Are you sure?")) {
+            this.props.dispatch(deleteAnnouncement(this.props.announcement._id));
+        }
+    }
+
     renderDeleteButton = () => {
         if (this.context.user.isAdmin()) {
             return (
                 <RadiumGlyphicon
                     glyph="remove"
                     style={styles.deleteIcon}
-                    onClick={() => {
-                        this.props.dispatch(deleteAnnouncement(this.props.announcement._id))
-                    }}
+                    onClick={this.handleDelete}
                 />
             )
         }

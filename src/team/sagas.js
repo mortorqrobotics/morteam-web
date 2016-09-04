@@ -11,7 +11,7 @@ function* loadUsers() {
     });
 }
 
-function* deleteUser(userId) {
+function* deleteUser({ userId }) {
     yield call(ajax.request, "DELETE", "/teams/current/users/id/" + userId);
     yield put({
         type: "DELETE_USER_SUCCESS",
@@ -19,11 +19,10 @@ function* deleteUser(userId) {
     });
 }
 
-function* watchDeleteUser() {
-    while (true) {
-        const { userId } = yield take("DELETE_USER");
-        yield fork(deleteUser, userId);
-    }
+function* watchers() {
+    yield [
+        takeEvery("DELETE_USER", deleteUser),
+    ]
 }
 
 function* start() {
@@ -33,6 +32,6 @@ function* start() {
 export default function*() {
     yield [
         fork(start),
-        fork(watchDeleteUser),
+        fork(watchers),
     ]
 }

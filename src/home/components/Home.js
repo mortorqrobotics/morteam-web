@@ -8,11 +8,10 @@ import Editor from "./editor/Editor";
 import Navbar from "~/shared/components/navbar/Navbar"
 import styles from "~/home/styles";
 
-import { makeStore } from "~/util/redux";
+import { makeStoreSaga } from "~/util/redux";
 import reducers from "~/home/reducers";
-import { fetchAnnouncements } from "~/home/actions";
-const store = makeStore(reducers);
-store.dispatch(fetchAnnouncements());
+import sagas from "~/home/sagas";
+const store = makeStoreSaga(reducers, sagas);
 
 @Radium
 export default class Home extends React.Component {

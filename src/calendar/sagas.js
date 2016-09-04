@@ -1,14 +1,10 @@
 import { fork, take, call, put, select } from "redux-saga/effects";
+import { takeEvery } from "redux-saga";
 import ajax from "~/util/ajax";
 import { createWatcher } from "~/util/redux";
 import { prevAbsMonth, nextAbsMonth, currentAbsMonth } from "~/util/date";
 
-function* start() {
-    yield fork(setAbsMonth, currentAbsMonth());
-    yield* loadPendingTasks();
-}
-
-function* addEvent(event) {
+function* addEvent({ event }) {
     const { data } = yield call(ajax.request, "POST", "/events", event);
     yield put({
         type: "ADD_EVENT_SUCCESS",
@@ -53,24 +49,21 @@ function* loadPendingTasks() {
     });
 }
 
-function* watchAddEvent() {
-    while (true) {
-        const { event } = yield take("ADD_EVENT");
-        yield fork(addEvent, event);
-    }
+function* watchers() {
+    yield [
+        takeEvery("ADD_EVENT", addEvent),
+        takeEvery("SET_ABS_MONTH", setAbsMonth),
+    ]
 }
 
-function* watchSetAbsMonth() {
-    while (true) {
-        const { month, year } = yield take("SET_ABS_MONTH");
-        yield fork(setAbsMonth, { month, year });
-    }
+function* start() {
+    yield fork(setAbsMonth, currentAbsMonth());
+    yield* loadPendingTasks();
 }
 
 export default function*() {
     yield [
         fork(start),
-        fork(watchSetAbsMonth),
-        fork(watchAddEvent),
+        fork(watchers),
     ]
 }
