@@ -1,7 +1,7 @@
 export function addEvent(event) {
     return {
         type: "ADD_EVENT",
-        event,
+        payload: event,
     }
 }
 
@@ -10,8 +10,10 @@ export function addEvent(event) {
 export function setAbsMonth({ month, year }) {
     return {
         type: "SET_ABS_MONTH",
-        month,
-        year,
+        payload: {
+            month,
+            year,
+        },
     }
 }
 

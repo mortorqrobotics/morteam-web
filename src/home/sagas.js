@@ -1,8 +1,9 @@
 import { put, call, fork } from "redux-saga/effects";
 import { takeEvery } from "redux-saga";
+import { makeWatchers } from "~/util/redux";
 import ajax from "~/util/ajax";
 
-function* addAnnouncement({ announcement }) {
+function* addAnnouncement(announcement) {
     const { data } = yield call(ajax.request, "POST", "/announcements", announcement);
     yield put({
         type: "ADD_ANNOUNCEMENT_SUCCESS",
@@ -10,7 +11,7 @@ function* addAnnouncement({ announcement }) {
     });
 }
 
-function* deleteAnnouncement({ announcementId }) {
+function* deleteAnnouncement(announcementId) {
     yield call(ajax.request, "DELETE", "/announcements/id/" + announcementId);
     yield put({
         type: "DELETE_ANNOUNCEMENT_SUCCESS",
@@ -26,13 +27,6 @@ function* loadAnnouncements() {
     });
 }
 
-function* watchers() {
-    yield [
-        takeEvery("ADD_ANNOUNCEMENT", addAnnouncement),
-        takeEvery("DELETE_ANNOUNCEMENT", deleteAnnouncement),
-    ]
-}
-
 function* start() {
     yield* loadAnnouncements();
 }
@@ -40,6 +34,9 @@ function* start() {
 export default function*() {
     yield [
         fork(start),
-        fork(watchers),
+        fork(makeWatchers({
+            "ADD_ANNOUNCEMENT": addAnnouncement,
+            "DELETE_ANNOUNCEMENT": deleteAnnouncement,
+        })),
     ]
 }

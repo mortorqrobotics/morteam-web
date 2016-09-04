@@ -1,14 +1,14 @@
 export function addAnnouncement(announcement) {
     return {
         type: "ADD_ANNOUNCEMENT",
-        announcement,
+        payload: announcement,
     }
 }
 
 export function deleteAnnouncement(announcementId) {
     return {
         type: "DELETE_ANNOUNCEMENT",
-        announcementId,
+        payload: announcementId,
     }
 }
 
