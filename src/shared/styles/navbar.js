@@ -202,12 +202,9 @@ export default {
             }
         },
         container: {
-            position: "absolute",
-            width: "100%",
             marginTop: "-37px",
-            height: navbarHeight + "px",
             "@media screen and (min-width: 821px)": {
-                display:"none",
+                display: "none",
             }
         },
         li: {
@@ -215,7 +212,7 @@ export default {
             display: "inline-block",
             width: "35px",
             fontSize: "20px",
-            height: "100%",
+            height: navbarHeight + "px",
             paddingTop: "8px",
             position: "relative",
             right: "80px",
