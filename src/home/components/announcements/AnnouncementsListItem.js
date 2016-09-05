@@ -2,8 +2,11 @@ import React from "react";
 import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
+import Tooltip from "react-bootstrap/lib/Tooltip";
 import styles from "~/home/styles/announcements";
 import { fullName } from "~/util";
+import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { deleteAnnouncement } from "~/home/actions";
 
@@ -39,6 +42,18 @@ class AnnouncementsListItem extends React.Component {
         }
     }
 
+    renderAudienceTooltip = () => {
+        const { groups, users } = this.props.announcement.audience;
+        // TODO: this looks meh
+        return (
+            <Tooltip id="announcement-audience">
+                <span style={styles.audienceTooltip}>
+                    {groups.map(getGroupName).concat(users.map(fullName)).join(", ")}
+                </span>
+            </Tooltip>
+        )
+    }
+
     render() {
         const announcement = this.props.announcement;
         return (
@@ -54,6 +69,12 @@ class AnnouncementsListItem extends React.Component {
                     <span style={styles.time}>
                         {" - " + announcement.timestamp.toLocaleString()}
                     </span>
+                    <OverlayTrigger
+                        placement="top"
+                        overlay={this.renderAudienceTooltip()}
+                    >
+                        <RadiumGlyphicon glyph="globe" style={styles.globe} />
+                    </OverlayTrigger>
                     {/*
                     TODO: show recipient list
                     {this.props.audience.groups.map(group => (
@@ -69,6 +90,7 @@ class AnnouncementsListItem extends React.Component {
                     */}
                     {this.renderDeleteButton()}
                 </div>
+                {/* TODO: prevent xss here */}
                 <span dangerouslySetInnerHTML={{ __html: announcement.content }} />
             </div>
         )

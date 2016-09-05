@@ -43,4 +43,18 @@ export default {
             cursor: "pointer",
         },
     },
+    globe: {
+        marginLeft: "5px",
+        color: "#a9a9a9",
+        ":hover": {
+            color: "#555555",
+        },
+    },
+    audienceTooltip: {
+        color: "#a9a9a9",
+        fontSize: "14px",
+        // TODO: put this default font stuff in one place
+        // the tooltip is not affected by the styles in Root
+        fontFamily: "'exo 2', sans-serif",
+    },
 }
