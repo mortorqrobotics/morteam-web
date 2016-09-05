@@ -22,8 +22,8 @@ class MessageInput extends React.Component {
         if (this.state.content.length === 0) {
             return;
         }
-        this.props.dispatch(sendMessage(this.state.content))
-            .then(() => this.setState({ content: "", }))
+        this.props.dispatch(sendMessage(this.state.content));
+        this.setState({ content: "", });
     }
 
     // this is necessary because the input box is a textarea, not an input type="text"

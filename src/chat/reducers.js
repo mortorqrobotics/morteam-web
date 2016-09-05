@@ -7,28 +7,37 @@ const initialChats = [];
 function chats(state = initialChats, action) {
     let index;
     switch (action.type) {
-        case "SET_CHATS":
+        case "LOAD_CHATS_SUCCESS":
             return action.chats
-        case "ADD_CHAT":
+        case "ADD_CHAT_SUCCESS":
             return [action.chat].concat(state)
-        case "SET_CHAT_NAME":
-            index = state.findIndex(chat => chat._id == action.chatId)
-            return state.slice(0, index).concat([{
-                ...state[index],
-                name: action.name,
-            }]).concat(state.slice(index + 1))
+        case "SET_CHAT_NAME_SUCCESS":
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    name: {
+                        $set: action.name,
+                    },
+                },
+            })
         case "ADD_MESSAGE":
-            index = state.findIndex(chat => chat._id == action.chatId)
-            return state.slice(0, index).concat([{
-                ...state[index],
-                messages: state[index].messages.concat([action.message]),
-            }]).concat(state.slice(index + 1))
-        case "ADD_MESSAGES":
-            index = state.findIndex(chat => chat._id == action.chatId)
-            return state.slice(0, index).concat([{
-                ...state[index],
-                messages: reverse(action.messages).concat(state[index].messages),
-            }]).concat(state.slice(index + 1))
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    messages: {
+                        $push: [action.message],
+                    },
+                },
+            })
+        case "LOAD_MESSAGES_SUCCESS":
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    messages: {
+                        $unshift: action.messages,
+                    },
+                },
+            })
         default:
             return state
     }
@@ -38,16 +47,17 @@ const initialCurrentChatId = null;
 
 function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
-        case "SET_CHATS":
+        case "LOAD_CHATS_SUCCESS":
             if (!state && action.chats.length > 0) {
                 return action.chats[0]._id
             } else {
                 return null
             }
-        case "ADD_CHAT":
+        case "ADD_CHAT_SUCCESS":
             if (!state) {
                 return action.chat._id
             }
+            return state
         case "SET_CURRENT_CHAT_ID":
             return action.chatId
         default:

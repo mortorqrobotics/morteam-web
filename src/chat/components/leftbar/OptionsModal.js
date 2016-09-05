@@ -33,7 +33,8 @@ class OptionsModal extends React.Component {
         this.props.dispatch(setChatName({
             chatId: this.props.chat._id,
             name: this.state.name,
-        })).then(this.props.onRequestClose)
+        }));
+        this.props.onRequestClose();
     }
 
     render() {

@@ -38,13 +38,15 @@ class ComposeModal extends React.Component {
             this.props.dispatch(addChat({
                 type: "private",
                 otherUser: otherUser(this.state.audience.users, this.context.user._id),
-            })).then(this.props.onRequestClose);
+            }));
+            this.props.onRequestClose();
         } else if (this.state.isEditingName) {
             this.props.dispatch(addChat({
                 type: "public",
                 name: this.state.name,
                 audience: this.state.audience,
-            })).then(this.props.onRequestClose);
+            }));
+            this.props.onRequestClose();
         } else {
             this.setState({
                 isEditingName: true,

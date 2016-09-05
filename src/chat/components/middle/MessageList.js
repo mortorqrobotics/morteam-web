@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import styles from "~/chat/styles/middle";
 import MessageItem from "./MessageItem";
-import { fetchMessages } from "~/chat/actions";
+import { loadMessages } from "~/chat/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -13,7 +13,7 @@ class MessageList extends React.Component {
         chat: React.PropTypes.object,
     }
 
-    fetching = false;
+    loading = false;
 
     componentDidMount = () => {
         this.$container = $(this.refs.container);
@@ -39,20 +39,20 @@ class MessageList extends React.Component {
         // I think it checks the scrolling before updating or something
         setTimeout(this.handleScroll, 10);
 
-        this.fetching = false;
+        this.loading = false;
     }
 
     // TODO: cancel this handler on unmount
     handleScroll = () => {
-        if (this.fetching) {
+        if (this.loading) {
             return;
         }
         const scrollTop = this.$container.scrollTop();
         const height = this.$container.height();
         console.log(scrollTop, height)
         if (scrollTop < height / 2) {
-            this.fetching = true;
-            this.props.dispatch(fetchMessages());
+            this.loading = true;
+            this.props.dispatch(loadMessages());
         }
     }
 
