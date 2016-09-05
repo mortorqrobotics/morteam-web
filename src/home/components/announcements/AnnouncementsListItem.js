@@ -27,7 +27,8 @@ class AnnouncementsListItem extends React.Component {
     }
 
     renderDeleteButton = () => {
-        if (this.context.user.isAdmin()) {
+        if (this.context.user.isAdmin()
+            || this.context.user._id == this.props.announcement.author._id) {
             return (
                 <RadiumGlyphicon
                     glyph="remove"
