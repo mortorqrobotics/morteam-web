@@ -5,6 +5,9 @@ import styles from "~/drive/styles";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { getSize, getColor, getHoverColor, getPreviewSrc } from "~/util/file";
 
+import { connect } from "react-redux";
+import { deleteFile } from "~/drive/actions";
+
 @Radium
 export default class File extends React.Component {
 
@@ -25,11 +28,22 @@ export default class File extends React.Component {
         }
     }
 
+    handleDeleteFile = (event) => {
+        event.stopPropagation();
+        if (window.confirm("Are you sure?")) { // TODO: get rid of this
+            this.props.dispatch(deleteFile(this.props.file));
+        }
+    }
+
     renderDelete = () => {
         if (this.context.user._id === this.props.file.creator
             || this.context.user.isAdmin()) {
             return (
-                <Glyphicon glyph="trash" style={styles.description.trash} />
+                <Glyphicon
+                    glyph="trash"
+                    style={styles.description.trash}
+                    onClick={this.handleDeleteFile}
+                />
             );
         }
     }
@@ -65,3 +79,5 @@ export default class File extends React.Component {
     }
 
 }
+
+export default connect()(File);

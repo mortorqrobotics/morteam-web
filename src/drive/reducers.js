@@ -20,6 +20,14 @@ const files = (state = [], action) => {
             return update(state, {
                 $push: [action.file]
             });
+        case "DELETE_FILE":
+            return update(state, {
+                $splice: [
+                    [state.findIndex(file => (
+                        file == action.file
+                    )), 1]
+                ]
+            });
         case "SET_FOLDER":
             return action.files
         default:

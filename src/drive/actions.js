@@ -66,3 +66,17 @@ export const addFile = (file) => {
             .then(({ data }) => dispatch(addFileSync(data)))
     }
 }
+
+const deleteFileSync = (file) => {
+    return {
+        type: "DELETE_FILE",
+        file,
+    }
+}
+
+export const deleteFile = (file) => {
+    return (dispatch) => {
+        return ajax.request("delete", "/files/id/" + file._id)
+            .then(() => dispatch(deleteFileSync(file)))
+    }
+}
