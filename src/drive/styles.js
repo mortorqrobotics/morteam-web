@@ -87,5 +87,21 @@ export default {
         fontSize: "60px",
         verticalAlign: "middle",
         display: "table-cell",
+    },
+    deleteMenu: {
+        p: {
+            color: "white",
+            textAlign: "center",
+            marginTop: "20px",
+        },
+        button: {
+            width: "80px",
+            height: "40px",
+            backgroundColor: "white",
+            color: "black",
+            marginTop: "20px",
+            marginLeft: "35px",
+            border: "none",
+        }
     }
 }
