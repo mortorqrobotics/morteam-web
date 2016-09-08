@@ -10,8 +10,8 @@ export default class LeaveGroupButton extends React.Component {
     render() {
         return (
             <Button 
-                style={styles.inviteButton} 
-                value="Invite Members" 
+                style={styles.joinGroupButton} 
+                value="Join Group" 
             />
         )
     }

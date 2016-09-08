@@ -70,7 +70,10 @@ export default class Leftbar extends React.Component {
                         text="Position"
                         onClick={() => this.setState({ isChangePosition: true})} //idea to change position if admin by clicking button
                     />
-                    
+                    <ButtonItem
+                        text="Change Position"
+                        //onClick=
+                    />
                 </div>
             )
         } else if (this.context.user.isAdmin()) {
@@ -83,7 +86,7 @@ export default class Leftbar extends React.Component {
                         />
                     </Item>
                     <Item>
-                        <ChangePosition />
+                       <ChangePosition />
                     </Item>
                 </div>
             )
@@ -130,12 +133,11 @@ export default class Leftbar extends React.Component {
                 <AssignTask
                     { ...modalProps(this, "isAssignTaskOpen") }
                 />
-                // Position causes leftBar to disappear
-                //     position= this.state.user.position
-                
-                <ChangePosition 
-                    style={styles.ChangePosition}
-                />
+                {/*
+                    Position causes leftBar to disappear
+                    position= this.state.user.position
+                */}
+            
             </div>
         )
     }

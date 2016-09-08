@@ -33,10 +33,15 @@ export default class UserLabel extends React.Component {
                 <RadiumGlyphicon
                     glyph="trash"
                     style={styles.userDisplay.glyph}
-                    onClick={this.props.onDeleted}
+                    onClick={this.handleDeleted}
                 />
             )
         }
+    }
+    
+    handleDeleted = (event) => {
+        event.stopPropagation();
+        this.props.onDeleted();
     }
 
     render() {

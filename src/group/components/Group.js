@@ -40,11 +40,48 @@ export default class Group extends React.Component {
         }
     }
     
+    isCurrentUserInGroup = () => {
+        if (!this.state.group) {
+            return false;
+        }
+        // console.log(this.context.user.groups, this.state.group._id)
+        return window.__userInfo.groups.indexOf(this.state.group._id) !== -1;
+    }
+    
     handleDeleted = async () => {
         // try {
         //    ajax.request("delete", "/groups/users")
         // }
         alert("UNFINISHED");
+    }
+    
+    
+    
+    renderConditionalButtons = () => {
+        if (this.isCurrentUserInGroup()) {
+            
+            return (
+                <div>
+                    <div style={styles.leaveButtonWrapper}>
+                        <LeaveGroupButton />
+                    </div>
+                
+                    <div style={styles.memberWrapper}>
+                        <InviteMemberButton />
+                    </div>
+                </div>
+            )
+            
+        }
+        else {
+            
+            return (
+                <div style={styles.joinWrapper}>
+                    <JoinButton />
+                </div>
+            )
+            
+        }
     }
 
     render() {
@@ -56,13 +93,8 @@ export default class Group extends React.Component {
                     <GroupHeading
                       group={this.state.group}
                     />
-                    <div style={styles.leaveButtonWrapper}>
-                      <LeaveGroupButton />
-                    </div>
-                    <div style={styles.memberWrapper}>
-                      <InviteMemberButton />
-                      <UserList users={this.state.users} onDeleted={this.handleDeleted} />
-                    </div>
+                    {this.renderConditionalButtons()}
+                    <UserList users={this.state.users} onDeleted={this.handleDeleted} />
                   </div>
                   )}
             </Root>

@@ -23,7 +23,20 @@ export default {
       borderTop: "1px solid #999999",
       width: "300px", //20em
       textAlign: "center",
-      paddingLeft: "20px",
+      marginTop: "20px",
+      marginBottom: "30px",
+      backgroundColor: "#009933",
+      color: "white",
+      fontSize: "28px",
+    },
+    joinGroupButton: {
+      width: "300px", //20em
+      textAlign: "center",
+      marginTop: "70px",
+      marginBottom: "30px",
+      backgroundColor: "#FFC547",
+      color: "white",
+      fontSize: "28px",
     },
     // groupMember: {
     //   borderTop: "1px solid #999999",
@@ -45,5 +58,8 @@ export default {
     },
     memberWrapper: {
       textAlign: "center",
-    }
+    },
+    joinWrapper: {
+      textAlign: "center",
+    },
 }
