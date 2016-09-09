@@ -90,9 +90,6 @@ export default class Leftbar extends React.Component {
         let change = {
             userGroups: this.state.userGroups.concat([group]),
         }
-        if (group.isPublic) {
-            change.publicGroups = this.state.publicGroups.concat([group]);
-        }
         this.setState(change);
     }
 
