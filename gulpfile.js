@@ -35,6 +35,7 @@ let pages = [
     "team",
     "group",
     "drive",
+    "map",
 ];
 
 function stuff(bundler) {

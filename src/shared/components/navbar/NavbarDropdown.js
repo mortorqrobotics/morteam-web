@@ -27,7 +27,7 @@ export default class NavbarDropdown extends React.Component {
                     <NavbarDropdownItem path="/chat" text="Chat" />
                     <NavbarDropdownItem path="/drive" text="Drive" />
                     <NavbarDropdownItem path="/cal" text="Calendar" />
-                    <NavbarDropdownItem path="/networks" text="Networks" />
+                    <NavbarDropdownItem path="/map" text="Map" />
                 </div>
             )
         }
