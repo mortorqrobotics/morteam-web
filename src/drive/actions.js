@@ -80,3 +80,10 @@ export const deleteFile = (file) => {
             .then(() => dispatch(deleteFileSync(file)))
     }
 }
+
+export const sortFilesBy = (sortType) => {
+    return {
+        type: "SORT_FILES",
+        sortType,
+    }
+}
