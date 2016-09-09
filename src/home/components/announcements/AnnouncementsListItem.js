@@ -9,6 +9,7 @@ import { fullName } from "~/util";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { deleteAnnouncement } from "~/home/actions";
+import { sanitize } from "dompurify";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
@@ -91,7 +92,7 @@ class AnnouncementsListItem extends React.Component {
                     {this.renderDeleteButton()}
                 </div>
                 {/* TODO: prevent xss here */}
-                <span dangerouslySetInnerHTML={{ __html: announcement.content }} />
+                <span dangerouslySetInnerHTML={{ __html: sanitize(announcement.content) }} />
             </div>
         )
     }

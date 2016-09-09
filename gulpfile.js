@@ -21,6 +21,7 @@ let libs = [
     "socket.io-client",
     "react-masonry-component",
     "redux-saga",
+    "dompurify",
 ];
 
 let pages = [
