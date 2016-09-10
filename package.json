@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
-    "watch": "./node_modules/.bin/gulp watch",
-    "vendor": "./node_modules/.bin/gulp vendor",
+    "build": "npm run check-config; ./node_modules/.bin/gulp build",
+    "watch": "npm run check-config; ./node_modules/.bin/gulp watch",
+    "vendor": "npm run check-config; ./node_modules/.bin/gulp vendor",
+	"check-config": "if [ ! -e config.json ]; then echo '{\n  \"mapsKey\": \"\"\n}' > config.json; fi",
     "postinstall": "npm run vendor"
   },
   "repository": {
