@@ -7,23 +7,24 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/map/components/Leftbar";
 import config from "~/../config.json";
 
-const currentTeamNum = window.__userInfo.team.number;
+const currentTeam = teamLocations[window.__userInfo.team.number];
+const mapOptions = {
+    zoom: currentTeam ? 15 : 4,
+    center: currentTeam ? {lat: currentTeam.longitude, lng: currentTeam.latitude}
+        : {lat: 39.9583086, lng: -98.3331244}
+}
 
 @Radium
 class Map extends React.Component {
 
     render() {
-
         return (
             <Root pageName="map">
                 <Navbar />
                 <Leftbar />
                 <GoogleMap
-                    center={{
-                        lat: teamLocations[currentTeamNum].longitude,
-                        lng: teamLocations[currentTeamNum].latitude
-                    }}
-                    zoom={15}
+                    center={mapOptions.center}
+                    zoom={mapOptions.zoom}
                     bootstrapURLKeys={{
                         key: config.mapsKey,
                     }}
