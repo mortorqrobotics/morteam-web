@@ -1,6 +1,9 @@
 import React from "react";
 import Radium from "radium";
 
+import { chatItem as styles } from "~/chat/styles/middle";
+import { fullName } from "~/util";
+
 @Radium
 export default class MessageItem extends React.Component {
 
@@ -11,9 +14,34 @@ export default class MessageItem extends React.Component {
     render() {
         const message = this.props.message;
         if (message.author._id == this.context.user._id) {
-            return <h1>{message.content}</h1>
+            return (
+                <div style={styles.bubbleWrapper}>
+                    <div style={styles.selfBubble}>
+                        {message.content}
+                        <div style={styles.selfTriangle} />
+                    </div>
+                </div>
+            )
         } else {
-            return <h1>{message.content}</h1>
+            return (
+                <div style={styles.bubbleWrapper}>
+                    <div style={styles.otherBubble}>
+                        <img
+                            style={styles.profPic}
+                            src={message.author.profpicpath}
+                        />
+                        <p
+                            style={styles.chatOpponent}
+                            onClick={() => window.location.assign(`/profiles/id/${message.author._id}`)}
+                            // TODO: make a user link component
+                        >
+                            {fullName(message.author)}:
+                        </p>
+                        {message.content}
+                        <div style={styles.otherTriangle} />
+                    </div>
+                </div>
+            )
         }
     }
     

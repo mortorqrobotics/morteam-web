@@ -1,3 +1,13 @@
+const triangle = {
+    content: "",
+    position: "absolute",
+    borderStyle: "solid",
+    display: "block",
+    width: "0",
+    zIndex: "1",
+    top: "7px",
+}
+
 export default {
     container: {
         width: "calc(100vw - 460px)",
@@ -52,6 +62,72 @@ export default {
         marginLeft: "3px",
         ":hover": {
             backgroundColor: "orange",
+        },
+    },
+}
+
+export const chatItem = {
+    bubbleWrapper: {
+        display: "block",
+        width: "100%",
+        minHeight: "40px",
+        overflow: "hidden",
+    },
+    otherBubble: {
+        backgroundColor: "#cccccc",
+        color: "black",
+        maxWidth: "calc(100% - 100px)",
+        float: "left",
+        display: "block",
+        margin: "10px",
+        padding: "4px 10px 4px 10px",
+        fontSize: "20px",
+        borderRadius: "5px",
+        minHeight: "40px",
+        position: "relative",
+        wordWrap: "break-word",
+        verticalAlign: "middle",
+    },
+    selfBubble: {
+        backgroundColor: "#ffc547",
+        color: "black",
+        maxWidth: "calc(100% - 100px)",
+        float: "right",
+        display: "block",
+        margin: "10px",
+        padding: "4px 10px 4px 10px",
+        fontSize: "20px",
+        borderRadius: "5px",
+        minHeight: "40px",
+        position: "relative",
+        wordWrap: "break-word",
+    },
+    otherTriangle: [triangle, {
+        borderColor: "transparent #cccccc",
+        left: "-9px",
+        borderWidth: "6px 9px 6px 0px",
+    }],
+    selfTriangle: [triangle, {
+        borderColor: "transparent #ffc547",
+        right: "-9px",
+        borderWidth: "6px 0px 6px 9px",
+    }],
+    profPic: {
+        width: "30px",
+        height: "30px",
+        objectFit: "cover",
+        borderRadius: "5px",
+        marginTop: "-5px",
+    },
+    chatOpponent: {
+        display: "inline-block",
+        paddingRight: "5px",
+        fontWeight: "400",
+        marginBottom: "0",
+        marginLeft: "8px",
+        cursor: "pointer",
+        ":hover": {
+            borderBottom: "1px solid #777",
         },
     },
 }
