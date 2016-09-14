@@ -47,11 +47,18 @@ function* loadMessages() {
     const { data } = yield call(ajax.request, "GET", 
         "/chats/id/" + currentChatId + "/messages?skip=" + chat.messages.length
     );
-    yield put({
-        type: "LOAD_MESSAGES_SUCCESS",
-        messages: data,
-        chatId: currentChatId,
-    });
+    if (data.length === 0) {
+        yield put({
+            type: "ALL_MESSAGES_LOADED",
+            chatId: currentChatId,
+        });
+    } else {
+        yield put({
+            type: "LOAD_MESSAGES_SUCCESS",
+            messages: data,
+            chatId: currentChatId,
+        });
+    }
 }
 
 function* start() {

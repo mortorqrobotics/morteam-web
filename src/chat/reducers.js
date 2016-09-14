@@ -38,6 +38,15 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
+        case "ALL_MESSAGES_LOADED":
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    areAllMessagesLoaded: {
+                        $set: true,
+                    },
+                },
+            })
         default:
             return state
     }
