@@ -1,18 +1,20 @@
 import React from "react";
 import Radium from "radium";
 
+import styles from "~/user/styles/leftbar";
+
 @Radium
 export default class Position extends React.Component {
     
-    static propTypes = {
+    static props = {
         position: React.PropTypes.string,
     }
     
     render() {
         return (
-           <div>
-                {this.propTypes.position}
-           </div>
+           <span style={styles.button}>
+                {this.props.position}
+           </span>
         )
     }
     

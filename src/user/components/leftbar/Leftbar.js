@@ -40,7 +40,7 @@ export default class Leftbar extends React.Component {
     }
 
     componentDidMount = async() => {
-        try {
+       // try {
             const { data } = await ajax.request("GET",
                 "/users/id/" + this.context.options.userId
             );
@@ -48,10 +48,10 @@ export default class Leftbar extends React.Component {
                 loaded: true,
                 user: data,
             })
-        } catch (err) {
+        //} catch (err) {
             // TODO: deal with the case where the user does not exist
-            console.error(err);
-        }
+            //console.log(err);
+        //}
     }
 
     renderConditionalButtons = () => {
@@ -69,10 +69,6 @@ export default class Leftbar extends React.Component {
                     <ButtonItem  
                         text="Position"
                         onClick={() => this.setState({ isChangePosition: true})} //idea to change position if admin by clicking button
-                    />
-                    <ButtonItem
-                        text="Change Position"
-                        //onClick=
                     />
                 </div>
             )
@@ -133,11 +129,10 @@ export default class Leftbar extends React.Component {
                 <AssignTask
                     { ...modalProps(this, "isAssignTaskOpen") }
                 />
-                {/*
-                    Position causes leftBar to disappear
-                    position= this.state.user.position
-                */}
-            
+                <Position 
+                    position={this.state.user.position}
+                />
+                <ChangePosition />
             </div>
         )
     }
