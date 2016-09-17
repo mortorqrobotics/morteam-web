@@ -1,14 +1,14 @@
 import React from "react";
 import Radium from "radium";
 
-import GoogleMap from "google-map-react";
+import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/map/components/Leftbar";
-import TeamMarker from "~/map/components/TeamMarker";
 import config from "~/../config.json";
 
 import { makeStore } from "~/util/redux";
+import { setTeam } from "~/map/actions";
 import reducers from "~/map/reducers";
 const store = makeStore(reducers);
 
@@ -27,23 +27,35 @@ class Map extends React.Component {
             <Root pageName="map" store={store}>
                 <Navbar />
                 <Leftbar />
-                <GoogleMap
-                    center={mapOptions.center}
-                    zoom={mapOptions.zoom}
-                    bootstrapURLKeys={{
-                        key: config.mapsKey,
-                    }}
-                >
-                    {Object.keys(teamLocations).map(teamNum => (
-                        // yes they are switched
-                        <TeamMarker
-                            key={teamNum}
-                            teamNum={teamNum}
-                            lat={teamLocations[teamNum].longitude}
-                            lng={teamLocations[teamNum].latitude}
+
+                <GoogleMapLoader
+                    containerElement= {
+                        <div
+                            style={{
+                                height: `100%`,
+                            }}
                         />
-                    ))}
-                </GoogleMap>
+                    }
+                    googleMapElement = {
+                        <GoogleMap
+                            center={mapOptions.center}
+                            zoom={mapOptions.zoom}
+                        >
+                            {Object.keys(teamLocations).map(teamNum => (
+                                // yes they are switched
+                                <Marker
+                                    key={teamNum}
+                                    position = {{
+                                        lat: teamLocations[teamNum].longitude,
+                                        lng: teamLocations[teamNum].latitude
+                                    }}
+                                    onClick={() => store.dispatch(setTeam(teamNum))}
+                                />
+                            ))}
+                        </GoogleMap>
+                    }
+                />
+
             </Root>
         )
     }
