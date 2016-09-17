@@ -6,7 +6,6 @@ const setTeamSync = (team) => {
 }
 
 export const setTeam = (team) => {
-    console.log(team);
     return (dispatch) => {
         return dispatch(setTeamSync(team));
     }
