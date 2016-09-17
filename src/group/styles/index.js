@@ -4,12 +4,6 @@ export default {
       fontSize: "36px",
       textAlign: "center",
     },
-    groupType: {
-      fontSize: "18px",
-      textAlign: "center",
-      marginTop: "10px",
-      marginBottom: "10px",
-    },
     leaveButton: {
       fontSize: "28px",
       width: "300px",

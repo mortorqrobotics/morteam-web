@@ -28,49 +28,25 @@ export default class MakeGroupModal extends React.Component {
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.state = {
+        this.initialState = {
             groupName: "",
-            audience: {
-                users: [], // this.content.user._id
-                groups: [],
-            },
-            isPublic: true,
+            users: [this.context.user._id],
         }
+        this.state = this.initialState;
     }
 
-    createGroup = async() => {
+    createGroup = async () => {
         try {
-            let { data } = await ajax.request("post", "/groups", {
-                users: this.state.audience.users,
-                groups: this.state.audience.groups,
+            let { data } = await ajax.request("post", "/groups/normal", {
+                users: this.state.users,
                 name: this.state.groupName,
-                isPublic: this.state.isPublic,
             });
-            console.log(data);
-            this.setState({
-                groupName: "",
-                selectedUsers: [this.context.user._id],
-                selectedGroups: [],
-                isPublic: true,
-                query: "",
-            });
+            this.setState(this.initialState);
             this.props.addGroup(data);
             this.props.onRequestClose();
         } catch (err) {
             console.log(err);
         }
-    }
-
-    selectTypePublic = () => {
-        this.setState({
-            isPublic: true
-        });
-    }
-
-    selectTypePrivate = () => {
-        this.setState({
-            isPublic: false
-        });
     }
 
     render() {
@@ -87,23 +63,12 @@ export default class MakeGroupModal extends React.Component {
                 />
                 <br />
 
-                <GroupTypeOption
-                    text="Public"
-                    onClick={this.selectTypePublic}
-                    isSelected={this.state.isPublic}
-                />
-                <GroupTypeOption
-                    text="Private"
-                    onClick={this.selectTypePrivate}
-                    isSelected={!this.state.isPublic}
-                />
-                <br />
-
                 <p>Please select some inital members</p>
 
                 <AudienceSelect
-                    selected={this.state.audience}
-                    onChange={audience => this.setState({ audience: audience })}
+                    includeGroups={false}
+                    selected={{ users: this.state.users }}
+                    onChange={({ users }) => this.setState({ users })}
                 />
                 <br />
 

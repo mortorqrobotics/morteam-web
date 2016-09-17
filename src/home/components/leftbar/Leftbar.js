@@ -53,7 +53,7 @@ export default class Leftbar extends React.Component {
         try {
             let [userGroupsRes, publicGroupsRes] = await Promise.all([
                 ajax.request("get", "/groups/normal"),
-                ajax.request("get", "/groups/public")
+                ajax.request("get", "/groups/other")
             ]);
             this.setState({
                 userGroups: userGroupsRes.data,

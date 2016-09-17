@@ -37,6 +37,7 @@ export default class AudienceSelect extends React.Component {
             groups: React.PropTypes.array,
         }),
         onChange: React.PropTypes.func,
+        includeGroups: React.PropTypes.bool,
     }
 
     constructor(props) {
@@ -51,6 +52,10 @@ export default class AudienceSelect extends React.Component {
         }
     }
 
+    includeGroups = () => (
+        typeof this.props.includeGroups === "boolean" && this.props.includeGroups
+    )
+
     componentDidMount = async() => {
         try {
             let [{ data: users }, { data: groups }] = await Promise.all([
@@ -59,7 +64,7 @@ export default class AudienceSelect extends React.Component {
             ]);
             this.setState({
                 allUsers: users,
-                allGroups: groups,
+                ...(this.includeGroups() ? ({ allGroups: groups }) : ({})),
             });
         } catch (err) {
             console.log(err);

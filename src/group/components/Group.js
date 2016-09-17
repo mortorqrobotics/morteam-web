@@ -3,7 +3,6 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 
 import Root, { pageInit } from "~/shared/components/Root";
-import GroupHeading from "./GroupHeading";
 // import GroupMember from "./GroupMember";
 import UserList from "~/group/components/UserList";
 import LeaveGroupButton from "./LeaveGroupButton";
@@ -59,7 +58,6 @@ export default class Group extends React.Component {
     
     renderConditionalButtons = () => {
         if (this.isCurrentUserInGroup()) {
-            
             return (
                 <div>
                     <div style={styles.leaveButtonWrapper}>
@@ -71,32 +69,29 @@ export default class Group extends React.Component {
                     </div>
                 </div>
             )
-            
         }
         else {
-            
             return (
                 <div style={styles.joinWrapper}>
                     <JoinButton />
                 </div>
             )
-            
         }
     }
 
     render() {
-        return(
+        return (
             <Root pageName="group">
                 <Navbar />
                 {this.state.loaded && (
-                  <div>
-                    <GroupHeading
-                      group={this.state.group}
-                    />
-                    {this.renderConditionalButtons()}
-                    <UserList users={this.state.users} onDeleted={this.handleDeleted} />
-                  </div>
-                  )}
+                    <div>
+                        <h1 style={styles.groupName}>
+                            {this.state.group.name}
+                        </h1>
+                        {this.renderConditionalButtons()}
+                        <UserList users={this.state.users} onDeleted={this.handleDeleted} />
+                    </div>
+                )}
             </Root>
         )
     }
