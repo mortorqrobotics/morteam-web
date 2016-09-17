@@ -23,18 +23,20 @@ export default class Middle extends React.Component {
             <div>
                 <Grid fluid={true} style={styles.docList}>
 
-                    <Masonry>
-                        <div
-                            style={[styles.frame, styles.addFile]}
-                            onClick={() => this.setState({ isModalOpen: true })}
-                        >
-                            <Glyphicon glyph="plus" style={styles.glyph} />
-                        </div>
+                    {this.props.selectedFolder && (
+                        <Masonry>
+                            <div
+                                style={[styles.frame, styles.addFile]}
+                                onClick={() => this.setState({ isModalOpen: true })}
+                            >
+                                <Glyphicon glyph="plus" style={styles.glyph} />
+                            </div>
 
-                        {this.props.files.map(file => (
-                            <File file={file} key={file._id} />
-                        ))}
-                    </Masonry>
+                            {this.props.files.map(file => (
+                                <File file={file} key={file._id} />
+                            ))}
+                        </Masonry>
+                    )}
 
                 </Grid>
 

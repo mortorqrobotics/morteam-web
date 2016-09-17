@@ -37,7 +37,7 @@ export default class AudienceSelect extends React.Component {
             groups: React.PropTypes.array,
         }),
         onChange: React.PropTypes.func,
-        includeGroups: React.PropTypes.bool,
+        noIncludeGroups: React.PropTypes.bool,
     }
 
     constructor(props) {
@@ -52,19 +52,15 @@ export default class AudienceSelect extends React.Component {
         }
     }
 
-    includeGroups = () => (
-        typeof this.props.includeGroups === "boolean" && this.props.includeGroups
-    )
-
     componentDidMount = async() => {
         try {
             let [{ data: users }, { data: groups }] = await Promise.all([
                 ajax.request("get", "/teams/current/users"),
-                ajax.request("get", "/groups")
+                ajax.request("get", "/groups"),
             ]);
             this.setState({
                 allUsers: users,
-                ...(this.includeGroups() ? ({ allGroups: groups }) : ({})),
+                ...(this.props.noIncludeGroups ? ({}) : ({ allGroups: groups })),
             });
         } catch (err) {
             console.log(err);

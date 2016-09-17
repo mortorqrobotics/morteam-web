@@ -19,6 +19,8 @@ class MessageList extends React.Component {
         this.$container = $(this.refs.container);
         this.$container.scroll(this.handleScroll);
         this.$container.scrollTop(this.$container.prop("scrollHeight"));
+        this.loading = true;
+        this.props.dispatch(loadMessages());
     }
 
     componentWillUpdate = () => {
@@ -53,6 +55,7 @@ class MessageList extends React.Component {
         }
         const scrollTop = this.$container.scrollTop();
         const height = this.$container.height();
+        console.log(scrollTop, height)
         if (scrollTop < height / 2) {
             this.loading = true;
             this.props.dispatch(loadMessages());
@@ -60,10 +63,9 @@ class MessageList extends React.Component {
     }
 
     render() {
-        const messages = this.props.chat ? this.props.chat.messages : [];
         return (
             <div ref="container" style={styles.messagesDiv}>
-                {messages.map(message => (
+                {this.props.chat.messages.map(message => (
                     <MessageItem
                         message={message}
                     />

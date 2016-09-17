@@ -13,6 +13,9 @@ export default {
         width: "calc(100vw - 460px)",
         marginLeft: "300px",
         minWidth: "400px",
+        position: "absolute",
+        top: "40px",
+        height: "calc(100% - 40px)",
     },
     messagesDiv: {
         maxWidth: "700px",

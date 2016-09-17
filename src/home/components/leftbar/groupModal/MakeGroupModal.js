@@ -66,7 +66,7 @@ export default class MakeGroupModal extends React.Component {
                 <p>Please select some inital members</p>
 
                 <AudienceSelect
-                    includeGroups={false}
+                    noIncludeGroups
                     selected={{ users: this.state.users }}
                     onChange={({ users }) => this.setState({ users })}
                 />
