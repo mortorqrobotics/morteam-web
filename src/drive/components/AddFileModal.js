@@ -12,6 +12,7 @@ import {
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addFile } from "~/drive/actions";
+import styles from "~/drive/styles";
 
 @Radium
 class AddFileModal extends React.Component {
@@ -22,7 +23,7 @@ class AddFileModal extends React.Component {
 
     initialState = {
         name: "",
-        file: {},
+        file: null,
     }
 
     state = {
@@ -33,7 +34,7 @@ class AddFileModal extends React.Component {
 
     handleChange = (event) => {
         this.setState({
-            file: event.target.files[0]
+            file: event.target.files[0],
         });
     }
 
@@ -57,7 +58,28 @@ class AddFileModal extends React.Component {
                 title="Upload a File"
                 { ...modalPropsForward(this) }
             >
-                <FileUpload accept="*" onChange={this.handleChange} />
+                <FileUpload
+                    id="fileUpload"
+                    style={{ display: "none" }}
+                    accept="*"
+                    onChange={this.handleChange}
+                />
+
+                <ModalButton
+                    text="Choose File"
+                    onClick={() => {
+                        $("#fileUpload").trigger("click");
+                    }}
+                />
+
+                <p
+                    style={styles.chosenFile}
+                >
+                    {this.state.file
+                        ? $("#fileUpload").val().match(/.*[\\\/](.+)$/)[1]
+                        : "No File Selected"
+                    }
+                </p>
 
                 <ModalTextBox
                     placeholder="File Name"
@@ -65,7 +87,7 @@ class AddFileModal extends React.Component {
                     onChange={this.getChangeHandler("name")}
                 />
                 <br />
-                 <ModalButton
+                <ModalButton
                     text="Upload"
                     onClick={this.onSubmit}
                 />

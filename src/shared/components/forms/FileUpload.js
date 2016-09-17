@@ -1,10 +1,14 @@
 import React from "react";
-import Radium from "radium";
 
-const FileUpload = (props) => {
-    return React.createElement("input", {
-        type: "file",
-        ...props,
-    })
+export default class FileUpload extends React.Component {
+
+    render() {
+        return (
+            <input
+                type="file"
+                { ...this.props }
+            />
+        )
+    }
+
 }
-export default Radium(FileUpload);

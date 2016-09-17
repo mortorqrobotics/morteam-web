@@ -4,7 +4,7 @@ export default {
             fontSize: "23px",
             marginLeft: "5px",
             marginRight: "14px",
-        }
+        },
     },
     docList: {
         position: "absolute",
@@ -41,8 +41,8 @@ export default {
         verticalAlign: "middle",
         display: "table",
         ":hover": {
-            backgroundColor: "#D0D0D0"
-        }
+            backgroundColor: "#D0D0D0",
+        },
     },
     fileTitle: {
         fontSize: "14px",
@@ -79,8 +79,8 @@ export default {
             top: "43px",
             ":hover": {
                 color: "#a9a9a9",
-            }
-        }
+            },
+        },
     },
     glyph: {
         color: "gray",
@@ -102,6 +102,17 @@ export default {
             marginTop: "20px",
             marginLeft: "35px",
             border: "none",
-        }
-    }
+        },
+    },
+    chosenFile: {
+        backgroundColor: "#e9e9e9",
+        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+        width: "100%",
+        borderRadius: "1px",
+        padding: "4px 8px 4px 8px",
+        overflow: "hidden",
+        textAlign: "center",
+        fontSize: "18px",
+        height: "34px",
+    },
 }
