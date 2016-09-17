@@ -6,6 +6,10 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Middle from "./middle/Middle";
 import Leftbar from "./Leftbar";
 import Right from "./right/Right";
+import Grid from "react-bootstrap/lib/Grid";
+import Row from "react-bootstrap/lib/Row";
+import Col from "react-bootstrap/lib/Col";
+import styles from "~/calendar/styles";
 
 import { makeStoreSaga } from "~/util/redux";
 import reducers from "~/calendar/reducers";
@@ -20,8 +24,16 @@ export default class Calendar extends React.Component {
             <Root pageName="calendar" store={store}>
                 <Navbar />
                 <Leftbar />
-                <Middle />
-                <Right />
+                <Grid fluid style={{marginLeft:"300px",width:"calc(100%-0px)",height:"100%"}}>
+                    <Row style={{height:"100%",width:"100%"}}>
+                        <Col sm={2} style={styles.middleCol}>
+                            <Middle />
+                        </Col>
+                        <Col sm={2} style={{width:"50%"}}>
+                            <Right />
+                        </Col>
+                    </Row>
+                </Grid>
             </Root>
         )
     }

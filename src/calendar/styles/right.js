@@ -1,6 +1,7 @@
 export default {
     container: {
         height: "100%",
+        marginTop: "40px",
     },
     item: {
         height: "50%",

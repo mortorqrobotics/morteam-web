@@ -55,7 +55,6 @@ class MessageList extends React.Component {
         }
         const scrollTop = this.$container.scrollTop();
         const height = this.$container.height();
-        console.log(scrollTop, height)
         if (scrollTop < height / 2) {
             this.loading = true;
             this.props.dispatch(loadMessages());
