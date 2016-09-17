@@ -66,13 +66,10 @@ export default class Leftbar extends React.Component {
                         text="Change Password"
                         onClick={() => this.setState({ isChangePasswordOpen: true })}
                     />
-                    <ButtonItem  
-                        text="Position"
-                        onClick={() => this.setState({ isChangePosition: true})} //idea to change position if admin by clicking button
-                    />
                 </div>
             )
-        } else if (this.context.user.isAdmin()) {
+        }
+        if (this.context.user.isAdmin()) {
             return (
                 <div>
                     <Item>
@@ -87,6 +84,22 @@ export default class Leftbar extends React.Component {
                 </div>
             )
         }
+    }
+
+    checkAdmin = () => {
+        if (this.context.user.isAdmin()) {
+        return (
+          <ChangePosition
+            position={this.state.user.position}
+          />
+        )
+      } else {
+        return (
+          <Position
+            position={this.state.user.position}
+          />
+        )
+      }
     }
 
     render() {
@@ -120,6 +133,8 @@ export default class Leftbar extends React.Component {
                     )}
                 />
                 {this.renderConditionalButtons()}
+                {this.checkAdmin()}
+
                 <EditProfile
                     { ...modalProps(this, "isEditProfileOpen") }
                 />
@@ -129,10 +144,6 @@ export default class Leftbar extends React.Component {
                 <AssignTask
                     { ...modalProps(this, "isAssignTaskOpen") }
                 />
-                <Position 
-                    position={this.state.user.position}
-                />
-                <ChangePosition />
             </div>
         )
     }

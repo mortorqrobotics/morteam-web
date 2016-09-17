@@ -44,4 +44,7 @@ export default {
             outline: "none",
         },
     },
+    changePosition: {
+      backgroundColor: "orange",
+    }
 }

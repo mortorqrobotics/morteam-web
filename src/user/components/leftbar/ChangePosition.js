@@ -9,29 +9,36 @@ const positions = ["Member", "Leader", "Mentor", "Alumnus"];
 
 @Radium
 export default class ChangePosition extends React.Component {
-    
+
      static contextTypes = {
         options: React.PropTypes.object,
     }
-    
+
     constructor(props) {
         super(props);
-        
+
         this.state = {
             isOpen: false,
-            selectedOption: "Position",
+            selectedOption: "",
         }
     }
-    
+
     handleButtonClick = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
     }
-    
+
+    componentDidMount = async() => {
+      await ajax.request("get", "/teams/users");
+      this.setState({
+        selectedOption: position,
+      })
+    }
+
     handleOptionClick = async(position) => {
         this.setState({
-            selectedOption: position,
+            selectedOption: this.context.options.position,
         })
         try {
             await ajax.request("put", "/users/id/" + this.context.options.userId + "/position/" + this.state.selectedOption);
@@ -39,9 +46,10 @@ export default class ChangePosition extends React.Component {
             console.log(err);
         }
     }
-    
+
     render() {
         return (
+            <div style={styles.item}>
                 <Dropdown
                     style={styles.button}
                     isOpen={this.state.isOpen}
@@ -51,7 +59,8 @@ export default class ChangePosition extends React.Component {
                     onClick={this.handleButtonClick}
                     onOptionClick={this.handleOptionClick}
                 />
+            </div>
         )
     }
-    
+
 }
