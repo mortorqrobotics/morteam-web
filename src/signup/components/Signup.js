@@ -3,9 +3,11 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import SubmitButton from "~/shared/components/forms/SubmitButton";
+import Button from "~/shared/components/forms/Button";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
 import Link from "~/shared/components/Link";
 import Form from "~/shared/components/forms/Form";
+import FileUpload from "~/shared/components/forms/FileUpload";
 import TextBox from "~/shared/components/forms/TextBox";
 import ajax from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
@@ -30,6 +32,7 @@ export default class Signup extends React.Component {
             confirmPassword: "",
             email: "",
             phone: "",
+            file: null,
             errorMsg: "",
         };
 
@@ -43,14 +46,23 @@ export default class Signup extends React.Component {
             });
         }
         try {
-            await ajax.request("post", "/users", {
+            let obj = {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 username: this.state.username,
                 password: this.state.password,
                 email: this.state.email,
                 phone: this.state.phone,
-            });
+            };
+            if (this.state.file) {
+                obj.profpic = this.state.file;
+                const formData = new FormData();
+                for (const key of Object.keys(obj)) {
+                    formData.append(key, obj[key]);
+                }
+                obj = formData;
+            }
+            await ajax.request("post", "/users", obj);
             this.setState({
                 errorMsg: "Success"
             });
@@ -104,6 +116,16 @@ export default class Signup extends React.Component {
                             placeholder="Phone Number"
                             value={this.state.phoneNumber}
                             onChange={this.getChangeHandler("phone")}
+                        />
+                        <Button
+                            style={styles.fileButton}
+                            text="Choose Profile Picture"
+                            onClick={() => $("#fileUpload").trigger("click")}
+                        />
+                        <FileUpload
+                            id="fileUpload"
+                            style={{ display: "none" }}
+                            onChange={(event) => this.setState({ file: event.target.files[0] })}
                         />
                         <ErrorMsg message={this.state.errorMsg} />
                         <SubmitButton

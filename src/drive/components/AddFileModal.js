@@ -40,7 +40,7 @@ class AddFileModal extends React.Component {
 
     onSubmit = async () => {
         try {
-            let formData = new FormData();
+            const formData = new FormData();
             formData.append("uploadedFile", this.state.file);
             formData.append("fileName", this.state.name);
             formData.append("currentFolderId", this.props.selectedFolder._id);

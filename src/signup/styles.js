@@ -9,6 +9,13 @@ const signupElem = {
     },
 }
 
+const signupButton = [signupElem, {
+    borderRadius: "1px",
+    fontSize: "32px",
+    height: "50px",
+    cursor: "pointer",
+}]
+
 export default {
     form: {
         position: "relative",
@@ -33,16 +40,22 @@ export default {
         marginTop: "20px",
         padding: "8px",
     }],
-    submitButton: [signupElem, {
+    submitButton: [signupButton, {
         backgroundColor: "#0099FF",
-        borderRadius: "1px",
-        fontSize: "32px",
-        position: "absolute",
-        height: "50px",
-        top: "530px",
         ":hover": {
             backgroundColor: "#008AE6",
-            cursor: "pointer",
         },
+        position: "absolute",
+        top: "530px",
+    }],
+    fileButton: [signupButton, {
+        backgroundColor: "orange",
+        ":hover": {
+            backgroundColor: "darkOrange",
+        },
+        display: "block",
+        position: "relative",
+        fontSize: "25px",
+        marginTop: "20px",
     }],
 }
