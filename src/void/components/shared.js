@@ -4,6 +4,7 @@ import styles from "~/void/styles";
 import { withCss, withProps } from "~/util/component";
 
 import Button from "~/shared/components/forms/Button";
+import SubmitButton from "~/shared/components/forms/SubmitButton";
 import TextBox from "~/shared/components/forms/TextBox";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
@@ -16,6 +17,8 @@ export const ButtonCol = withProps(Col, {
 })
 
 export const VoidButton = withCss(Button, styles.button);
+
+export const VoidSubmitButton = withCss(SubmitButton, styles.button);
 
 export const VoidTextBox = withCss(TextBox, styles.textBox);
 

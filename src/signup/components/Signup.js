@@ -64,12 +64,12 @@ export default class Signup extends React.Component {
             }
             await ajax.request("post", "/users", obj);
             this.setState({
-                errorMsg: "Success"
+                errorMsg: "Success",
             });
             setTimeout(() => window.location.assign("/login"), REDIR_TIME);
-        } catch ({ data }) {
+        } catch ({ response: { data } }) {
             this.setState({
-                errorMsg: data
+                errorMsg: data,
             });
         }
     }
