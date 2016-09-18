@@ -23,11 +23,20 @@ let styles = {
         paddingTop: "50px",
         paddingBottom: "50px",
         top: "230px",
+        fontFamily: "Arial",
     },
     fpLink: {
         fontSize: "14px",
         textDecoration: "underline",
-    }
+        color: "-webkit-link",
+    },
+    rememberMeLabel: {
+        fontWeight: "200",
+        fontSize: "17px",
+        textAlign: "left",
+        float: "left",
+        marginLeft: "10px",
+    },
 }
 
 @Radium
@@ -87,6 +96,12 @@ export default class LoginBox extends React.Component {
                         checked={this.state.checkedRM}
                         onChange={this.getChangeHandler("checkedRM", "checked")}
                     />
+                    <label
+                        htmlFor="login-checkbox"
+                        style={styles.rememberMeLabel}
+                    >
+                        Remember me?
+                    </label>
                     <br />
 
                     <ErrorMsg message={this.state.errorMsg} />

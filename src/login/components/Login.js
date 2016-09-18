@@ -9,7 +9,7 @@ import LoginBox from "./LoginBox";
 var styles = {
     div: {
         "backgroundColor": "#fff",
-        "color": "black"
+        "color": "black",
     }
 }
 
