@@ -5,6 +5,7 @@ import StandardModal from "~/shared/components/StandardModal";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
+import FileUpload from "~/shared/components/forms/FileUpload";
 import {
     ModalTextBox,
     ModalButton,
@@ -36,27 +37,37 @@ export default class EditProfile extends React.Component {
             email: this.context.user.email,
             phone: this.context.user.phone,
             parentEmail: this.context.user.parentEmail || "",
+            file: null,
             errorMsg: "",
         }
     }
 
     onSubmit = async() => {
         try {
-            let { data } = await ajax.request("PUT", "/profile", {
+            let obj = {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 email: this.state.email,
                 phone: this.state.phone,
                 parentEmail: this.state.parentEmail,
-            })
+            }
+            if (this.state.file) {
+                obj.new_prof_pic = this.state.file;
+                const formData = new FormData();
+                for (const key of Object.keys(obj)) {
+                    formData.append(key, obj[key]);
+                }
+                obj = formData;
+            }
+            let { data } = await ajax.request("PUT", "/profile", obj);
             this.setState({
-                errorMsg: "Success"
+                errorMsg: "Success",
             })
             setTimeout(() => window.location.reload(), REDIR_TIME);
             // TODO: use redux to not have to reload here
         } catch ({ data }) {
             this.setState({
-                errorMsg: data
+                errorMsg: data,
             })
         }
     }
@@ -90,7 +101,8 @@ export default class EditProfile extends React.Component {
                     />
                     {/* TODO: what if a member inputs a parent email,
                         becomes a mentor later, then wants to remove
-                        the parent email? */}
+                        the parent email?
+                    */}
                     {this.context.user.position != "mentor" && (
                         <ModalTextBox
                             placeholder="Parent Email"
@@ -100,7 +112,13 @@ export default class EditProfile extends React.Component {
                     )}
                     <ModalButton
                         text="Change Profile Picture"
-                        onClick={() => alert("TODO: actually make this work")}
+                        onClick={() => $("#fileUpload").trigger("click")}
+                    />
+                    <FileUpload
+                        id="fileUpload"
+                        style={{ display: "none" }}
+                        accept="image/*"
+                        onChange={(event) => this.setState({ file: event.target.files[0] })}
                     />
                     <ModalSubmitButton text="Save" />
                     {this.state.errorMsg && (

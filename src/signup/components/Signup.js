@@ -125,6 +125,7 @@ export default class Signup extends React.Component {
                         <FileUpload
                             id="fileUpload"
                             style={{ display: "none" }}
+                            accept="image/*"
                             onChange={(event) => this.setState({ file: event.target.files[0] })}
                         />
                         <ErrorMsg message={this.state.errorMsg} />
