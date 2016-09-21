@@ -75,16 +75,19 @@ export default class ChangePassword extends React.Component {
                         placeholder="Old Password"
                         value={this.state.oldPassword}
                         onChange={this.getChangeHandler("oldPassword")}
+                        type="password"
                     />
                     <ModalTextBox
                         placeholder="New Password"
                         value={this.state.newPassword}
                         onChange={this.getChangeHandler("newPassword")}
+                        type="password"
                     />
                     <ModalTextBox
                         placeholder="Confirm New Password"
                         value={this.state.confirmPassword}
                         onChange={this.getChangeHandler("confirmPassword")}
+                        type="password"
                     />
                     <ModalSubmitButton
                         style={styles.button}

@@ -32,6 +32,7 @@ export default class LoginUsernameBox extends React.Component {
                 autoCorrect={false} 
                 placeholder="Password"
                 style={styles.loginPasswordBox}
+                type="password"
             />
         )
     }
