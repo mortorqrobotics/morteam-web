@@ -55,16 +55,16 @@ export default class Day extends React.Component {
                             year: this.props.year,
                             month: this.props.month,
                             day: this.props.day,
-                        })}, {allMonths[this.props.month]}
-                        <ul style={styles.eventList}>
-                            {this.props.events.map(event => (
-                                <EventItem
-                                    key={event._id}
-                                    event={event}
-                                />
-                            ))}
-                        </ul>
+                        })}
                     </h4>
+                    <ul style={styles.eventList}>
+                        {this.props.events.map(event => (
+                            <EventItem
+                                key={event._id}
+                                event={event}
+                            />
+                        ))}
+                    </ul>
                 </div>
                 <AddModal
                     day={this.props.day}

@@ -38,6 +38,7 @@ export default class AudienceSelect extends React.Component {
         }),
         onChange: React.PropTypes.func,
         noIncludeGroups: React.PropTypes.bool,
+        userList: React.PropTypes.array,
     }
 
     constructor(props) {
@@ -53,6 +54,10 @@ export default class AudienceSelect extends React.Component {
     }
 
     componentDidMount = async() => {
+        if (this.props.userList) {
+            this.setState({ allUsers: this.props.userList, });
+            return;
+        }
         try {
             let [{ data: users }, { data: groups }] = await Promise.all([
                 ajax.request("get", "/teams/current/users"),

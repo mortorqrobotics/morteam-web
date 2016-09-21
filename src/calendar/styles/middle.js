@@ -43,7 +43,9 @@ export default {
         backgroundColor: "#f5f5f5",
     },
     eventList: {
-        marginLeft: "30px",
+        marginLeft: "-30px",
+        listStyleType: "disc",
+        listStylePosition: "inside",
     },
     dayName: {
         marginLeft: "5px",
@@ -59,4 +61,14 @@ export default {
             outline: "none",
         },
     }],
+    eventItem: {
+        display: "list-item",
+    },
+    recordGlyph: {
+        marginLeft: "5px",
+        ":hover": {
+            cursor: "pointer",
+            color: "darkorange",
+        },
+    },
 }
