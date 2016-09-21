@@ -27,6 +27,7 @@ export default class LoginUsernameBox extends React.Component {
     render() {
         return (
             <TextBox 
+                autoFocus
                 onChange={this.props.onChange} 
                 value={this.props.value}
                 autoCapitalize={false} 

@@ -37,6 +37,10 @@ let styles = {
         float: "left",
         marginLeft: "10px",
     },
+    errorMsg: {
+        display: "inline-block",
+        marginTop: "10px",
+    },
 }
 
 @Radium
@@ -56,7 +60,6 @@ export default class LoginBox extends React.Component {
 
     }
 
-
     onSubmit = async() => {
         try {
             let { data } = await ajax.request("post", "/login", {
@@ -68,7 +71,7 @@ export default class LoginBox extends React.Component {
                 errorMsg: "Success"
             });
             setTimeout(() => window.location.assign("/"), REDIR_TIME);
-        } catch ({ data }) {
+        } catch ({ response: { data } }) {
             this.setState({
                 errorMsg: data
             });
@@ -104,10 +107,15 @@ export default class LoginBox extends React.Component {
                     </label>
                     <br />
 
-                    <ErrorMsg message={this.state.errorMsg} />
+                    <LoginButton />
                     <br />
 
-                    <LoginButton />
+                    {this.state.errorMsg && (
+                        <ErrorMsg
+                            message={this.state.errorMsg}
+                            style={styles.errorMsg}
+                        />
+                    )}
 
                 </Form>
 
