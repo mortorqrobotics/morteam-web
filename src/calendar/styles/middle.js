@@ -22,11 +22,10 @@ export default {
         height: "100%",
     },
     day: {
-        width: "auto",
-        maxWidth: "500px",
+        width: "90%",
         marginTop: "auto",
         marginLeft: "auto",
-        marginRight: "40px",
+        marginRight: "auto",
         marginBottom: "10px",
     },
     dayNum: topButton,

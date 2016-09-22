@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import RightItem from "./RightItem";
 import styles from "~/calendar/styles/right";
+import { fullName } from "~/util";
 import { showDate } from "~/util/date";
 import { connect } from "react-redux";
 
@@ -13,8 +14,7 @@ function PendingTasks(props) {
         >
             {props.tasks.map(task => (
                 <li key={task._id} style={styles.li}>
-                    {task.name} (By {showDate(task.dueDate)})
-                    {/* TODO: put the "assigned by" hover thing */}
+                    {task.name} (By {showDate(task.dueDate)}) assigned by {fullName(task.creator)}
                     <br />
                     <div style={styles.indented}>
                         {task.description}

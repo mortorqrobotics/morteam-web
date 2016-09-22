@@ -18,6 +18,10 @@ function UpcomingEvents(props) {
             {props.events.map(event => (
                 <li key={event._id} style={styles.li}>
                     {event.name} ({showDate(event.date)})
+                    <br />
+                    <div style={styles.indented}>
+                        {event.description}
+                    </div>
                 </li>
             ))}
         </RightItem>
