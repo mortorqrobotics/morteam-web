@@ -49,7 +49,7 @@ export default class UserLabel extends React.Component {
             <Col sm={6} md={4} lg={3}>
                 <span style={styles.userDisplay.span} onClick={this.handleUserClick}>
                     <img
-                        src={this.props.user.profpicpath}
+                        src={this.props.user.profpicpath + "-60"}
                         style={styles.userDisplay.profPic}
                     />
                     <span style={styles.userDisplay.name}>

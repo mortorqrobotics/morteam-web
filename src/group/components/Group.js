@@ -3,7 +3,6 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 
 import Root, { pageInit } from "~/shared/components/Root";
-// import GroupMember from "./GroupMember";
 import UserList from "~/group/components/UserList";
 import LeaveGroupButton from "./LeaveGroupButton";
 import InviteMemberButton from "./InviteMemberButton";
@@ -17,7 +16,7 @@ export default class Group extends React.Component {
         super(props);
     
         this.state = {
-            users: null,
+            users: [],
             group: null,
             loaded: false,
         }
@@ -26,9 +25,10 @@ export default class Group extends React.Component {
     componentDidMount = async () => {
         try {
             let [ { data: users, }, { data: group, } ] = await Promise.all([
-                ajax.request("get", "/teams/current/users"),
+                ajax.request("get", "/groups/normal/id/" + window.__options.groupId + "/users"),
                 ajax.request("get", "/groups/id/" + window.__options.groupId),
-            ])
+            ]);
+                console.log(users)
             this.setState({
                 users: users,
                 group: group,
@@ -54,8 +54,6 @@ export default class Group extends React.Component {
         alert("UNFINISHED");
     }
     
-    
-    
     renderConditionalButtons = () => {
         if (this.isCurrentUserInGroup()) {
             return (
@@ -64,16 +62,19 @@ export default class Group extends React.Component {
                         <LeaveGroupButton />
                     </div>
                 
-                    <div style={styles.memberWrapper}>
-                        <InviteMemberButton />
-                    </div>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div style={styles.joinWrapper}>
-                    <JoinButton />
+                    {window.__userInfo.isAdmin() && (
+                        <div style={styles.memberWrapper}>
+                            <InviteMemberButton
+                                groupUsers={this.state.users}
+                                onAdded={users => {
+                                    console.log(users)
+                                    this.setState({
+                                        users: this.state.users.concat(users),
+                                    });
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
             )
         }
