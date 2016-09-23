@@ -29,13 +29,13 @@ export const LeftbarButton = Radium((props) => {
 })
 
 export const Dropdown = Radium((props) => {
-    const { isOpen, options, selectedOption, text, onClick, onOptionClick, ...rest } = props;
+    const { isOpen, options, selectedOption, text, onClick, style, listStyle, onOptionClick, ...rest } = props;
     let buttonStyle = dropdown.button;
     let menu;
     if (props.isOpen) {
         buttonStyle = [buttonStyle, dropdown.buttonShadow]
         menu = (
-            <ul style={dropdown.ul}>
+            <ul style={[dropdown.ul, listStyle]}>
                 {props.options.map(option => (
                     <li
                         key={option}
@@ -51,10 +51,11 @@ export const Dropdown = Radium((props) => {
     }
     return (
         <div onClick={props.onClick}>
-            <div style={buttonStyle}>
+            <div style={[buttonStyle, style]}>
                 {props.text}
                 <span style={dropdown.caret} />
             </div>
+            <br />
             {menu}
         </div>
     )

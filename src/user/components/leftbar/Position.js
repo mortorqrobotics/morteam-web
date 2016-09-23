@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/user/styles/leftbar";
+import { capitalize } from "~/util";
 
 @Radium
 export default class Position extends React.Component {
@@ -12,11 +13,11 @@ export default class Position extends React.Component {
 
     render() {
         return (
-          <div style={styles.item}>
-            <span style={styles.button}>
-                {this.props.position}
-            </span>
-          </div>
+            <div style={styles.item}>
+                <span style={styles.positionIndicator}>
+                    {capitalize(this.props.position)}
+                </span>
+            </div>
         )
     }
 

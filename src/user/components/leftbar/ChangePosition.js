@@ -4,14 +4,19 @@ import ajax from "~/util/ajax";
 
 import { Dropdown } from "~/shared/components/leftbar";
 import styles from "~/user/styles/leftbar";
+import { capitalize } from "~/util";
 
 const positions = ["Member", "Leader", "Mentor", "Alumnus"];
 
 @Radium
 export default class ChangePosition extends React.Component {
 
-     static contextTypes = {
-        options: React.PropTypes.object,
+    static propTypes = {
+        initialPosition: React.PropTypes.string,
+    }
+
+    static contextTypes = {
+       options: React.PropTypes.object,
     }
 
     constructor(props) {
@@ -19,29 +24,26 @@ export default class ChangePosition extends React.Component {
 
         this.state = {
             isOpen: false,
-            selectedOption: "",
+            selected: capitalize(this.props.initialPosition),
         }
     }
 
     handleButtonClick = () => {
         this.setState({
-            isOpen: !this.state.isOpen
-        })
+            isOpen: !this.state.isOpen,
+        });
     }
 
-    componentDidMount = async() => {
-      await ajax.request("get", "/teams/users");
-      this.setState({
-        selectedOption: position,
-      })
-    }
-
-    handleOptionClick = async(position) => {
-        this.setState({
-            selectedOption: this.context.options.position,
-        })
+    handleOptionClick = async (position) => {
         try {
-            await ajax.request("put", "/users/id/" + this.context.options.userId + "/position/" + this.state.selectedOption);
+            console.log(await ajax.request("put",
+                `/users/id/${this.context.options.userId}/position`, {
+                    newPosition: position.toLowerCase(),
+                }
+            ));
+            this.setState({
+                selected: position,
+            });
         } catch(err) {
             console.log(err);
         }
@@ -51,11 +53,12 @@ export default class ChangePosition extends React.Component {
         return (
             <div style={styles.item}>
                 <Dropdown
-                    style={styles.button}
+                    style={styles.dropdown}
+                    listStyle={styles.dropdownList}
                     isOpen={this.state.isOpen}
                     options={positions}
-                    selectedOption={this.state.selectedOption}
-                    text="Position"
+                    selectedOption={this.state.selected}
+                    text={this.state.selected}
                     onClick={this.handleButtonClick}
                     onOptionClick={this.handleOptionClick}
                 />

@@ -58,7 +58,6 @@ export default class Attendance extends React.Component {
                 ),
             })
         );
-        console.log(absences, present)
         this.setState({ absences, present });
     }
 

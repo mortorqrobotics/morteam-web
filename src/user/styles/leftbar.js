@@ -3,6 +3,19 @@ const item = {
     textAlign: "center",
 }
 
+const button = {
+    backgroundColor: "#ffb524",
+    border: "none",
+    borderRadius: "1px",
+    padding: "3px 8px 3px 8px",
+    ":hover": {
+        backgroundColor: "orange",
+    },
+    ":focus": {
+        outline: "none",
+    },
+}
+
 export default {
     container: {
         backgroundColor: "#ffc547",
@@ -15,7 +28,7 @@ export default {
         zIndex: "87",
         WebkitOverflowScrolling: "touch",
     },
-    item: item,
+    item,
     img: {
         margin: "24px 54px -10px 54px",
         width: "150px",
@@ -32,19 +45,17 @@ export default {
         fontSize: "18px",
         padding: "3px 6px 3px 6px",
     },
-    button: {
-        backgroundColor: "#ffb524",
-        border: "none",
-        borderRadius: "1px",
-        padding: "3px 8px 3px 8px",
+    button,
+    positionIndicator: [button, {
         ":hover": {
-            backgroundColor: "orange",
+            backgroundColor: "##ffb524",
         },
-        ":focus": {
-            outline: "none",
-        },
+    }],
+    dropdown: {
+        backgroundColor: "#ffb524",
     },
-    changePosition: {
-      backgroundColor: "orange",
-    }
+    dropdownList: {
+        display: "inline-block",
+        textAlign: "center",
+    },
 }
