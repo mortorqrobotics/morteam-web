@@ -17,6 +17,14 @@ const tasks = (state = initialState, action) => {
                 pending: [action.task].concat(state.pending),
                 completed: state.completed,
             }
+        case "MARK_TASK_COMPLETED":
+            return {
+                pending: state.pending.filter(task => task._id != action.taskId),
+                completed: state.completed.concat({
+                    ...state.pending.find(task => task._id == action.taskId),
+                    completed: true,
+                })
+            }
         default:
             return state
     }

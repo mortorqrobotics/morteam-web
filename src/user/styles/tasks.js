@@ -24,11 +24,22 @@ export default {
         fontSize: "18px",
     },
     dueDate: {
+        marginLeft: "5px",
         fontSize: "14px",
     },
     description: {
         // .indented in original css
         paddingLeft: "5px",
         wordWrap: "break-word",
+    },
+    markCompleted: {
+        backgroundColor: "#ffc547",
+        border: "none",
+        padding: "3px 8px 3px 8px",
+        borderRadius: "1px",
+        cursor: "pointer",
+        fontSize: "12px",
+        marginLeft: "5px",
+        marginTop: "5px",
     },
 }

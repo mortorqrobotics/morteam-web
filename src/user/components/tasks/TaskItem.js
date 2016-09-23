@@ -1,23 +1,36 @@
 import React from "react";
 import Radium from "radium";
 
+import Button from "~/shared/components/forms/Button";
 import styles from "~/user/styles/tasks";
+import { fullName } from "~/util";
 import { showDate } from "~/util/date";
+import { markTaskCompleted } from "~/user/actions";
+import { connect } from "react-redux";
 
-const TaskItem = Radium(({ task }) => {
-    // TODO: show user who created the task
-    // TODO: add complete button for pending tasks
+const TaskItem = ({ task, dispatch }, context) => {
     return (
         <li style={styles.taskItem}>
             {task.name}
             <span style={styles.dueDate}>
-                {showDate(task.dueDate)}
+                ({showDate(task.dueDate)}) assigned by {fullName(task.creator)}
             </span>
             <div style={styles.description}>
                 {task.description}
             </div>
+            {context.user.isAdmin() && !task.completed && (
+                <Button
+                    style={styles.markCompleted}
+                    text="Mark as Completed"
+                    onClick={() => dispatch(markTaskCompleted(task._id))}
+                />
+            )}
         </li>
     )
-})
+};
 
-export default TaskItem;
+TaskItem.contextTypes = {
+    user: React.PropTypes.object,
+}
+
+export default connect()(Radium(TaskItem));
