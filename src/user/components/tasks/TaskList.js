@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import TaskItem from "./TaskItem";
-import styles from "~/user/styles/tasks";
+import styles from "~/user/styles/middle";
 
 const TaskList = Radium(({ title, tasks }) => {
     return (

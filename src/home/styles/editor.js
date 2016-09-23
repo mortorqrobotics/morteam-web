@@ -43,5 +43,9 @@ export default {
         padding: "1px 6px 1px 6px",
         boxShadow: "2px 2px 4px #c9c9c9",
         height: "31px",
+        ":disabled": {
+            backgroundColor: "#ffe070",
+            color: "#888888",
+        },
     }],
 }

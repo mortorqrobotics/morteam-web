@@ -10,10 +10,12 @@ import {
 import ajax from "~/util/ajax";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
+import TakeAttendance from "./TakeAttendance";
 import { connect } from "react-redux";
+import { startAttendance } from "~/calendar/actions";
 
 @Radium
-export default class AttendanceModal extends React.Component {
+class AttendanceModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
@@ -53,6 +55,7 @@ export default class AttendanceModal extends React.Component {
                 <ModalButton
                     text="Done"
                     onClick={async () => {
+                        // TODO: use redux
                         await ajax.request("PUT",
                             "/events/id/" + this.props.event._id + "/excuseAbsences",
                             { userIds: this.state.excusedUsers, }
@@ -74,24 +77,39 @@ export default class AttendanceModal extends React.Component {
                     this.props.onRequestClose();
                 }}
             >
-                <ModalButton
-                    text="Excuse Absences"
-                    onClick={() => this.setState({
-                        isExcusing: true,
-                        title: "Excuse Absences",
-                    })}
-                />
-                {this.state.isExcusing || (
+
+                {this.props.event.hasTakenAttendance || (
                     <ModalButton
-                        text="Take Attendance"
+                        text="Excuse Absences"
                         onClick={() => this.setState({
-                            title: "Take Attendance",
+                            isExcusing: true,
+                            title: "Excuse Absences",
                         })}
                     />
                 )}
+
+                {this.state.isExcusing || this.props.event.hasTakenAttendance || (
+                    <ModalButton
+                        text="Take Attendance"
+                        onClick={() => {
+                            this.props.dispatch(startAttendance(this.props.event._id));
+                        }}
+                    />
+                )}
+
                 {this.state.isExcusing && this.renderExcuser()}
+
+                {this.props.event.hasTakenAttendance && (
+                    <TakeAttendance
+                        event={this.props.event}
+                        onDone={this.props.onRequestClose}
+                    />
+                )}
+
             </StandardModal>
         )
     }
 
 }
+
+export default connect()(AttendanceModal);

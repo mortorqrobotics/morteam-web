@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import TaskList from "./TaskList";
 import { connect } from "react-redux";
-import styles from "~/user/styles/tasks";
+import styles from "~/user/styles/middle";
 
 const Tasks = Radium(props => {
     return (

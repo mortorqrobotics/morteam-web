@@ -9,7 +9,7 @@ const Dropdown = Radium(props => {
         ...rest,
     }, ...options.map(opt => (
         <option key={opt} value={opt}>
-            {display(opt)}
+            {(display || (x => x))(opt)}
         </option>
     )))
 })

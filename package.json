@@ -28,6 +28,7 @@
     "radium": "^0.18.1",
     "react": "^15.1.0",
     "react-bootstrap": "^0.30.0",
+    "react-contextmenu": "^1.6.3",
     "react-dom": "^15.1.0",
     "react-masonry-component": "^4.2.1",
     "react-modal": "^1.4.0",

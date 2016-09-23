@@ -24,7 +24,7 @@ export default class Calendar extends React.Component {
             <Root pageName="calendar" store={store}>
                 <Navbar />
                 <Leftbar />
-                <Grid fluid style={{overflow:"hidden",marginLeft:"300px",width:"calc(100%-0px)",height:"100%"}}>
+                <Grid fluid style={{overflow:"hidden",marginLeft:"300px",width:"calc(100%-30px)",height:"100%"}}>
                     <Row style={{height:"100%",width:"100%"}}>
                         <Col sm={2} style={styles.middleCol}>
                             <Middle />

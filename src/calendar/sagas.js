@@ -39,6 +39,14 @@ function* setAbsMonth({ month, year }) {
     });
 }
 
+function* startAttendance(eventId) {
+    yield call(ajax.request, "POST", `/events/id/${eventId}/startAttendance`);
+    yield put({
+        type: "START_ATTENDANCE_SUCCESS",
+        eventId,
+    });
+}
+
 function* loadPendingTasks() {
     const { data } = yield call(ajax.request, "GET",
         "/users/id/" + window.__userInfo._id + "/tasks/pending"
@@ -60,6 +68,7 @@ export default function*() {
         fork(makeWatchers({
             "ADD_EVENT": addEvent,
             "SET_ABS_MONTH": setAbsMonth,
+            "START_ATTENDANCE": startAttendance,
         })),
     ]
 }

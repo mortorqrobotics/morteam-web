@@ -54,6 +54,31 @@ function events(state = initialEvents, action) {
                     },
                 },
             })
+        case "START_ATTENDANCE_SUCCESS":
+            let eventYear, eventMonth, eventIndex;
+            labelsIn2016:
+            for (const year of Object.keys(state)) {
+                for (const month of Object.keys(state[year])) {
+                    const index = state[year][month].findIndex(({ _id }) => _id == action.eventId);
+                    if (index !== -1) {
+                        eventYear = year;
+                        eventMonth = month;
+                        eventIndex = index;
+                        break labelsIn2016;
+                    }
+                }
+            }
+            return update(state, {
+                [eventYear]: {
+                    [eventMonth]: {
+                        [eventIndex]: {
+                            hasTakenAttendance: {
+                                $set: true,
+                            },
+                        },
+                    },
+                },
+            });
         default:
             return state
     }

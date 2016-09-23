@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Button from "~/shared/components/forms/Button";
-import styles from "~/user/styles/tasks";
+import styles from "~/user/styles/middle";
 import { fullName } from "~/util";
 import { showDate } from "~/util/date";
 import { markTaskCompleted } from "~/user/actions";
@@ -15,7 +15,7 @@ const TaskItem = ({ task, dispatch }, context) => {
             <span style={styles.dueDate}>
                 ({showDate(task.dueDate)}) assigned by {fullName(task.creator)}
             </span>
-            <div style={styles.description}>
+            <div style={styles.taskDescription}>
                 {task.description}
             </div>
             {context.user.isAdmin() && !task.completed && (

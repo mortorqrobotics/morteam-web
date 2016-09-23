@@ -22,6 +22,7 @@ let libs = [
     "react-masonry-component",
     "redux-saga",
     "dompurify",
+    "react-contextmenu",
 ];
 
 let pages = [

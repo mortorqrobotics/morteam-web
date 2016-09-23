@@ -17,3 +17,9 @@ export function setAbsMonth({ month, year }) {
     }
 }
 
+export function startAttendance(eventId) {
+    return {
+        type: "START_ATTENDANCE",
+        payload: eventId,
+    }
+}

@@ -107,14 +107,12 @@ class AssignTask extends React.Component {
                             year: this.state.year,
                             month: this.state.month,
                         }))}
-                        display={day => day}
                     />
                     <Dropdown
                         style={styles.dropdown}
                         selected={this.state.year}
                         onChange={year => this.setState({ year: parseInt(year) })}
                         options={range(currentYear, currentYear + 4)}
-                        display={year => year}
                     />
                     <ModalSubmitButton text="Save" />
                     {this.state.errorMsg && (

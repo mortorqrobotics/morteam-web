@@ -49,6 +49,7 @@ class MessageInput extends React.Component {
                     />
                     <SubmitButton
                         style={styles.sendButton}
+                        text="send"
                     />
                 </Form>
             </div>

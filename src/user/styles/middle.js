@@ -1,12 +1,9 @@
+import orangeButton from "~/shared/styles/orangeButton";
+
 export default {
     container: {
         backgroundColor: "#f5f5f5",
         top: "45px",
-        left: "400px",
-        width: "calc(100% - 10px)",
-        marginTop: "20px",
-        height: "auto",
-        bowShadow: "0px 2px 8px -5px",
         position: "relative",
         paddingBottom: "3px",
     },
@@ -27,8 +24,7 @@ export default {
         marginLeft: "5px",
         fontSize: "14px",
     },
-    description: {
-        // .indented in original css
+    taskDescription: {
         paddingLeft: "5px",
         wordWrap: "break-word",
     },
@@ -42,4 +38,15 @@ export default {
         marginLeft: "5px",
         marginTop: "5px",
     },
+    attendanceDataPoint: {
+        margin: "10px 10px 5px 33px",
+        fontSize: "18px",
+        display: "inline-block",
+    },
+    attendanceDropdown: {
+        margin: "5px",
+    },
+    refreshAttendance: [orangeButton, {
+        marginLeft: "5px",
+    }],
 }
