@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
-    "watch": "./node_modules/.bin/gulp watch",
-    "vendor": "./node_modules/.bin/gulp vendor",
+    "build": "npm run check-config; ./node_modules/.bin/gulp build",
+    "watch": "npm run check-config; ./node_modules/.bin/gulp watch",
+    "vendor": "npm run check-config; ./node_modules/.bin/gulp vendor",
+	"check-config": "if [ ! -e config.json ]; then echo '{\n  \"mapsKey\": \"\"\n}' > config.json; fi",
     "postinstall": "npm run vendor"
   },
   "repository": {
@@ -23,13 +24,13 @@
     "axios-cancel": "just-boris/axios-cancel",
     "babel-runtime": "^6.9.2",
     "dompurify": "^0.8.3",
-    "google-map-react": "^0.19.0",
     "moment": "^2.14.1",
     "radium": "^0.18.1",
     "react": "^15.1.0",
     "react-bootstrap": "^0.30.0",
     "react-contextmenu": "^1.6.3",
     "react-dom": "^15.1.0",
+    "react-google-maps": "^4.11.0",
     "react-masonry-component": "^4.2.1",
     "react-modal": "^1.4.0",
     "react-redux": "^4.4.5",

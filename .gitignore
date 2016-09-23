@@ -3,4 +3,4 @@ node_modules
 **/*.swp
 **/.DS_Store
 build
-src/bundle.css
+config.json
