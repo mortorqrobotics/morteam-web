@@ -28,7 +28,6 @@ export default class Group extends React.Component {
                 ajax.request("get", "/groups/normal/id/" + window.__options.groupId + "/users"),
                 ajax.request("get", "/groups/id/" + window.__options.groupId),
             ]);
-                console.log(users)
             this.setState({
                 users: users,
                 group: group,
@@ -47,11 +46,15 @@ export default class Group extends React.Component {
         return window.__userInfo.groups.indexOf(this.state.group._id) !== -1;
     }
     
-    handleDeleted = async () => {
-        // try {
-        //    ajax.request("delete", "/groups/users")
-        // }
-        alert("UNFINISHED");
+    handleDeleted = async (userId) => {
+        await ajax.request("delete",
+            `/groups/normal/id/${this.state.group._id}/users/id/${userId}`
+        );
+        this.setState({
+            users: this.state.users.filter(user => (
+                user._id != userId
+            )),
+        });
     }
     
     renderConditionalButtons = () => {
@@ -67,7 +70,6 @@ export default class Group extends React.Component {
                             <InviteMemberButton
                                 groupUsers={this.state.users}
                                 onAdded={users => {
-                                    console.log(users)
                                     this.setState({
                                         users: this.state.users.concat(users),
                                     });
