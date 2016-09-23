@@ -5,7 +5,6 @@ import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/map/components/Leftbar";
-import config from "~/../config.json";
 
 import { makeStore } from "~/util/redux";
 import { setTeam } from "~/map/actions";
