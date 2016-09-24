@@ -13,18 +13,22 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-		<% if (page === "Home") { %>
-			<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-		<% } %>
+        <% if (page === "Home") { %>
+            <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+        <% } %>
 
-		<% if (page === "Map") { %>
-			<script src="/teamLocations.js"></script>
+        <% if (page === "Map") { %>
+            <script src="/teamLocations.js"></script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcdl2nD-CXNSBNpxD3mm6micqLMFRA9PE"></script>
-		<% } %>
+        <% } %>
 
     </head>
 
-    <body style="background-color: #E9E9E9;">
+    <body
+        <% if (page != "Login") { %>
+            style="background-color: #E9E9E9;"
+        <% } %>
+    >
 
         <div id="allContent"></div>
 
