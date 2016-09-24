@@ -101,11 +101,13 @@ export default class Signup extends React.Component {
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.getChangeHandler("password")}
+                            type="password"
                         />
                         <SignupInput
                             placeholder="Confirm Password"
                             value={this.state.confirmPassword}
                             onChange={this.getChangeHandler("confirmPassword")}
+                            type="password"
                         />
                         <SignupInput
                             placeholder="Email"
