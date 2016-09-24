@@ -12,36 +12,7 @@ import Link from "~/shared/components/Link";
 import Form from "~/shared/components/forms/Form";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
 
-let styles = {
-    loginBox: {
-        backgroundColor: "#FFC547",
-        width: "260px",
-        height: "auto",
-        position: "fixed",
-        right: "10px",
-        textAlign: "center",
-        paddingTop: "50px",
-        paddingBottom: "50px",
-        top: "230px",
-        fontFamily: "Arial",
-    },
-    fpLink: {
-        fontSize: "14px",
-        textDecoration: "underline",
-        color: "-webkit-link",
-    },
-    rememberMeLabel: {
-        fontWeight: "200",
-        fontSize: "17px",
-        textAlign: "left",
-        float: "left",
-        marginLeft: "10px",
-    },
-    errorMsg: {
-        display: "inline-block",
-        marginTop: "10px",
-    },
-}
+import styles from "~/login/styles";
 
 @Radium
 export default class LoginBox extends React.Component {

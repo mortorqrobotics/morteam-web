@@ -5,13 +5,7 @@ import Root, { pageInit } from "~/shared/components/Root";
 import TopBar from "./TopBar";
 import IntroText from "./IntroText";
 import LoginBox from "./LoginBox";
-
-var styles = {
-    div: {
-        "backgroundColor": "#fff",
-        "color": "black",
-    }
-}
+import styles from "~/login/styles";
 
 @Radium
 export default class Login extends React.Component {
@@ -23,7 +17,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <Root pageName="login">
-                <div style={[styles.div]}>
+                <div style={[styles.container]}>
                     <TopBar />
                     <IntroText />
                     <LoginBox />
