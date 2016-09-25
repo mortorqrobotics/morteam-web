@@ -9,6 +9,8 @@ import Button from "~/shared/components/forms/Button";
 import { connect } from "react-redux";
 import { deleteFile } from "~/drive/actions";
 
+const RadiumGlyphicon = Radium(Glyphicon);
+
 @Radium
 class File extends React.Component {
 
@@ -39,7 +41,7 @@ class File extends React.Component {
             isDeleteMenuOpen: true
         });
     }
-    
+
     handleDeleteMenuClose = (event) => {
         event.stopPropagation();
         this.setState({
@@ -60,7 +62,7 @@ class File extends React.Component {
         if (this.context.user._id === this.props.file.creator
             || this.context.user.isAdmin()) {
             return (
-                <Glyphicon
+                <RadiumGlyphicon
                     glyph="trash"
                     style={styles.description.trash}
                     onClick={this.handleDeleteMenuOpen}
