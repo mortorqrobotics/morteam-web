@@ -1,22 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-let styles = {
-    button: {
-        display: "inline-block",
-        marginTop: "5px",
-        padding: "0px 4px",
-        marginRight: "4px",
-        cursor: "pointer",
-        color: "#333",
-    },
-    selected: {
-        backgroundColor: "orange"
-    },
-    unselected: {
-        backgroundColor: "#ffcc80"
-    }
-}
+import styles from "~/home/styles/groupModal";
 
 @Radium
 export default class GroupTypeOption extends React.Component {
@@ -29,16 +14,16 @@ export default class GroupTypeOption extends React.Component {
 
     getStyle() {
         if (this.props.isSelected) {
-            return styles.selected;
+            return styles.groupTypeOption.selected;
         }
-        return styles.unselected;
+        return styles.groupTypeOption.unselected;
     }
 
     render() {
         return (
             <p
                 onClick={this.props.onClick}
-                style={[styles.button, this.getStyle()]}
+                style={[styles.groupTypeOption.button, this.getStyle()]}
             >
                 {this.props.text}
             </p>

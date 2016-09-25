@@ -26,7 +26,6 @@ export default{
             marginBottom: "15px",
         },
     },
-    
     leftbarButton:{    
         button: {
             fontsize: "14px",

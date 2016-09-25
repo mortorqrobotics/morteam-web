@@ -3,22 +3,7 @@ import Radium from "radium";
 
 import Button from "~/shared/components/forms/Button";
 
-let styles = {
-    button: {
-        width: "91.5%",
-        height: "37px",
-        backgroundColor: "#ffc547",
-        border: "none",
-        color: "black",
-        position: "absolute",
-        bottom: "15px",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
-        borderRadius: "1px",
-        ":hover": {
-            backgroundColor: "orange",
-        }
-    }
-}
+import styles from "~/home/styles/groupModal";
 
 @Radium
 export default class CreateGroupButton extends React.Component {

@@ -3,18 +3,7 @@ import Radium from "radium";
 
 import TextBox from "~/shared/components/forms/TextBox";
 
-let styles = {
-    textBox: {
-        width: "100%",
-        marginTop: "5px",
-        marginBottom: "10px",
-        border: "none",
-        padding: "8px 4px",
-        fontSize: "15px",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
-        borderRadius: "1px",
-    }
-}
+import styles from "~/home/styles/groupModal";
 
 @Radium
 export default class ModalTextBox extends React.Component {
