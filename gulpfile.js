@@ -8,6 +8,8 @@ let babelify = require("babelify");
 let watchify = require("watchify");
 let tap = require("gulp-tap");
 let eventStream = require("event-stream");
+let streamify = require("gulp-streamify");
+let uglify = require("gulp-uglify");
 
 let libs = [
     "react",
@@ -66,6 +68,7 @@ gulp.task("build", function() {
             let bundler = browserify(file.path, { debug: true, });
             file.contents = stuff(bundler).bundle();
         }))
+        .pipe(streamify(uglify()))
         .on("error", function(err) {
             console.log(err.toString());
             console.log(err.codeFrame);
@@ -110,6 +113,7 @@ gulp.task("vendor", function() {
     bundler
         .bundle()
         .pipe(source("vendor.js"))
+        .pipe(streamify(uglify()))
         .pipe(gulp.dest("./build/"));
 });
 

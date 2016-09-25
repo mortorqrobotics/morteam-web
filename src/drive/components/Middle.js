@@ -12,7 +12,7 @@ import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
 
 @Radium
-export default class Middle extends React.Component {
+class Middle extends React.Component {
 
     state = {
         isModalOpen: false,

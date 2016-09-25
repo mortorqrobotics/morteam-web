@@ -6,7 +6,7 @@
     "build": "npm run check-config; ./node_modules/.bin/gulp build",
     "watch": "npm run check-config; ./node_modules/.bin/gulp watch",
     "vendor": "npm run check-config; ./node_modules/.bin/gulp vendor",
-	"check-config": "if [ ! -e config.json ]; then echo '{\n  \"mapsKey\": \"\"\n}' > config.json; fi",
+    "check-config": "if [ ! -e config.json ]; then echo '{\n  \"mapsKey\": \"\"\n}' > config.json; fi",
     "postinstall": "npm run vendor"
   },
   "repository": {
@@ -54,7 +54,9 @@
     "browserify": "^13.0.1",
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
+    "gulp-streamify": "^1.0.2",
     "gulp-tap": "^0.1.3",
+    "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"

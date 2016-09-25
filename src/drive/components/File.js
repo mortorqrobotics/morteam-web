@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { deleteFile } from "~/drive/actions";
 
 @Radium
-export default class File extends React.Component {
+class File extends React.Component {
 
     static propTypes = {
         file: React.PropTypes.object,
