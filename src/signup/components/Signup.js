@@ -19,12 +19,9 @@ const SignupInput = withCss(TextBox, styles.input);
 @Radium
 export default class Signup extends React.Component {
 
-    constructor(props) {
-        super(props);
+        getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.getChangeHandler = makeChangeHandlerFactory(this);
-
-        this.state = {
+        state = {
             firstname: "",
             lastname: "",
             username: "",
@@ -36,7 +33,7 @@ export default class Signup extends React.Component {
             errorMsg: "",
         };
 
-    }
+    
 
 
     onSubmit = async() => {
