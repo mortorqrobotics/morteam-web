@@ -33,9 +33,6 @@ export default class Signup extends React.Component {
             errorMsg: "",
         };
 
-    
-
-
     onSubmit = async() => {
         if (this.state.password != this.state.confirmPassword) {
             return this.setState({
