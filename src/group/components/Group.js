@@ -6,6 +6,7 @@ import Root, { pageInit } from "~/shared/components/Root";
 import UserList from "~/group/components/UserList";
 import LeaveGroupButton from "./LeaveGroupButton";
 import InviteMemberButton from "./InviteMemberButton";
+import JoinButton from "./JoinButton";
 import styles from "~/group/styles/index";
 import Navbar from "~/shared/components/navbar/Navbar";
 
@@ -77,6 +78,12 @@ export default class Group extends React.Component {
                             />
                         </div>
                     )}
+                </div>
+            )
+        } else {
+            return (
+                <div style={styles.memberWrapper}>
+                    <JoinButton />
                 </div>
             )
         }

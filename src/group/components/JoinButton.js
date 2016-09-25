@@ -6,25 +6,25 @@ import styles from "~/group/styles/index";
 import Button from "~/shared/components/forms/Button";
 
 @Radium
-export default class LeaveGroupButton extends React.Component {
+export default class JoinButton extends React.Component {
 
     static contextTypes = {
-        user: React.PropTypes.object,
         options: React.PropTypes.object,
     }
 
     handleClick = async () => {
-        await ajax.request("delete",
-            `/groups/normal/id/${this.context.options.groupId}/users/id/${this.context.user._id}`
+        await ajax.request("post",
+            `/groups/normal/id/${this.context.options.groupId}/join`
         );
-        window.location.reload(); // ahhhhhh redux is necessary
+        // use redux instead
+        window.location.reload();
     }
     
     render() {
         return (
             <Button 
-                style={styles.leaveButton} 
-                value="Leave" 
+                style={styles.inviteButton} 
+                value="Join" 
                 onClick={this.handleClick}
             />
         )
