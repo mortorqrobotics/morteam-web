@@ -2,29 +2,22 @@ import React from "react";
 import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
-import TopBar from "./TopBar";
-import IntroText from "./IntroText";
-import LoginBox from "./LoginBox";
-import styles from "~/login/styles";
+import TopBar from "~/login/components/TopBar";
+import IntroText from "~/login/components/IntroText";
+import LoginBox from "~/login/components/LoginBox";
 
 @Radium
-export default class Login extends React.Component {
+class Login extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Root pageName="login">
-                <div style={[styles.container]}>
-                    <TopBar />
-                    <IntroText />
-                    <LoginBox />
-                </div>
-            </Root>
-        )
-    }
+	render() {
+		return (
+			<Root pageName="login">
+				<TopBar />
+				<IntroText />
+				<LoginBox />
+			</Root>
+		)
+	}
 }
 
 pageInit(Login);

@@ -3,33 +3,26 @@ import Radium from "radium";
 
 import ajax from "~/util/ajax";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
-import LoginUsernameBox from "~/login/components/LoginUsernameBox";
-import LoginPasswordBox from "~/login/components/LoginPasswordBox";
-import LoginRememberMeBox from "~/login/components/LoginRememberMeBox";
-import LoginButton from "~/login/components/LoginButton";
-import SignupButton from "~/login/components/SignupButton";
+import TextBox from "~/shared/components/forms/TextBox";
+import SubmitButton from "~/shared/components/forms/SubmitButton";
+import Button from "~/shared/components/forms/Button";
+import RememberMeBox from "~/login/components/RememberMeBox";
 import Link from "~/shared/components/Link";
 import Form from "~/shared/components/forms/Form";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
-
-import styles from "~/login/styles";
+import styles from "~/login/styles/loginBox";
 
 @Radium
 export default class LoginBox extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.getChangeHandler = makeChangeHandlerFactory(this);
-
-        this.state = {
-            username: "",
-            password: "",
-            checkedRM: false,
-            errorMsg: "",
-        }
-
+    state = {
+        username: "",
+        password: "",
+        checkedRM: false,
+        errorMsg: "",
     }
+
+    getChangeHandler = makeChangeHandlerFactory(this);
 
     onSubmit = async() => {
         try {
@@ -47,56 +40,62 @@ export default class LoginBox extends React.Component {
                 errorMsg: data
             });
         }
-    }                                  
-                  
+    }
 
     render() {
         return (
-            <div style={styles.box.wrapper}>
-                                                
+            <div style={styles.wrapper}>
+
                 <Form onSubmit={this.onSubmit}>
 
-                    <LoginUsernameBox
+                    <TextBox
+                        autoFocus
                         value={this.state.username}
                         onChange={this.getChangeHandler("username")}
-                    />
-                    <br />                                  
-                    <LoginPasswordBox
-                        value={this.state.password}
-                        onChange={this.getChangeHandler("password")}
+                        style={styles.textBox}
+                        placeholder="Username/Email"
                     />
                     <br />
-                    <LoginRememberMeBox
+                    <TextBox
+                        value={this.state.password}
+                        onChange={this.getChangeHandler("password")}
+                        style={styles.textBox}
+                        placeholder="Password"
+                        type="password"
+                    />
+                    <br />
+                    <RememberMeBox
                         checked={this.state.checkedRM}
                         onChange={this.getChangeHandler("checkedRM", "checked")}
                     />
-                    <label
-                        htmlFor="login-checkbox"
-                        style={styles.box.rememberMeLabel}
-                    >
-                        Remember me?
-                    </label>
                     <br />
 
-                    <LoginButton />
+                    <SubmitButton
+                        style={styles.loginButton}
+                        text="Login"
+                    />
                     <br />
 
                     {this.state.errorMsg && (
                         <ErrorMsg
                             message={this.state.errorMsg}
-                            style={styles.box.errorMsg}
+                            style={styles.errorMsg}
                         />
                     )}
 
                 </Form>
 
-                <SignupButton />
-                
+                <Button
+                    style={styles.signupButton}
+                    text="Sign Up"
+                    onClick={() => window.location.assign("/signup")}
+                />
+
                 <br />
                 <br />
-                
-    			<Link style={styles.box.fpLink} location="/fp" text="Forgot password?" />
-    		</div>
+
+                <Link style={styles.fpLink} location="/fp" text="Forgot password?" />
+            </div>
         )
     }
 }
