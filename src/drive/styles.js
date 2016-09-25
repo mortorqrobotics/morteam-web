@@ -102,6 +102,9 @@ export default {
             marginTop: "20px",
             marginLeft: "35px",
             border: "none",
+            ":hover": {
+                backgroundColor: "#e9e9e9",
+            },
         },
     },
     chosenFile: {
