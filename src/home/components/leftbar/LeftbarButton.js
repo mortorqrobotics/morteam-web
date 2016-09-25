@@ -3,18 +3,7 @@ import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 
-let styles = {
-    button: {
-        fontsize: "14px",
-        ":hover": {
-            backgroundColor: "#E9E9E9",
-            cursor: "pointer",
-        }
-    },
-    glyph: {
-        marginRight: "5px"
-    }
-}
+import styles from "~/home/styles/leftbar";
 
 
 @Radium
@@ -29,7 +18,7 @@ export default class LeftbarButton extends React.Component {
     displayGlyph = () => {
         if (this.props.glyph) {
             return (
-                <Glyphicon glyph={this.props.glyph} style={styles.glyph} />
+                <Glyphicon glyph={this.props.glyph} style={styles.leftbarButton.glyph} />
             )
         }
     }
@@ -37,7 +26,7 @@ export default class LeftbarButton extends React.Component {
     render() {
         return (
             <p
-                style={styles.button}
+                style={styles.leftbarButton.button}
                 onClick={this.props.onClick}
             >
                 {this.displayGlyph()}
