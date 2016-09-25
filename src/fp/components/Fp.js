@@ -1,16 +1,14 @@
 import React from "react";
 import Radium from "radium";
+
 import ajax from "~/util/ajax";
 import Link from "~/shared/components/Link";
 import TextBox from "~/shared/components/forms/TextBox";
 import SubmitButton from "~/shared/components/forms/SubmitButton";
 import Form from "~/shared/components/forms/Form";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
-
 import Root, { pageInit } from "~/shared/components/Root";
 import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
-import ajax from "~/util/ajax";
-
 import styles from "~/fp/styles";
 
 @Radium
