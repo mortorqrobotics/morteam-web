@@ -2,21 +2,7 @@ import React from "react";
 
 import Button from "~/shared/components/forms/Button";
 
-let styles = {
-    signupButton: {
-        backgroundColor: "#00A2FF",
-        border: "0",
-        borderRadius: "1px",
-        fontSize: "18px",
-        position: "relative",
-        width: "210px",
-        height: "32px",
-        padding: "5px",
-        ":hover": {
-            backgroundColor: "#008BDB",
-        }
-    }
-}
+import styles from "~/login/styles";
 
 export default class SignupButton extends React.Component {
 
@@ -26,7 +12,7 @@ export default class SignupButton extends React.Component {
 
     render() {
         return (
-            <Button style={[styles.signupButton]} text="Sign Up" onClick={this.onClick} />
+            <Button style={[styles.box.signupButton]} text="Sign Up" onClick={this.onClick} />
         )
     }
 }

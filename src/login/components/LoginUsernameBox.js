@@ -4,17 +4,7 @@ import Radium from "radium";
 import TextBox from "~/shared/components/forms/TextBox";
 
 
-let styles = {
-    loginUsernameBox: {
-        fontSize: "18px",
-        width: "210px",
-        height: "28px",
-        padding: "3px",
-        border: "none",
-        marginBottom: "15px",
-        boxSizing: "unset",
-    }
-}
+import styles from "~/login/styles";
 
 @Radium
 export default class LoginUsernameBox extends React.Component {
@@ -33,7 +23,7 @@ export default class LoginUsernameBox extends React.Component {
                 autoCapitalize={false} 
                 autoCorrect={false} 
                 placeholder="Username/Email"
-                style={styles.loginUsernameBox}
+                style={styles.box.textBox}
             />
         )
     }

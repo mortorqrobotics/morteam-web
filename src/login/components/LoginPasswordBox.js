@@ -3,17 +3,7 @@ import Radium from "radium";
 
 import TextBox from "~/shared/components/forms/TextBox";
 
-let styles = {
-    loginPasswordBox: {
-        fontSize: "18px",
-        width: "210px",
-        height: "28px",
-        padding: "3px",
-        border: "none",
-        marginBottom: "15px",
-        boxSizing: "unset",
-    }
-}
+import styles from "~/login/styles";
 
 @Radium
 export default class LoginUsernameBox extends React.Component {
@@ -31,7 +21,7 @@ export default class LoginUsernameBox extends React.Component {
                 autoCapitalize={false} 
                 autoCorrect={false} 
                 placeholder="Password"
-                style={styles.loginPasswordBox}
+                style={styles.box.passwordBox}
                 type="password"
             />
         )

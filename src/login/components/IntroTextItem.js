@@ -1,21 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-let styles = {
-    title: {
-        fontSize: "40px",
-        marginBottom: "25px",
-        fontWeight: "400",
-        maxWidth: "800px",
-    },
-    text: {
-        maxWidth: "800px",
-        marginBottom: "85px",
-        fontWeight: "200",
-        fontSize: "24px",
-        lineHeight: "32.5px",
-    }
-}
+import styles from "~login/styles";
 
 @Radium
 export default class IntroTextItem extends React.Component {
@@ -28,8 +14,8 @@ export default class IntroTextItem extends React.Component {
     render() {
         return (
             <div>
-                <h1 style={[styles.title, styles.h1]}>{this.props.title}</h1>
-                <h2 style={styles.text}>{this.props.text}</h2>
+                <h1 style={[styles.textArea.title, styles.h1]}>{this.props.title}</h1>
+                <h2 style={styles.textArea.text}>{this.props.text}</h2>
             </div>
         )
     }

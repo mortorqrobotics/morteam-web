@@ -4,22 +4,7 @@ import Radium from "radium";
 import IntroTextItem from "./IntroTextItem";
 
 import texts from "./introTexts.json";
-
-let styles = {
-    introText: {
-        fontFamily: "'helvetica neue', sans-serif",
-        width: "calc(100% - 490px)",
-        textAlign: "justify",
-        paddingTop: "100px",
-        paddingLeft: "100px",
-        paddingRight: "100px",
-        boxSizing: "unset",
-    },
-    landingBoxMain: {
-        maxWidth: "800px",
-        margin: "auto",
-    },
-}
+import styles from "~/login/styles";
 
 @Radium
 export default class IntroText extends React.Component {

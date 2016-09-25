@@ -47,20 +47,20 @@ export default class LoginBox extends React.Component {
                 errorMsg: data
             });
         }
-    }
-
+    }                                  
+                  
 
     render() {
         return (
-            <div style={styles.loginBox}>
-                
+            <div style={styles.box.wrapper}>
+                                                
                 <Form onSubmit={this.onSubmit}>
 
                     <LoginUsernameBox
                         value={this.state.username}
                         onChange={this.getChangeHandler("username")}
                     />
-                    <br />
+                    <br />                                  
                     <LoginPasswordBox
                         value={this.state.password}
                         onChange={this.getChangeHandler("password")}
@@ -72,7 +72,7 @@ export default class LoginBox extends React.Component {
                     />
                     <label
                         htmlFor="login-checkbox"
-                        style={styles.rememberMeLabel}
+                        style={styles.box.rememberMeLabel}
                     >
                         Remember me?
                     </label>
@@ -84,7 +84,7 @@ export default class LoginBox extends React.Component {
                     {this.state.errorMsg && (
                         <ErrorMsg
                             message={this.state.errorMsg}
-                            style={styles.errorMsg}
+                            style={styles.box.errorMsg}
                         />
                     )}
 
@@ -95,7 +95,7 @@ export default class LoginBox extends React.Component {
                 <br />
                 <br />
                 
-    			<Link style={styles.fpLink} location="/fp" text="Forgot password?" />
+    			<Link style={styles.box.fpLink} location="/fp" text="Forgot password?" />
     		</div>
         )
     }
