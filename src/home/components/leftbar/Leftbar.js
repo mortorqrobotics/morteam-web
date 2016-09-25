@@ -106,7 +106,7 @@ export default class Leftbar extends React.Component {
                 <br />
                 <span style={styles.leftbar.span}>
                     <Link
-                        location="/terms"
+                        location="/terms.html"
                         text="Privacy and Terms"
                         style={styles.leftbar.link}
                     />
