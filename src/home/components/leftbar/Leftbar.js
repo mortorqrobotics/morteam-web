@@ -8,33 +8,7 @@ import Link from "~/shared/components/Link";
 import ajax from "~/util/ajax";
 import { modalProps } from "~/util/modal";
 
-var styles = {
-    div: {
-        verticalAlign: "top",
-        marginTop: "15px",
-        marginLeft: "15px",
-        padding: "10px",
-        width: "200px",
-        display: "inline-block",
-        background: "white",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
-    },
-    span: {
-        color: "gray",
-        display: "inline-block",
-        marginBottom: "6px",
-    },
-    link: {
-        color: "gray",
-        textDecoration: "none",
-        ":hover": {
-            textDecoration: "underline",
-        }
-    },
-    h5: {
-        marginBottom: "15px",
-    }
-}
+import styles from "~/home/styles/leftbar";
 
 @Radium
 export default class Leftbar extends React.Component {
@@ -95,7 +69,7 @@ export default class Leftbar extends React.Component {
 
     render() {
         return (
-            <div style={styles.div}>
+            <div style={styles.leftbar.div}>
 
                 <LeftbarButton
                     text="View Profile"
@@ -114,13 +88,13 @@ export default class Leftbar extends React.Component {
                 />
                 <hr />
 
-                <h5 style={styles.h5}>Your Groups</h5>
+                <h5 style={styles.leftbar.h5}>Your Groups</h5>
                 <GroupList
                     groups={this.state.userGroups}
                 />
                 <hr />
 
-                <h5 style={styles.h5}>Public Groups</h5>
+                <h5 style={styles.leftbar.h5}>Public Groups</h5>
                 <GroupList
                     groups={this.state.publicGroups}
                 />
@@ -128,13 +102,13 @@ export default class Leftbar extends React.Component {
 
                 {this.renderMakeGroupButton()}
 
-                <span style={styles.span}>© 2015 MorTeam</span>
+                <span style={styles.leftbar.span}>© 2015 MorTeam</span>
                 <br />
-                <span style={styles.span}>
+                <span style={styles.leftbar.span}>
                     <Link
                         location="/terms"
                         text="Privacy and Terms"
-                        style={styles.link}
+                        style={styles.leftbar.link}
                     />
                 </span>
 
