@@ -69,6 +69,21 @@ export default {
     },
 }
 
+const selfBubble = {
+    backgroundColor: "#ffc547",
+    color: "black",
+    maxWidth: "calc(100% - 100px)",
+    float: "right",
+    display: "block",
+    margin: "10px",
+    padding: "4px 10px 4px 10px",
+    fontSize: "20px",
+    borderRadius: "5px",
+    minHeight: "40px",
+    position: "relative",
+    wordWrap: "break-word",
+}
+
 export const chatItem = {
     bubbleWrapper: {
         display: "block",
@@ -91,20 +106,10 @@ export const chatItem = {
         wordWrap: "break-word",
         verticalAlign: "middle",
     },
-    selfBubble: {
-        backgroundColor: "#ffc547",
-        color: "black",
-        maxWidth: "calc(100% - 100px)",
-        float: "right",
-        display: "block",
-        margin: "10px",
-        padding: "4px 10px 4px 10px",
-        fontSize: "20px",
-        borderRadius: "5px",
-        minHeight: "40px",
-        position: "relative",
-        wordWrap: "break-word",
-    },
+    selfBubble,
+    selfBubbleLoading: [selfBubble, {
+        color: "#777777",
+    }],
     otherTriangle: [triangle, {
         borderColor: "transparent #cccccc",
         left: "-9px",

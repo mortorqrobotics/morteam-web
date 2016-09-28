@@ -2,6 +2,7 @@ import { fork, take, call, put, select } from "redux-saga/effects";
 import { takeEvery } from "redux-saga";
 import ajax from "~/util/ajax";
 import { makeWatchers } from "~/util/redux";
+import { emit } from "./sio";
 
 function* loadChats() {
     const { data } = yield call(ajax.request, "GET", "/chats");
@@ -21,7 +22,13 @@ function* addChat(chat) {
 
 function* sendMessage(content) {
     const currentChatId = yield select(state => state.currentChatId);
-    yield call(ajax.request, "POST", "/chats/id/" + currentChatId + "/messages", {
+    yield call(emit, "sendMessage", {
+        chatId: currentChatId,
+        content,
+    });
+    yield put({
+        type: "SEND_MESSAGE_LOADING",
+        chatId: currentChatId,
         content,
     });
 }

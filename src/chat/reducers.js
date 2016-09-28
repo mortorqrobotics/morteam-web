@@ -20,12 +20,39 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
-        case "ADD_MESSAGE":
+        case "RECEIVE_MESSAGE_SUCCESS":
             index = state.findIndex(chat => chat._id == action.chatId);
             return update(state, {
                 [index]: {
                     messages: {
                         $push: [action.message],
+                    },
+                },
+            })
+        case "SEND_MESSAGE_LOADING":
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    messages: {
+                        $push: [{
+                            author: window.__userInfo,
+                            content: action.content,
+                            isLoading: true,
+                        }],
+                    },
+                },
+            })
+        case "SEND_MESSAGE_SUCCESS":
+            index = state.findIndex(chat => chat._id == action.chatId);
+            const index2 = state[index].messages.findIndex(msg => msg.isLoading);
+            return update(state, {
+                [index]: {
+                    messages: {
+                        [index2]: {
+                            isLoading: {
+                                $set: false,
+                            },
+                        },
                     },
                 },
             })

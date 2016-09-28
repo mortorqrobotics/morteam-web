@@ -31,15 +31,15 @@ class MessageList extends React.Component {
     // TODO: preserve scrolling when switching from chat to chat
 
     componentDidUpdate = () => {
-        if (this.props.chat.areAllMessagesLoaded) {
-            return;
-        }
-
         const scrollTop = this.$container.scrollTop();
         const scrollHeight = this.$container.prop("scrollHeight");
         this.$container.scrollTop(
             this.lastScrollTop + scrollHeight - this.lastScrollHeight
         );
+
+        if (this.props.chat.areAllMessagesLoaded) {
+            return;
+        }
 
         // without setTimeout, strange stuff happens
         // I think it checks the scrolling before updating or something

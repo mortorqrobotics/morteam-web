@@ -7,6 +7,10 @@ import { fullName } from "~/util";
 @Radium
 export default class MessageItem extends React.Component {
 
+    static propTypes = {
+        message: React.PropTypes.object,
+    }
+
     static contextTypes = {
         user: React.PropTypes.object,
     }
@@ -16,7 +20,9 @@ export default class MessageItem extends React.Component {
         if (message.author._id == this.context.user._id) {
             return (
                 <div style={styles.bubbleWrapper}>
-                    <div style={styles.selfBubble}>
+                    <div style={
+                        message.isLoading ? styles.selfBubbleLoading : styles.selfBubble
+                    }>
                         {message.content}
                         <div style={styles.selfTriangle} />
                     </div>

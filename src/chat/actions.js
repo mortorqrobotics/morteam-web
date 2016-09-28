@@ -3,8 +3,8 @@ export const addChat = (chat) => ({
     payload: chat,
 })
 
-export const addMessage = ({ chatId, message }) => ({
-    type: "ADD_MESSAGE",
+export const receiveMessage = ({ chatId, message }) => ({
+    type: "RECEIVE_MESSAGE_SUCCESS",
     chatId,
     message,
 })
@@ -12,6 +12,11 @@ export const addMessage = ({ chatId, message }) => ({
 export const sendMessage = (content) => ({
     type: "SEND_MESSAGE",
     payload: content,
+})
+
+export const messageSent = ({ chatId }) => ({
+    type: "SEND_MESSAGE_SUCCESS",
+    chatId,
 })
 
 export const setChatName = ({ chatId, name }) => ({
