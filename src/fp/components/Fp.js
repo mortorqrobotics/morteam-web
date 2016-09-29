@@ -23,16 +23,16 @@ class Fp extends React.Component {
     }
     
     onSubmit = async() =>{
-        try{    
-            let {data} = await ajax.request("post", "/forgotPassword", {
+        try {
+            let { data } = await ajax.request("post", "/forgotPassword", {
                 email: this.state.email, 
                 username: this.state.username,
             });
             this.setState({
-                errorMsg: "sucess",
+                errorMsg: "success",
             });
             setTimeout(() => window.location.assign("/"), REDIR_TIME);
-            
+
         } catch ({ response: { data } }) {
             this.setState({
                 errorMsg: data
@@ -59,7 +59,7 @@ class Fp extends React.Component {
                         onChange={this.getChangeHandler("username")}
                     />
                     <SubmitButton
-                        styles={styles.button}
+                        style={styles.button}
                         text="OK"
                     />
                     <ErrorMsg message={this.state.errorMsg} />
