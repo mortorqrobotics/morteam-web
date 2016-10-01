@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import update from "react/lib/update";
-import { reverse } from "~/util";
+import { reverse, currentUser } from "~/util";
 
 const initialChats = [];
 
@@ -35,7 +35,7 @@ function chats(state = initialChats, action) {
                 [index]: {
                     messages: {
                         $push: [{
-                            author: window.__userInfo,
+                            author: currentUser,
                             content: action.content,
                             isLoading: true,
                         }],

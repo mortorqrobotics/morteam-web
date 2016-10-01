@@ -4,18 +4,14 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 import styles from "~/group/styles/index";
 import Button from "~/shared/components/forms/Button";
+import { currentUser, pageOptions } from "~/util";
 
 @Radium
 export default class LeaveGroupButton extends React.Component {
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-        options: React.PropTypes.object,
-    }
-
     handleClick = async () => {
         await ajax.request("delete",
-            `/groups/normal/id/${this.context.options.groupId}/users/id/${this.context.user._id}`
+            `/groups/normal/id/${pageOptions.groupId}/users/id/${currentUser._id}`
         );
         window.location.reload(); // ahhhhhh redux is necessary
     }

@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import styles from "~/shared/styles/navbar";
 import ProfileDropdownModal from "./ProfileDropdownModal";
+import { currentUser } from "~/util";
 
 @Radium
 export default class ProfileDropdown extends React.Component {
@@ -13,10 +14,6 @@ export default class ProfileDropdown extends React.Component {
         this.state = {
             isModalOpen: false,
         }
-    }
-
-    static contextTypes = {
-        user: React.PropTypes.object,
     }
 
     openModal = () => {
@@ -30,14 +27,14 @@ export default class ProfileDropdown extends React.Component {
             <div style={styles.profileDropdown.div}>
                 <img
                     style={styles.profileDropdown.profPic}
-                    src={this.context.user.profpicpath + "-60"}
+                    src={currentUser.profpicpath + "-60"}
                     onClick={this.openModal}
                 />
                 <span
                     style={styles.profileDropdown.span}
                     onClick={this.openModal}
                 >
-                    {this.context.user.firstname}
+                    {currentUser.firstname}
                 </span>
 
                 <ProfileDropdownModal

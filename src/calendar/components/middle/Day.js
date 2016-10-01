@@ -6,6 +6,7 @@ import EventItem from "./EventItem";
 import Button from "~/shared/components/forms/Button";
 import { dayName, allMonths } from "~/util/date";
 import { modalProps } from "~/util/modal";
+import { currentUser } from "~/util";
 import AddModal from "./AddModal";
 
 @Radium
@@ -18,16 +19,12 @@ export default class Day extends React.Component {
         events: PropTypes.array.isRequired,
     }
 
-    static contextTypes = {
-        user: PropTypes.object,
-    }
-
     state = {
         isAddModalOpen: false,
     }
 
     renderAddButton = () => {
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <Button
                     style={styles.addButton}

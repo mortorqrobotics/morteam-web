@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { makeChangeHandlerFactory, REDIR_TIME, range } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME, range, pageOptions } from "~/util";
 import { allMonths, daysInAbsMonth } from "~/util/date";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
@@ -25,10 +25,6 @@ class AssignTask extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
-    }
-
-    static contextTypes = {
-        options: React.PropTypes.object,
     }
 
     constructor(props) {
@@ -54,7 +50,7 @@ class AssignTask extends React.Component {
 
     onSubmit = async() => {
         try {
-            await this.props.dispatch(addTask(this.context.options.userId, {
+            await this.props.dispatch(addTask(pageOptions.userId, {
                 name: this.state.name,
                 dueDate: new Date(
                     this.state.year,

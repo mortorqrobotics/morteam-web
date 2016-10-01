@@ -5,6 +5,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/calendar/styles/middle";
 import { modalProps } from "~/util/modal";
 import AttendanceModal from "./AttendanceModal";
+import { currentUser } from "~/util";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
@@ -15,16 +16,12 @@ export default class EventItem extends React.Component {
         event: React.PropTypes.object,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     state = {
         isModalOpen: false,
     }
 
     renderRecordAttendance = () => {
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <RadiumGlyphicon
                     glyph="list-alt"

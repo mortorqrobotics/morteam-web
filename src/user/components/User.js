@@ -9,12 +9,13 @@ import Attendance from "./attendance/Attendance";
 import Grid from "react-bootstrap/lib/Grid";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
+import { pageOptions } from "~/util";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/user/reducers";
 import { fetchTasks } from "~/user/actions";
 const store = makeStore(reducers);
-store.dispatch(fetchTasks(window.__options.userId)); // eh
+store.dispatch(fetchTasks(pageOptions.userId)); // eh
 
 @Radium
 export default class User extends React.Component {

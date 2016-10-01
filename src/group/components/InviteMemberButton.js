@@ -7,6 +7,7 @@ import ajax from "~/util/ajax";
 import { ModalButton } from "~/shared/components/modal";
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
+import { pageOptions } from "~/util";
 
 @Radium
 export default class LeaveGroupButton extends React.Component {
@@ -14,10 +15,6 @@ export default class LeaveGroupButton extends React.Component {
     static propTypes = {
         groupUsers: React.PropTypes.array,
         onAdded: React.PropTypes.func,
-    }
-
-    static contextTypes = {
-        options: React.PropTypes.object,
     }
 
     state = {
@@ -33,7 +30,7 @@ export default class LeaveGroupButton extends React.Component {
 
     addUsers = async () => {
         const users = this.state.allUsers.filter(u => this.state.users.indexOf(u._id) != -1);
-        await ajax.request("POST", "/groups/normal/id/" + this.context.options.groupId + "/users", {
+        await ajax.request("POST", "/groups/normal/id/" + pageOptions.groupId + "/users", {
             users: this.state.users,
         });
         this.setState({ isModalOpen: false, });

@@ -111,11 +111,13 @@ gulp.task("vendor", function() {
     for (let lib of libs) {
         bundler.require(lib);
     }
-    bundler
+    let thing = bundler
         .bundle()
-        .pipe(source("vendor.js"))
-        .pipe(streamify(uglify()))
-        .pipe(gulp.dest("./build/"));
+        .pipe(source("vendor.js"));
+    if (process.env.NODE_ENV === "production") {
+        thing = thing.pipe(streamify(uglify()));
+    }
+    return thing.pipe(gulp.dest("./build/"));
 });
 
 function capitalize(str) {

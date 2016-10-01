@@ -14,7 +14,6 @@ const styles = {
     },
 }
 
-
 export default class Root extends React.Component {
 
     static propTypes = {
@@ -24,22 +23,12 @@ export default class Root extends React.Component {
     }
 
     static childContextTypes = {
-        user: React.PropTypes.object,
         pageName: React.PropTypes.string,
-        options: React.PropTypes.object,
     }
 
     getChildContext() {
-        let user = window.__userInfo;
-        if (user && typeof user === "object") {
-            user.isAdmin = () => (
-                user.position === "leader" || user.position === "mentor"
-            )
-        }
         return {
-            user: user,
             pageName: this.props.pageName,
-            options: window.__options,
         }
     }
 

@@ -8,15 +8,11 @@ import ComposeModal from "./ComposeModal";
 import ChatItem from "./ChatItem";
 import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
-import { fullName, otherUser, makeChangeHandlerFactory } from "~/util";
+import { fullName, otherUser, makeChangeHandlerFactory, currentUser } from "~/util";
 import styles from "~/chat/styles/leftbar";
 
 @Radium
 class Leftbar extends React.Component {
-
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
 
     state = {
         isComposeModalOpen: false,
@@ -27,7 +23,7 @@ class Leftbar extends React.Component {
 
     chatTitle = (chat) => {
         if (chat.isTwoPeople) {
-            return fullName(otherUser(chat.audience.users, this.context.user._id))
+            return fullName(otherUser(chat.audience.users, currentUser._id))
         } else {
             return chat.name
         }

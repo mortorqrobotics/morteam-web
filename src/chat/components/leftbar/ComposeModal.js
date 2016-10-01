@@ -4,7 +4,7 @@ import Radium from "radium";
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
-import { makeChangeHandlerFactory, otherUser } from "~/util";
+import { makeChangeHandlerFactory, otherUser, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addChat } from "~/chat/actions";
@@ -14,10 +14,6 @@ class ComposeModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
-    }
-
-    static contextTypes = {
-        user: React.PropTypes.object,
     }
 
     state = {
@@ -37,7 +33,7 @@ class ComposeModal extends React.Component {
         if (isTwoPeople) {
             this.props.dispatch(addChat({
                 type: "private",
-                otherUser: otherUser(this.state.audience.users, this.context.user._id),
+                otherUser: otherUser(this.state.audience.users, currentUser._id),
             }));
             this.props.onRequestClose();
         } else if (this.state.isEditingName) {

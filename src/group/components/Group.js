@@ -9,6 +9,7 @@ import InviteMemberButton from "./InviteMemberButton";
 import JoinButton from "./JoinButton";
 import styles from "~/group/styles/index";
 import Navbar from "~/shared/components/navbar/Navbar";
+import { currentUser, pageOptions } from "~/util";
 
 @Radium
 export default class Group extends React.Component {
@@ -26,8 +27,8 @@ export default class Group extends React.Component {
     componentDidMount = async () => {
         try {
             let [ { data: users, }, { data: group, } ] = await Promise.all([
-                ajax.request("get", "/groups/normal/id/" + window.__options.groupId + "/users"),
-                ajax.request("get", "/groups/id/" + window.__options.groupId),
+                ajax.request("get", "/groups/normal/id/" + pageOptions.groupId + "/users"),
+                ajax.request("get", "/groups/id/" + pageOptions.groupId),
             ]);
             this.setState({
                 users: users,
@@ -43,8 +44,7 @@ export default class Group extends React.Component {
         if (!this.state.group) {
             return false;
         }
-        // console.log(this.context.user.groups, this.state.group._id)
-        return window.__userInfo.groups.indexOf(this.state.group._id) !== -1;
+        return currentUser.groups.indexOf(this.state.group._id) !== -1;
     }
     
     handleDeleted = async (userId) => {
@@ -66,7 +66,7 @@ export default class Group extends React.Component {
                         <LeaveGroupButton />
                     </div>
                 
-                    {window.__userInfo.isAdmin() && (
+                    {currentUser.isAdmin() && (
                         <div style={styles.memberWrapper}>
                             <InviteMemberButton
                                 groupUsers={this.state.users}

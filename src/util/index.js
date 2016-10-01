@@ -68,3 +68,11 @@ export function flatMap(arr, func) {
 export function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
+
+export const currentUser = window.__userInfo;
+if (currentUser && typeof currentUser === "object") {
+    currentUser.isAdmin = () => (
+       currentUser.position === "leader" || currentUser.position === "mentor"
+    )
+}
+export const pageOptions = window.__options;

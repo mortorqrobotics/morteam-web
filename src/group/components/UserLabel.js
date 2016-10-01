@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-import { fullName } from "~/util";
+import { fullName, currentUser } from "~/util";
 import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 import { connect } from "react-redux";
@@ -19,16 +19,12 @@ export default class UserLabel extends React.Component {
         onDeleted: React.PropTypes.func,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     handleUserClick = () => {
         window.location.assign("/profiles/id/" + this.props.user._id);
     }
 
     renderDeleteButton = () => {
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <RadiumGlyphicon
                     glyph="trash"

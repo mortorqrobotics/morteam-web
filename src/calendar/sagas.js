@@ -3,6 +3,7 @@ import { takeEvery } from "redux-saga";
 import ajax from "~/util/ajax";
 import { makeWatchers } from "~/util/redux";
 import { prevAbsMonth, nextAbsMonth, currentAbsMonth } from "~/util/date";
+import { currentUser } from "~/util";
 
 function* addEvent(event) {
     const { data } = yield call(ajax.request, "POST", "/events", event);
@@ -49,7 +50,7 @@ function* startAttendance(eventId) {
 
 function* loadPendingTasks() {
     const { data } = yield call(ajax.request, "GET",
-        "/users/id/" + window.__userInfo._id + "/tasks/pending"
+        "/users/id/" + currentUser._id + "/tasks/pending"
     );
     yield put({
         type: "LOAD_PENDING_TASKS_SUCCESS",

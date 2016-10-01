@@ -22,7 +22,7 @@ class Editor extends React.Component {
 
         this.state = {
             audience: {
-                users: [], // this.context.user._id
+                users: [],
                 groups: [],
             },
             isModalOpen: false,

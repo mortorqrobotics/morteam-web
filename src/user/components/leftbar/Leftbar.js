@@ -10,7 +10,7 @@ import AssignTask from "./AssignTask";
 import Position from "./Position";
 import ChangePosition from "./ChangePosition";
 import { withCss } from "~/util/component";
-import { fullName } from "~/util";
+import { fullName, currentUser, pageOptions } from "~/util";
 import { modalProps } from "~/util/modal";
 
 const Item = withCss("div", styles.item);
@@ -34,15 +34,10 @@ export default class Leftbar extends React.Component {
         isAssignTaskOpen: false,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-        options: React.PropTypes.object,
-    }
-
     componentDidMount = async() => {
 //        try {
             const { data } = await ajax.request("GET",
-                "/users/id/" + this.context.options.userId
+                "/users/id/" + pageOptions.userId
             );
             this.setState({
                 loaded: true,
@@ -55,7 +50,7 @@ export default class Leftbar extends React.Component {
     }
 
     renderConditionalButtons = () => {
-        if (this.context.user._id == this.state.user._id) {
+        if (currentUser._id == this.state.user._id) {
             return (
                 <div>
                     <ButtonItem
@@ -69,7 +64,7 @@ export default class Leftbar extends React.Component {
                 </div>
             )
         }
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <div>
                     <Item>
@@ -84,7 +79,7 @@ export default class Leftbar extends React.Component {
     }
 
     renderPositionView = () => {
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <ChangePosition
                     initialPosition={this.state.user.position}
@@ -126,7 +121,7 @@ export default class Leftbar extends React.Component {
                     text="View MorScout Profile"
                     onClick={() => window.location.assign(
                         "http://www.scout.morteam.com/profile.html?id="
-                        + this.context.options.userId
+                        + pageOptions.userId
                     )}
                 />
                 {this.renderConditionalButtons()}

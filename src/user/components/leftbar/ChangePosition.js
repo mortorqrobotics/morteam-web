@@ -4,7 +4,7 @@ import ajax from "~/util/ajax";
 
 import { Dropdown } from "~/shared/components/leftbar";
 import styles from "~/user/styles/leftbar";
-import { capitalize } from "~/util";
+import { capitalize, pageOptions } from "~/util";
 
 const positions = ["Member", "Leader", "Mentor", "Alumnus"];
 
@@ -13,10 +13,6 @@ export default class ChangePosition extends React.Component {
 
     static propTypes = {
         initialPosition: React.PropTypes.string,
-    }
-
-    static contextTypes = {
-       options: React.PropTypes.object,
     }
 
     constructor(props) {
@@ -37,7 +33,7 @@ export default class ChangePosition extends React.Component {
     handleOptionClick = async (position) => {
         try {
             console.log(await ajax.request("put",
-                `/users/id/${this.context.options.userId}/position`, {
+                `/users/id/${pageOptions.userId}/position`, {
                     newPosition: position.toLowerCase(),
                 }
             ));

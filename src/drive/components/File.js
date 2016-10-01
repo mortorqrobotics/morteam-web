@@ -4,6 +4,7 @@ import Radium from "radium";
 import styles from "~/drive/styles";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { getSize, getColor, getHoverColor, getPreviewSrc } from "~/util/file";
+import { currentUser } from "~/util";
 import Button from "~/shared/components/forms/Button";
 
 import { connect } from "react-redux";
@@ -16,10 +17,6 @@ class File extends React.Component {
 
     static propTypes = {
         file: React.PropTypes.object,
-    }
-
-    static contextTypes = {
-        user: React.PropTypes.object,
     }
 
     state = {
@@ -59,8 +56,8 @@ class File extends React.Component {
     }
 
     renderDeleteButton = () => {
-        if (this.context.user._id === this.props.file.creator
-            || this.context.user.isAdmin()) {
+        if (currentUser._id === this.props.file.creator
+            || currentUser.isAdmin()) {
             return (
                 <RadiumGlyphicon
                     glyph="trash"

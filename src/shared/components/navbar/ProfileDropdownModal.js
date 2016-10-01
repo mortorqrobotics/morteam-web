@@ -4,6 +4,7 @@ import Radium from "radium";
 import ajax from "~/util/ajax";
 import DimModal from "~/shared/components/DimModal";
 import styles from "~/shared/styles/navbar";
+import { currentUser } from "~/util";
 
 @Radium
 export default class ProfileDropdownModal extends React.Component {
@@ -14,12 +15,8 @@ export default class ProfileDropdownModal extends React.Component {
         onRequestClose: React.PropTypes.func,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     viewProfile = () => {
-        window.location.assign("/profiles/id/" + this.context.user._id);
+        window.location.assign("/profiles/id/" + currentUser._id);
     }
 
     logout = async() => {

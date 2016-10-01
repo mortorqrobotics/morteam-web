@@ -6,6 +6,7 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
 import styles from "~/team/styles";
 import ajax from "~/util/ajax";
+import { currentUser } from "~/util";
 
 import { makeStoreSaga } from "~/util/redux";
 import reducers from "~/team/reducers";
@@ -16,7 +17,7 @@ const store = makeStoreSaga(reducers, sagas);
 export default class Team extends React.Component {
     
     render() {
-        const team = window.__userInfo.team;
+        const team = currentUser.team;
         return (
             <Root pageName="team" store={store}>
                 <Navbar />

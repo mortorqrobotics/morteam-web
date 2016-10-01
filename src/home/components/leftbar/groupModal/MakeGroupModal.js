@@ -8,7 +8,7 @@ import GroupTypeOption from "./GroupTypeOption";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import ajax, { cancellableRequestFactory } from "~/util/ajax";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, currentUser } from "~/util";
 import { getGroupName } from "~/util/groups";
 
 @Radium
@@ -19,19 +19,15 @@ export default class MakeGroupModal extends React.Component {
         addGroup: React.PropTypes.func
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 
         this.initialState = {
             groupName: "",
-            users: [this.context.user._id],
-        }
+            users: [currentUser._id],
+        };
         this.state = this.initialState;
     }
 

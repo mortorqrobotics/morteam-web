@@ -7,6 +7,7 @@ import MakeGroupModal from "./groupModal/MakeGroupModal";
 import Link from "~/shared/components/Link";
 import ajax from "~/util/ajax";
 import { modalProps } from "~/util/modal";
+import { currentUser } from "~/util";
 
 import styles from "~/home/styles/leftbar";
 
@@ -17,10 +18,6 @@ export default class Leftbar extends React.Component {
         userGroups: [],
         publicGroups: [],
         isModalOpen: false,
-    }
-
-    static contextTypes = {
-        user: React.PropTypes.object,
     }
 
     componentDidMount = async() => {
@@ -39,7 +36,7 @@ export default class Leftbar extends React.Component {
     }
 
     renderMakeGroupButton = () => {
-        if (this.context.user.isAdmin()) {
+        if (currentUser.isAdmin()) {
             return (
                 <div>
 
@@ -73,7 +70,7 @@ export default class Leftbar extends React.Component {
 
                 <LeftbarButton
                     text="View Profile"
-                    onClick={() => window.location.assign("/profiles/id/" + this.context.user._id)}
+                    onClick={() => window.location.assign("/profiles/id/" + currentUser._id)}
                 />
                 <LeftbarButton
                     text="Log Out"

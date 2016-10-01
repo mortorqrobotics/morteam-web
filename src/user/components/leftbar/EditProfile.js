@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { makeChangeHandlerFactory, REDIR_TIME } from "~/util";
+import { makeChangeHandlerFactory, REDIR_TIME, currentUser } from "~/util";
 import styles from "~/user/styles/modal";
 import Form from "~/shared/components/forms/Form";
 import FileUpload from "~/shared/components/forms/FileUpload";
@@ -22,21 +22,17 @@ export default class EditProfile extends React.Component {
         ...modalPropTypes,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.getChangeHandler = makeChangeHandlerFactory(this);
 
         this.state = {
-            firstname: this.context.user.firstname,
-            lastname: this.context.user.lastname,
-            email: this.context.user.email,
-            phone: this.context.user.phone,
-            parentEmail: this.context.user.parentEmail || "",
+            firstname: currentUser.firstname,
+            lastname: currentUser.lastname,
+            email: currentUser.email,
+            phone: currentUser.phone,
+            parentEmail: currentUser.parentEmail || "",
             file: null,
             errorMsg: "",
         }
@@ -103,7 +99,7 @@ export default class EditProfile extends React.Component {
                         becomes a mentor later, then wants to remove
                         the parent email?
                     */}
-                    {this.context.user.position != "mentor" && (
+                    {currentUser.position != "mentor" && (
                         <ModalTextBox
                             placeholder="Parent Email"
                             value={this.state.parentEmail}

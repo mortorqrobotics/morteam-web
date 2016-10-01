@@ -5,7 +5,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
 import styles from "~/home/styles/announcements";
-import { fullName } from "~/util";
+import { fullName, currentUser } from "~/util";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { deleteAnnouncement } from "~/home/actions";
@@ -20,10 +20,6 @@ class AnnouncementsListItem extends React.Component {
         announcement: React.PropTypes.object,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     handleDelete = () => {
         if (window.confirm("Are you sure?")) {
             this.props.dispatch(deleteAnnouncement(this.props.announcement._id));
@@ -31,8 +27,8 @@ class AnnouncementsListItem extends React.Component {
     }
 
     renderDeleteButton = () => {
-        if (this.context.user.isAdmin()
-            || this.context.user._id == this.props.announcement.author._id) {
+        if (currentUser.isAdmin()
+            || currentUser._id == this.props.announcement.author._id) {
             return (
                 <RadiumGlyphicon
                     glyph="remove"

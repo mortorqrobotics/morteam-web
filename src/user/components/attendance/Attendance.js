@@ -4,7 +4,7 @@ import Radium from "radium";
 import Dropdown from "~/shared/components/forms/Dropdown";
 import Button from "~/shared/components/forms/Button";
 import styles from "~/user/styles/middle";
-import { range } from "~/util";
+import { range, pageOptions } from "~/util";
 import ajax from "~/util/ajax";
 import { allMonths, daysInAbsMonth } from "~/util/date";
 
@@ -12,10 +12,6 @@ const now = new Date();
 
 @Radium
 export default class Attendance extends React.Component {
-
-    static contextTypes = {
-        options: React.PropTypes.object,
-    }
 
     constructor(props) {
         super(props);
@@ -33,7 +29,7 @@ export default class Attendance extends React.Component {
     }
 
     componentDidMount = async () => {
-        const { data } = await ajax.request("GET", `/users/id/${this.context.options.userId}`);
+        const { data } = await ajax.request("GET", `/users/id/${pageOptions.userId}`);
         const date = new Date(data.created_at);
         this.setState({
             fromMonth: date.getMonth(),
@@ -45,7 +41,7 @@ export default class Attendance extends React.Component {
 
     updateAttendance = async (isFirst) => {
         const { data: { absences, present } } = await ajax.request("GET",
-            `/users/id/${this.context.options.userId}/absences`, isFirst || ({
+            `/users/id/${pageOptions.userId}/absences`, isFirst || ({
                 startDate: new Date(
                     this.state.fromYear,
                     this.state.fromMonth,

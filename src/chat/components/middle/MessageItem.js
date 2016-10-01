@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import { chatItem as styles } from "~/chat/styles/middle";
-import { fullName } from "~/util";
+import { fullName, currentUser } from "~/util";
 
 @Radium
 export default class MessageItem extends React.Component {
@@ -11,13 +11,9 @@ export default class MessageItem extends React.Component {
         message: React.PropTypes.object,
     }
 
-    static contextTypes = {
-        user: React.PropTypes.object,
-    }
-
     render() {
         const message = this.props.message;
-        if (message.author._id == this.context.user._id) {
+        if (message.author._id == currentUser._id) {
             return (
                 <div style={styles.bubbleWrapper}>
                     <div style={

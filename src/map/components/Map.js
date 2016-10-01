@@ -5,13 +5,14 @@ import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/map/components/Leftbar";
+import { currentUser } from "~/util";
 
 import { makeStore } from "~/util/redux";
 import { setTeam } from "~/map/actions";
 import reducers from "~/map/reducers";
 const store = makeStore(reducers);
 
-const currentTeam = teamLocations[window.__userInfo.team.number];
+const currentTeam = teamLocations[currentUser.team.number];
 const mapOptions = {
     zoom: currentTeam ? 15 : 4,
     center: currentTeam ? {lat: currentTeam.longitude, lng: currentTeam.latitude}
