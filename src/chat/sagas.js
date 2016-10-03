@@ -2,7 +2,7 @@ import { fork, take, call, put, select } from "redux-saga/effects";
 import { takeEvery } from "redux-saga";
 import ajax from "~/util/ajax";
 import { makeWatchers } from "~/util/redux";
-import { emit } from "./sio";
+import { emit } from "~/shared/sio";
 
 function* loadChats() {
     const { data } = yield call(ajax.request, "GET", "/chats");

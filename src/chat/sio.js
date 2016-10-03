@@ -1,13 +1,6 @@
-import io from "socket.io-client";
 import { receiveMessage, messageSent } from "./actions";
 
-const socket = io.connect();
-
-export function emit(name, data) {
-    socket.emit(name, data);
-}
-
-export function initSIO(dispatch) {
+export function initListeners(socket, dispatch) {
 
     socket.on("message", ({ chatId, message }) => {
         dispatch(receiveMessage({
