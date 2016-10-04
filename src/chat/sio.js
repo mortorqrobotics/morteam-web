@@ -9,9 +9,10 @@ export function initListeners(socket, dispatch) {
         }))
     })
 
-    socket.on("message-sent", ({ chatId }) => {
+    socket.on("message-sent", ({ chatId, content }) => {
         dispatch(messageSent({
             chatId,
+            content,
         }))
     })
 

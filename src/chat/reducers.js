@@ -52,6 +52,9 @@ function chats(state = initialChats, action) {
                             isLoading: {
                                 $set: false,
                             },
+                            content: {
+                                $set: action.content,
+                            },
                         },
                     },
                 },

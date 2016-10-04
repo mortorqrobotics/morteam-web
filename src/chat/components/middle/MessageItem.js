@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import { chatItem as styles } from "~/chat/styles/middle";
 import { fullName, currentUser } from "~/util";
+import { allowOnlyLinks } from "~/util/component";
 
 @Radium
 export default class MessageItem extends React.Component {
@@ -19,7 +20,7 @@ export default class MessageItem extends React.Component {
                     <div style={
                         message.isLoading ? styles.selfBubbleLoading : styles.selfBubble
                     }>
-                        {message.content}
+                        <span dangerouslySetInnerHTML={{ __html: allowOnlyLinks(message.content) }} />
                         <div style={styles.selfTriangle} />
                     </div>
                 </div>
@@ -39,7 +40,7 @@ export default class MessageItem extends React.Component {
                         >
                             {fullName(message.author)}:
                         </p>
-                        {message.content}
+                        <span dangerouslySetInnerHTML={{ __html: allowOnlyLinks(message.content) }} />
                         <div style={styles.otherTriangle} />
                     </div>
                 </div>

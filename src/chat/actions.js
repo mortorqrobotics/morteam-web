@@ -14,9 +14,10 @@ export const sendMessage = (content) => ({
     payload: content,
 })
 
-export const messageSent = ({ chatId }) => ({
+export const messageSent = ({ chatId, content }) => ({
     type: "SEND_MESSAGE_SUCCESS",
     chatId,
+    content,
 })
 
 export const setChatName = ({ chatId, name }) => ({
