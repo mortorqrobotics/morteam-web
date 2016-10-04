@@ -28,19 +28,20 @@ class ComposeModal extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     handleSubmit = () => {
-        const isTwoPeople = this.state.audience.groups.length === 0
-            && this.state.audience.users.length === 2;
-        if (isTwoPeople) {
+        this.state.audience.users = this.state.audience.users.filter(userId => userId != currentUser._id);
+        if (this.state.audience.groups.length === 0
+            && this.state.audience.users.length === 1
+        ) {
             this.props.dispatch(addChat({
-                type: "private",
-                otherUser: otherUser(this.state.audience.users, currentUser._id),
+                isTwoPeople: true,
+                otherUser: this.state.audience.users[0],
             }));
             this.props.onRequestClose();
         } else if (this.state.isEditingName) {
             this.props.dispatch(addChat({
-                type: "public",
-                name: this.state.name,
+                isTwoPeople: false,
                 audience: this.state.audience,
+                name: this.state.name,
             }));
             this.props.onRequestClose();
         } else {
