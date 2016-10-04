@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Form from "~/shared/components/forms/Form";
 import TextArea from "~/shared/components/forms/TextArea";
 import SubmitButton from "~/shared/components/forms/SubmitButton";
-import { makeChangeHandlerFactory } from "~/util";
 import styles from "~/chat/styles/middle";
 import { sendMessage, startTyping, stopTyping } from "~/chat/actions";
 
@@ -15,8 +14,6 @@ class MessageInput extends React.Component {
     state = {
         content: "",
     }
-
-    getChangeHandler = makeChangeHandlerFactory(this)
 
     handleSend = () => {
         if (this.state.content.length === 0) {
@@ -33,11 +30,15 @@ class MessageInput extends React.Component {
             event.preventDefault();
             this.handleSend();
         }
-        if (this.state.content.length === 0) {
+    }
+
+    handleChange = (event) => {
+        this.setState({ content: event.target.value });
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
             this.props.dispatch(stopTyping());
-        } else {
-            this.props.dispatch(startTyping());
-        }
+        }, 2000);
+        this.props.dispatch(startTyping());
     }
 
     render() {
@@ -50,7 +51,7 @@ class MessageInput extends React.Component {
                         style={styles.inputTextArea}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
-                        onChange={this.getChangeHandler("content")}
+                        onChange={this.handleChange}
                     />
                     <SubmitButton
                         style={styles.sendButton}
