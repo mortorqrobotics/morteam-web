@@ -77,6 +77,16 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
+        case "SET_IS_TYPING":
+            console.log("A")
+            index = state.findIndex(chat => chat._id == action.chatId);
+            return update(state, {
+                [index]: {
+                    isTyping: {
+                        $set: action.isTyping,
+                    },
+                },
+            })
         default:
             return state
     }

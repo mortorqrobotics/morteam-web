@@ -68,6 +68,16 @@ function* loadMessages() {
     }
 }
 
+function* startTyping() {
+    const currentChatId = yield select(state => state.currentChatId);
+    yield call(emit, "start typing", { chatId: currentChatId });
+}
+
+function* stopTyping() {
+    const currentChatId = yield select(state => state.currentChatId);
+    yield emit("stop typing", { chatId: currentChatId });
+}
+
 function* start() {
     yield* loadChats();
 }
@@ -80,6 +90,8 @@ export default function*() {
             "SEND_MESSAGE": sendMessage,
             "SET_CHAT_NAME": setChatName,
             "LOAD_MESSAGES": loadMessages,
+            "START_TYPING": startTyping,
+            "STOP_TYPING": stopTyping,
         })),
     ]
 }

@@ -36,3 +36,17 @@ export const setCurrentChatId = (chatId) => ({
 export const loadMessages = () => ({
     type: "LOAD_MESSAGES",
 })
+
+export const setIsTyping = ({ chatId, isTyping }) => ({
+    type: "SET_IS_TYPING",
+    chatId,
+    isTyping,
+})
+
+export const startTyping = () => ({
+    type: "START_TYPING",
+})
+
+export const stopTyping = () => ({
+    type: "STOP_TYPING",
+})

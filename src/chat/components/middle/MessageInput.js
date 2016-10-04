@@ -7,7 +7,7 @@ import TextArea from "~/shared/components/forms/TextArea";
 import SubmitButton from "~/shared/components/forms/SubmitButton";
 import { makeChangeHandlerFactory } from "~/util";
 import styles from "~/chat/styles/middle";
-import { sendMessage } from "~/chat/actions";
+import { sendMessage, startTyping, stopTyping } from "~/chat/actions";
 
 @Radium
 class MessageInput extends React.Component {
@@ -32,6 +32,11 @@ class MessageInput extends React.Component {
         if (!event.shiftKey && event.which == 13) { // enter key
             event.preventDefault();
             this.handleSend();
+        }
+        if (this.state.content.length === 0) {
+            this.props.dispatch(stopTyping());
+        } else {
+            this.props.dispatch(startTyping());
         }
     }
 

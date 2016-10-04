@@ -1,4 +1,4 @@
-import { receiveMessage, messageSent } from "./actions";
+import { receiveMessage, messageSent, setIsTyping } from "./actions";
 
 export function initListeners(socket, dispatch) {
 
@@ -13,6 +13,20 @@ export function initListeners(socket, dispatch) {
         dispatch(messageSent({
             chatId,
             content,
+        }))
+    })
+
+    socket.on("start typing", ({ chatId }) => {
+        dispatch(setIsTyping({
+            chatId,
+            isTyping: true,
+        }))
+    })
+
+    socket.on("stop typing", ({ chatId }) => {
+        dispatch(setIsTyping({
+            chatId,
+            isTyping: false,
         }))
     })
 

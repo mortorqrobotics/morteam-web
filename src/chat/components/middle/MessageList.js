@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import styles from "~/chat/styles/middle";
 import MessageItem from "./MessageItem";
+import TypingIndicator from "./TypingIndicator.js";
 import { loadMessages } from "~/chat/actions";
 import { connect } from "react-redux";
 
@@ -67,8 +68,12 @@ class MessageList extends React.Component {
                 {this.props.chat.messages.map(message => (
                     <MessageItem
                         message={message}
+                        key={message._id}
                     />
                 ))}
+                {this.props.chat.isTyping && (
+                    <TypingIndicator key="typing-thing" />
+                )}
             </div>
         )
     }
