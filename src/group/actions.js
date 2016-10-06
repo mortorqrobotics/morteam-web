@@ -1,10 +1,11 @@
-import ajax from "~/util/ajax"
+import ajax from "~/util/ajax";
+import { currentUser, pageOptions } from "~/util";
 
 export function joinGroup() {
 
     return dispatch => {
         return ajax.request("POST", 
-            `/groups/normal/id/${window.__userInfo._id}/join`
+            `/groups/normal/id/${currentUser._id}/join`
         ). then(({ data }) => {
             dispatch({
                 type: "JOIN_GROUP",
@@ -19,7 +20,7 @@ export function leaveGroup() {
 
     return dispatch => {
         return ajax.request("DELETE", 
-            `/groups/normal/id/${window.__options.groupId}/users/id/${window.__userInfo._id}`
+            `/groups/normal/id/${pageOptions.groupId}/users/id/${currentUser._id}`
         ).then(({ data }) => {
             dispatch({
                 type: "LEAVE_GROUP",
@@ -49,20 +50,31 @@ export function addUsers(users) {
 
 export function deleteUser(userId) {
 
-    return {
-    
-        type: "DELETE_USER",
-        userId,
+    return dispatch => {
+        return ajax.request("DELETE",
+            `/groups/normal/id/${pageOptions.groupId}/users/id/${userId}`
+        ).then(({ data }) => {
+            dispatch({
+                type: "DELETE_USER",
+                userId: data,
+            });
+        });
     }
+
 }
 
 
 export function loadUsers(users) {
 
-    return {
-
-        type: "LOAD_USERS",
-        users,
+    return dispatch => {
+        return ajax.request("GET",
+            `/groups/normal/id/${pageOptions.groupId}/users`
+        ).then(({ data }) => {
+            dispatch({
+                type: "LOAD_USERS",
+                users: data,
+            });
+        });
     }
 
 }
