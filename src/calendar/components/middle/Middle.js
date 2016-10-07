@@ -31,8 +31,8 @@ class Middle extends React.Component {
             || this.lastAbsMonth.month !== this.props.absMonth.month
             || this.lastAbsMonth.year !== this.props.absMonth.year
         ) {
-            this.lastAbsMonth = this.props.lastMonth;
             this.scrollToElem(this.props.absMonth);
+            this.lastAbsMonth = this.props.absMonth;
         }
         container.scroll(this.handleScroll);
 
@@ -75,12 +75,14 @@ class Middle extends React.Component {
         }
         this.isScrolling = true;
 
+        const day = this.lastAbsMonth ? 1 : new Date().getDate(7);
+
         // http://stackoverflow.com/a/28748160/1838811
         window.requestAnimationFrame(() => {
             const container = $(this.refs.container);
 
             // scroll to the first day of a month
-            const elem = $(`#day-div-${year}-${month}-1`);
+            const elem = $(`#day-div-${year}-${month}-${day}`);
 
             // make sure there always appears to be some scrolling
             container.scrollTop(container.scrollTop() - 50);

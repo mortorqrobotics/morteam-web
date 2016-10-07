@@ -9,6 +9,8 @@ import { modalProps } from "~/util/modal";
 import { currentUser } from "~/util";
 import AddModal from "./AddModal";
 
+const now = new Date();
+
 @Radium
 export default class Day extends React.Component {
 
@@ -21,6 +23,17 @@ export default class Day extends React.Component {
 
     state = {
         isAddModalOpen: false,
+    }
+
+    getDayStyle = () => {
+        if (this.props.day === now.getDate()
+            && this.props.month === now.getMonth()
+            && this.props.year === now.getFullYear()
+        ) {
+            return styles.currentDayContent;
+        } else {
+            return styles.dayContent;
+        }
     }
 
     renderAddButton = () => {
@@ -46,7 +59,7 @@ export default class Day extends React.Component {
                     {this.props.day}
                 </div>
                 {this.renderAddButton()}
-                <div style={styles.dayContent}>
+                <div style={this.getDayStyle()}>
                     <h4 style={styles.dayName}>
                         {dayName({
                             year: this.props.year,

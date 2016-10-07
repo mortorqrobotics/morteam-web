@@ -16,6 +16,19 @@ const topButton = {
     borderRadius: "0.1px",
 }
 
+const dayContent = {
+    paddingTop: "7px",
+    paddingLeft: "7px",
+    paddingRight: "7px",
+    paddingBottom: "10px",
+    borderTop: "1px solid orange",
+    fontSize: "16px",
+    marginBottom: "15px",
+    boxShadow: "0 0 8px -4px black",
+    borderRadius: "0.1px",
+    backgroundColor: "#f5f5f5",
+}
+
 export default {
     container: {
         overflowY: "scroll",
@@ -29,17 +42,10 @@ export default {
         marginBottom: "10px",
     },
     dayNum: topButton,
-    dayContent: {
-        paddingTop: "7px",
-        paddingLeft: "7px",
-        paddingRight: "7px",
-        paddingBottom: "10px",
-        borderTop: "1px solid orange",
-        fontSize: "16px",
-        marginBottom: "15px",
-        boxShadow: "0 0 8px -4px black",
-        borderRadius: "0.1px",
-        backgroundColor: "#f5f5f5",
+    dayContent,
+    currentDayContent: {
+        ...dayContent,
+        backgroundColor: "#ffcc80",
     },
     eventList: {
         marginLeft: "-30px",
