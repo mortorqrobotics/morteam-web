@@ -8,9 +8,11 @@ import { ModalButton } from "~/shared/components/modal";
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { pageOptions } from "~/util";
+import { connect } from "react-redux";
+import { addUsers } from "~/group/actions";
 
 @Radium
-export default class LeaveGroupButton extends React.Component {
+class InviteMemberButton extends React.Component {
 
     static propTypes = {
         groupUsers: React.PropTypes.array,
@@ -28,21 +30,16 @@ export default class LeaveGroupButton extends React.Component {
         this.setState({ allUsers: data, });
     }
 
-    addUsers = async () => {
-        const users = this.state.allUsers.filter(u => this.state.users.indexOf(u._id) != -1);
-        await ajax.request("POST", "/groups/normal/id/" + pageOptions.groupId + "/users", {
-            users: this.state.users,
-        });
-        this.setState({ isModalOpen: false, });
-        this.props.onAdded(users);
+    addUsers = () => {
+        this.props.dispatch(addUsers(this.state.users));
     }
 
     render() {
         return (
             <div>
-                <Button 
-                    style={styles.inviteButton} 
-                    value="Add Members" 
+                <Button
+                    style={styles.inviteButton}
+                    value="Add Members"
                     onClick={() => this.setState({ isModalOpen: true, })}
                 />
                 <StandardModal
@@ -72,3 +69,5 @@ export default class LeaveGroupButton extends React.Component {
         )
     }
 }
+
+export default connect()(InviteMemberButton);

@@ -4,7 +4,7 @@ import { currentUser, pageOptions } from "~/util";
 export function joinGroup() {
 
     return dispatch => {
-        return ajax.request("POST", 
+        return ajax.request("POST",
             `/groups/normal/id/${currentUser._id}/join`
         ). then(({ data }) => {
             dispatch({
@@ -19,12 +19,12 @@ export function joinGroup() {
 export function leaveGroup() {
 
     return dispatch => {
-        return ajax.request("DELETE", 
+        return ajax.request("DELETE",
             `/groups/normal/id/${pageOptions.groupId}/users/id/${currentUser._id}`
         ).then(({ data }) => {
             dispatch({
                 type: "LEAVE_GROUP",
-            });   
+            });
         });
     }
 
