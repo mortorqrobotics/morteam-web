@@ -9,3 +9,4 @@ export function emit(name, data) {
 export function initSIO(initializer) {
     initializer(socket);
 }
+

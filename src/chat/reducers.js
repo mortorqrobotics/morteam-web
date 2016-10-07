@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import update from "react/lib/update";
 import { reverse, currentUser } from "~/util";
 
@@ -113,7 +112,7 @@ function currentChatId(state = initialCurrentChatId, action) {
     }
 }
 
-export default combineReducers({
+export default {
     chats,
     currentChatId,
-})
+}
