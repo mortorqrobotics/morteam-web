@@ -16,7 +16,7 @@ export default class Group extends React.Component {
 
     constructor(props) {
         super(props);
-    
+
         this.state = {
             users: [],
             group: null,
@@ -39,14 +39,14 @@ export default class Group extends React.Component {
             console.log(err);
         }
     }
-    
+
     isCurrentUserInGroup = () => {
         if (!this.state.group) {
             return false;
         }
         return currentUser.groups.indexOf(this.state.group._id) !== -1;
     }
-    
+
     handleDeleted = async (userId) => {
         await ajax.request("delete",
             `/groups/normal/id/${this.state.group._id}/users/id/${userId}`
@@ -57,34 +57,27 @@ export default class Group extends React.Component {
             )),
         });
     }
-    
+
     renderConditionalButtons = () => {
         if (this.isCurrentUserInGroup()) {
             return (
                 <div>
-                    <div style={styles.leaveButtonWrapper}>
-                        <LeaveGroupButton />
-                    </div>
-                
+                    <LeaveGroupButton />
                     {currentUser.isAdmin() && (
-                        <div style={styles.memberWrapper}>
-                            <InviteMemberButton
-                                groupUsers={this.state.users}
-                                onAdded={users => {
-                                    this.setState({
-                                        users: this.state.users.concat(users),
-                                    });
-                                }}
-                            />
-                        </div>
+                        <InviteMemberButton
+                            groupUsers={this.state.users}
+                            onAdded={users => {
+                                this.setState({
+                                    users: this.state.users.concat(users),
+                                });
+                            }}
+                        />
                     )}
                 </div>
             )
         } else {
             return (
-                <div style={styles.memberWrapper}>
-                    <JoinButton />
-                </div>
+                <JoinButton />
             )
         }
     }
@@ -98,7 +91,9 @@ export default class Group extends React.Component {
                         <h1 style={styles.groupName}>
                             {this.state.group.name}
                         </h1>
-                        {this.renderConditionalButtons()}
+                        <div style={styles.buttonContainer}>
+                            {this.renderConditionalButtons()}
+                        </div>
                         <UserList users={this.state.users} onDeleted={this.handleDeleted} />
                     </div>
                 )}

@@ -1,44 +1,30 @@
+const button = {
+    fontSize: "28px",
+    width: "300px",
+    color: "white",
+    border: "none",
+    marginBottom: "30px",
+}
+
 export default {
+    buttonContainer: {
+        textAlign: "center",
+    },
     groupName: {
       paddingTop: "50px",
       fontSize: "36px",
       textAlign: "center",
+      marginBottom: "80px",
     },
-    leaveButton: {
-      fontSize: "28px",
-      width: "300px",
-      marginTop: "70px",
+    leaveButton: [button, {
       backgroundColor: "#C71111",
-      color: "white",
-      border: "none",
-      marginBottom: "3em",
-    },
-    inviteButton: {
-      borderTop: "1px solid #999999",
-      width: "300px", //20em
-      textAlign: "center",
-      marginTop: "20px",
-      marginBottom: "30px",
+    }],
+    inviteButton: [button, {
       backgroundColor: "#009933",
-      color: "white",
-      fontSize: "28px",
-    },
-    joinGroupButton: {
-      width: "300px", //20em
-      textAlign: "center",
-      marginTop: "70px",
-      marginBottom: "30px",
+    }],
+    joinGroupButton: [button, {
       backgroundColor: "#FFC547",
-      color: "white",
-      fontSize: "28px",
-    },
-    // groupMember: {
-    //   borderTop: "1px solid #999999",
-    //   width: "200px", //20em
-    //   paddingLeft: "9em",
-    //   cursor: "pointer",
-    //   textAlign: "center",
-    // },
+    }],
     profPic: {
       width: "30px",
       height: "30px",
@@ -46,14 +32,5 @@ export default {
       objectFit: "cover",
       borderRadius: "5px",
       marginRight: "100px",
-    },
-    leaveButtonWrapper: {
-      textAlign: "center",
-    },
-    memberWrapper: {
-      textAlign: "center",
-    },
-    joinWrapper: {
-      textAlign: "center",
     },
 }
