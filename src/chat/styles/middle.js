@@ -138,4 +138,9 @@ export const chatItem = {
             borderBottom: "1px solid #777",
         },
     },
+    audienceTooltip: {
+        color: "#a9a9a9",
+        fontSize: "14px",
+        fontFamily: "'exo 2', sans-serif",
+    },
 }
