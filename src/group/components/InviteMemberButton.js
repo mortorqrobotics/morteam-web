@@ -14,11 +14,6 @@ import { addUsers } from "~/group/actions";
 @Radium
 class InviteMemberButton extends React.Component {
 
-    static propTypes = {
-        groupUsers: React.PropTypes.array,
-        onAdded: React.PropTypes.func,
-    }
-
     state = {
         isModalOpen: false,
         users: [],
@@ -51,7 +46,7 @@ class InviteMemberButton extends React.Component {
 
                     <AudienceSelect
                         userList={this.state.allUsers.filter(u => (
-                            !this.props.groupUsers.some(gu => (
+                            !this.props.users.some(gu => (
                                 gu._id == u._id
                             ))
                         ))}
@@ -70,4 +65,10 @@ class InviteMemberButton extends React.Component {
     }
 }
 
-export default connect()(InviteMemberButton);
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
+
+export default connect(mapStateToProps)(InviteMemberButton);

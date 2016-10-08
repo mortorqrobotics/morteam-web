@@ -5,18 +5,16 @@ import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName, currentUser } from "~/util";
 import styles from "~/team/styles";
-import ajax from "~/util/ajax";
 import { connect } from "react-redux";
 import { deleteUser } from "~/team/actions";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
-export default class UserLabel extends React.Component {
+class UserLabel extends React.Component {
 
     static propTypes = {
         user: React.PropTypes.object,
-        onDeleted: React.PropTypes.func,
     }
 
     handleUserClick = () => {
@@ -34,10 +32,10 @@ export default class UserLabel extends React.Component {
             )
         }
     }
-    
+
     handleDeleted = (event) => {
         event.stopPropagation();
-        this.props.onDeleted();
+        this.props.dispatch(deleteUser(this.props.user._id))
     }
 
     render() {
@@ -57,3 +55,5 @@ export default class UserLabel extends React.Component {
         )
     }
 }
+
+export default connect()(UserLabel)

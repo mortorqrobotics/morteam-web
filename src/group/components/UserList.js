@@ -9,11 +9,6 @@ import { connect } from "react-redux";
 @Radium
 class UserList extends React.Component {
 
-    static propTypes = {
-        users: React.PropTypes.array,
-        onDeleted: React.PropTypes.func,
-    }
-
     render() {
         return (
             <Grid fluid={true}>
@@ -22,7 +17,6 @@ class UserList extends React.Component {
                         <UserLabel
                             user={user}
                             key={user._id}
-                            onDeleted={() => this.props.onDeleted(user._id)}
                         />
                     ))}
                 </div>
@@ -32,7 +26,9 @@ class UserList extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users }
+    return {
+        users: state.users
+    }
 }
 
 export default connect(mapStateToProps)(UserList);

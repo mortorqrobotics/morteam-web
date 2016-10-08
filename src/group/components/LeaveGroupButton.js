@@ -1,7 +1,6 @@
 import React from "react";
 import Radium from "radium";
 
-import ajax from "~/util/ajax";
 import styles from "~/group/styles/index";
 import Button from "~/shared/components/forms/Button";
 import { currentUser, pageOptions } from "~/util";
