@@ -22,7 +22,7 @@ export default class SearchDropItem extends React.Component {
             <li onClick={this.onClick} style={styles.searchDropItem.li}>
         	    <img 
         	        style={styles.searchDropItem.img}
-        	        src={this.props.profpicpath}
+        	        src={this.props.profpicpath + "-60"}
         	    />
         	    <span style={styles.searchDropItem.span}>{this.props.name}</span>
         	</li>
