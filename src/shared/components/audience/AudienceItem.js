@@ -33,7 +33,7 @@ export default class AudienceItem extends React.Component {
     static propTypes = {
         onClick: React.PropTypes.func,
         isSelected: React.PropTypes.bool,
-        id: React.PropTypes.string,
+        item: React.PropTypes.object,
         text: React.PropTypes.string,
         isGroup: React.PropTypes.bool,
     }
@@ -57,7 +57,7 @@ export default class AudienceItem extends React.Component {
         return (
             <p
                 style={[styles.button, this.getStyle()]}
-                onClick={() => this.props.onClick(this.props.id)}
+                onClick={() => this.props.onClick(this.props.item)}
             >
                 {this.props.text}
             </p>

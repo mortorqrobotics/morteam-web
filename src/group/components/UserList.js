@@ -7,12 +7,7 @@ import styles from "~/team/styles";
 import { connect } from "react-redux";
 
 @Radium
-export default class UserList extends React.Component {
-    
-    static propTypes = {
-        users: React.PropTypes.array,
-        onDeleted: React.PropTypes.func,
-    }
+class UserList extends React.Component {
 
     render() {
         return (
@@ -22,7 +17,6 @@ export default class UserList extends React.Component {
                         <UserLabel
                             user={user}
                             key={user._id}
-                            onDeleted={() => this.props.onDeleted(user._id)}
                         />
                     ))}
                 </div>
@@ -30,3 +24,11 @@ export default class UserList extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    }
+}
+
+export default connect(mapStateToProps)(UserList);
