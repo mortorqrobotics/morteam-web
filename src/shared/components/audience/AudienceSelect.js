@@ -72,24 +72,24 @@ export default class AudienceSelect extends React.Component {
         }
     }
 
-    isGroupSelected = (groupId) => {
-        return this.props.selected.groups.indexOf(groupId) !== -1;
+    isGroupSelected = (group) => {
+        return this.props.selected.groups.indexOf(group) !== -1;
     }
 
-    isUserSelected = (userId) => {
-        return this.props.selected.users.indexOf(userId) !== -1;
+    isUserSelected = (user) => {
+        return this.props.selected.users.indexOf(user) !== -1;
     }
 
-    onUserClick = (userId) => {
+    onUserClick = (user) => {
         let newUsers;
-        if (this.isUserSelected(userId)) {
+        if (this.isUserSelected(user)) {
             newUsers = update(this.props.selected.users, {
                 $splice: [
-                    [this.props.selected.users.indexOf(userId), 1]
+                    [this.props.selected.users.indexOf(user), 1]
                 ]
             });
         } else {
-            newUsers = this.props.selected.users.concat([userId]);
+            newUsers = this.props.selected.users.concat([user]);
         }
         this.props.onChange({
             groups: this.props.selected.groups,
@@ -98,16 +98,16 @@ export default class AudienceSelect extends React.Component {
     }
 
     // because screw DRY
-    onGroupClick = (groupId) => {
+    onGroupClick = (group) => {
         let newGroups;
-        if (this.isGroupSelected(groupId)) {
+        if (this.isGroupSelected(group)) {
             newGroups = update(this.props.selected.groups, {
                 $splice: [
-                    [this.props.selected.groups.indexOf(groupId), 1]
+                    [this.props.selected.groups.indexOf(group), 1]
                 ]
             });
         } else {
-            newGroups = this.props.selected.groups.concat([groupId]);
+            newGroups = this.props.selected.groups.concat([group]);
         }
         this.props.onChange({
             groups: newGroups,
@@ -150,9 +150,9 @@ export default class AudienceSelect extends React.Component {
                         <AudienceItem
                             key={group._id}
                             text={getGroupName(group)}
-                            id={group._id}
+                            item={group}
                             onClick={this.onGroupClick}
-                            isSelected={this.isGroupSelected(group._id)}
+                            isSelected={this.isGroupSelected(group)}
                             isGroup={true}
                         />
                     ))}
@@ -160,9 +160,9 @@ export default class AudienceSelect extends React.Component {
                         <AudienceItem
                             key={user._id}
                             text={fullName(user)}
-                            id={user._id}
+                            item={user}
                             onClick={this.onUserClick}
-                            isSelected={this.isUserSelected(user._id)}
+                            isSelected={this.isUserSelected(user)}
                             isGroup={false}
                         />
                     ))}
