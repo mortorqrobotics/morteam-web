@@ -11,9 +11,8 @@ import { currentUser } from "~/util";
 @Radium
 class Heading extends React.Component {
 
-    // TODO: buttons should be updated when user's group status changes
     renderConditionalButtons = () => {
-        if (currentUser.groups.indexOf(this.props.group._id) !== -1) {
+        if (this.props.users.some(user => user._id === currentUser._id)) {
             return (
                 <div>
                     <LeaveGroupButton />
@@ -45,7 +44,8 @@ class Heading extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        group: state.group
+        group: state.group,
+        users: state.users,
     }
 }
 

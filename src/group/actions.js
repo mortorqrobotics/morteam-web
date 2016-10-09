@@ -24,7 +24,6 @@ export function joinGroup() {
 }
 
 export function leaveGroup() {
-    console.log(currentUser._id);
     return (dispatch) => {
         return ajax.request("DELETE", "/groups/normal/id/" + groupId + "/users/id/" + currentUserId)
             .then(() => dispatch({
