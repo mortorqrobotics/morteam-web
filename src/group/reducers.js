@@ -7,8 +7,8 @@ function users(state = [], action) {
         case "LEAVE_GROUP":
             return state.filter(user => user._id != window.__userInfo._id);
         case "ADD_USERS":
-            return state.concat(action.users);
-        case "DELETE_USERS":
+            return state.concat(action.users); // TODO: need to add user objects, not ids
+        case "DELETE_USER":
             return state.filter(user => user._id != action.userId);
         case "LOAD_USERS":
             return action.users;

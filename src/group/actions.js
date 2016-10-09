@@ -16,7 +16,7 @@ export function fetchGroup() {
 
 export function joinGroup() {
     return (dispatch) => {
-        return ajax.request("POST", "/groups/normal/id/" + currentUserId + "/join")
+        return ajax.request("POST", "/groups/normal/id/" + groupId + "/join")
             .then(() => dispatch({
                 type: "JOIN_GROUP",
             }))
@@ -36,7 +36,7 @@ export function leaveGroup() {
 
 export function addUsers(users) {
     return (dispatch) => {"/groups/normal/id/:groupId/users"
-        return ajax.request("POST", "/groups/normal/id/" + groupId + "/users", users)
+        return ajax.request("POST", "/groups/normal/id/" + groupId + "/users", { users: users })
             .then(() => dispatch({
                 type: "ADD_USERS",
                 users,

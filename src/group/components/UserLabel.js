@@ -6,7 +6,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName, currentUser } from "~/util";
 import styles from "~/team/styles";
 import { connect } from "react-redux";
-import { deleteUser } from "~/team/actions";
+import { deleteUser } from "~/group/actions";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
