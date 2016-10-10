@@ -112,13 +112,20 @@ export default {
             position: "relative",
             marginLeft: "0px 2px 0px -5px",
             ":hover": {
-                backgroundColor: "#FFB524",
                 cursor: "pointer",
             },
             "@media screen and (max-width: 820px)": {
                 display: "none",
             },
         },
+        selected: {
+            backgroundColor: "orange",
+        },
+        unselected: {    
+            ":hover": {
+                backgroundColor: "#FFB524",
+            },
+        }
     },
     profileDropdown: {
         div: {

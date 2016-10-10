@@ -17,10 +17,10 @@ export default class Navbar extends React.Component {
                 <ul style={styles.ul}>
                     <NavbarTitle />
                     <SearchBox />
-                    <GlyphLink path="/chat" glyph="comment"/>
-                    <GlyphLink path="/drive" glyph="hdd"/>
-                    <GlyphLink path="/cal" glyph="calendar"/>
-                    <GlyphLink path="/map" glyph="globe"/>
+                    <GlyphLink path="/chat" glyph="comment" name="chat"/>
+                    <GlyphLink path="/drive" glyph="hdd" name="drive"/>
+                    <GlyphLink path="/cal" glyph="calendar" name="calendar"/>
+                    <GlyphLink path="/map" glyph="globe" name="map"/>
                     <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
                     <NavbarDropdown />
                     <ProfileDropdown />

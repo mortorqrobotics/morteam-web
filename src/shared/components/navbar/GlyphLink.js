@@ -10,6 +10,7 @@ export default class SearchBox extends React.Component {
     static propTypes = {
         path: React.PropTypes.string,
         glyph: React.PropTypes.string,
+        name: React.PropTypes.string,
     }
     
     static contextTypes = {
@@ -23,9 +24,9 @@ export default class SearchBox extends React.Component {
     render() {
         return (
             <li style={[
-                    this.props.path==="/" + this.context.pageName 
-                    && {backgroundColor: "orange"},
-                    styles.glyphLink.li, 
+                    styles.glyphLink.li,
+                    this.props.name === this.context.pageName ?
+                        styles.glyphLink.selected : styles.glyphLink.unselected
                 ]} 
                 onClick={this.onClick}
             >
