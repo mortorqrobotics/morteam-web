@@ -30,7 +30,7 @@ class ChatItem extends React.Component {
             const other = otherUser(this.props.chat.audience.users, currentUser._id)
             return (
                 <ProfilePicture
-                    path={other.profpicpath}
+                    path={other.profpicpath + "-60"}
                     userId={other._id}
                 />
             )
