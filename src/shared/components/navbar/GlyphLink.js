@@ -11,6 +11,10 @@ export default class SearchBox extends React.Component {
         path: React.PropTypes.string,
         glyph: React.PropTypes.string,
     }
+    
+    static contextTypes = {
+        pageName: React.PropTypes.string,
+    }
 
     onClick = () => {
         window.location.assign(this.props.path);
@@ -18,7 +22,13 @@ export default class SearchBox extends React.Component {
 
     render() {
         return (
-            <li style={styles.glyphLink.li} onClick={this.onClick}>
+            <li style={[
+                    this.props.path==="/" + this.context.pageName 
+                    && {backgroundColor: "orange"},
+                    styles.glyphLink.li, 
+                ]} 
+                onClick={this.onClick}
+            >
                 <Glyphicon glyph={this.props.glyph} />
             </li>
         )
