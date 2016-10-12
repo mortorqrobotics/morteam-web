@@ -11,7 +11,7 @@ export const LeftbarContainer = Radium((props) => {
     let { isOpen, onToggle } = props;
     return (
         <div>
-            <div style={[styles.div, !props.isOpen && {display: "none"} ]}>
+            <div style={[styles.div, !props.isOpen && { display: "none" } ]}>
                 <ul style={styles.ul}>
                     {props.children}
                 </ul>
@@ -19,7 +19,7 @@ export const LeftbarContainer = Radium((props) => {
             <RadiumGlyphicon
                 glyph={props.isOpen ? "chevron-left" : "chevron-right"}
                 onClick={props.onToggle}
-                style={styles.hideButton}
+                style={[styles.hideButton, { left: props.isOpen ? "220px" : "10px" }]}
             />
         </div>
     )

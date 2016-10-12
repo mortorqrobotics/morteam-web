@@ -42,7 +42,6 @@ export default {
     },
     hideButton: {
         position: "fixed",
-        left: "220px",
         top: "calc(100% - 40px)",
         backgroundColor: "orange",
         width: "28px",
