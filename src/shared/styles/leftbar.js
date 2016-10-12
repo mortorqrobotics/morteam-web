@@ -40,6 +40,22 @@ export default {
     glyph: {
         marginRight: "5px",
     },
+    hideButton: {
+        position: "fixed",
+        left: "220px",
+        top: "calc(100% - 40px)",
+        backgroundColor: "orange",
+        width: "28px",
+        height: "30px",
+        padding: "7px",
+        cursor: "pointer",
+        zIndex: "91",
+        borderRadius: "20px",
+        boxShadow: "0px 2px 8px -4px black",
+        ":hover": {
+            backgroundColor: "darkOrange"
+        }
+    }
 }
 
 export const dropdown = {
