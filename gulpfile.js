@@ -66,7 +66,11 @@ gulp.task("build", function() {
         "./src/" + page + "/components/" + capitalize(page) + ".js"
     )), { read: false, })
         .pipe(tap(file => {
-            let bundler = browserify(file.path, { debug: true, });
+            let options = {};
+            if (process.env.NODE_ENV !== "production") {
+                options = { debug: true };
+            }
+            let bundler = browserify(file.path, options);
             file.contents = stuff(bundler).bundle();
         }))
         .pipe(streamify(uglify()))
