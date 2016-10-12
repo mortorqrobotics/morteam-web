@@ -12,3 +12,8 @@ export function deleteAnnouncement(announcementId) {
     }
 }
 
+export function loadAnnouncements() {
+    return {
+        type: "LOAD_ANNOUNCEMENTS",
+    }
+}
