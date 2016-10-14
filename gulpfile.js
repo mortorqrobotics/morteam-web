@@ -12,19 +12,21 @@ let streamify = require("gulp-streamify");
 let uglify = require("gulp-uglify");
 
 let libs = [
-    "react",
-    "react-dom",
     "axios",
+    "dompurify",
     "radium",
-    "axios-cancel",
+    "react",
+    "react-bootstrap",
+    "react-context-menus",
+    "react-dom",
+    "react-google-maps",
+    "react-masonry-component",
     "react-modal",
     "react-redux",
+    "redux",
+    "redux-saga",
     "redux-thunk",
     "socket.io-client",
-    "react-masonry-component",
-    "redux-saga",
-    "dompurify",
-    "react-contextmenu",
 ];
 
 let pages = [

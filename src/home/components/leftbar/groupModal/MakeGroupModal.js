@@ -6,7 +6,7 @@ import CreateGroupButton from "./CreateGroupButton";
 import ModalTextBox from "./ModalTextBox";
 import GroupTypeOption from "./GroupTypeOption";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
-import ajax, { cancellableRequestFactory } from "~/util/ajax";
+import ajax from "~/util/ajax";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { makeChangeHandlerFactory, currentUser } from "~/util";
 import { getGroupName } from "~/util/groups";

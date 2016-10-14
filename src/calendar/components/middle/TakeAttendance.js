@@ -6,9 +6,9 @@ import {
     ModalButton,
 } from "~/shared/components/modal";
 import ajax from "~/util/ajax";
-import { fullName } from "~/util";
+import { fullName, capitalize } from "~/util";
 import update from "react/lib/update";
-//import { ContextMenu, MenuItem, ContextMenuLayer } from "react-contextmenu";
+import ContextMenu from "react-context-menus";
 
 @Radium
 export default class TakeAttendance extends React.Component {
@@ -87,6 +87,26 @@ export default class TakeAttendance extends React.Component {
         });
     }
 
+    renderContextMenuWrapper = (attendeeId) => {
+        const menuItems = ["present", "absent", "tardy", "excused"]
+            .map(newStatus => ({
+                label: capitalize(newStatus),
+                onClick: () => {
+                    this.setState({
+                        attendance: this.state.attendance.map(({ user, _id, status }) => ({
+                            user,
+                            _id,
+                            status: _id === attendeeId ? newStatus : status,
+                        })),
+                    });
+                },
+            }));
+        // why
+        return ContextMenu(menuItems)(({ component, connectContextMenu }) => (
+            connectContextMenu(<span>{component}</span>)
+        ));
+    }
+
     render() {
         // TODO: refactor AudienceSelect a lot so this code does not have to be duplicated
         // split up its functionality
@@ -106,9 +126,8 @@ export default class TakeAttendance extends React.Component {
 
                 <div style={{height:"130px",overflowY:"auto",}}>
                     {this.getSearched().map(({ user, status, _id }) => {
-//                        const ContextMenuDiv = ContextMenuLayer(_id)("div");
-                        return (
-//                            <ContextMenuDiv identifier={"node-" + this.props.event._id}>
+                        return React.createElement(this.renderContextMenuWrapper(_id), {
+                            component: (
                                 <p
                                     style={{
                                         margin: "2px 2px 4px 4px",
@@ -124,32 +143,9 @@ export default class TakeAttendance extends React.Component {
                                 >
                                     {fullName(user)}
                                 </p>
-                                /*<ContextMenu identifier={_id} currentItem="b" style={{display:"inline"}}>
-                                    {["present", "tardy", "excused"].map(status => (
-                                        <MenuItem
-                                            data={{ status }}
-                                            onClick={(e, a)=>console.log(a)} style={{color:"red"}}
-                                        >
-                                            <div key={status+_id} style={{
-                                                padding: "5px 10px 5px 10px",
-                                                fontSize: "14px",
-                                                width: "180px",
-                                                backgroundColor: "#f9f9f9",
-                                                ":hover": {
-                                                textDecoration: "none",
-                                                    backgroundColor: "#d9d9d9",
-                                                },
-                                                color: "#333",
-                                                fontFamily: "'exo 2', sans serif",
-                                                fontWeight: "200",
-                                            }}>
-                                                Mark as {status[0].toUpperCase() + status.slice(1)}
-                                            </div>
-                                        </MenuItem>
-                                    ))}
-                                </ContextMenu>
-                            </ContextMenuDiv>*/
-                        )
+                            ),
+                            key: _id,
+                        })
                     })}
                 </div>
 
