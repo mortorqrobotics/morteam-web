@@ -120,6 +120,9 @@ export default {
         },
         selected: {
             backgroundColor: "orange",
+            ":hover": {
+                backgroundColor: "darkorange",
+            },
         },
         unselected: {    
             ":hover": {
