@@ -89,7 +89,9 @@ gulp.task("watch", () => {
         let bundler = watchify(browserify({
             entries: [path],
             debug: true,
-        }))
+            cache: [],
+            packageCache: [],
+        }));
         bundler = stuff(bundler);
         let watcher = () => {
             return bundler.bundle()
