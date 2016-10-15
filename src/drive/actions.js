@@ -1,70 +1,40 @@
-import ajax from "~/util/ajax";
+import { request } from "~/util/ajax";
 
-const setFolders = (folders) => {
-    return {
+const fetchFolders = () => async (dispatch, getStore) => {
+    const store = getStore();
+    const { data } = await request("GET", "/folders");
+    dispatch({
         type: "SET_FOLDERS",
-        folders,
+        folders: data,
+    });
+    if (!store.selectedFolder && data.length !== 0) {
+        dispatch(setFolder(data[0]))
     }
 }
 
-export const fetchFolders = () => {
-    return (dispatch, getStore) => {
-        const store = getStore();
-        let folders;
-        return ajax.request("GET", "/folders")
-            .then(({ data }) => {
-                folders = data;
-                return dispatch(setFolders(data))
-            })
-            .then(() => {
-                if (!store.selectedFolder && folders.length !== 0) {
-                    dispatch(setFolder(folders[0]))
-                }
-            })
-    }
-}
-
-const addFolderSync = (folder) => {
-    return {
+export const addFolder = (folder) => async (dispatch) => {
+    const { data } = await request("post", "/folders", folder)
+    dispatch({
         type: "ADD_FOLDER",
-        folder,
-    }
+        folder: data,
+    });
 }
 
-export const addFolder = (folder) => {
-    return (dispatch) => {
-        return ajax.request("post", "/folders", folder)
-            .then(({ data }) => dispatch(addFolderSync(data)))
-    }
-}
-
-const setFolderSync = (folder, files) => {
-    return {
+export const setFolder = (folder) => async (dispatch) => {
+    const { data } = await request("get", `/folders/id/${folder._id}/files`);
+    dispatch({
         type: "SET_FOLDER",
         folder,
-        files,
-    }
+        files: data,
+    });
 }
 
-export const setFolder = (folder) => {
-    return (dispatch) => {
-        return ajax.request("get", "/folders/id/"+ folder._id + "/files")
-            .then(({ data }) => dispatch(setFolderSync(folder, data)));
-    }
-}
-
-const addFileSync = (file) => {
-    return {
+export const addFile = (file) => async (dispatch) => {
+    const { data } = await request("post", "/files/upload", file);
+    dispatch({
         type: "ADD_FILE",
-        file,
-    }
-}
-
-export const addFile = (file) => {
-    return (dispatch) => {
-        return ajax.request("post", "/files/upload", file)
-            .then(({ data }) => dispatch(addFileSync(data)))
-    }
+        file: data,
+    });
 }
 
 const deleteFileSync = (file) => {
@@ -74,16 +44,19 @@ const deleteFileSync = (file) => {
     }
 }
 
-export const deleteFile = (file) => {
-    return (dispatch) => {
-        return ajax.request("delete", "/files/id/" + file._id)
-            .then(() => dispatch(deleteFileSync(file)))
-    }
+export const deleteFile = (file) => async (dispatch) => {
+    const { data } = await request("delete", `/files/id/${file._id}`);
+    dispatch({
+        type: "DELETE_FILE",
+        file,
+    });
 }
 
-export const sortFilesBy = (sortType) => {
-    return {
-        type: "SORT_FILES",
-        sortType,
-    }
+export const sortFilesBy = (sortType) => ({
+    type: "SORT_FILES",
+    sortType,
+})
+
+export function initialActions(dispatch) {
+    dispatch(fetchFolders());
 }

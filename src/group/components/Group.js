@@ -9,10 +9,9 @@ import Heading from "~/group/components/Heading";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/group/reducers";
-import { loadUsers, fetchGroup } from "~/group/actions";
 const store = makeStore(reducers);
-store.dispatch(fetchGroup());
-store.dispatch(loadUsers());
+import { initialActions } from "~/group/actions";
+initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
 import { initListeners as initSharedListeners } from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));

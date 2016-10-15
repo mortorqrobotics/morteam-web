@@ -24,7 +24,6 @@ let libs = [
     "react-modal",
     "react-redux",
     "redux",
-    "redux-saga",
     "redux-thunk",
     "socket.io-client",
 ];

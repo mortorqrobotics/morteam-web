@@ -3,12 +3,12 @@ import Radium from "radium";
 
 import Button from "~/shared/components/forms/Button";
 import styles from "~/user/styles/middle";
-import { fullName } from "~/util";
+import { fullName, currentUser } from "~/util";
 import { showDate } from "~/util/date";
 import { markTaskCompleted } from "~/user/actions";
 import { connect } from "react-redux";
 
-const TaskItem = ({ task, dispatch }, context) => {
+const TaskItem = ({ task, dispatch }) => {
     return (
         <li style={styles.taskItem}>
             {task.name}
@@ -18,7 +18,7 @@ const TaskItem = ({ task, dispatch }, context) => {
             <div style={styles.taskDescription}>
                 {task.description}
             </div>
-            {context.user.isAdmin() && !task.completed && (
+            {currentUser.isAdmin() && !task.completed && (
                 <Button
                     style={styles.markCompleted}
                     text="Mark as Completed"
@@ -28,9 +28,5 @@ const TaskItem = ({ task, dispatch }, context) => {
         </li>
     )
 };
-
-TaskItem.contextTypes = {
-    user: React.PropTypes.object,
-}
 
 export default connect()(Radium(TaskItem));

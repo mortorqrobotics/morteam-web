@@ -1,44 +1,34 @@
-import ajax from "~/util/ajax";
+import { request } from "~/util/ajax";
+import { pageOptions } from "~/util";
 
-const setTasks = (pending, completed) => {
-    return {
+const fetchTasks = (userId) => async (dispatch) => {
+    const [{ data: pending }, { data: completed }] = await Promise.all([
+        request("GET", `/users/id/${userId}/tasks/pending`),
+        request("GET", `/users/id/${userId}/tasks/completed`),
+    ]);
+    dispatch({
         type: "SET_TASKS",
         pending,
         completed,
-    }
+    });
 }
 
-export const fetchTasks = (userId) => {
-    return (dispatch) => {
-        return Promise.all([
-            ajax.request("GET", "/users/id/" + userId + "/tasks/pending"),
-            ajax.request("GET", "/users/id/" + userId + "/tasks/completed"),
-        ]).then(([{ data: pending }, { data: completed }]) => {
-            return dispatch(setTasks(pending, completed))
-        })
-    }
-}
-
-const addTaskSync = (task) => {
-    return {
+export const addTask = (userId, task) => async (dispatch) => {
+    const { data } = await request("POST", `/users/id/${userId}/tasks`, task);
+    dispatch({
         type: "ADD_TASK",
-        task,
-    }
+        task: data,
+    });
 }
 
-export const addTask = (userId, task) => {
-    return (dispatch) => {
-        return ajax.request("POST", "/users/id/" + userId + "/tasks", task)
-            .then(({ data }) => dispatch(addTaskSync(data)))
-    }
+export const markTaskCompleted = (taskId) => async (dispatch) => {
+    await request("POST", `/tasks/id/${taskId}/markCompleted`)
+    dispatch({
+        type: "MARK_TASK_COMPLETED",
+        taskId,
+    });
 }
 
-export const markTaskCompleted = (taskId) => {
-    return (dispatch) => {
-        return ajax.request("POST", `/tasks/id/${taskId}/markCompleted`)
-            .then(() => dispatch({
-                type: "MARK_TASK_COMPLETED",
-                taskId,
-            }))
-    }
+export function initialActions(dispatch) {
+    dispatch(fetchTasks(pageOptions.userId));
 }
