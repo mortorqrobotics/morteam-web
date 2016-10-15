@@ -13,6 +13,9 @@ import { loadUsers, fetchGroup } from "~/group/actions";
 const store = makeStore(reducers);
 store.dispatch(fetchGroup());
 store.dispatch(loadUsers());
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 class Group extends React.Component {

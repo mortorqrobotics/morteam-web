@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 const initialState = {
     pending: [],
     completed: [],
@@ -30,6 +28,6 @@ const tasks = (state = initialState, action) => {
     }
 }
 
-export default combineReducers({
+export default {
     tasks,
-})
+}

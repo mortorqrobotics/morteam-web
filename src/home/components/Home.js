@@ -8,10 +8,14 @@ import Editor from "./editor/Editor";
 import Navbar from "~/shared/components/navbar/Navbar"
 import styles from "~/home/styles";
 
-import { makeStoreSaga } from "~/util/redux";
+import { makeStore } from "~/util/redux";
 import reducers from "~/home/reducers";
-import sagas from "~/home/sagas";
-const store = makeStoreSaga(reducers, sagas);
+const store = makeStore(reducers);
+import { initialActions } from "~/home/actions";
+initialActions(store.dispatch);
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 export default class Home extends React.Component {

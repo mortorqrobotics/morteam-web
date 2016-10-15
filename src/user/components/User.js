@@ -15,7 +15,12 @@ import { makeStore } from "~/util/redux";
 import reducers from "~/user/reducers";
 import { fetchTasks } from "~/user/actions";
 const store = makeStore(reducers);
-store.dispatch(fetchTasks(pageOptions.userId)); // eh
+store.dispatch(fetchTasks(pageOptions.userId));
+import { initSIO } from "~/util/sio";
+import { initListeners } from "~/chat/sio";
+initSIO(socket => initListeners(socket, store.dispatch));
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 export default class User extends React.Component {

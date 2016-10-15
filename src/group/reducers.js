@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 function users(state = [], action) {
     switch (action.type) {
         case "JOIN_GROUP":
@@ -26,7 +24,7 @@ function group(state = {}, action) {
     }
 }
 
-export default combineReducers({
+export default {
     users,
     group,
-})
+}

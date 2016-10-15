@@ -11,10 +11,14 @@ import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
 import styles from "~/calendar/styles";
 
-import { makeStoreSaga } from "~/util/redux";
+import { makeStore } from "~/util/redux";
 import reducers from "~/calendar/reducers";
-import sagas from "~/calendar/sagas";
-const store = makeStoreSaga(reducers, sagas);
+const store = makeStore(reducers);
+import { initialActions } from "~/calendar/actions";
+initialActions(store.dispatch);
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 export default class Calendar extends React.Component {

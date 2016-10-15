@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import update from "react/lib/update";
 
 const folders = (state = [], action) => {
@@ -63,8 +62,8 @@ const selectedFolder = (state = null, action) => {
     }
 }
 
-export default combineReducers({
+export default {
     folders,
     files,
     selectedFolder,
-})
+}

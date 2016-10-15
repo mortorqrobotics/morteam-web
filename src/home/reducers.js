@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 const announcements = (state = [], action) => {
     switch (action.type) {
         case "ADD_ANNOUNCEMENT_SUCCESS":
@@ -26,7 +24,7 @@ const announcementsLoading = (state = false, action) => {
     }
 }
 
-export default combineReducers({
+export default {
     announcements,
     announcementsLoading,
-})
+}

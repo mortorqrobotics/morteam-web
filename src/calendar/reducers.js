@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 import { prevAbsMonth, nextAbsMonth } from "~/util/date";
 import update from "react/lib/update";
 
@@ -86,7 +84,10 @@ function events(state = initialEvents, action) {
 
 // this shouldnt need to be here at all I think
 const now = new Date();
-const initialAbsMonth = { month: now.getMonth(), year: now.getFullYear() }
+const initialAbsMonth = {
+    month: now.getMonth(),
+    year: now.getFullYear()
+};
 
 function absMonth(state = initialAbsMonth, action) {
     switch (action.type) {
@@ -100,9 +101,7 @@ function absMonth(state = initialAbsMonth, action) {
     }
 }
 
-const initialPendingTasks = [];
-
-function pendingTasks(state = initialPendingTasks, action) {
+function pendingTasks(state = [], action) {
     switch (action.type) {
         case "LOAD_PENDING_TASKS_SUCCESS":
             return action.tasks
@@ -111,8 +110,8 @@ function pendingTasks(state = initialPendingTasks, action) {
     }
 }
 
-export default combineReducers({
+export default {
     events,
     absMonth,
     pendingTasks,
-})
+}

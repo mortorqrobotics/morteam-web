@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import update from "react/lib/update";
 
 const users = (state = [], action) => {
@@ -18,6 +17,6 @@ const users = (state = [], action) => {
     }
 }
 
-export default combineReducers({
+export default {
     users,
-})
+}

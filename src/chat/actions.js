@@ -1,7 +1,13 @@
-export const addChat = (chat) => ({
-    type: "ADD_CHAT",
-    payload: chat,
-})
+import { request } from "~/util/ajax";
+import { emit } from "~/util/sio";
+
+export const addChat = (chat) => async (dispatch) => {
+    const { data } = await request("POST", "/chats", chat);
+    dispatch({
+        type: "ADD_CHAT_SUCCESS",
+        chat: data,
+    });
+}
 
 export const receiveMessage = ({ chatId, message }) => ({
     type: "RECEIVE_MESSAGE_SUCCESS",
@@ -9,10 +15,19 @@ export const receiveMessage = ({ chatId, message }) => ({
     message,
 })
 
-export const sendMessage = (content) => ({
-    type: "SEND_MESSAGE",
-    payload: content,
-})
+export const sendMessage = (content) => (dispatch, getState) => {
+    const { currentChatId } = getState();
+    emit("sendMessage", {
+        chatId: currentChatId,
+        content,
+    });
+    dispatch(stopTyping());
+    dispatch({
+        type: "SEND_MESSAGE_LOADING",
+        chatId: currentChatId,
+        content,
+    });
+}
 
 export const messageSent = ({ chatId, content }) => ({
     type: "SEND_MESSAGE_SUCCESS",
@@ -20,22 +35,44 @@ export const messageSent = ({ chatId, content }) => ({
     content,
 })
 
-export const setChatName = ({ chatId, name }) => ({
-    type: "SET_CHAT_NAME",
-    payload: {
+export const setChatName = ({ chatId, name }) => async (dispatch) => {
+    await request("PUT", `/chats/group/id/${chatId}/name`, {
+        newName: name,
+    });
+    dispatch({
+        type: "SET_CHAT_NAME_SUCCESS",
         chatId,
         name,
-    },
-})
+    });
+}
 
 export const setCurrentChatId = (chatId) => ({
     type: "SET_CURRENT_CHAT_ID",
     chatId,
 })
 
-export const loadMessages = () => ({
-    type: "LOAD_MESSAGES",
-})
+export const loadMessages = () => async (dispatch, getState) => {
+    const { currentChatId, chats } = getState();
+    if (!currentChatId) {
+        return;
+    }
+    const chat = chats.find(chat => chat._id == currentChatId);
+    const { data } = await request("GET",
+        `/chats/id/${currentChatId}/messages?skip=${chat.messages.length}`
+    );
+    if (data.length === 0) {
+        dispatch({
+            type: "ALL_MESSAGES_LOADED",
+            chatId: currentChatId,
+        });
+    } else {
+        dispatch({
+            type: "LOAD_MESSAGES_SUCCESS",
+            messages: data,
+            chatId: currentChatId,
+        });
+    }
+}
 
 export const setIsTyping = ({ chatId, isTyping }) => ({
     type: "SET_IS_TYPING",
@@ -43,10 +80,24 @@ export const setIsTyping = ({ chatId, isTyping }) => ({
     isTyping,
 })
 
-export const startTyping = () => ({
-    type: "START_TYPING",
-})
+export const startTyping = () => (dispatch, getState) => {
+    const { currentChatId } = getState();
+    emit("start typing", {
+        chatId: currentChatId,
+    });
+}
 
-export const stopTyping = () => ({
-    type: "STOP_TYPING",
-})
+export const stopTyping = () => (dispatch, getState) => {
+    const { currentChatId } = getState();
+    emit("stop typing", {
+        chatId: currentChatId,
+    });
+}
+
+export async function initialActions(dispatch) {
+    const { data } = await request("GET", "/chats");
+    dispatch({
+        type: "LOAD_CHATS_SUCCESS",
+        chats: data,
+    });
+}

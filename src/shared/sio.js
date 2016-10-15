@@ -1,12 +1,24 @@
-import io from "socket.io-client";
+import { emit } from "~/util/sio";
+import {
+    setOnlineClients,
+    joinOnlineClient,
+    leaveOnlineClient
+} from "~/shared/actions";
 
-const socket = io.connect();
+export function initListeners(socket, dispatch) {
 
-export function emit(name, data) {
-    socket.emit(name, data);
-}
+    socket.on("get clients", (userIds) => {
+        dispatch(setOnlineClients(userIds));
+    });
 
-export function initSIO(initializer) {
-    initializer(socket);
-}
+    socket.on("joined", ({ _id }) => {
+        dispatch(joinOnlineClient(_id));
+    });
+
+    socket.on("left", ({ _id }) => {
+        dispatch(leaveOnlineClient(_id));
+    });
+
+    emit("get clients");
+};
 

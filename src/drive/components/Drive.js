@@ -11,6 +11,9 @@ import reducers from "~/drive/reducers";
 import { fetchFolders } from "~/drive/actions";
 const store = makeStore(reducers);
 store.dispatch(fetchFolders());
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 class Drive extends React.Component {

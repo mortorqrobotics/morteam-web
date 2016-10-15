@@ -8,10 +8,14 @@ import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 import { currentUser } from "~/util";
 
-import { makeStoreSaga } from "~/util/redux";
+import { makeStore } from "~/util/redux";
 import reducers from "~/team/reducers";
-import sagas from "~/team/sagas";
-const store = makeStoreSaga(reducers, sagas);
+const store = makeStore(reducers);
+import { initialActions } from "~/team/actions";
+initialActions(store.dispatch);
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 export default class Team extends React.Component {

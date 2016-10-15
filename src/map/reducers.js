@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 const selectedTeam = (state = null, action) => {
     switch (action.type) {
         case "SET_TEAM":
@@ -9,6 +7,6 @@ const selectedTeam = (state = null, action) => {
     }
 }
 
-export default combineReducers({
+export default {
     selectedTeam,
-})
+}

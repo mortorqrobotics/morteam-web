@@ -11,6 +11,9 @@ import { makeStore } from "~/util/redux";
 import { setTeam } from "~/map/actions";
 import reducers from "~/map/reducers";
 const store = makeStore(reducers);
+import { initSIO } from "~/util/sio";
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 const currentTeam = teamLocations[currentUser.team.number];
 const mapOptions = {

@@ -6,35 +6,20 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "./leftbar/Leftbar";
 import Middle from "./middle/Middle";
 
-import { makeStoreSaga } from "~/util/redux";
+import { makeStore } from "~/util/redux";
 import reducers from "~/chat/reducers";
-import sagas from "~/chat/sagas";
-import { combineReducers } from "redux";
 import sharedReducers from "~/shared/reducers";
-const store = makeStoreSaga(combineReducers({
+const store = makeStore({
     ...reducers,
     ...sharedReducers,
-}), sagas);
-import { initListeners } from "~/chat/sio";
-import { initSIO, emit } from "~/shared/sio";
-initSIO(socket => initListeners(socket, store.dispatch));
-import {
-    setOnlineClients,
-    joinOnlineClient,
-    leaveOnlineClient
-} from "~/shared/actions";
-initSIO(socket => {
-    socket.on("get clients", userIds => {
-        store.dispatch(setOnlineClients(userIds));
-    });
-    socket.on("joined", ({ _id }) => {
-        store.dispatch(joinOnlineClient(_id));
-    });
-    socket.on("left", ({ _id }) => {
-        store.dispatch(leaveOnlineClient(_id));
-    });
 });
-emit("get clients");
+import { initialActions } from "~/chat/actions";
+initialActions(store.dispatch);
+import { initSIO } from "~/util/sio";
+import { initListeners } from "~/chat/sio";
+initSIO(socket => initListeners(socket, store.dispatch));
+import { initListeners as initSharedListeners } from "~/shared/sio";
+initSIO(socket => initSharedListeners(socket, store.dispatch));
 
 @Radium
 export default class Chat extends React.Component {

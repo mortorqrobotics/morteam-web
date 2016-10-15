@@ -29,5 +29,4 @@ export function initListeners(socket, dispatch) {
             isTyping: false,
         }))
     })
-
 }
