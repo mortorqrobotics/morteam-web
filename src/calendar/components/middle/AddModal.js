@@ -35,7 +35,6 @@ class AddModal extends React.Component {
 
     state = {
         ...this.initialState,
-        hasAttendance: true,
         sendEmail: true,
     }
 
@@ -43,7 +42,6 @@ class AddModal extends React.Component {
 
     onSubmit = async() => {
         await this.props.dispatch(addEvent({
-            hasAttendance: this.state.hasAttendance,
             sendEmail: this.state.sendEmail,
             name: this.state.name,
             date: new Date(this.props.year, this.props.month, this.props.day),
@@ -73,13 +71,6 @@ class AddModal extends React.Component {
                 <br />
                 Please select the attendees.
                 <br />
-                <div>
-                    <CheckBox
-                        checked={this.state.hasAttendance}
-                        onChange={this.getChangeHandler("hasAttendance", "checked")}
-                    />
-                    Take Attendance?
-                </div>
                 <div>
                     <CheckBox
                         checked={this.state.sendEmail}
