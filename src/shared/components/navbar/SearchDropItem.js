@@ -2,29 +2,29 @@ import React from "react";
 import Radium from "radium";
 
 import ajax from "~/util/ajax";
+import ProfilePicture from "~/shared/components/ProfilePicture";
+import {fullName} from "~/util"
 import styles from "~/shared/styles/navbar";
 
 @Radium
 export default class SearchDropItem extends React.Component {
 
     static propTypes = {
-        userid: React.PropTypes.string,
-        name: React.PropTypes.string,
-        profpicpath: React.PropTypes.string,
+        user: React.PropTypes.object,
     }
 
     onClick = () => {
-        window.location.assign("/profiles/id/" + this.props.userid);
+        window.location.assign("/profiles/id/" + this.props.user._id);
     }
 
     render() {
         return (
             <li onClick={this.onClick} style={styles.searchDropItem.li}>
-        	    <img 
-        	        style={styles.searchDropItem.img}
-        	        src={this.props.profpicpath + "-60"}
+        	    <ProfilePicture
+        	        path={this.props.user.profpicpath + "-60"}
+        	        userId={this.props.user._id}
         	    />
-        	    <span style={styles.searchDropItem.span}>{this.props.name}</span>
+        	    <span style={styles.searchDropItem.span}>{fullName(this.props.user)}</span>
         	</li>
         )
     }
