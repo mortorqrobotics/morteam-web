@@ -11,8 +11,12 @@ import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
 
 import { makeStore } from "~/util/redux";
+import sharedReducers from "~/shared/reducers";
 import reducers from "~/user/reducers";
-const store = makeStore(reducers);
+const store = makeStore({
+    ...reducers,
+    ...sharedReducers,
+});
 import { initialActions } from "~/user/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";

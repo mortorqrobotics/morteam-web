@@ -46,6 +46,7 @@ class UserLabel extends React.Component {
                     <ProfilePicture
                         path={this.props.user.profpicpath + "-60"}
                         userId={this.props.user._id}
+                        size={30}
                     />
                     <span style={styles.userDisplay.name}>
                         {fullName(this.props.user)}

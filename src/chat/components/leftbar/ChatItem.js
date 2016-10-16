@@ -32,6 +32,7 @@ class ChatItem extends React.Component {
                 <ProfilePicture
                     path={other.profpicpath + "-60"}
                     userId={other._id}
+                    size={30}
                 />
             )
         } else {

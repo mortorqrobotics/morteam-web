@@ -9,6 +9,7 @@ import ChangePassword from "./ChangePassword";
 import AssignTask from "./AssignTask";
 import Position from "./Position";
 import ChangePosition from "./ChangePosition";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import { withCss } from "~/util/component";
 import { fullName, currentUser, pageOptions } from "~/util";
 import { modalProps } from "~/util/modal";
@@ -78,6 +79,26 @@ export default class Leftbar extends React.Component {
         }
     }
 
+    renderProfilePic = () => {
+        if (currentUser._id === this.state.user._id) {
+            return (
+                <img
+                    src={this.state.user.profpicpath + "-300"}
+                    style={styles.img}
+                />
+            )
+        } else {
+            return (
+                <ProfilePicture
+                    path={this.state.user.profpicpath + "-300"}
+                    userId={this.state.user._id}
+                    size={150}
+                    style={{margin: styles.img.margin}}
+                />
+            )
+        }
+    }
+
     renderPositionView = () => {
         if (currentUser.isAdmin()) {
             return (
@@ -100,10 +121,7 @@ export default class Leftbar extends React.Component {
         }
         return (
             <div style={styles.container}>
-                <img
-                    src={this.state.user.profpicpath + "-300"}
-                    style={styles.img}
-                />
+                {this.renderProfilePic()}
                 <div style={styles.name}>
                     {fullName(this.state.user)}
                 </div>

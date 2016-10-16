@@ -1,13 +1,17 @@
 import React from "react";
+import Radium from "radium";
 
 import { connect } from "react-redux";
 import styles from "~/shared/styles/profilePicture";
 
+@Radium
 class ProfilePicture extends React.Component {
 
     static propTypes = {
         path: React.PropTypes.string,
         userId: React.PropTypes.string,
+        size: React.PropTypes.number,
+        style: React.PropTypes.object,
     }
 
     getStyle = () => {
@@ -22,7 +26,10 @@ class ProfilePicture extends React.Component {
         return (
             <img
                 src={this.props.path}
-                style={this.getStyle()}
+                style={[ this.getStyle(), {
+                    height: this.props.size + "px",
+                    width: this.props.size + "px"
+                }, this.props.style || {} ]}
             />
         )
     }
