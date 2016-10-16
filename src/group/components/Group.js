@@ -7,9 +7,13 @@ import styles from "~/group/styles/index";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Heading from "~/group/components/Heading";
 
+import sharedReducers from "~/shared/reducers";
 import { makeStore } from "~/util/redux";
 import reducers from "~/group/reducers";
-const store = makeStore(reducers);
+const store = makeStore({
+    ...reducers,
+    ...sharedReducers,
+});
 import { initialActions } from "~/group/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";

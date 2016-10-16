@@ -8,6 +8,7 @@ import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 import { connect } from "react-redux";
 import { deleteUser } from "~/team/actions";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
@@ -45,9 +46,9 @@ class UserLabel extends React.Component {
         return (
             <Col sm={6} md={4} lg={3}>
                 <span style={styles.userDisplay.span} onClick={this.handleUserClick}>
-                    <img
-                        src={this.props.user.profpicpath}
-                        style={styles.userDisplay.profPic}
+                    <ProfilePicture
+                        path={this.props.user.profpicpath +  "-60"}
+                        userId={this.props.user._id}
                     />
                     <span style={styles.userDisplay.name}>
                         {fullName(this.props.user)}

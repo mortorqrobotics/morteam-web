@@ -4,6 +4,7 @@ import Radium from "radium";
 import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName, currentUser } from "~/util";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import styles from "~/team/styles";
 import { connect } from "react-redux";
 import { deleteUser } from "~/group/actions";
@@ -42,9 +43,9 @@ class UserLabel extends React.Component {
         return (
             <Col sm={6} md={4} lg={3}>
                 <span style={styles.userDisplay.span} onClick={this.handleUserClick}>
-                    <img
-                        src={this.props.user.profpicpath + "-60"}
-                        style={styles.userDisplay.profPic}
+                    <ProfilePicture
+                        path={this.props.user.profpicpath + "-60"}
+                        userId={this.props.user._id}
                     />
                     <span style={styles.userDisplay.name}>
                         {fullName(this.props.user)}

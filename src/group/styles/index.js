@@ -25,12 +25,4 @@ export default {
     joinGroupButton: [button, {
       backgroundColor: "#FFC547",
     }],
-    profPic: {
-      width: "30px",
-      height: "30px",
-      textAlign: "center",
-      objectFit: "cover",
-      borderRadius: "5px",
-      marginRight: "100px",
-    },
 }
