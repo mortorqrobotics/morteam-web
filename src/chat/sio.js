@@ -1,4 +1,4 @@
-import { receiveMessage, messageSent, setIsTyping } from "./actions";
+import { receiveMessage, messageSent, setIsTyping, pageClose } from "./actions";
 
 export function initListeners(socket, dispatch) {
 
@@ -29,4 +29,8 @@ export function initListeners(socket, dispatch) {
             isTyping: false,
         }))
     })
+
+    $(window).unload(() => {
+        dispatch(pageClose());
+    });
 }

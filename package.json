@@ -33,6 +33,7 @@
     "react-modal": "^1.4.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
+    "redux-sounds": "^1.1.1",
     "redux-thunk": "^2.1.0",
     "socket.io-client": "^1.4.8"
   },

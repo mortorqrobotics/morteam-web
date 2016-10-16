@@ -24,6 +24,7 @@ let libs = [
     "react-modal",
     "react-redux",
     "redux",
+    "redux-sounds",
     "redux-thunk",
     "socket.io-client",
 ];

@@ -9,11 +9,21 @@ export const addChat = (chat) => async (dispatch) => {
     });
 }
 
-export const receiveMessage = ({ chatId, message }) => ({
-    type: "RECEIVE_MESSAGE_SUCCESS",
-    chatId,
-    message,
-})
+export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
+    const { currentChatId } = getState();
+    let meta = {};
+    if (currentChatId !== chatId || !window.__isFocused) {
+        meta = {
+            sound: "chatMessageNotification",
+        };
+    }
+    dispatch({
+        type: "RECEIVE_MESSAGE_SUCCESS",
+        chatId,
+        message,
+        meta, // this is part of redux-sounds
+    });
+}
 
 export const sendMessage = (content) => (dispatch, getState) => {
     const { currentChatId } = getState();
@@ -92,6 +102,10 @@ export const stopTyping = () => (dispatch, getState) => {
     emit("stop typing", {
         chatId: currentChatId,
     });
+}
+
+export const pageClose = () => (dispatch) => {
+    dispatch(stopTyping());
 }
 
 export async function initialActions(dispatch) {
