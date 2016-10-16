@@ -35,12 +35,6 @@ export default {
                 backgroundColor: "#ffc547",
             },
         },
-        profPic: {
-            width: "30px",
-            height: "30px",
-            objectFit: "cover",
-            borderRadius: "5px",
-        },
         name: {
             fontSize: "17px",
             margin: "8px",
