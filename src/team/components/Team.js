@@ -10,7 +10,11 @@ import { currentUser } from "~/util";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/team/reducers";
-const store = makeStore(reducers);
+import sharedReducers from "~/shared/reducers";
+const store = makeStore({
+    ...reducers,
+    ...sharedReducers,
+});
 import { initialActions } from "~/team/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
