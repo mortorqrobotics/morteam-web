@@ -14,6 +14,18 @@ function onlineClients(state = [], action) {
     }
 }
 
+function isLeftbarOpen(state = {}, action) {
+    switch (action.type) {
+        case "OPEN_LEFTBAR":
+            return true;
+        case "CLOSE_LEFTBAR":
+            return false;
+        default:
+            return state;
+    }
+}
+
 export default {
     onlineClients,
+    isLeftbarOpen,
 }
