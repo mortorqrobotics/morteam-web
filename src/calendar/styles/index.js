@@ -1,3 +1,10 @@
+const grid = {
+    overflow:"hidden",
+    marginLeft:"300px",
+    width:"calc(100%-30px)",
+    height:"100%",
+}
+
 export default {
     middleCol: {
         width: "50%",
@@ -6,5 +13,13 @@ export default {
         display: "inline-block",
         padding: "15px",
         WebkitOverflowScrolling: "touch",
+    },
+    grid: {
+        leftbarOpen: [grid, {
+            marginLeft: "300px",
+        }],
+        leftbarClosed: [grid, {
+            marginLeft: "40px",
+        }],
     },
 }
