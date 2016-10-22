@@ -7,6 +7,7 @@ import Grid from "react-bootstrap/lib/Grid";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
 import styles from "~/calendar/styles";
+import { allMonths } from "~/util/date";
 
 import { connect } from "react-redux";
 
@@ -21,6 +22,7 @@ class Container extends React.Component {
                 fluid={true}
                 style={ this.props.isLeftbarOpen ? styles.grid.leftbarOpen : styles.grid.leftbarClosed }
             >
+                <div style={styles.monthDisplay}>{allMonths[this.props.month]}</div>
                 <Row style={{height:"100%",width:"100%"}}>
                     <Col sm={2} style={styles.middleCol}>
                         <Middle />
@@ -37,6 +39,7 @@ class Container extends React.Component {
 function mapStateToProps(state) {
     return {
         isLeftbarOpen: state.isLeftbarOpen,
+        month: state.absMonth.month,
     }
 }
 
