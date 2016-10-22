@@ -8,8 +8,12 @@ import Middle from "~/drive/components/Middle";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/drive/reducers";
+import sharedReducers from "~/shared/reducers";
 import { fetchFolders } from "~/drive/actions";
-const store = makeStore(reducers);
+const store = makeStore({
+    ...reducers,
+    ...sharedReducers,
+});
 import { initialActions } from "~/drive/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";

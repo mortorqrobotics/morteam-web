@@ -11,9 +11,9 @@ const Middle = (props) => {
         return null;
     }
     return (
-        <div style={props.isLeftbarOpen ? 
-            styles.container.leftbarOpen : styles.container.leftbarClosed
-        }>
+        <div
+            style={ props.isLeftbarOpen ? styles.container.leftbarOpen : styles.container.leftbarClosed }
+        >
             <MessageList />
             <MessageInput />
         </div>

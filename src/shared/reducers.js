@@ -11,7 +11,7 @@ function onlineClients(state = [], action) {
     }
 }
 
-function isLeftbarOpen(state = {}, action) {
+function isLeftbarOpen(state = true, action) {
     switch (action.type) {
         case "OPEN_LEFTBAR":
             return true;
