@@ -3,13 +3,24 @@ import Radium from "radium";
 
 import { withCss } from "~/util/component";
 import styles, { dropdown } from "~/shared/styles/leftbar";
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
+
+const RadiumGlyphicon = Radium(Glyphicon);
 
 export const LeftbarContainer = Radium((props) => {
+    let { isOpen, onToggle } = props;
     return (
-        <div style={styles.div}>
-            <ul style={styles.ul}>
-                {props.children}
-            </ul>
+        <div>
+            <div style={[styles.div, !props.isOpen && { display: "none" } ]}>
+                <ul style={styles.ul}>
+                    {props.children}
+                </ul>
+            </div>
+            <RadiumGlyphicon
+                glyph={props.isOpen ? "chevron-left" : "chevron-right"}
+                onClick={props.onToggle}
+                style={[styles.hideButton, { left: props.isOpen ? "220px" : "10px" }]}
+            />
         </div>
     )
 })

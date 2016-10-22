@@ -2,12 +2,17 @@ import React from "react";
 import Radium from "radium";
 
 import { LeftbarContainer } from "~/shared/components/leftbar";
+import { leftbarProps } from "~/util/leftbar";
 import styles from "~/map/styles";
 
 import { connect } from "react-redux";
 
 @Radium
 class Leftbar extends React.Component {
+
+    state = {
+        isLeftbarOpen: true,
+    }
 
     getTeamDisplay = () => {
         if (this.props.selectedTeam) {
@@ -18,7 +23,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer>
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
                 <li style={styles.teamNum}>
                     {this.getTeamDisplay()}
                 </li>

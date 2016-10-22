@@ -2,6 +2,7 @@ import React from "react";
 import Radium, { Style } from "radium";
 
 import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
+import { leftbarProps } from "~/util/leftbar";
 import TextBox from "~/shared/components/forms/TextBox";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import ComposeModal from "./ComposeModal";
@@ -17,6 +18,7 @@ class Leftbar extends React.Component {
     state = {
         isComposeModalOpen: false,
         search: "",
+        isLeftbarOpen: true,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this)
@@ -43,7 +45,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer>
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
                 >

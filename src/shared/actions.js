@@ -13,3 +13,14 @@ export const leaveOnlineClient = (userId) => ({
     userId,
 })
 
+export function openLeftbar() {
+    return {
+        type: "OPEN_LEFTBAR",
+    }
+}
+
+export function closeLeftbar() {
+    return {
+        type: "CLOSE_LEFTBAR",
+    }
+}
