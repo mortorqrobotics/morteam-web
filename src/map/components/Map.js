@@ -35,7 +35,7 @@ class Map extends React.Component {
                     containerElement= {
                         <div
                             style={{
-                                height: `100%`,
+                                height: "100%",
                             }}
                         />
                     }

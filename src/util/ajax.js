@@ -15,5 +15,13 @@ export function request(method, path, data) {
         data: data,
     });
 }
+
+export function tbaRequest(path) {
+	return axios({
+        method: "get",
+        url: "https://www.thebluealliance.com/api/v2" + path,
+		headers : {"X-TBA-App-Id" : "frc1515:MorTeam:1"}
+    });
+}
 ajax.request = request;
 
