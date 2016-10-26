@@ -11,6 +11,8 @@ import Masonry from "react-masonry-component";
 import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
 
+const RadiumGrid = Radium(Grid);
+
 @Radium
 class Middle extends React.Component {
 
@@ -21,7 +23,10 @@ class Middle extends React.Component {
     render() {
         return (
             <div>
-                <Grid fluid={true} style={styles.docList}>
+                <RadiumGrid
+                    fluid={true}
+                    style={ this.props.isLeftbarOpen ? styles.docList.leftbarOpen : styles.docList.leftbarClosed }
+                >
 
                     {this.props.selectedFolder && (
                         <Masonry>
@@ -38,7 +43,7 @@ class Middle extends React.Component {
                         </Masonry>
                     )}
 
-                </Grid>
+                </RadiumGrid>
 
                 <AddFileModal
                     { ...modalProps(this, "isModalOpen") }
@@ -52,6 +57,7 @@ const mapStateToProps = (state) => {
     return {
         files: state.files,
         selectedFolder: state.selectedFolder,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 

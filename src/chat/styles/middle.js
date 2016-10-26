@@ -8,14 +8,24 @@ const triangle = {
     top: "7px",
 }
 
+const wrapper = {
+    minWidth: "400px",
+    top: "40px",
+    height: "calc(100% - 40px)",
+}
+
 export default {
     container: {
-        width: "calc(100vw - 460px)",
-        marginLeft: "300px",
-        minWidth: "400px",
-        position: "absolute",
-        top: "40px",
-        height: "calc(100% - 40px)",
+        leftbarOpen: [wrapper, {
+            width: "calc(100vw - 460px)",
+            marginLeft: "300px",
+            position: "absolute",
+        }],
+        leftbarClosed: [wrapper, { 
+            width: "100vw",
+            margin: "auto",
+            position: "relative",
+        }],
     },
     messagesDiv: {
         maxWidth: "700px",

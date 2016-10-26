@@ -11,7 +11,9 @@ const Middle = (props) => {
         return null;
     }
     return (
-        <div style={styles.container}>
+        <div
+            style={ props.isLeftbarOpen ? styles.container.leftbarOpen : styles.container.leftbarClosed }
+        >
             <MessageList />
             <MessageInput />
         </div>
@@ -21,7 +23,7 @@ const Middle = (props) => {
 const mapStateToProps = (state) => {
     return {
         anyChats: state.chats.length > 0,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
-
 export default connect(mapStateToProps)(Radium(Middle));

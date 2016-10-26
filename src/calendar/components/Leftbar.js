@@ -9,9 +9,14 @@ import YearDropdown from "./YearDropdown";
 import { connect } from "react-redux";
 import { setAbsMonth } from "~/calendar/actions";
 import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
+import { leftbarProps } from "~/util/leftbar";
 
 @Radium
 class Leftbar extends React.Component {
+
+    state = {
+        isLeftbarOpen: true,
+    }
 
     handleMonthChange = (month) => {
         this.props.dispatch(setAbsMonth({
@@ -29,7 +34,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer>
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
 
                 <LeftbarItem>
                     <YearDropdown

@@ -1,3 +1,11 @@
+const docList = {
+    position: "absolute",
+    width: "calc(100vw - 320px)",
+    height: "calc(100vh - 50px)",
+    top: "60px",
+    display: "block",
+}
+
 export default {
     left: {
         glyph: {
@@ -7,12 +15,12 @@ export default {
         },
     },
     docList: {
-        position: "absolute",
-        width: "calc(100vw - 320px)",
-        height: "calc(100vh - 50px)",
-        left: "300px",
-        top: "60px",
-        display: "block",
+        leftbarOpen: [docList, {
+            left: "300px",
+        }],
+        leftbarClosed: [docList, {
+            left: "40px",
+        }],
     },
     frame: {
         margin: "4px",
@@ -32,7 +40,6 @@ export default {
         left: "0",
         right: "0",
         bottom: "0",
-
     },
     addFile: {
         backgroundColor: "#e9e9e9",
