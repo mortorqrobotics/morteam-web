@@ -15,17 +15,23 @@ export const leaveOnlineClient = (userId) => ({
     userId,
 })
 
-export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
-    new jBox('Notice', {
-        attributes: {
-            x: 'right',
-            y: 'bottom'
+export const receiveMessage = ({ chatId, message }) => (dispatch) => {
+    dispatch({
+        type: "NOTHING_HERE",
+        meta: {
+            sound: "chatMessageNotification",
         },
-        theme: 'NoticeBorder',
+    });
+    new jBox("Notice", {
+        attributes: {
+            x: "right",
+            y: "bottom"
+        },
+        theme: "NoticeBorder",
         volume: 100,
         animation: {
-            open: 'slide:bottom',
-            close: 'slide:right'
+            open: "slide:bottom",
+            close: "slide:right"
         },
         content: message.content,
         maxWidth: 300,

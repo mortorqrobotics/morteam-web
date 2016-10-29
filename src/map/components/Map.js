@@ -6,14 +6,22 @@ import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/map/components/Leftbar";
 import { currentUser } from "~/util";
-
-import { makeStore } from "~/util/redux";
 import { setTeam } from "~/map/actions";
+
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/map/reducers";
-const store = makeStore(reducers);
+import sharedReducers from "~/shared/reducers";
+const store = makeStore({
+    ...reducers,
+    ...sharedReducers,
+}, soundsMiddleware());
 import { initSIO } from "~/util/sio";
-import { initListeners as initSharedListeners } from "~/shared/sio";
+import {
+    initAlertCreator,
+    initListeners as initSharedListeners,
+} from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));
+initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 const currentTeam = teamLocations[currentUser.team.number];
 const mapOptions = {

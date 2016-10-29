@@ -6,18 +6,22 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "~/calendar/components/Leftbar";
 import Container from "~/calendar/components/Container";
 
-import { makeStore } from "~/util/redux";
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/calendar/reducers";
 import sharedReducers from "~/shared/reducers";
 const store = makeStore({
     ...reducers,
     ...sharedReducers,
-});
+}, soundsMiddleware());
 import { initialActions } from "~/calendar/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
-import { initListeners as initSharedListeners } from "~/shared/sio";
+import {
+    initAlertCreator,
+    initListeners as initSharedListeners,
+} from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));
+initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Calendar extends React.Component {

@@ -8,13 +8,13 @@ import Editor from "./editor/Editor";
 import Navbar from "~/shared/components/navbar/Navbar"
 import styles from "~/home/styles";
 
-import { makeStore } from "~/util/redux";
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/home/reducers";
 import sharedReducers from "~/shared/reducers";
 const store = makeStore({
     ...reducers,
     ...sharedReducers,
-});
+}, soundsMiddleware());
 import { initialActions } from "~/home/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
