@@ -6,23 +6,13 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Leftbar from "./leftbar/Leftbar";
 import Middle from "./middle/Middle";
 
-import { makeStore } from "~/util/redux";
-import soundsMiddleware from "redux-sounds";
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/chat/reducers";
 import sharedReducers from "~/shared/reducers";
 const store = makeStore({
     ...reducers,
     ...sharedReducers,
-}, soundsMiddleware({
-    chatMessageNotification: {
-        urls: [
-            "/audio/bling2.mp3",
-            "/audio/bling2.ogg",
-            "/audio/bling2.wav",
-        ],
-        volume: 0.2,
-    },
-}));
+}, soundsMiddleware());
 import { initialActions } from "~/chat/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";

@@ -7,18 +7,22 @@ import styles from "~/group/styles/index";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Heading from "~/group/components/Heading";
 
-import sharedReducers from "~/shared/reducers";
-import { makeStore } from "~/util/redux";
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/group/reducers";
+import sharedReducers from "~/shared/reducers";
 const store = makeStore({
     ...reducers,
     ...sharedReducers,
-});
+}, soundsMiddleware());
 import { initialActions } from "~/group/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
-import { initListeners as initSharedListeners } from "~/shared/sio";
+import {
+    initAlertCreator,
+    initListeners as initSharedListeners,
+} from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));
+initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 class Group extends React.Component {

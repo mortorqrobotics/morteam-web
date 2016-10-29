@@ -8,18 +8,22 @@ import styles from "~/team/styles";
 import ajax from "~/util/ajax";
 import { currentUser } from "~/util";
 
-import { makeStore } from "~/util/redux";
+import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/team/reducers";
 import sharedReducers from "~/shared/reducers";
 const store = makeStore({
     ...reducers,
     ...sharedReducers,
-});
+}, soundsMiddleware());
 import { initialActions } from "~/team/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
-import { initListeners as initSharedListeners } from "~/shared/sio";
+import {
+    initAlertCreator,
+    initListeners as initSharedListeners,
+} from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));
+initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Team extends React.Component {
