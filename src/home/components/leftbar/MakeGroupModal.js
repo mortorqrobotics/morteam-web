@@ -10,6 +10,7 @@ import { getGroupName } from "~/util/groups";
 
 import { connect } from "react-redux";
 import { addGroup } from "~/home/actions";
+
 @Radium
 class MakeGroupModal extends React.Component {
 
