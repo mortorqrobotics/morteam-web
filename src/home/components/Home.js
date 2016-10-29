@@ -18,8 +18,12 @@ const store = makeStore({
 import { initialActions } from "~/home/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
-import { initListeners as initSharedListeners } from "~/shared/sio";
+import { 
+    initAlertCreator,
+    initListeners as initSharedListeners
+} from "~/shared/sio";
 initSIO(socket => initSharedListeners(socket, store.dispatch));
+initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Home extends React.Component {

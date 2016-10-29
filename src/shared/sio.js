@@ -2,7 +2,8 @@ import { emit } from "~/util/sio";
 import {
     setOnlineClients,
     joinOnlineClient,
-    leaveOnlineClient
+    leaveOnlineClient,
+    receiveMessage,
 } from "~/shared/actions";
 
 export function initListeners(socket, dispatch) {
@@ -22,3 +23,13 @@ export function initListeners(socket, dispatch) {
     emit("get clients");
 };
 
+export function initAlertCreator(socket, dispatch) {
+
+    socket.on("message", ({ chatId, message }) => {
+        dispatch(receiveMessage({
+            chatId,
+            message,
+        }))
+    })
+
+}
