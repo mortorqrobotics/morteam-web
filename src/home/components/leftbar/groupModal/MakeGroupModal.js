@@ -26,7 +26,7 @@ export default class MakeGroupModal extends React.Component {
 
         this.initialState = {
             groupName: "",
-            users: [currentUser._id],
+            users: [currentUser],
         };
         this.state = this.initialState;
     }
@@ -34,7 +34,7 @@ export default class MakeGroupModal extends React.Component {
     createGroup = async () => {
         try {
             let { data } = await ajax.request("post", "/groups/normal", {
-                users: this.state.users,
+                users: this.state.users.map(u => u._id),
                 name: this.state.groupName,
             });
             this.setState(this.initialState);

@@ -1,3 +1,5 @@
+import { fullName } from "~/util";
+
 export const setOnlineClients = (userIds) => ({
     type: "SET_ONLINE_CLIENTS",
     userIds,
@@ -28,7 +30,7 @@ export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
         content: message.content,
         maxWidth: 300,
         maxHeight: 105,
-        title: chatId,
+        title: fullName(message.author),
         closeOnClick: false,
         onOpen: function() {
             //stuff

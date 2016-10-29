@@ -37,7 +37,10 @@ class AddFolderModal extends React.Component {
     onSubmit = async () => {
         await this.props.dispatch(addFolder({
             name: this.state.name,
-            audience: this.state.audience,
+            audience: {
+                users: this.state.audience.users.map(u => u._id),
+                groups: this.state.audience.groups.map(g => g._id)
+            },
             type: "teamFolder",
         }))
         this.setState(this.initialState);
