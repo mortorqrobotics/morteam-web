@@ -24,7 +24,19 @@ const announcementsLoading = (state = false, action) => {
     }
 }
 
+const groups = (state = [], action) => {
+    switch (action.type) {
+        case "LOAD_GROUPS":
+            return action.groups
+        case "ADD_GROUP":
+            return state.concat(action.group)
+        default:
+            return state
+    }
+}
+
 export default {
     announcements,
     announcementsLoading,
+    groups,
 }

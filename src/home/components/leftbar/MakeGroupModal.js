@@ -2,47 +2,39 @@ import React from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import CreateGroupButton from "./CreateGroupButton";
-import ModalTextBox from "./ModalTextBox";
-import GroupTypeOption from "./GroupTypeOption";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
-import ajax from "~/util/ajax";
+import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { makeChangeHandlerFactory, currentUser } from "~/util";
 import { getGroupName } from "~/util/groups";
 
+import { connect } from "react-redux";
+import { addGroup } from "~/home/actions";
 @Radium
-export default class MakeGroupModal extends React.Component {
+class MakeGroupModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
-        addGroup: React.PropTypes.func
     }
 
-    constructor(props) {
-        super(props);
+    getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.getChangeHandler = makeChangeHandlerFactory(this);
-
-        this.initialState = {
-            groupName: "",
-            users: [currentUser],
-        };
-        this.state = this.initialState;
+    initialState = {
+        groupName: "",
+        users: [currentUser],
+    };
+    
+    state = {
+       ...this.initialState,
     }
 
-    createGroup = async () => {
-        try {
-            let { data } = await ajax.request("post", "/groups/normal", {
-                users: this.state.users.map(u => u._id),
-                name: this.state.groupName,
-            });
-            this.setState(this.initialState);
-            this.props.addGroup(data);
-            this.props.onRequestClose();
-        } catch (err) {
-            console.log(err);
-        }
+    handleSubmit = () => {
+        this.props.dispatch(addGroup({
+            users: this.state.users.map(u => u._id),
+            name: this.state.groupName,
+        }));
+        this.setState(this.initialState);
+        this.props.onRequestClose();
     }
 
     render() {
@@ -56,6 +48,7 @@ export default class MakeGroupModal extends React.Component {
                     placeholder="Group Name"
                     onChange={this.getChangeHandler("groupName")}
                     value={this.state.groupName}
+                    maxLength={21}
                 />
                 <br />
 
@@ -68,9 +61,14 @@ export default class MakeGroupModal extends React.Component {
                 />
                 <br />
 
-                <CreateGroupButton onClick={this.createGroup} />
+                <ModalButton
+                    text="Make Group"
+                    onClick={this.handleSubmit}
+                />
 
             </StandardModal>
         )
     }
 }
+
+export default connect()(MakeGroupModal);

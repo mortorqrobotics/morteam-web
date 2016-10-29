@@ -28,6 +28,23 @@ export const loadAnnouncements = () => async (dispatch, getState) => {
     });
 }
 
+export const loadGroups = () => async (dispatch) => {
+    const { data } = await request("GET", "/groups/normal");
+    dispatch({
+        type: "LOAD_GROUPS",
+        groups: data,
+    });
+}
+
+export const addGroup = (group) => async (dispatch) => {
+    const { data } = await request("POST", "/groups/normal", group);
+    dispatch({
+        type: "ADD_GROUP",
+        group: data,
+    });
+}
+
 export function initialActions(dispatch) {
     dispatch(loadAnnouncements());
+    dispatch(loadGroups());
 }

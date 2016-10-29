@@ -3,36 +3,18 @@ import Radium from "radium";
 
 import LeftbarButton from "./LeftbarButton";
 import GroupList from "./GroupList";
-import MakeGroupModal from "./groupModal/MakeGroupModal";
+import MakeGroupModal from "./MakeGroupModal";
 import Link from "~/shared/components/Link";
-import ajax from "~/util/ajax";
 import { modalProps } from "~/util/modal";
 import { currentUser } from "~/util";
-
 import styles from "~/home/styles/leftbar";
+import { connect } from "react-redux";
 
 @Radium
-export default class Leftbar extends React.Component {
+class Leftbar extends React.Component {
 
     state = {
-        userGroups: [],
-        publicGroups: [],
         isModalOpen: false,
-    }
-
-    componentDidMount = async() => {
-        try {
-            let [userGroupsRes, publicGroupsRes] = await Promise.all([
-                ajax.request("get", "/groups/normal"),
-                ajax.request("get", "/groups/other")
-            ]);
-            this.setState({
-                userGroups: userGroupsRes.data,
-                publicGroups: publicGroupsRes.data
-            });
-        } catch (err) {
-            console.log(err);
-        }
     }
 
     renderMakeGroupButton = () => {
@@ -49,19 +31,11 @@ export default class Leftbar extends React.Component {
 
                     <MakeGroupModal
                         { ...modalProps(this, "isModalOpen") }
-                        addGroup={this.addGroup}
                     />
 
                 </div>
             )
         }
-    }
-
-    addGroup = (group) => {
-        let change = {
-            userGroups: this.state.userGroups.concat([group]),
-        }
-        this.setState(change);
     }
 
     render() {
@@ -87,13 +61,7 @@ export default class Leftbar extends React.Component {
 
                 <h5 style={styles.leftbar.h5}>Your Groups</h5>
                 <GroupList
-                    groups={this.state.userGroups}
-                />
-                <hr />
-
-                <h5 style={styles.leftbar.h5}>Public Groups</h5>
-                <GroupList
-                    groups={this.state.publicGroups}
+                    groups={this.props.groups}
                 />
                 <hr />
 
@@ -113,3 +81,11 @@ export default class Leftbar extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        groups: state.groups,
+    }
+}
+
+export default connect(mapStateToProps)(Leftbar);
