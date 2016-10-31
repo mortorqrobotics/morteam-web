@@ -70,7 +70,7 @@ gulp.task("build", function() {
         .pipe(tap(file => {
             let options = {};
             if (process.env.NODE_ENV !== "production") {
-                options = { debug: true };
+                options.debug = true;
             }
             let bundler = browserify(file.path, options);
             file.contents = stuff(bundler).bundle();

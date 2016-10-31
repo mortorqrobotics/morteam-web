@@ -5,8 +5,12 @@ import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
 import { chatItem as styles } from "~/chat/styles/middle";
 import { fullName, currentUser } from "~/util";
-import { allowOnlyLinks } from "~/util/component";
+import { allowOnlyTags } from "~/util/component";
 import { parseDate } from "~/util/date";
+
+const filterMessage = (content) => (
+    allowOnlyTags(["a", "br"], content.replace(/\n/g, "<br />"))
+)
 
 @Radium
 export default class MessageItem extends React.Component {
@@ -34,7 +38,7 @@ export default class MessageItem extends React.Component {
                     <div style={
                         message.isLoading ? styles.selfBubbleLoading : styles.selfBubble
                     }>
-                        <span dangerouslySetInnerHTML={{ __html: allowOnlyLinks(message.content) }} />
+                    <span dangerouslySetInnerHTML={{ __html: filterMessage(message.content) }} />
                         <div style={styles.selfTriangle} />
                     </div>
                 </div>
@@ -59,7 +63,7 @@ export default class MessageItem extends React.Component {
                         >
                             {message.author.firstname}:
                         </p>
-                        <span dangerouslySetInnerHTML={{ __html: allowOnlyLinks(message.content) }} />
+                        <span dangerouslySetInnerHTML={{ __html: filterMessage(message.content) }} />
                         <div style={styles.otherTriangle} />
                     </div>
                 </div>

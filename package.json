@@ -4,6 +4,7 @@
   "description": "The new web client for MorTeam, the FRC collaboration tool",
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
+    "build-prod": "NODE_ENV=production ./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watch",
     "vendor": "./node_modules/.bin/gulp vendor",
     "vendor-prod": "NODE_ENV=production ./node_modules/.bin/gulp vendor",

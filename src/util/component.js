@@ -10,8 +10,11 @@ export const withProps = (Comp, values) => (props) => (
     React.cloneElement(React.createElement(Comp, props), values)
 )
 
-export function allowOnlyLinks(str) {
-    const regex = /<(?!(a\s|\/))/;
+export function allowOnlyTags(tags, str) {
+    // const regex = /<(?!(a\s|\/))/;
+    const regex = new RegExp(
+        "<(?!(" + tags.map(tag => tag + "(\\s|>)").join("|") + "|\/))"
+    );
     // sanitize does need to be here
     // so that js cannot be inside an anchor
     return sanitize(str.replace(regex, "&lt;"));
