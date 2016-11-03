@@ -4,6 +4,7 @@ import Radium from "radium";
 import StandardModal from "~/shared/components/StandardModal";
 import { ModalTextBox, ModalSubmitButton } from "~/shared/components/modal";
 import Form from "~/shared/components/forms/Form";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import { makeChangeHandlerFactory, fullName } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { getGroupName } from "~/util/groups";
@@ -63,9 +64,10 @@ class OptionsModal extends React.Component {
                         ))}
                         {this.props.chat.audience.users.map(user => (
                             <li key={user._id} style={styles.li}>
-                                <img
-                                    style={styles.img}
-                                    src={user.profpicpath}
+                                <ProfilePicture
+                                    user={user}
+                                    picSize="small"
+                                    frameSize={30}
                                 />
                                 <span style={styles.span}>
                                     {fullName(user)}
