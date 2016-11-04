@@ -25,18 +25,22 @@ class ProfilePicture extends React.Component {
         return {};
     }
 
-     getSize = () => {
-        if (this.props.picSize === "small") {
-            return "-60";
+    getSize = () => {
+        switch (this.props.picSize) {
+            case "small":
+                return "-60";
+            case "large":
+                return "-300";
+            default:
+                return "-60";
         }
-        return "-300";
     }
 
     render() {
         return (
             <img
-                src={this.props.user.profpicpath + getSize()}
-                style={[ this.getIndiactor(), {
+                src={this.props.user.profpicpath + this.getSize()}
+                style={[ this.getIndicator(), {
                     height: this.props.frameSize + "px",
                     width: this.props.frameSize + "px"
                 }, this.props.style || {} ]}
