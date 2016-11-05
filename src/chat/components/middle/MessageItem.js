@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import { chatItem as styles } from "~/chat/styles/middle";
 import { fullName, currentUser } from "~/util";
 import { allowOnlyTags } from "~/util/component";
@@ -51,9 +52,11 @@ export default class MessageItem extends React.Component {
                             placement="top"
                             overlay={this.renderAuthorTooltip()}
                         >
-                            <img
+                            <ProfilePicture
+                                user={message.author}
+                                picSize="small"
+                                frameSize={30}
                                 style={styles.profPic}
-                                src={message.author.profpicpath}
                             />
                         </OverlayTrigger>
                         <p

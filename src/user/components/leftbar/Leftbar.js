@@ -80,23 +80,17 @@ export default class Leftbar extends React.Component {
     }
 
     renderProfilePic = () => {
-        if (currentUser._id === this.state.user._id) {
-            return (
-                <img
-                    src={this.state.user.profpicpath + "-300"}
-                    style={styles.img}
-                />
-            )
-        } else {
-            return (
-                <ProfilePicture
-                    path={this.state.user.profpicpath + "-300"}
-                    userId={this.state.user._id}
-                    size={150}
-                    style={{margin: styles.img.margin}}
-                />
-            )
-        }
+        let isCurrentUser = currentUser._id === this.state.user._id;
+        return (
+            <ProfilePicture
+                user={this.state.user}
+                picSize="large"
+                frameSize={150}
+                hasIndicator = {!isCurrentUser}
+                style={isCurrentUser ? styles.img : {margin: styles.img.margin}
+                }
+            />
+        )
     }
 
     renderPositionView = () => {

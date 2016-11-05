@@ -22,7 +22,7 @@ class ProfilePicture extends React.Component {
             }
             return styles.online;
         }
-        return {};
+        return styles.default;
     }
 
     getSize = () => {

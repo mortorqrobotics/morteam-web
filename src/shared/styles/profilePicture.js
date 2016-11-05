@@ -5,6 +5,9 @@ const img = {
 }
 
 export default {
+    default: {
+        ...img,
+    },
     online: {
         ...img,
         border: "2px solid #00b800",

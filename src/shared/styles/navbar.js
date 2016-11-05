@@ -94,12 +94,6 @@ export default {
             paddingLeft: "10px",
             verticalAlign: "middle",
         },
-        img: {
-            width: "30px",
-            height: "30px",
-            objectFit: "cover",
-            borderRadius: "5px",
-        },
     },
     glyphLink: {
         li: {

@@ -21,9 +21,10 @@ export default class SearchDropItem extends React.Component {
         return (
             <li onClick={this.onClick} style={styles.searchDropItem.li}>
         	    <ProfilePicture
-        	        path={this.props.user.profpicpath + "-60"}
-        	        userId={this.props.user._id}
-        	        size={30}
+                    user={this.props.user}
+                    picSize="small"
+                    frameSize={30}
+                    hasIndicator
         	    />
         	    <span style={styles.searchDropItem.span}>{fullName(this.props.user)}</span>
         	</li>
