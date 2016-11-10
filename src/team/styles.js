@@ -27,6 +27,7 @@ export default {
             padding: "20px",
             textAlign: "left",
             display: "inline-block",
+            marginBottom: "15px",
             backgroundColor: "#c9c9c9",
             border: "1px solid #ababab",
             width: "90%",
