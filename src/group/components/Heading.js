@@ -15,10 +15,10 @@ class Heading extends React.Component {
         if (this.props.users.some(user => user._id === currentUser._id)) {
             return (
                 <div>
-                    <LeaveGroupButton />
-                    {currentUser.isAdmin() && (
+                  {currentUser.isAdmin() && (
                         <InviteMemberButton/>
                     )}
+                    <LeaveGroupButton />
                 </div>
             )
         } else {

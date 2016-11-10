@@ -3,7 +3,7 @@ const button = {
     width: "300px",
     color: "white",
     border: "none",
-    marginBottom: "30px",
+    marginBottom: "20px",
 }
 
 export default {
@@ -14,7 +14,7 @@ export default {
       paddingTop: "50px",
       fontSize: "36px",
       textAlign: "center",
-      marginBottom: "80px",
+      marginBottom: "35px",
     },
     leaveButton: [button, {
       backgroundColor: "#C71111",
@@ -26,3 +26,5 @@ export default {
       backgroundColor: "#FFC547",
     }],
 }
+
+
