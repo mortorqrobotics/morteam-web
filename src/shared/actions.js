@@ -15,7 +15,7 @@ export const leaveOnlineClient = (userId) => ({
     userId,
 })
 
-export const receiveMessage = ({ chatId, message }) => (dispatch) => {
+export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) => {
     dispatch({
         type: "NOTHING_HERE",
         meta: {
@@ -36,11 +36,9 @@ export const receiveMessage = ({ chatId, message }) => (dispatch) => {
         content: message.content,
         maxWidth: 300,
         maxHeight: 105,
-        title: fullName(message.author),
+        title: type === "group" ? fullName(message.author) + " in " + name
+            : fullName(message.author),
         closeOnClick: false,
-        onOpen: function() {
-            //stuff
-        }
     });
 }
 
