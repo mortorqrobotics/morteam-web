@@ -25,10 +25,12 @@ export function initListeners(socket, dispatch) {
 
 export function initAlertCreator(socket, dispatch) {
 
-    socket.on("message", ({ chatId, message }) => {
+    socket.on("message", ({ chatId, message, type, name }) => {
         dispatch(receiveMessage({
             chatId,
             message,
+            type,
+            name,
         }))
     })
 
