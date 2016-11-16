@@ -1,11 +1,12 @@
 const button = {
     height: "37px",
-    backgroundColor: "#C71111",
+    backgroundColor: "#cc0000",
     color: "white",
     border: "none",
+    boxShadow: "1.5px 3px 8px -2px #a9a9a9",    
     ":hover": {
         cursor: "pointer",
-        backgroundColor: "#800000",
+        backgroundColor: "#b30000",
     },
 };
 export default {
