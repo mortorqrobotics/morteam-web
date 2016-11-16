@@ -39,7 +39,13 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) =>
         title: type === "group" ? fullName(message.author) + " in " + name
             : fullName(message.author),
         closeOnClick: false,
+        onOpen: function() {
+            $($(this)[0].content).parent().parent().addClass("messageNotification"); // beauty
+        },
     });
+    $(document).on("click", ".messageNotification", function() {
+        window.location.assign("/chat");
+    })
 }
 
 export function openLeftbar() {
