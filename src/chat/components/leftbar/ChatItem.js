@@ -4,9 +4,11 @@ import Radium from "radium";
 import { LeftbarButton } from "~/shared/components/leftbar";
 import { connect } from "react-redux";
 import { setCurrentChatId } from "~/chat/actions";
+import { deleteChat } from "~/chat/actions";
 import { otherUser, currentUser } from "~/util";
 import { modalProps } from "~/util/modal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
+import Button from "~/shared/components/forms/Button"
 import OptionsModal from "./OptionsModal";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/chat/styles/leftbar";
@@ -51,19 +53,18 @@ class ChatItem extends React.Component {
             >
                 {this.chatImage()}
                 {this.props.title}
-
-                {!this.props.chat.isTwoPeople && (
-                    <RadiumGlyphicon
-                        glyph="cog"
-                        style={styles.gear}
-                        onClick={() => this.setState({ isOptionsModalOpen: true })}
-                    />
-                )}
-
+                
+                <RadiumGlyphicon
+                    glyph="cog"
+                    style={styles.cog}
+                    onClick={() => this.setState({ isOptionsModalOpen: true })}
+                />
+                
                 <OptionsModal
                     chat={this.props.chat}
                     { ...modalProps(this, "isOptionsModalOpen") }
                 />
+                
             </LeftbarButton>
         )
     }
