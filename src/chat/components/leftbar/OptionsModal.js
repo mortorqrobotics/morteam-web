@@ -5,11 +5,13 @@ import StandardModal from "~/shared/components/StandardModal";
 import { ModalTextBox, ModalSubmitButton } from "~/shared/components/modal";
 import Form from "~/shared/components/forms/Form";
 import ProfilePicture from "~/shared/components/ProfilePicture";
+import Button from "~/shared/components/forms/Button";
 import { makeChangeHandlerFactory, fullName } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { setChatName } from "~/chat/actions";
+import { deleteChat } from "~/chat/actions";
 import styles from "~/chat/styles/optionsModal";
 
 @Radium
@@ -27,6 +29,7 @@ class OptionsModal extends React.Component {
 
         this.state = {
             name: this.props.chat.name,
+            isDeleteConfirmOpen: false, 
         }
     }
 
@@ -37,13 +40,10 @@ class OptionsModal extends React.Component {
         }));
         this.props.onRequestClose();
     }
-
-    render() {
-        return (
-            <StandardModal
-                title="Options"
-                { ...modalPropsForward(this) }
-            >
+    
+    handleGroupChatRender = () => {
+        if(!this.props.chat.isTwoPeople){
+            return(
                 <Form onSubmit={this.handleSubmit}>
                     <ModalTextBox
                         placeholder="Chat Name"
@@ -74,15 +74,54 @@ class OptionsModal extends React.Component {
                                 </span>
                             </li>
                         ))}
-                    </ul>
+                        </ul>
                     <ModalSubmitButton
                         text="Done"
                     />
                 </Form>
+            )
+        }
+    }
+    
+    handleDeleteRender = () => {
+        if(!this.state.isDeleteConfirmOpen){
+           return(
+                <Button 
+                    style={styles.deleteButton} 
+                    value="Delete"  
+                    onClick={() => this.setState({isDeleteConfirmOpen: true,})}
+                />
+            )
+        } else {
+            return (
+                <div>
+                    <p style={styles.p}>Are you sure?</p>
+                    <Button 
+                        style={styles.confirmButton} 
+                        value="Yes"  
+                        onClick= {() => this.props.dispatch(deleteChat(this.props.chat))}
+                    />
+                    <Button 
+                        style={styles.confirmButton} 
+                        value="No"  
+                        onClick={() => this.setState({isDeleteConfirmOpen: false,})}
+                    />
+                </div>
+            )
+        }
+    }
+    
+    render() {
+        return(
+            <StandardModal
+                title="Options"
+                { ...modalPropsForward(this) }
+            >
+                {this.handleGroupChatRender()}
+                {this.handleDeleteRender()}
             </StandardModal>
         )
     }
-
 }
 
 export default connect()(OptionsModal);

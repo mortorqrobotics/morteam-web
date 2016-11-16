@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/group/styles/index";
+import styles from "~/group/styles";
 import LeaveGroupButton from "~/group/components/LeaveGroupButton";
 import InviteMemberButton from "~/group/components/InviteMemberButton";
 import JoinButton from "~/group/components/JoinButton";

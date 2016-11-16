@@ -1,3 +1,14 @@
+const button = {
+    height: "37px",
+    backgroundColor: "#cc0000",
+    color: "white",
+    border: "none",
+    boxShadow: "1.5px 3px 8px -2px #a9a9a9",    
+    ":hover": {
+        cursor: "pointer",
+        backgroundColor: "#b30000",
+    },
+};
 export default {
     ul: {
         maxHeight: "270px",
@@ -22,4 +33,9 @@ export default {
         paddingLeft: "5px",
         verticalAlign: "middle",
     },
+    p: {
+        textAlign: "center",
+    },
+    deleteButton: [button, {width: "100%"}],
+    confirmButton: [button, {width:"45%", margin: "0px 7px 0px 7px"}]
 }

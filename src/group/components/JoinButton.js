@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/group/styles/index";
+import styles from "~/group/styles";
 import Button from "~/shared/components/forms/Button";
 import { pageOptions } from "~/util";
 import { connect } from "react-redux";

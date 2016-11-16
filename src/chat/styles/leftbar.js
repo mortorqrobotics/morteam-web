@@ -38,7 +38,7 @@ export default {
             color: color,
         },
     },
-    gear: {
+    cog: {
         float: "right",
         opacity: "0.5",
         fontSize: "13px",

@@ -10,8 +10,10 @@ function chats(state = initialChats, action) {
             return action.chats
         case "ADD_CHAT_SUCCESS":
             return [action.chat].concat(state)
+        case "DELETE_CHAT_SUCCESS":
+            return state.filter(chat => chat._id !== action.chat._id)
         case "SET_CHAT_NAME_SUCCESS":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     name: {
@@ -20,7 +22,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "RECEIVE_MESSAGE_SUCCESS":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     messages: {
@@ -29,7 +31,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "SEND_MESSAGE_LOADING":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     messages: {
@@ -42,7 +44,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "SEND_MESSAGE_SUCCESS":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             const index2 = state[index].messages.findIndex(msg => msg.isLoading);
             return update(state, {
                 [index]: {
@@ -59,7 +61,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "LOAD_MESSAGES_SUCCESS":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     messages: {
@@ -68,7 +70,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "ALL_MESSAGES_LOADED":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     areAllMessagesLoaded: {
@@ -77,7 +79,7 @@ function chats(state = initialChats, action) {
                 },
             })
         case "SET_IS_TYPING":
-            index = state.findIndex(chat => chat._id == action.chatId);
+            index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
                 [index]: {
                     isTyping: {

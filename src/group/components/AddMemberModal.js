@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/group/styles/index";
+import styles from "~/group/styles";
 import ajax from "~/util/ajax";
 import { ModalButton } from "~/shared/components/modal";
 import StandardModal from "~/shared/components/StandardModal";
