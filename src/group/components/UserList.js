@@ -3,8 +3,8 @@ import Radium from "radium";
 
 import Grid from "react-bootstrap/lib/Grid";
 import UserLabel from "./UserLabel";
-import styles from "~/team/styles";
-import { connect } from "react-redux";
+import styles from "~/shared/styles/userList";
+import { connect } from "react-redux"
 
 @Radium
 class UserList extends React.Component {
