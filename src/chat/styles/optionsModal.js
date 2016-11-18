@@ -1,9 +1,11 @@
+import { buttonShadow } from "~/shared/styles/boxShadows";
+
 const button = {
     height: "37px",
     backgroundColor: "#cc0000",
     color: "white",
     border: "none",
-    boxShadow: "1.5px 3px 8px -2px #a9a9a9",    
+    boxShadow: buttonShadow,    
     ":hover": {
         cursor: "pointer",
         backgroundColor: "#b30000",

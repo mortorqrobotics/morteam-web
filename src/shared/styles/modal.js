@@ -1,10 +1,12 @@
+import { buttonShadow } from "~/shared/styles/boxShadows"
+
 const item = {
     width: "100%",
     border: "none",
     borderRadius: "1px",
     marginTop: "10px",
     marginBottom: "5px",
-    boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+    boxShadow: buttonShadow,
     ":focus": {
         outline: "none",
     },
