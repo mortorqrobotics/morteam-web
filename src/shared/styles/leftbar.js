@@ -1,4 +1,5 @@
 // shared by calendar, chat, and drive
+import { defaultOrange, hoverOrange, selectedOrange } from "~/shared/styles/colors";
 
 const item = {
     height: "60px",
@@ -11,7 +12,7 @@ const item = {
 
 export default {
     div: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultOrange,
         width: "260px",
         height: "calc(100% - 30px)",
         position: "fixed",
@@ -28,13 +29,13 @@ export default {
     button: [item, {
         cursor: "pointer",
         ":hover": {
-            backgroundColor: "#FFB524",
+            backgroundColor: hoverOrange,
         },
     }],
     selected: {
-        backgroundColor: "orange",
+        backgroundColor: selectedOrange,
         ":hover": {
-            backgroundColor: "orange",
+            backgroundColor: selectedOrange,
         },
     },
     glyph: {
@@ -43,7 +44,7 @@ export default {
     hideButton: {
         position: "fixed",
         top: "calc(100% - 40px)",
-        backgroundColor: "orange",
+        backgroundColor: selectedOrange,
         width: "28px",
         height: "30px",
         padding: "7px",
@@ -59,7 +60,7 @@ export default {
 
 export const dropdown = {
     button: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultOrange,
         border: "none",
         padding: "3px 8px",
         borderRadius: "1px",
@@ -68,7 +69,7 @@ export const dropdown = {
         display: "inline-block",
         verticalAlign: "middle",
         ":hover": {
-            backgroundColor: "orange"
+            backgroundColor: selectedOrange
         }
     },
     buttonShadow: {
@@ -102,13 +103,13 @@ export const dropdown = {
         listStyle: "none",
         fontSize: "14px",
         ":hover": {
-            backgroundColor: "#ffc547"
+            backgroundColor: defaultOrange
         },
     },
     selected: {
-        backgroundColor: "orange",
+        backgroundColor: selectedOrange,
         ":hover": {
-            backgroundColor: "orange"
+            backgroundColor: selectedOrange
         },
     }
 }

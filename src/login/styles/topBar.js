@@ -1,3 +1,5 @@
+import { defaultOrange } from "~/shared/styles/colors";
+
 const title = {
     display: "inline-block",
     color: "white",
@@ -7,7 +9,7 @@ const title = {
 
 export default {
     landingBox: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultOrange,
         paddingTop: "30px",
         height: "80px",
         width: "100%",

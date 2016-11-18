@@ -1,9 +1,11 @@
+import { defaultOrange, selectedOrange } from "~/shared/styles/colors";
+
 export default {
-    backgroundColor: "#ffc547",
+    backgroundColor: defaultOrange,
     border: "none",
     borderRadius: "1px",
     ":hover": {
-        backgroundColor: "orange",
+        backgroundColor: selectedOrange,
     },
     ":focus": {
         outline: "none",

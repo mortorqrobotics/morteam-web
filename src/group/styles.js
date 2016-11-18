@@ -1,3 +1,5 @@
+import { defaultOrange } from "~/shared/styles/colors";
+
 const button = {
     fontSize: "28px",
     width: "300px",
@@ -23,6 +25,6 @@ export default {
       backgroundColor: "#009933",
     }],
     joinGroupButton: [button, {
-      backgroundColor: "#FFC547",
+      backgroundColor: defaultOrange,
     }],
 }

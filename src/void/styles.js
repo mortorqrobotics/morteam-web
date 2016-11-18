@@ -1,3 +1,5 @@
+import { defaultOrange } from "~/shared/styles/colors";
+
 const rowElem = {
     width: "270px",
     height: "40px",
@@ -26,7 +28,7 @@ export default {
     },
     textBox: rowElem,
     button: [rowElem, {
-        backgroundColor: "#ffc547",
+        backgroundColor: defaultOrange,
         borderRadius: "1px",
         cursor: "pointer",
     }],

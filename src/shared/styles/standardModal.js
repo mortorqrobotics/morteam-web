@@ -1,3 +1,5 @@
+import { defaultOrange } from "~/shared/styles/colors";
+
 export default {
     modal: {
         position: "fixed",
@@ -18,7 +20,7 @@ export default {
     },
     title: {
         padding: "10px 15px",
-        backgroundColor: "#ffc547",
+        backgroundColor: defaultOrange,
         color: "black",
     },
     content: {

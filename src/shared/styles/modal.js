@@ -1,4 +1,5 @@
-import { buttonShadow } from "~/shared/styles/boxShadows"
+import { buttonShadow } from "~/shared/styles/boxShadows";
+import { defaultOrange, selectedOrange } from "~/shared/styles/colors";
 
 const item = {
     width: "100%",
@@ -25,10 +26,10 @@ export default {
     }],
     button: [item, {
         height: "37px",
-        backgroundColor: "#ffc547",
+        backgroundColor: defaultOrange,
         color: "black",
         ":hover": {
-            backgroundColor: "orange",
+            backgroundColor: selectedOrange,
         },
     }],
     errorMsg: {

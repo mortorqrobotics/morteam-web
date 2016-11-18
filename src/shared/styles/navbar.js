@@ -1,8 +1,10 @@
+import { defaultOrange, hoverOrange, selectedOrange } from "~/shared/styles/colors";
+
 const navbarHeight = 40;
 
 export default {
     container: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultOrange,
         height: navbarHeight + "px",
         position: "fixed",
         width: "100%",
@@ -113,14 +115,14 @@ export default {
             },
         },
         selected: {
-            backgroundColor: "orange",
+            backgroundColor: selectedOrange,
             ":hover": {
                 backgroundColor: "darkorange",
             },
         },
         unselected: {    
             ":hover": {
-                backgroundColor: "#FFB524",
+                backgroundColor: hoverOrange,
             },
         }
     },
@@ -158,7 +160,7 @@ export default {
                 right: "5px",
                 left: "auto",
                 height: "80px",
-                backgroundColor: "#ffc547",
+                backgroundColor: defaultOrange,
                 border: "none",
                 borderRadius: "0",
                 padding: "0",
@@ -176,7 +178,7 @@ export default {
                 textAlign: "left",
                 padding: "10px",
                 ":hover": {
-                    backgroundColor: "#ffb524",
+                    backgroundColor: hoverOrange,
                     cursor: "pointer",
                 },
             },
@@ -186,7 +188,7 @@ export default {
         div: {
             width: "100%",
             textAlign: "center",
-            backgroundColor: "ffc547",
+            backgroundColor: defaultOrange,
             left: "0px",
             top: "40px",
             height: "auto",
@@ -202,7 +204,7 @@ export default {
             cursor: "pointer",
             margin: "0px",
             ":hover": {
-                backgroundColor: "orange",
+                backgroundColor: selectedOrange,
             }
         },
         container: {
@@ -223,7 +225,7 @@ export default {
             marginLeft: "0px 2px 0px -5px",
             position: "absolute",
             ":hover": {
-                backgroundColor: "#FFB524",
+                backgroundColor: hoverOrange,
                 cursor: "pointer",
             },
         }

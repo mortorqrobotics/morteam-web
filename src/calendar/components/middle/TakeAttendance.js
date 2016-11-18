@@ -10,6 +10,8 @@ import { fullName, capitalize } from "~/util";
 import update from "react/lib/update";
 import ContextMenu from "react-context-menus";
 
+import { selectedOrange } from "~/shared/styles/colors";
+
 @Radium
 export default class TakeAttendance extends React.Component {
 
@@ -36,7 +38,7 @@ export default class TakeAttendance extends React.Component {
     getColor = (status) => {
         switch (status) {
             case "absent":
-                return { backgroundColor: "orange" }
+                return { backgroundColor: selectedOrange }
             case "present":
                 return { backgroundColor: "#53cf29" }
             case "tardy":

@@ -1,3 +1,5 @@
+import { defaultOrange, selectedOrange } from "~/shared/styles/colors";
+
 const signupElem = {
     border: "none",
     left: "50%",
@@ -24,7 +26,7 @@ export default {
     container: {
         width: "360px",
         height: "640px",
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultOrange,
         position: "absolute",
         top: "50%",
         left: "50%",
@@ -49,7 +51,7 @@ export default {
         top: "530px",
     }],
     fileButton: [signupButton, {
-        backgroundColor: "orange",
+        backgroundColor: selectedOrange,
         ":hover": {
             backgroundColor: "darkOrange",
         },
