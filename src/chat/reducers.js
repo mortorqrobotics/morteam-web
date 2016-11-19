@@ -22,14 +22,19 @@ function chats(state = initialChats, action) {
                 },
             })
         case "RECEIVE_MESSAGE_SUCCESS":
+            console.log(state);
             index = state.findIndex(chat => chat._id === action.chatId);
-            return update(state, {
+            const newState = update(state, {
                 [index]: {
                     messages: {
                         $push: [action.message],
                     },
+                    updated_at: {
+                        $set: action.timestamp, 
+                    },
                 },
             })
+            return newState.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
         case "SEND_MESSAGE_LOADING":
             index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {

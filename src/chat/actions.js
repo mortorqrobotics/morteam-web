@@ -30,6 +30,7 @@ export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
         chatId,
         message,
         meta, // this is part of redux-sounds
+        timestamp: new Date(),
     });
 }
 
