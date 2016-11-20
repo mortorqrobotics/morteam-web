@@ -1,3 +1,5 @@
+import { defaultColor, selectedColor } from "~/shared/styles/colors";
+
 const button = {
     border: "0",
     borderRadius: "1px",
@@ -10,7 +12,7 @@ const button = {
 
 export default {
     wrapper: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultColor,
         width: "260px",
         height: "auto",
         position: "fixed",
@@ -48,7 +50,6 @@ export default {
         width: "210px",
         height: "28px",
         padding: "3px",
-        border: "none",
         marginBottom: "15px",
         boxSizing: "unset",
     },
@@ -59,7 +60,7 @@ export default {
         }
     }],
     loginButton: [button, {
-        backgroundColor: "orange",
+        backgroundColor: selectedColor,
         ":hover": {
             backgroundColor: "darkorange",
         },

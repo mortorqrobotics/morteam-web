@@ -1,3 +1,5 @@
+import { selectedColor } from "~/shared/styles/colors";
+
 const color = "#ffdd78";
 
 export default {
@@ -13,8 +15,7 @@ export default {
     },
     searchBox: {
         width: "100%",
-        backgroundColor: "orange",
-        border: "none",
+        backgroundColor: selectedColor,
         fontSize: "20px",
         borderRadius: "15px",
         margin: "5px 0px 5px 0px",

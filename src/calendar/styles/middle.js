@@ -1,3 +1,5 @@
+import { selectedColor } from "~/shared/styles/colors";
+
 const topButton = {
     fontSize: "20px",
     borderTop: "1px",
@@ -5,12 +7,12 @@ const topButton = {
     borderRight: "1px",
     borderBottom: "0px",
     borderStyle: "solid",
-    borderColor: "orange",
+    borderColor: selectedColor,
     width: "30px",
     height: "30px",
     textAlign: "center",
     color: "black",
-    backgroundColor: "orange",
+    backgroundColor: selectedColor,
     display: "inline-block",
     boxShadow: "-1px -1px 4px -3px black",
     borderRadius: "0.1px",
@@ -21,7 +23,7 @@ const dayContent = {
     paddingLeft: "7px",
     paddingRight: "7px",
     paddingBottom: "10px",
-    borderTop: "1px solid orange",
+    borderTop: "1px solid " + selectedColor,
     fontSize: "16px",
     marginBottom: "15px",
     boxShadow: "0 0 8px -4px black",

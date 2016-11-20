@@ -1,4 +1,5 @@
 import orangeButton from "~/shared/styles/orangeButton";
+import { defaultColor } from "~/shared/styles/colors";
 
 export default {
     container: {
@@ -29,8 +30,7 @@ export default {
         wordWrap: "break-word",
     },
     markCompleted: {
-        backgroundColor: "#ffc547",
-        border: "none",
+        backgroundColor: defaultColor,
         padding: "3px 8px 3px 8px",
         borderRadius: "1px",
         cursor: "pointer",

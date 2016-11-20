@@ -1,3 +1,6 @@
+import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
+
+
 const triangle = {
     content: "",
     position: "absolute",
@@ -37,7 +40,7 @@ export default {
         zIndex: "-1",
         overflow: "auto",
         borderLeft: "2px solid #cccccc",
-        borderRight: "2px solid #ffc547",
+        borderRight: "2px solid " + defaultColor,
         WebkitOverflowScrolling: "touch",
     },
     inputDiv: {
@@ -54,7 +57,6 @@ export default {
         verticalAlign: "top",
         padding: "5px",
         resize: "none",
-        border: "none",
         overflow: "hidden",
         height: "30px",
         marginLeft: "8px",
@@ -62,25 +64,24 @@ export default {
         maxHeight: "260px",
         fontWeight: "bolder", // finally
         ":focus": {
-            border: "1px solid #ffb524",
+            border: "1px solid " + hoverColor,
         },
     },
     sendButton: {
-        backgroundColor: "#ffc547",
-        border: "none",
+        backgroundColor: defaultColor,
         height: "30px",
         width: "12%",
         fontSize: "18px",
         borderRadius: "5px",
         marginLeft: "3px",
         ":hover": {
-            backgroundColor: "orange",
+            backgroundColor: selectedColor,
         },
     },
 }
 
 const selfBubble = {
-    backgroundColor: "#ffc547",
+    backgroundColor: defaultColor,
     color: "black",
     maxWidth: "calc(100% - 100px)",
     float: "right",
@@ -126,7 +127,7 @@ export const chatItem = {
         borderWidth: "6px 9px 6px 0px",
     }],
     selfTriangle: [triangle, {
-        borderColor: "transparent #ffc547",
+        borderColor: "transparent " + defaultColor,
         right: "-9px",
         borderWidth: "6px 0px 6px 9px",
     }],

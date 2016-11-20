@@ -1,8 +1,10 @@
+import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
+
 const navbarHeight = 40;
 
 export default {
     container: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultColor,
         height: navbarHeight + "px",
         position: "fixed",
         width: "100%",
@@ -113,14 +115,14 @@ export default {
             },
         },
         selected: {
-            backgroundColor: "orange",
+            backgroundColor: selectedColor,
             ":hover": {
                 backgroundColor: "darkorange",
             },
         },
         unselected: {    
             ":hover": {
-                backgroundColor: "#FFB524",
+                backgroundColor: hoverColor,
             },
         }
     },
@@ -158,8 +160,7 @@ export default {
                 right: "5px",
                 left: "auto",
                 height: "80px",
-                backgroundColor: "#ffc547",
-                border: "none",
+                backgroundColor: defaultColor,
                 borderRadius: "0",
                 padding: "0",
                 fontFamily: "'exo 2', sans-serif",
@@ -176,7 +177,7 @@ export default {
                 textAlign: "left",
                 padding: "10px",
                 ":hover": {
-                    backgroundColor: "#ffb524",
+                    backgroundColor: hoverColor,
                     cursor: "pointer",
                 },
             },
@@ -186,7 +187,7 @@ export default {
         div: {
             width: "100%",
             textAlign: "center",
-            backgroundColor: "ffc547",
+            backgroundColor: defaultColor,
             left: "0px",
             top: "40px",
             height: "auto",
@@ -202,7 +203,7 @@ export default {
             cursor: "pointer",
             margin: "0px",
             ":hover": {
-                backgroundColor: "orange",
+                backgroundColor: selectedColor,
             }
         },
         container: {
@@ -223,7 +224,7 @@ export default {
             marginLeft: "0px 2px 0px -5px",
             position: "absolute",
             ":hover": {
-                backgroundColor: "#FFB524",
+                backgroundColor: hoverColor,
                 cursor: "pointer",
             },
         }

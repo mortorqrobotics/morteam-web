@@ -1,3 +1,5 @@
+import { defaultColor } from "~/shared/styles/colors";
+
 export default {
     wideBody: {
         top: "40px",
@@ -32,7 +34,7 @@ export default {
             width: "90%",
             cursor: "pointer",
             ":hover": {
-                backgroundColor: "#ffc547",
+                backgroundColor: defaultColor,
             },
         },
         name: {
