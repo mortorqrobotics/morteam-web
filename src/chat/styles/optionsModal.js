@@ -1,10 +1,10 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 const button = {
     height: "37px",
     backgroundColor: "#cc0000",
     color: "white",
-    boxShadow: buttonShadow,    
+    boxShadow: standardBoxShadow,    
     ":hover": {
         cursor: "pointer",
         backgroundColor: "#b30000",

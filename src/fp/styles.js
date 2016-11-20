@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 export default{
     form:{
         textAlign: "center",
@@ -10,13 +10,13 @@ export default{
         fontSize: "15px",
         marginBottom: "10px",
         borderRadius: "1px",
-        boxShadow: buttonShadow,
+        boxShadow: standardBoxShadow,
     },
     button:{
         width: "180px",
         marginTop: "10px",
         fontSize: "15px",
         padding: "8px 4px 8px 4px",
-        boxShadow: buttonShadow,
+        boxShadow: standardBoxShadow,
     }, 
 }

@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 const docList = {
     position: "absolute",
@@ -117,7 +117,7 @@ export default {
     },
     chosenFile: {
         backgroundColor: "#e9e9e9",
-        boxShadow: buttonShadow,
+        boxShadow: standardBoxShadow,
         width: "100%",
         borderRadius: "1px",
         padding: "4px 8px 4px 8px",

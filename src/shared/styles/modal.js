@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 import { defaultColor, selectedColor } from "~/shared/styles/colors";
 
 const item = {
@@ -6,7 +6,7 @@ const item = {
     borderRadius: "1px",
     marginTop: "10px",
     marginBottom: "5px",
-    boxShadow: buttonShadow,
+    boxShadow: standardBoxShadow,
     ":focus": {
         outline: "none",
     },

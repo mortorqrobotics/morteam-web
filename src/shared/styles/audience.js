@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 import { selectedColor } from "~/shared/styles/colors";
 
 export default {
@@ -7,7 +7,7 @@ export default {
             margin: "2px 4px 2px 4px",
             display: "inline-block",
             padding: "2px 3px 2px 3px",
-            boxShadow: buttonShadow,
+            boxShadow: standardBoxShadow,
             borderRadius: "1px",
             cursor: "pointer",
         },
@@ -38,7 +38,7 @@ export default {
             marginBottom: "10px",
             padding: "8px 4px",
             fontSize: "15px",
-            boxShadow: buttonShadow,
+            boxShadow: standardBoxShadow,
             borderRadius: "1px",
             ":focus": {
                 outline: "none",

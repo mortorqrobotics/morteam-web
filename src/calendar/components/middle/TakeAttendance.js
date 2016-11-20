@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 import {
     ModalTextBox,
@@ -137,7 +137,7 @@ export default class TakeAttendance extends React.Component {
                                         margin: "2px 2px 4px 4px",
                                         display: "inline-block",
                                         padding: "2px 3px 2px 3px",
-                                        boxShadow: buttonShadow,
+                                        boxShadow: standardBoxShadow,
                                         borderRadius: "1px",
                                         cursor: "pointer",
                                         ...this.getColor(status),

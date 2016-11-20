@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 export default{
     leftbar:{
         div: {
@@ -9,7 +9,7 @@ export default{
             width: "200px",
             display: "inline-block",
             background: "white",
-            boxShadow: buttonShadow,
+            boxShadow: standardBoxShadow,
         },
         span: {
             color: "gray",

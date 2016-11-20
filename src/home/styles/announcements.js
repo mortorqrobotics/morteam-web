@@ -1,4 +1,4 @@
-import { buttonShadow } from "~/shared/styles/boxShadows";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 export default {
     container: {
@@ -16,7 +16,7 @@ export default {
         borderRadius: "1px",
         fontSize: "16px",
         position: "relative",
-        boxShadow: buttonShadow,
+        boxShadow: standardBoxShadow,
         whiteSpace: "pre-wrap",
     },
     author: {
