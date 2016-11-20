@@ -1,4 +1,4 @@
-import { defaultOrange } from "~/shared/styles/colors";
+import { defaultColor } from "~/shared/styles/colors";
 
 const grid = {
     overflow:"hidden",
@@ -10,7 +10,7 @@ const grid = {
 export default {
     middleCol: {
         width: "50%",
-        borderRight: "2px solid " + defaultOrange,
+        borderRight: "2px solid " + defaultColor,
         height: "100%",
         display: "inline-block",
         padding: "15px",
@@ -25,7 +25,7 @@ export default {
         }],
     },
     monthDisplay: {
-        backgroundColor: defaultOrange,
+        backgroundColor: defaultColor,
         zIndex: "99",
         position: "fixed",
         top: "40px",

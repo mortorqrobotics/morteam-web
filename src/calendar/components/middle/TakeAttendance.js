@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
+import { buttonShadow } from "~/shared/styles/boxShadows";
+
 import {
     ModalTextBox,
     ModalButton,
@@ -10,7 +12,7 @@ import { fullName, capitalize } from "~/util";
 import update from "react/lib/update";
 import ContextMenu from "react-context-menus";
 
-import { selectedOrange } from "~/shared/styles/colors";
+import { selectedColor } from "~/shared/styles/colors";
 
 @Radium
 export default class TakeAttendance extends React.Component {
@@ -38,7 +40,7 @@ export default class TakeAttendance extends React.Component {
     getColor = (status) => {
         switch (status) {
             case "absent":
-                return { backgroundColor: selectedOrange }
+                return { backgroundColor: selectedColor }
             case "present":
                 return { backgroundColor: "#53cf29" }
             case "tardy":
@@ -135,7 +137,7 @@ export default class TakeAttendance extends React.Component {
                                         margin: "2px 2px 4px 4px",
                                         display: "inline-block",
                                         padding: "2px 3px 2px 3px",
-                                        boxShadow: "1.5px 2px 8px -2px #a9a9a9",
+                                        boxShadow: buttonShadow,
                                         borderRadius: "1px",
                                         cursor: "pointer",
                                         ...this.getColor(status),

@@ -1,3 +1,3 @@
-export const defaultOrange = "#ffc547";
-export const hoverOrange = "#ffb524";
-export const selectedOrange = "orange";
+export const defaultColor = "#ffc547";
+export const hoverColor = "#ffb524";
+export const selectedColor = "orange";

@@ -1,4 +1,4 @@
-import { defaultOrange } from "~/shared/styles/colors";
+import { defaultColor } from "~/shared/styles/colors";
 
 export function getSize(file) {
     let bytes = file.size;
@@ -22,7 +22,7 @@ export function getColor(file) {
         case "spreadsheet":
             return "#33B533"
         default:
-            return defaultOrange
+            return defaultColor
     }
 }
 

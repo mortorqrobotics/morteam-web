@@ -1,4 +1,4 @@
-import { defaultOrange, hoverOrange, selectedOrange } from "~/shared/styles/colors";
+import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
 
 const item = {
     margin: "25px 0px -10px 0px",
@@ -6,12 +6,11 @@ const item = {
 }
 
 const button = {
-    backgroundColor: hoverOrange,
-    border: "none",
+    backgroundColor: hoverColor,
     borderRadius: "1px",
     padding: "3px 8px 3px 8px",
     ":hover": {
-        backgroundColor: selectedOrange,
+        backgroundColor: selectedColor,
     },
     ":focus": {
         outline: "none",
@@ -20,7 +19,7 @@ const button = {
 
 export default {
     container: {
-        backgroundColor: defaultOrange,
+        backgroundColor: defaultColor,
         width: "260px",
         height: "calc(100% - 30px)",
         position: "fixed",
@@ -40,7 +39,7 @@ export default {
     },
     name: [item, {
         fontSize: "24px",
-        backgroundColor: selectedOrange,
+        backgroundColor: selectedColor,
         fontWeight: "300",
     }],
     emailPhone: {
@@ -50,11 +49,11 @@ export default {
     button,
     positionIndicator: [button, {
         ":hover": {
-            backgroundColor: hoverOrange,
+            backgroundColor: hoverColor,
         },
     }],
     dropdown: {
-        backgroundColor: hoverOrange,
+        backgroundColor: hoverColor,
     },
     dropdownList: {
         display: "inline-block",

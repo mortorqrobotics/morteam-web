@@ -1,5 +1,5 @@
 import { buttonShadow } from "~/shared/styles/boxShadows";
-import { selectedOrange } from "~/shared/styles/colors";
+import { selectedColor } from "~/shared/styles/colors";
 
 export default {
     audienceItem:{
@@ -17,13 +17,13 @@ export default {
         user: {
             backgroundColor: "#ffd16e",
             ":hover": {
-                backgroundColor: selectedOrange
+                backgroundColor: selectedColor
             }
         },
         group: {
             backgroundColor: "#FFBC59",
             ":hover": {
-                backgroundColor: selectedOrange
+                backgroundColor: selectedColor
             }
         }
     },
@@ -36,7 +36,6 @@ export default {
             width: "100%",
             marginTop: "5px",
             marginBottom: "10px",
-            border: "none",
             padding: "8px 4px",
             fontSize: "15px",
             boxShadow: buttonShadow,

@@ -1,4 +1,4 @@
-import { defaultOrange } from "~/shared/styles/colors";
+import { defaultColor } from "~/shared/styles/colors";
 
 export default {
     modal: {
@@ -16,11 +16,10 @@ export default {
         boxShadow: "0 3px 15px rgba(0, 0, 0, .4), 0 0 5px rgba(0, 0, 0, .4)",
         background: "#E9E9E9",
         padding: "0px",
-        border: "none",
     },
     title: {
         padding: "10px 15px",
-        backgroundColor: defaultOrange,
+        backgroundColor: defaultColor,
         color: "black",
     },
     content: {

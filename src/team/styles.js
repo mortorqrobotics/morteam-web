@@ -1,4 +1,4 @@
-import { defaultOrange } from "~/shared/styles/colors";
+import { defaultColor } from "~/shared/styles/colors";
 
 export default {
     wideBody: {
@@ -34,7 +34,7 @@ export default {
             width: "90%",
             cursor: "pointer",
             ":hover": {
-                backgroundColor: defaultOrange,
+                backgroundColor: defaultColor,
             },
         },
         name: {

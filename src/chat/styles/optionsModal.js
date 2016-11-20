@@ -4,7 +4,6 @@ const button = {
     height: "37px",
     backgroundColor: "#cc0000",
     color: "white",
-    border: "none",
     boxShadow: buttonShadow,    
     ":hover": {
         cursor: "pointer",

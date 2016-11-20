@@ -1,9 +1,9 @@
-import { selectedOrange } from "~/shared/styles/colors";
+import { selectedColor } from "~/shared/styles/colors";
 
 export default {
     teamNum: {
         fontSize: "24px",
-        backgroundColor: selectedOrange,
+        backgroundColor: selectedColor,
         fontWeight: "300",
         margin: "15px 0px",
         textAlign: "center",

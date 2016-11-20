@@ -6,7 +6,6 @@ export default{
     },
     textBox:{
         marginTop: "5px",
-        border: "none",
         padding: "8px 4px 8px 4px",
         fontSize: "15px",
         marginBottom: "10px",

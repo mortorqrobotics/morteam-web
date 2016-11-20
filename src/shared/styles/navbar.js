@@ -1,10 +1,10 @@
-import { defaultOrange, hoverOrange, selectedOrange } from "~/shared/styles/colors";
+import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
 
 const navbarHeight = 40;
 
 export default {
     container: {
-        backgroundColor: defaultOrange,
+        backgroundColor: defaultColor,
         height: navbarHeight + "px",
         position: "fixed",
         width: "100%",
@@ -115,14 +115,14 @@ export default {
             },
         },
         selected: {
-            backgroundColor: selectedOrange,
+            backgroundColor: selectedColor,
             ":hover": {
                 backgroundColor: "darkorange",
             },
         },
         unselected: {    
             ":hover": {
-                backgroundColor: hoverOrange,
+                backgroundColor: hoverColor,
             },
         }
     },
@@ -160,8 +160,7 @@ export default {
                 right: "5px",
                 left: "auto",
                 height: "80px",
-                backgroundColor: defaultOrange,
-                border: "none",
+                backgroundColor: defaultColor,
                 borderRadius: "0",
                 padding: "0",
                 fontFamily: "'exo 2', sans-serif",
@@ -178,7 +177,7 @@ export default {
                 textAlign: "left",
                 padding: "10px",
                 ":hover": {
-                    backgroundColor: hoverOrange,
+                    backgroundColor: hoverColor,
                     cursor: "pointer",
                 },
             },
@@ -188,7 +187,7 @@ export default {
         div: {
             width: "100%",
             textAlign: "center",
-            backgroundColor: defaultOrange,
+            backgroundColor: defaultColor,
             left: "0px",
             top: "40px",
             height: "auto",
@@ -204,7 +203,7 @@ export default {
             cursor: "pointer",
             margin: "0px",
             ":hover": {
-                backgroundColor: selectedOrange,
+                backgroundColor: selectedColor,
             }
         },
         container: {
@@ -225,7 +224,7 @@ export default {
             marginLeft: "0px 2px 0px -5px",
             position: "absolute",
             ":hover": {
-                backgroundColor: hoverOrange,
+                backgroundColor: hoverColor,
                 cursor: "pointer",
             },
         }

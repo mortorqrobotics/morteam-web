@@ -1,4 +1,4 @@
-import { selectedOrange } from "~/shared/styles/colors";
+import { selectedColor } from "~/shared/styles/colors";
 
 export default {
     container: {
@@ -20,16 +20,16 @@ export default {
     title: {
         marginTop: "10px",
         marginBottom: "0px",
-        borderBottom: "1px solid " + selectedOrange,
+        borderBottom: "1px solid " + selectedColor,
         width: "200px",
         padding: "6px",
-        backgroundColor: selectedOrange,
+        backgroundColor: selectedColor,
         color: "black",
         fontWeight: "100",
         display: "inline-block",
     },
     listContainer: {
-        borderTop: "1px solid " + selectedOrange,
+        borderTop: "1px solid " + selectedColor,
         marginTop: "0px",
         height: "80%",
         boxShadow: "0px 0px 8px -4px black",
