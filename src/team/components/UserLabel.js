@@ -4,7 +4,7 @@ import Radium from "radium";
 import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName, currentUser } from "~/util";
-import styles from "~/team/styles";
+import styles from "~/shared/styles/userList";
 import ajax from "~/util/ajax";
 import { connect } from "react-redux";
 import { deleteUser } from "~/team/actions";

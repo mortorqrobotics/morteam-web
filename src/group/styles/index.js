@@ -4,7 +4,7 @@ const button = {
     color: "white",
     border: "none",
     marginBottom: "20px",
-    boxShadow: "1.5px, 3px, 8px, -2px, #a9a9a9",
+    boxShadow: "1.5px, 3px, 8px, -2px, #983745",
 }
 
 export default {
