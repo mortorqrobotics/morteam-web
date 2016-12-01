@@ -4,7 +4,12 @@ export default {
         height: "calc(100% - 40px)",
         textAlign: "center",
     },
+    centerer: {
+        textAlign: "center",
+    },
     teamInfo: {
+        marginLeft: "15px",
+        marginLeft: "15px",
         span: {
             display: "inline-block",
             verticalAlign: "textTop",

@@ -12,13 +12,15 @@ class UserList extends React.Component {
     render() {
         return (
             <Grid fluid={true}>
-                <div style={styles.memberList}>
+                <div style={styles.centerer}>
+                    <div style={styles.memberList}>
                     {this.props.users.map(user => (
                         <UserLabel
                             user={user}
                             key={user._id}
                         />
                     ))}
+                     </div>
                 </div>
             </Grid>
         )
