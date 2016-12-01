@@ -5,6 +5,7 @@ const initialChats = [];
 
 function chats(state = initialChats, action) {
     let index;
+    let newState;
     switch (action.type) {
         case "LOAD_CHATS_SUCCESS":
             return action.chats
@@ -14,6 +15,7 @@ function chats(state = initialChats, action) {
             return state.filter(chat => chat._id !== action.chat._id)
         case "SET_CHAT_NAME_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
+            // state[index].name = action.name
             return update(state, {
                 [index]: {
                     name: {
@@ -22,19 +24,18 @@ function chats(state = initialChats, action) {
                 },
             })
         case "RECEIVE_MESSAGE_SUCCESS":
-            console.log(state);
             index = state.findIndex(chat => chat._id === action.chatId);
-            const newState = update(state, {
+             newState = update(state, {
                 [index]: {
                     messages: {
                         $push: [action.message],
                     },
                     updated_at: {
-                        $set: action.timestamp, 
-                    },
+                        $set: action.timestamp,
+                    }
                 },
             })
-            return newState.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+            return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
         case "SEND_MESSAGE_LOADING":
             index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
@@ -51,7 +52,7 @@ function chats(state = initialChats, action) {
         case "SEND_MESSAGE_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             const index2 = state[index].messages.findIndex(msg => msg.isLoading);
-            return update(state, {
+            newState = update(state, {
                 [index]: {
                     messages: {
                         [index2]: {
@@ -63,8 +64,12 @@ function chats(state = initialChats, action) {
                             },
                         },
                     },
+                    updated_at: {
+                        $set: action.timestamp,
+                    }
                 },
             })
+            return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
         case "LOAD_MESSAGES_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
