@@ -12,22 +12,22 @@ import styles from "~/home/styles/editor";
 @Radium
 class Editor extends React.Component {
 
-    constructor(props) {
-        super(props);
+    // not state because it does not affect the view
+    // it is this way because RTEditor is uncontrolled
+    // should be changed eventually
+    content = "";
 
-        // not state because it does not affect the view
-        // it is this way because RTEditor is uncontrolled
-        // should be changed eventually
-        this.content = "";
+    initialState = {
+        audience: {
+            users: [],
+            groups: [],
+        },
+        isModalOpen: false,
+        hasSelectedAudience: false,
+    }
 
-        this.state = {
-            audience: {
-                users: [],
-                groups: [],
-            },
-            isModalOpen: false,
-            hasSelectedAudience: false,
-        }
+    state = {
+        ...this.initialState,
     }
 
     post = async() => {
@@ -38,6 +38,7 @@ class Editor extends React.Component {
                 groups: this.state.audience.groups.map(g => g._id),
             }
         }))
+        this.setState(this.initialState);
         this.clear();
     }
 
