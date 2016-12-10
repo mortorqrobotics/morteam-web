@@ -10,6 +10,8 @@ import { currentUser } from "~/util";
 import styles from "~/home/styles/leftbar";
 import { connect } from "react-redux";
 
+const year = new Date().getFullYear();
+
 @Radium
 class Leftbar extends React.Component {
 
@@ -67,7 +69,7 @@ class Leftbar extends React.Component {
 
                 {this.renderMakeGroupButton()}
 
-                <span style={styles.leftbar.span}>© 2015 MorTeam</span>
+                <span style={styles.leftbar.span}>© {year} MorTeam</span>
                 <br />
                 <span style={styles.leftbar.span}>
                     <Link
