@@ -132,7 +132,6 @@ export const chatItem = {
         borderWidth: "6px 0px 6px 9px",
     }],
     profPic: {
-        marginRight: "0",
         marginTop: "-3px",
     },
     chatOpponent: {

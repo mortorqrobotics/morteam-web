@@ -8,8 +8,8 @@ export const allMonths = [
     "July", "August", "September", "October", "November", "December",
 ]
 
-export const showDate = (dateStr) => {
-    const date = new Date(dateStr);
+export const showDate = (date) => {
+    date = new Date(date);
     return allMonths[date.getMonth()] +
         " " + date.getDate() +
         ", " + date.getFullYear()
@@ -84,11 +84,11 @@ export function parseDate(timestamp) {
 		} else if (now.getDate() == day + 1 && now.getMonth() == month) {
 			result += "Yesterday";
 		} else {
-			result += allMonths[month] + ' ' + day;
+			result += allMonths[month] + " " + day;
 		}
 	} else {
-		result += allMonths[month] + ' ' + day + ' ' + year;
+		result += allMonths[month] + " " + day + " " + year;
 	}
-	result += ' ' + time;
+	result += ", " + time;
 	return result;
 }

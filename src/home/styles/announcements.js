@@ -28,13 +28,6 @@ export default {
         fontSize: "15px",
         color: "#888888",
     },
-    image: {
-        width: "40px",
-        height: "40px",
-        objectFit: "cover",
-        borderRadius: "5px",
-        cursor: "pointer",
-    },
     deleteIcon: {
         position: "absolute",
         top: "8px",

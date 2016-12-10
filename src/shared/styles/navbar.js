@@ -77,6 +77,8 @@ export default {
         height: "auto",
         backgroundColor: "white",
         zIndex: "300",
+        boxShadow: "1px 1px 12px -7px black",
+        border: "1px solid #c9c9c9",
     },
     searchDropItem: {
         li: {
@@ -87,7 +89,6 @@ export default {
             padding: "5px",
             cursor: "pointer",
             borderBottom: "1px solid #c9c9c9",
-            //TODO: fix styling
             ":hover": {
                 backgroundColor: "#ffcc80",
             }
@@ -126,8 +127,8 @@ export default {
             },
         }
     },
-    profileDropdown: {
-        div: {
+    rightLinks: {
+        container:{    
             position: "absolute",
             top: "10px",
             right: "0px",
@@ -135,11 +136,9 @@ export default {
             marginRight: "20px",
             cursor: "pointer",
         },
+    },
+    profileDropdown: {
         profPic: {
-            width: "30px",
-            height: "30px",
-            objectFit: "cover",
-            borderRadius: "5px",
             position: "relative",
             marginTop: "-5px",
             marginRight: "15px",
@@ -166,9 +165,9 @@ export default {
                 fontFamily: "'exo 2', sans-serif",
                 fontWeight: "200",
                 overflow: "hidden",
+                outline: "none",
             },
             li: {
-                marginLeft: "-40px",
                 userSelect: "none",
                 listStyleType: "none",
                 height: "auto",
@@ -176,6 +175,8 @@ export default {
                 fontSize: "14px",
                 textAlign: "left",
                 padding: "10px",
+                width: "240px",
+                marginLeft: "-40px",
                 ":hover": {
                     backgroundColor: hoverColor,
                     cursor: "pointer",
@@ -194,7 +195,10 @@ export default {
             padding: "10px 0 5px 0",
             zIndex: "88",
             boxShadow: "0 3px 8px -5px black",
-            position: "relative",
+            position: "fixed",
+        "@media screen and (min-width: 821px)": {
+                display: "none",
+            },
         },
         item: {
             fontWeight: "300",
@@ -204,13 +208,7 @@ export default {
             margin: "0px",
             ":hover": {
                 backgroundColor: selectedColor,
-            }
-        },
-        container: {
-            marginTop: "-37px",
-            "@media screen and (min-width: 821px)": {
-                display: "none",
-            }
+            },
         },
         li: {
             textAlign: "center",
@@ -220,13 +218,15 @@ export default {
             height: navbarHeight + "px",
             paddingTop: "8px",
             position: "relative",
-            right: "80px",
-            marginLeft: "0px 2px 0px -5px",
-            position: "absolute",
+            marginTop: "-10px",
+            marginRight: "5px",
             ":hover": {
                 backgroundColor: hoverColor,
                 cursor: "pointer",
             },
+            "@media screen and (min-width: 821px)": {
+                display: "none",
+            }
         }
     },
 }

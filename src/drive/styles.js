@@ -2,7 +2,6 @@ import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 const docList = {
     position: "absolute",
-    width: "calc(100vw - 320px)",
     height: "calc(100vh - 50px)",
     top: "60px",
     display: "block",
@@ -19,9 +18,11 @@ export default {
     docList: {
         leftbarOpen: [docList, {
             left: "300px",
+            width: "calc(100vw - 320px)",
         }],
         leftbarClosed: [docList, {
             left: "40px",
+            width: "calc(100vw - 60px)",
         }],
     },
     frame: {

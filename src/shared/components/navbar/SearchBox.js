@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import TextBox from "~/shared/components/forms/TextBox";
-import SearchDrop from "./SearchDrop";
+import SearchDropItem from "./SearchDropItem";
 import ajax from "~/util/ajax";
 import styles from "~/shared/styles/navbar";
 
@@ -42,6 +42,23 @@ export default class SearchBox extends React.Component {
         });
         this.sendQuery(e.target.value);
     }
+    
+    renderSearchDrop(){
+        if(this.state.userIds.length){
+            return(
+                <div style={styles.searchDrop}>
+                    <ul>
+                        {this.state.userIds.map(user => (
+                            <SearchDropItem
+                                user={user}
+                                key={user._id}
+                            />
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+    }
 
     render() {
         return (
@@ -52,7 +69,7 @@ export default class SearchBox extends React.Component {
                     onChange={this.onChange}
                     value={this.state.query}
                 />
-                <SearchDrop userIds={this.state.userIds} />
+                {this.renderSearchDrop()}
             </li>
         )
     }

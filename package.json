@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mortorqrobotics/morteam-web",
   "dependencies": {
+    "autosize": "^3.0.20",
     "axios": "^0.14.0",
     "babel-runtime": "^6.9.2",
     "dompurify": "^0.8.3",

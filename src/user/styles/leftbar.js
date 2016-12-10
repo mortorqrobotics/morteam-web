@@ -32,10 +32,7 @@ export default {
     item,
     img: {
         margin: "24px 54px -10px 54px",
-        width: "150px",
-        height: "150px",
         border: "2px solid gray",
-        objectFit: "cover",
     },
     name: [item, {
         fontSize: "24px",

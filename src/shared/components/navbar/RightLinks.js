@@ -3,10 +3,14 @@ import Radium from "radium";
 
 import styles from "~/shared/styles/navbar";
 import ProfileDropdownModal from "./ProfileDropdownModal";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import { currentUser } from "~/util";
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import { toggleDropdown } from "~/shared/actions";
+import { connect } from "react-redux";
 
 @Radium
-export default class ProfileDropdown extends React.Component {
+class RightLinks extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,13 +25,18 @@ export default class ProfileDropdown extends React.Component {
             isModalOpen: true
         })
     }
-
+    
     render() {
         return (
-            <div style={styles.profileDropdown.div}>
-                <img
+            <div style={styles.rightLinks.container}>
+                <li style={styles.navbarDropdown.li} onClick={() => this.props.dispatch(toggleDropdown())}>
+                    <Glyphicon glyph="menu-hamburger" />
+                </li>
+                <ProfilePicture
+                    user={currentUser}
+                    picSize="small"
+                    frameSize={30}
                     style={styles.profileDropdown.profPic}
-                    src={currentUser.profpicpath + "-60"}
                     onClick={this.openModal}
                 />
                 <span
@@ -46,3 +55,12 @@ export default class ProfileDropdown extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isDropdownOpen: state.isDropdownOpen,
+    }
+}
+
+export default connect(mapStateToProps)(RightLinks);
+

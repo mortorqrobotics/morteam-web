@@ -36,6 +36,7 @@ class ChatItem extends React.Component {
                     picSize="small"
                     frameSize={30}
                     hasIndicator
+                    style={{ marginRight: "10px" }}
                 />
             )
         } else {
