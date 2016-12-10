@@ -33,7 +33,10 @@ class Editor extends React.Component {
     post = async() => {
         await this.props.dispatch(addAnnouncement({
             content: this.content,
-            audience: this.state.audience,
+            audience: {
+                users: this.state.audience.users.map(u => u._id),
+                groups: this.state.audience.groups.map(g => g._id),
+            }
         }))
         this.clear();
     }
