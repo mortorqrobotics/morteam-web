@@ -14,6 +14,14 @@ export default class AudienceItem extends React.Component {
         isGroup: React.PropTypes.bool,
     }
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isSelected: false
+        }
+    }
+
     getStyle() {
         if (this.props.isSelected) {
             return styles.audienceItem.selected;

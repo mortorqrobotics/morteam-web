@@ -55,13 +55,11 @@ export default class AudienceSelect extends React.Component {
     }
 
     isGroupSelected = (group) => {
-        let groupIds = this.props.selected.groups.map(g => g._id);
-        return groupIds.indexOf(group._id) !== -1;
+        return this.props.selected.groups.indexOf(group) !== -1;
     }
 
     isUserSelected = (user) => {
-        let userIds = this.props.selected.users.map(u => u._id);
-        return userIds.indexOf(user._id) !== -1;
+        return this.props.selected.users.indexOf(user) !== -1;
     }
 
     onUserClick = (user) => {
