@@ -68,7 +68,10 @@ export default class TakeAttendance extends React.Component {
     saveAttendance = async () => {
         // TODO: make this redux!
         await ajax.request("PUT", `/events/id/${this.props.event._id}/attendance`, {
-            attendance: this.state.attendance,
+            attendance: this.state.attendance.map(({ user, status }) => ({
+                user: user._id,
+                status,
+            })),
         });
         this.props.onDone();
     }
