@@ -1,4 +1,5 @@
 import { fullName } from "~/util";
+import { currentUser } from "~/util";
 
 export const setOnlineClients = (userIds) => ({
     type: "SET_ONLINE_CLIENTS",
@@ -16,36 +17,38 @@ export const leaveOnlineClient = (userId) => ({
 })
 
 export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) => {
-    dispatch({
-        type: "NOTHING_HERE",
-        meta: {
-            sound: "chatMessageNotification",
-        },
-    });
-    new jBox("Notice", {
-        attributes: {
-            x: "right",
-            y: "bottom"
-        },
-        theme: "NoticeBorder",
-        volume: 100,
-        animation: {
-            open: "slide:bottom",
-            close: "slide:right"
-        },
-        content: message.content,
-        maxWidth: 300,
-        maxHeight: 105,
-        title: type === "group" ? fullName(message.author) + " in " + name
-            : fullName(message.author),
-        closeOnClick: false,
-        onOpen: function() {
-            $($(this)[0].content).parent().parent().addClass("messageNotification"); // beauty
-        },
-    });
-    $(document).on("click", ".messageNotification", function() {
-        window.location.assign("/chat");
-    })
+    if(currentUser._id !== message.author._id){  
+        dispatch({
+            type: "NOTHING_HERE",
+            meta: {
+                sound: "chatMessageNotification",
+            },
+        });
+        new jBox("Notice", {
+            attributes: {
+                x: "right",
+                y: "bottom"
+            },
+            theme: "NoticeBorder",
+            volume: 100,
+            animation: {
+                open: "slide:bottom",
+                close: "slide:right"
+            },
+            content: message.content,
+            maxWidth: 300,
+            maxHeight: 105,
+            title: type === "group" ? fullName(message.author) + " in " + name
+                : fullName(message.author),
+            closeOnClick: false,
+            onOpen: function() {
+                $($(this)[0].content).parent().parent().addClass("messageNotification"); // beauty
+            },
+        });
+        $(document).on("click", ".messageNotification", function() {
+            window.location.assign("/chat");
+        })
+    }
 }
 
 export function openLeftbar() {
