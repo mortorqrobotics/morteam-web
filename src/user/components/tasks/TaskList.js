@@ -9,6 +9,11 @@ const TaskList = Radium(({ title, tasks }) => {
         <div>
             <span style={styles.title}>{title}</span>
             <ul style={styles.taskList}>
+                {tasks.length === 0 && (
+                    <li style={styles.taskItem}>
+                        none
+                    </li>
+                )}
                 {tasks.map(task => (
                     <TaskItem key={task._id} task={task} />
                 ))}
