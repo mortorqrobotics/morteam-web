@@ -61,7 +61,14 @@ class AnnouncementsListItem extends React.Component {
                         src={announcement.author.profpicpath + "-60"}
                         style={styles.image}
                     />
-                    <span style={styles.author}>
+                    <span
+                        style={styles.author}
+                        onClick={() => {
+                            window.location.assign(
+                                `/profiles/id/${announcement.author._id}`
+                            );
+                        }}
+                    >
                         {fullName(announcement.author)}
                     </span>
                     <span style={styles.time}>
