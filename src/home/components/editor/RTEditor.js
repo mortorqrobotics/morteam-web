@@ -28,6 +28,11 @@ export default class RTEditor extends React.Component {
                 ]
             }).panelInstance("niceditor-textarea");
             let $elem = $(".nicEdit-main");
+
+            // http://stackoverflow.com/a/15559608/1838811
+            $elem.css("white-space", "pre-wrap");
+            $elem.css("word-wrap", "break-word");
+
             $elem.bind("DOMSubtreeModified", () => {
                 this.props.onChange($elem.html());
             });
