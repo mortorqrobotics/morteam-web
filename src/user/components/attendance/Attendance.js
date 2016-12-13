@@ -60,7 +60,8 @@ export default class Attendance extends React.Component {
     getPresencePercentage = () => {
         const present = this.state.present;
         const absent = this.state.absences.length;
-        return 100 * present / (present + absent) || 0;
+        const result = 100 * present / (present + absent) || 0;
+        return Number.isInteger(result) ? result.toString() : result.toFixed(1);
     }
 
     render() {
