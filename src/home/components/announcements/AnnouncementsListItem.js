@@ -6,6 +6,7 @@ import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
 import styles from "~/home/styles/announcements";
 import { fullName, currentUser } from "~/util";
+import { parseDate } from "~/util/date";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { deleteAnnouncement } from "~/home/actions";
@@ -64,7 +65,7 @@ class AnnouncementsListItem extends React.Component {
                         {fullName(announcement.author)}
                     </span>
                     <span style={styles.time}>
-                        {" - " + announcement.timestamp.toLocaleString()}
+                        {" - " + parseDate(announcement.timestamp)}
                     </span>
                     <OverlayTrigger
                         placement="top"
