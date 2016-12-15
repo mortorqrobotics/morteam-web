@@ -88,7 +88,7 @@ class Middle extends React.Component {
             container.scrollTop(container.scrollTop() - 50);
 
             container.animate({
-                scrollTop: container.scrollTop() + elem.offset().top - 50,
+                scrollTop: container.scrollTop() + elem.offset().top - 85,
             }, () => {
                 this.isScrolling = false;
             });
