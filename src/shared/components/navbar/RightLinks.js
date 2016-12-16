@@ -59,7 +59,7 @@ export default class ProfileDropdown extends React.Component {
     render() {
         return (
         <div>
-            <div style={styles.profileDropdown.div}>
+            <div style={styles.rightLinks.container}>
                 <li style={styles.navbarDropdown.li} onClick={this.toggleDropdown}>
                     <Glyphicon glyph="menu-hamburger" />
                 </li>
