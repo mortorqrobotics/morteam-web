@@ -75,11 +75,6 @@ class AnnouncementsListItem extends React.Component {
                         />
                         <span
                             style={styles.author}
-                            onClick={() => {
-                                window.location.assign(
-                                    `/profiles/id/${announcement.author._id}`
-                                );
-                            }}
                         >
                             {fullName(announcement.author)}
                         </span>
