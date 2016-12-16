@@ -77,6 +77,7 @@ export default {
         height: "auto",
         backgroundColor: "white",
         zIndex: "300",
+        border: "1px solid #c9c9c9",
     },
     searchDropItem: {
         li: {
@@ -87,7 +88,6 @@ export default {
             padding: "5px",
             cursor: "pointer",
             borderBottom: "1px solid #c9c9c9",
-            //TODO: fix styling
             ":hover": {
                 backgroundColor: "#ffcc80",
             }
@@ -126,8 +126,8 @@ export default {
             },
         }
     },
-    profileDropdown: {
-        div: {
+    rightLinks: {
+        container:{    
             position: "absolute",
             top: "10px",
             right: "0px",
@@ -135,6 +135,8 @@ export default {
             marginRight: "20px",
             cursor: "pointer",
         },
+    },
+    profileDropdown: {
         profPic: {
             position: "relative",
             marginTop: "-5px",
