@@ -4,6 +4,7 @@ import Radium from "radium";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import styles from "~/home/styles/announcements";
 import { fullName, currentUser } from "~/util";
 import { parseDate } from "~/util/date";
@@ -57,20 +58,32 @@ class AnnouncementsListItem extends React.Component {
         return (
             <div style={styles.announcement}>
                 <div style={styles.announcementTop}>
-                    <img
-                        src={announcement.author.profpicpath + "-60"}
-                        style={styles.image}
-                    />
-                    <span
-                        style={styles.author}
+                    <div
+                        style={{ display: "inline-block" }}
                         onClick={() => {
                             window.location.assign(
                                 `/profiles/id/${announcement.author._id}`
                             );
                         }}
                     >
-                        {fullName(announcement.author)}
-                    </span>
+                        <ProfilePicture
+                            user={announcement.author}
+                            picSize="small"
+                            frameSize={40}
+                            hasIndicator={false}
+                            style={styles.image}
+                        />
+                        <span
+                            style={styles.author}
+                            onClick={() => {
+                                window.location.assign(
+                                    `/profiles/id/${announcement.author._id}`
+                                );
+                            }}
+                        >
+                            {fullName(announcement.author)}
+                        </span>
+                    </div>
                     <span style={styles.time}>
                         {" - " + parseDate(announcement.timestamp)}
                     </span>
