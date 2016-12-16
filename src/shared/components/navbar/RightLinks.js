@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import styles from "~/shared/styles/navbar";
 import ProfileDropdownModal from "./ProfileDropdownModal";
+import ProfilePicture from "~/shared/components/ProfilePicture";
 import { currentUser } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 
@@ -63,9 +64,11 @@ export default class ProfileDropdown extends React.Component {
                 <li style={styles.navbarDropdown.li} onClick={this.toggleDropdown}>
                     <Glyphicon glyph="menu-hamburger" />
                 </li>
-                <img
+                <ProfilePicture
+                    user={currentUser}
+                    picSize="small"
+                    frameSize={30}
                     style={styles.profileDropdown.profPic}
-                    src={currentUser.profpicpath + "-60"}
                     onClick={this.openModal}
                 />
                 <span

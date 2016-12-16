@@ -1,7 +1,6 @@
 const img = {
     objectFit: "cover",
     borderRadius: "5px",
-    marginRight: "10px",
 }
 
 export default {

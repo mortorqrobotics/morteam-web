@@ -28,10 +28,6 @@ export default {
         fontSize: "15px",
         color: "#888888",
     },
-    image: {
-        margin: "0px",
-        cursor: "pointer",
-    },
     deleteIcon: {
         position: "absolute",
         top: "8px",

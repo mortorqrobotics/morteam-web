@@ -44,6 +44,10 @@ class ProfilePicture extends React.Component {
                     height: this.props.frameSize + "px",
                     width: this.props.frameSize + "px"
                 }, this.props.style || {} ]}
+                onMouseOut={this.props.onMouseOut}
+                onMouseOver={this.props.onMouseOver}
+                aria-describedby={this.props["aria-describedby"]}
+                onClick={this.props.onClick}
             />
         )
     }

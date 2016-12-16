@@ -70,8 +70,7 @@ class AnnouncementsListItem extends React.Component {
                             user={announcement.author}
                             picSize="small"
                             frameSize={40}
-                            hasIndicator={false}
-                            style={styles.image}
+                            style={{ cursor: "pointer" }}
                         />
                         <span
                             style={styles.author}

@@ -136,10 +136,6 @@ export default {
             cursor: "pointer",
         },
         profPic: {
-            width: "30px",
-            height: "30px",
-            objectFit: "cover",
-            borderRadius: "5px",
             position: "relative",
             marginTop: "-5px",
             marginRight: "15px",
