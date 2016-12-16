@@ -10,9 +10,9 @@ import { connect } from "react-redux";
 @Radium
 class Leftbar extends React.Component {
 
-	state = {
-		isLeftbarOpen: true,   
-	}
+    state = {
+        isLeftbarOpen: true,
+    }
 
     getTeamDisplay = () => {
         if (this.props.selectedTeam) {
@@ -22,27 +22,32 @@ class Leftbar extends React.Component {
     }
 
     render() {
-		if(this.props.selectedTeam) {
-			return (
-				<LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
-					<li style={styles.teamNum}>
-						{this.getTeamDisplay()}
-					</li>
-					<li style={styles.teamNick}>
-						{this.props.selectedTeam.data.nickname}
-					</li>
-					<li style={styles.teamCountry}>
-						{this.props.selectedTeam.data.region}, {this.props.selectedTeam.data.country_name}
-					</li>
-					<li style={styles.website}>
-						<a href={this.props.selectedTeam.data.website}>Official Team Website</a>
-					</li>
-					<li style={styles.website}>
-                        <a href={"https://www.thebluealliance.com/team/"+this.props.selectedTeam.num}>Blue Alliance Page</a>
-					</li>
-				</LeftbarContainer>	
-			)
-		}
+        if (this.props.selectedTeam) {
+            return (
+                <LeftbarContainer
+                    isOpen={this.props.isLeftbarOpen}
+                    onToggle={leftbarProps(this, "isLeftbarOpen").onToggle}
+                >
+                    <li style={styles.teamNum}>
+                        {this.getTeamDisplay()}
+                    </li>
+                    <li style={styles.teamNick}>
+                        {this.props.selectedTeam.data.nickname}
+                    </li>
+                    <li style={styles.teamCountry}>
+                        {this.props.selectedTeam.data.region}, {this.props.selectedTeam.data.country_name}
+                    </li>
+                    <li style={styles.website}>
+                        <a href={this.props.selectedTeam.data.website}>Official Team Website</a>
+                    </li>
+                    <li style={styles.website}>
+                        <a href={"https://www.thebluealliance.com/team/" + this.props.selectedTeam.num}>
+                            Blue Alliance Page
+                        </a>
+                    </li>
+                </LeftbarContainer>
+            )
+        }
         return (
             <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
                 <li style={styles.teamNum}>
@@ -56,6 +61,7 @@ class Leftbar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedTeam: state.selectedTeam,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 
