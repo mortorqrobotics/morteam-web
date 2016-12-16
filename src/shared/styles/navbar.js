@@ -166,9 +166,9 @@ export default {
                 fontFamily: "'exo 2', sans-serif",
                 fontWeight: "200",
                 overflow: "hidden",
+                outline: "none",
             },
             li: {
-                marginLeft: "-40px",
                 userSelect: "none",
                 listStyleType: "none",
                 height: "auto",
@@ -176,6 +176,8 @@ export default {
                 fontSize: "14px",
                 textAlign: "left",
                 padding: "10px",
+                width: "240px",
+                marginLeft: "-40px",
                 ":hover": {
                     backgroundColor: hoverColor,
                     cursor: "pointer",
@@ -195,6 +197,10 @@ export default {
             zIndex: "88",
             boxShadow: "0 3px 8px -5px black",
             position: "relative",
+            marginTop: "-37px",
+        "@media screen and (min-width: 821px)": {
+                display: "none",
+            }
         },
         item: {
             fontWeight: "300",
@@ -206,12 +212,6 @@ export default {
                 backgroundColor: selectedColor,
             }
         },
-        container: {
-            marginTop: "-37px",
-            "@media screen and (min-width: 821px)": {
-                display: "none",
-            }
-        },
         li: {
             textAlign: "center",
             display: "inline-block",
@@ -220,13 +220,15 @@ export default {
             height: navbarHeight + "px",
             paddingTop: "8px",
             position: "relative",
-            right: "80px",
-            marginLeft: "0px 2px 0px -5px",
-            position: "absolute",
+            marginTop: "-10px",
+            marginRight: "5px",
             ":hover": {
                 backgroundColor: hoverColor,
                 cursor: "pointer",
             },
+            "@media screen and (min-width: 821px)": {
+                display: "none",
+            }
         }
     },
 }

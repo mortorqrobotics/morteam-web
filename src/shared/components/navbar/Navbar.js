@@ -3,8 +3,7 @@ import Radium from "radium";
 
 import SearchBox from "./SearchBox";
 import GlyphLink from "./GlyphLink";
-import ProfileDropdown from "./ProfileDropdown";
-import NavbarDropdown from "./NavbarDropdown";
+import RightLinks from "./RightLinks";
 import styles from "~/shared/styles/navbar";
 
 @Radium
@@ -26,8 +25,7 @@ export default class Navbar extends React.Component {
                     <GlyphLink path="/cal" glyph="calendar" name="calendar"/>
                     <GlyphLink path="/map" glyph="globe" name="map"/>
                     <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
-                    <NavbarDropdown />
-                    <ProfileDropdown />
+                    <RightLinks />
                 </ul>
             </div>
         )

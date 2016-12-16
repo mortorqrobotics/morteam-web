@@ -22,12 +22,6 @@ export default class NavbarDropdown extends React.Component {
         isDropdownOpen: false, 
     }
     
-    toggleDropdown = () => {
-        this.setState({
-            isDropdownOpen: !this.state.isDropdownOpen,
-        });
-    }
-    
     renderDropdown = () => {
         if(this.state.isDropdownOpen) {
             return (
@@ -45,9 +39,6 @@ export default class NavbarDropdown extends React.Component {
     render() {
         return (
             <div style={styles.navbarDropdown.container}>
-                <li style={styles.navbarDropdown.li} onClick={this.toggleDropdown}>
-                    <Glyphicon glyph="menu-hamburger" />
-                </li>
                 {this.renderDropdown()}
             </div>
         )
