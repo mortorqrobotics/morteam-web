@@ -31,10 +31,7 @@ class Leftbar extends React.Component {
         if (folders.length === 0) {
             return [];
         }
-        const special = [
-            folders.find(folder => folder.name === "Team Files"),
-            folders.find(folder => folder.name === "Personal Files"),
-        ];
+        const special = [ folders.find(folder => folder.defaultFolder) ];
         return special.concat(folders.filter(f => special.indexOf(f) === -1));
     }
 
