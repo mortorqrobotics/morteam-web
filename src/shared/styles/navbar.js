@@ -77,6 +77,7 @@ export default {
         height: "auto",
         backgroundColor: "white",
         zIndex: "300",
+        boxShadow: "1px 1px 12px -7px black",
         border: "1px solid #c9c9c9",
     },
     searchDropItem: {
