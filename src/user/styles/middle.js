@@ -1,12 +1,14 @@
 import orangeButton from "~/shared/styles/orangeButton";
 import { defaultColor } from "~/shared/styles/colors";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 export default {
     container: {
         backgroundColor: "#f5f5f5",
-        top: "45px",
+        top: "65px",
         position: "relative",
         paddingBottom: "3px",
+        boxShadow: standardBoxShadow,
     },
     title: {
         margin: "5px 10px 5px 10px",
