@@ -5,7 +5,7 @@ let overlayStyle = {
     position: "fixed",
     top: "0",
     left: "0",
-    backgroundColor: "rgba(0, 0, 0, .6)",
+    backgroundColor: "rgba(0, 0, 0, .3)",
     display: "block",
     zIndex: "100",
 }
