@@ -8,9 +8,13 @@ export default class TypingIndicator extends React.Component {
 
     static propTypes = {
         isVisible: React.PropTypes.bool,
+        wasVisible: React.PropTypes.bool,
     }
 
     render() {
+        if (!this.props.isVisible && !this.props.wasVisible) {
+            return null;
+        }
         return (
             <div style={[
                 styles.bubbleWrapper,

@@ -74,6 +74,7 @@ class MessageList extends React.Component {
                 <TypingIndicator
                     key="typing-thing"
                     isVisible={this.props.chat.isTyping}
+                    wasVisible={this.props.chat.wasTyping}
                 />
             </div>
         )

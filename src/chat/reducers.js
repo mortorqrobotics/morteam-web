@@ -28,6 +28,12 @@ function chats(state = initialChats, action) {
                     messages: {
                         $push: [action.message],
                     },
+                    isTyping: {
+                        $set: false,
+                    },
+                    wasTyping: {
+                        $set: false,
+                    },
                 },
             })
         case "SEND_MESSAGE_LOADING":
@@ -84,6 +90,9 @@ function chats(state = initialChats, action) {
                 [index]: {
                     isTyping: {
                         $set: action.isTyping,
+                    },
+                    wasTyping: {
+                        $set: state[index].isTyping,
                     },
                 },
             })
