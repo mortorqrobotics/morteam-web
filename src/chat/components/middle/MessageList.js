@@ -71,9 +71,11 @@ class MessageList extends React.Component {
                         key={message._id}
                     />
                 ))}
-                {this.props.chat.isTyping && (
-                    <TypingIndicator key="typing-thing" />
-                )}
+                <TypingIndicator
+                    key="typing-thing"
+                    isVisible={this.props.chat.isTyping}
+                    wasVisible={this.props.chat.wasTyping}
+                />
             </div>
         )
     }
