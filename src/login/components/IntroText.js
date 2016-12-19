@@ -14,7 +14,12 @@ export default class IntroText extends React.Component {
                     {Object.keys(texts).map(title => (
                         <div key={title}>
                             <h1 style={[styles.title, styles.h1]}>{title}</h1>
-                            <h2 style={styles.text}>{texts[title]}</h2>
+                            <h2
+                                style={styles.text}
+                                dangerouslySetInnerHTML={{
+                                    __html: texts[title],
+                                }}
+                            />
                         </div>
                     ))}
                 </div>
