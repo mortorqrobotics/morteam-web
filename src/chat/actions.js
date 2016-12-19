@@ -81,6 +81,7 @@ export const loadMessages = () => async (dispatch, getState) => {
     const chat = chats.find(chat => chat._id == currentChatId);
     const { data } = await request("GET",
         `/chats/id/${currentChatId}/messages?skip=${chat.messages.length}`
+        + "&" + Date.now()
     );
     if (data.length === 0) {
         dispatch({
@@ -121,7 +122,7 @@ export const pageClose = () => (dispatch) => {
 }
 
 export async function initialActions(dispatch) {
-    const { data } = await request("GET", "/chats");
+    const { data } = await request("GET", "/chats?" + Date.now);
     dispatch({
         type: "LOAD_CHATS_SUCCESS",
         chats: data,
