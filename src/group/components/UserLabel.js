@@ -5,7 +5,7 @@ import Col from "react-bootstrap/lib/Col";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { fullName, currentUser } from "~/util";
 import ProfilePicture from "~/shared/components/ProfilePicture";
-import styles from "~/team/styles";
+import styles from "~/shared/styles/userList";
 import { connect } from "react-redux";
 import { deleteUser } from "~/group/actions";
 

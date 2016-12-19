@@ -20,7 +20,9 @@ export const leaveGroup = () => async (dispatch) => {
 
 
 export const addUsers = (users) => async (dispatch) => {
-    await request("POST", `/groups/normal/id/${groupId}/users`, { users });
+    await request("POST", `/groups/normal/id/${groupId}/users`, {
+        users: users.map(user => user._id),
+    });
     dispatch({
         type: "ADD_USERS",
         users,

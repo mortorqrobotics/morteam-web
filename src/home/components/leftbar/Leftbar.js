@@ -55,7 +55,7 @@ class Leftbar extends React.Component {
                 />
                 <LeftbarButton
                     text="Team"
-                    onClick={() => window.location.assign("teams/current")}
+                    onClick={() => window.location.assign("/teams/current")}
                 />
                 <hr />
 

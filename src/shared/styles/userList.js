@@ -6,7 +6,12 @@ export default {
         height: "calc(100% - 40px)",
         textAlign: "center",
     },
+    centerer: {
+        textAlign: "center",
+    },
     teamInfo: {
+        marginLeft: "15px",
+        marginLeft: "15px",
         span: {
             display: "inline-block",
             verticalAlign: "textTop",
@@ -29,6 +34,7 @@ export default {
             padding: "20px",
             textAlign: "left",
             display: "inline-block",
+            marginBottom: "15px",
             backgroundColor: "#c9c9c9",
             border: "1px solid #ababab",
             width: "90%",

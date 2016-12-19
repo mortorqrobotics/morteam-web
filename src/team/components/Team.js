@@ -4,7 +4,7 @@ import Radium from "radium";
 import UserList from "./UserList";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
-import styles from "~/team/styles";
+import styles from "~/shared/styles/userList";
 import ajax from "~/util/ajax";
 import { currentUser } from "~/util";
 

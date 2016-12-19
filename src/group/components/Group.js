@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import UserList from "~/group/components/UserList";
-import styles from "~/group/styles";
+import styles from "~/shared/styles/userList";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Heading from "~/group/components/Heading";
 

@@ -3,8 +3,8 @@ import Radium from "radium";
 
 import Grid from "react-bootstrap/lib/Grid";
 import UserLabel from "./UserLabel";
-import styles from "~/team/styles";
-import { connect } from "react-redux";
+import styles from "~/shared/styles/userList";
+import { connect } from "react-redux"
 
 @Radium
 class UserList extends React.Component {
@@ -12,14 +12,16 @@ class UserList extends React.Component {
     render() {
         return (
             <Grid fluid={true}>
-                <div style={styles.memberList}>
+                <div style ={styles.centerer}>
+                    <div style={styles.memberList}>
                     {this.props.users.map(user => (
                         <UserLabel
                             user={user}
                             key={user._id}
                         />
                     ))}
-                </div>
+                     </div>
+                 </div>
             </Grid>
         )
     }

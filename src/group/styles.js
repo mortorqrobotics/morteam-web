@@ -4,7 +4,9 @@ const button = {
     fontSize: "28px",
     width: "300px",
     color: "white",
-    marginBottom: "30px",
+    border: "none",
+    marginBottom: "20px",
+    boxShadow: "1.5px, 3px, 8px, -2px, #983745",
 }
 
 export default {
@@ -15,15 +17,20 @@ export default {
       paddingTop: "50px",
       fontSize: "36px",
       textAlign: "center",
-      marginBottom: "80px",
+      marginBottom: "35px",
     },
     leaveButton: [button, {
-      backgroundColor: "#C71111",
+        backgroundColor: "#DD2818",
+        pointer: "cursor",
+        ":hover": {
+            backgroundColor: "#C71111",
+        },
     }],
     inviteButton: [button, {
-      backgroundColor: "#009933",
-    }],
-    joinGroupButton: [button, {
-      backgroundColor: defaultColor,
+        backgroundColor: "#1BB72D",
+        pointer: "cursor",
+        ":hover": {
+            backgroundColor: "#009933",
+        },
     }],
 }

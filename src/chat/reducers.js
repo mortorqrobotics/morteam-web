@@ -32,7 +32,7 @@ function chats(state = initialChats, action) {
                     },
                     updated_at: {
                         $set: action.timestamp,
-                    }
+                    },
                     isTyping: {
                         $set: false,
                     },
