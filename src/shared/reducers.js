@@ -13,10 +13,8 @@ function onlineClients(state = [], action) {
 
 function isLeftbarOpen(state = true, action) {
     switch (action.type) {
-        case "OPEN_LEFTBAR":
-            return true;
-        case "CLOSE_LEFTBAR":
-            return false;
+        case "TOGGLE_LEFTBAR":
+            return !state;
         default:
             return state;
     }

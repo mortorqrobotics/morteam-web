@@ -51,14 +51,9 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) =>
     }
 }
 
-export function openLeftbar() {
+export function toggleLeftbar() {
     return {
-        type: "OPEN_LEFTBAR",
+        type: "TOGGLE_LEFTBAR",
     }
 }
 
-export function closeLeftbar() {
-    return {
-        type: "CLOSE_LEFTBAR",
-    }
-}
