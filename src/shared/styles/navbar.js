@@ -195,11 +195,10 @@ export default {
             padding: "10px 0 5px 0",
             zIndex: "88",
             boxShadow: "0 3px 8px -5px black",
-            position: "relative",
-            marginTop: "-37px",
+            position: "fixed",
         "@media screen and (min-width: 821px)": {
                 display: "none",
-            }
+            },
         },
         item: {
             fontWeight: "300",
@@ -209,7 +208,7 @@ export default {
             margin: "0px",
             ":hover": {
                 backgroundColor: selectedColor,
-            }
+            },
         },
         li: {
             textAlign: "center",

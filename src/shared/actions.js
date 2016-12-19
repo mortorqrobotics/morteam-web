@@ -59,3 +59,9 @@ export function closeLeftbar() {
         type: "CLOSE_LEFTBAR",
     }
 }
+
+export function toggleDropdown() {
+    return {
+        type: "TOGGLE_DROPDOWN",
+    }
+}

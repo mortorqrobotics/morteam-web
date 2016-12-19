@@ -6,27 +6,17 @@ import ProfileDropdownModal from "./ProfileDropdownModal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import { currentUser } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-
-const Item = ({path, text}) =>{
-    return(
-        <p
-            style={styles.navbarDropdown.item}
-            onClick={() => window.location.assign(path)}
-        > 
-            {text}
-        </p>
-    )
-}
+import { toggleDropdown } from "~/shared/actions";
+import { connect } from "react-redux";
 
 @Radium
-export default class ProfileDropdown extends React.Component {
+class RightLinks extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             isModalOpen: false,
-            isDropdownOpen: false, 
         }
     }
 
@@ -36,32 +26,10 @@ export default class ProfileDropdown extends React.Component {
         })
     }
     
-    toggleDropdown = () => {
-        this.setState({
-            isDropdownOpen: !this.state.isDropdownOpen,
-        });
-    }
-    
-    renderDropdown = () => {
-        if(this.state.isDropdownOpen) {
-            return (
-                <div style={styles.navbarDropdown.div}>
-                    <Item path="/" text="Home" />
-                    <Item path="/chat" text="Chat" />
-                    <Item path="/drive" text="Drive" />
-                    <Item path="/cal" text="Calendar" />
-                    <Item path="/map" text="Map" />
-                </div>
-            ) 
-        }
-    }
-    
-
     render() {
         return (
-        <div>
             <div style={styles.rightLinks.container}>
-                <li style={styles.navbarDropdown.li} onClick={this.toggleDropdown}>
+                <li style={styles.navbarDropdown.li} onClick={() => this.props.dispatch(toggleDropdown())}>
                     <Glyphicon glyph="menu-hamburger" />
                 </li>
                 <ProfilePicture
@@ -84,8 +52,15 @@ export default class ProfileDropdown extends React.Component {
                     onRequestClose={() => this.setState({ isModalOpen: false })}
                 />
             </div>
-                {this.renderDropdown()}
-            </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isDropdownOpen: state.isDropdownOpen,
+    }
+}
+
+export default connect(mapStateToProps)(RightLinks);
+
