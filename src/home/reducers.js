@@ -1,3 +1,5 @@
+import update from "react/lib/update";
+
 const announcements = (state = [], action) => {
     switch (action.type) {
         case "ADD_ANNOUNCEMENT_SUCCESS":
@@ -33,8 +35,11 @@ const groups = (state = initialGroups, action) => {
                 other: action.otherGroups,
             }
         case "ADD_GROUP":
-            state.user = state.user.concat(action.group);
-            return state;
+            return update(state, {
+                user: {
+                    $push: [action.group]
+                }
+            })
         default:
             return state
     }
