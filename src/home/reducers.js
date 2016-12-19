@@ -1,3 +1,5 @@
+import update from "react/lib/update";
+
 const announcements = (state = [], action) => {
     switch (action.type) {
         case "ADD_ANNOUNCEMENT_SUCCESS":
@@ -24,12 +26,20 @@ const announcementsLoading = (state = false, action) => {
     }
 }
 
-const groups = (state = [], action) => {
+const initialGroups = { user: [], other: [] };
+const groups = (state = initialGroups, action) => {
     switch (action.type) {
         case "LOAD_GROUPS":
-            return action.groups
+            return {
+                user: action.userGroups,
+                other: action.otherGroups,
+            }
         case "ADD_GROUP":
-            return state.concat(action.group)
+            return update(state, {
+                user: {
+                    $push: [action.group]
+                }
+            })
         default:
             return state
     }
