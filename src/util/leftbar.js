@@ -1,13 +1,9 @@
 import React from "react";
-import { openLeftbar, closeLeftbar } from "~/shared/actions";
+import { toggleLeftbar } from "~/shared/actions";
 
 function onToggle(self, str) {
     self.setState({ [str]: !self.state[str] });
-    if (self.state[str]) {
-        self.props.dispatch(closeLeftbar());
-    } else {
-        self.props.dispatch(openLeftbar());
-    }
+    self.props.dispatch(toggleLeftbar());
 }
 
 export const leftbarProps = (self, str) => {
