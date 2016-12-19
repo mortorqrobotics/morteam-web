@@ -44,7 +44,7 @@ export const Dropdown = Radium((props) => {
     let buttonStyle = dropdown.button;
     let menu;
     if (props.isOpen) {
-        buttonStyle = [buttonStyle, dropdown.buttonShadow]
+        buttonStyle = [buttonStyle, dropdown.standardBoxShadow]
         menu = (
             <ul style={[dropdown.ul, listStyle]}>
                 {props.options.map(option => (

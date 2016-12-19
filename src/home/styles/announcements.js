@@ -1,3 +1,5 @@
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
+
 export default {
     container: {
         maxWidth: "700px",
@@ -14,7 +16,7 @@ export default {
         borderRadius: "1px",
         fontSize: "16px",
         position: "relative",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+        boxShadow: standardBoxShadow,
         whiteSpace: "pre-wrap",
     },
     author: {

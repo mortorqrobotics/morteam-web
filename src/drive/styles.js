@@ -1,3 +1,5 @@
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
+
 const docList = {
     position: "absolute",
     width: "calc(100vw - 320px)",
@@ -108,7 +110,6 @@ export default {
             color: "black",
             marginTop: "20px",
             marginLeft: "35px",
-            border: "none",
             ":hover": {
                 backgroundColor: "#e9e9e9",
             },
@@ -116,7 +117,7 @@ export default {
     },
     chosenFile: {
         backgroundColor: "#e9e9e9",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+        boxShadow: standardBoxShadow,
         width: "100%",
         borderRadius: "1px",
         padding: "4px 8px 4px 8px",

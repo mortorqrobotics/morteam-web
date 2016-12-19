@@ -8,6 +8,7 @@ const Button = (props) => {
         value: text,
         style: [style || {}, {
             outline: "none",
+            border: "none",
         }],
         ...rest,
     })

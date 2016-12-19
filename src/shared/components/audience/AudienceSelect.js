@@ -8,25 +8,7 @@ import AudienceItem from "./AudienceItem";
 import { getGroupName } from "~/util/groups";
 import { fullName } from "~/util";
 
-let styles = {
-    div: {
-        height: "130px",
-        overflowY: "auto",
-    },
-    textBox: {
-        width: "100%",
-        marginTop: "5px",
-        marginBottom: "10px",
-        border: "none",
-        padding: "8px 4px",
-        fontSize: "15px",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
-        borderRadius: "1px",
-        ":focus": {
-            outline: "none",
-        },
-    },
-}
+import styles from "~/shared/styles/audience";
 
 @Radium
 export default class AudienceSelect extends React.Component {
@@ -73,11 +55,11 @@ export default class AudienceSelect extends React.Component {
     }
 
     isGroupSelected = (group) => {
-        return this.props.selected.groups.indexOf(group) !== -1;
+        return this.props.selected.groups.some(g => g._id == group._id);
     }
 
     isUserSelected = (user) => {
-        return this.props.selected.users.indexOf(user) !== -1;
+        return this.props.selected.users.some(u => u._id == user._id);
     }
 
     onUserClick = (user) => {
@@ -142,10 +124,10 @@ export default class AudienceSelect extends React.Component {
                     placeholder="Search Names..."
                     onChange={event => this.setState({ query: event.target.value })}
                     value={this.state.query}
-                    style={styles.textBox}
+                    style={styles.audienceSelect.textBox}
                 />
                 <br />
-                <div style={styles.div}>
+                <div style={styles.audienceSelect.div}>
                     {shownGroups.map(group => (
                         <AudienceItem
                             key={group._id}

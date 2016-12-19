@@ -1,3 +1,4 @@
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 export default{
     leftbar:{
         div: {
@@ -8,7 +9,7 @@ export default{
             width: "200px",
             display: "inline-block",
             background: "white",
-            boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+            boxShadow: standardBoxShadow,
         },
         span: {
             color: "gray",

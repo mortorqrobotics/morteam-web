@@ -6,6 +6,7 @@ const TextBox = (props) => {
     type = type || "text";
     style = [style || {}, {
         outline: "none",
+        border: "none",
     }];
     if (["text", "number", "email", "password"].indexOf(type) == -1){
         throw new Error("Invalid type prop for TextBox");

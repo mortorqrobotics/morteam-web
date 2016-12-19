@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
+
 import {
     ModalTextBox,
     ModalButton,
@@ -9,6 +11,8 @@ import ajax from "~/util/ajax";
 import { fullName, capitalize } from "~/util";
 import update from "react/lib/update";
 import ContextMenu from "react-context-menus";
+
+import { selectedColor } from "~/shared/styles/colors";
 
 @Radium
 export default class TakeAttendance extends React.Component {
@@ -36,7 +40,7 @@ export default class TakeAttendance extends React.Component {
     getColor = (status) => {
         switch (status) {
             case "absent":
-                return { backgroundColor: "orange" }
+                return { backgroundColor: selectedColor }
             case "present":
                 return { backgroundColor: "#53cf29" }
             case "tardy":
@@ -64,7 +68,10 @@ export default class TakeAttendance extends React.Component {
     saveAttendance = async () => {
         // TODO: make this redux!
         await ajax.request("PUT", `/events/id/${this.props.event._id}/attendance`, {
-            attendance: this.state.attendance,
+            attendance: this.state.attendance.map(({ user, status }) => ({
+                user: user._id,
+                status,
+            })),
         });
         this.props.onDone();
     }
@@ -133,7 +140,7 @@ export default class TakeAttendance extends React.Component {
                                         margin: "2px 2px 4px 4px",
                                         display: "inline-block",
                                         padding: "2px 3px 2px 3px",
-                                        boxShadow: "1.5px 2px 8px -2px #a9a9a9",
+                                        boxShadow: standardBoxShadow,
                                         borderRadius: "1px",
                                         cursor: "pointer",
                                         ...this.getColor(status),

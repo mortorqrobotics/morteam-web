@@ -33,6 +33,12 @@ function chats(state = initialChats, action) {
                     updated_at: {
                         $set: action.timestamp,
                     }
+                    isTyping: {
+                        $set: false,
+                    },
+                    wasTyping: {
+                        $set: false,
+                    },
                 },
             })
             return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
@@ -66,7 +72,7 @@ function chats(state = initialChats, action) {
                     },
                     updated_at: {
                         $set: action.timestamp,
-                    }
+                    },
                 },
             })
             return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
@@ -94,6 +100,9 @@ function chats(state = initialChats, action) {
                 [index]: {
                     isTyping: {
                         $set: action.isTyping,
+                    },
+                    wasTyping: {
+                        $set: state[index].isTyping,
                     },
                 },
             })

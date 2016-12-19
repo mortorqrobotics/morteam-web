@@ -1,4 +1,5 @@
 import orangeButton from "~/shared/styles/orangeButton";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 export default {
     container: {
@@ -12,7 +13,7 @@ export default {
         marginRight: "auto",
         borderRadius: "1px",
         fontSize: "10px",
-        boxShadow: "1.5px 3px 8px -2px #a9a9a9",
+        boxShadow: standardBoxShadow,
         overflow: "auto",
         WebkitOverflowScrolling: "touch",
     },

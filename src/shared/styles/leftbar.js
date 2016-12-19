@@ -1,4 +1,5 @@
 // shared by calendar, chat, and drive
+import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
 
 const item = {
     height: "60px",
@@ -11,7 +12,7 @@ const item = {
 
 export default {
     div: {
-        backgroundColor: "#FFC547",
+        backgroundColor: defaultColor,
         width: "260px",
         height: "calc(100% - 30px)",
         position: "fixed",
@@ -28,13 +29,13 @@ export default {
     button: [item, {
         cursor: "pointer",
         ":hover": {
-            backgroundColor: "#FFB524",
+            backgroundColor: hoverColor,
         },
     }],
     selected: {
-        backgroundColor: "orange",
+        backgroundColor: selectedColor,
         ":hover": {
-            backgroundColor: "orange",
+            backgroundColor: selectedColor,
         },
     },
     glyph: {
@@ -43,7 +44,7 @@ export default {
     hideButton: {
         position: "fixed",
         top: "calc(100% - 40px)",
-        backgroundColor: "orange",
+        backgroundColor: selectedColor,
         width: "28px",
         height: "30px",
         padding: "7px",
@@ -59,8 +60,7 @@ export default {
 
 export const dropdown = {
     button: {
-        backgroundColor: "#FFC547",
-        border: "none",
+        backgroundColor: defaultColor,
         padding: "3px 8px",
         borderRadius: "1px",
         cursor: "pointer",
@@ -68,10 +68,10 @@ export const dropdown = {
         display: "inline-block",
         verticalAlign: "middle",
         ":hover": {
-            backgroundColor: "orange"
+            backgroundColor: selectedColor
         }
     },
-    buttonShadow: {
+    standardBoxShadow: {
         boxShadow: "inset 0 3px 5px rgba(0,0,0,.125)"
     },
     caret: {
@@ -102,13 +102,13 @@ export const dropdown = {
         listStyle: "none",
         fontSize: "14px",
         ":hover": {
-            backgroundColor: "#ffc547"
+            backgroundColor: defaultColor
         },
     },
     selected: {
-        backgroundColor: "orange",
+        backgroundColor: selectedColor,
         ":hover": {
-            backgroundColor: "orange"
+            backgroundColor: selectedColor
         },
     }
 }
