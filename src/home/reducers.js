@@ -24,12 +24,17 @@ const announcementsLoading = (state = false, action) => {
     }
 }
 
-const groups = (state = [], action) => {
+const initialGroups = { user: [], other: [] };
+const groups = (state = initialGroups, action) => {
     switch (action.type) {
         case "LOAD_GROUPS":
-            return action.groups
+            return {
+                user: action.userGroups,
+                other: action.otherGroups,
+            }
         case "ADD_GROUP":
-            return state.concat(action.group)
+            state.user = state.user.concat(action.group);
+            return state;
         default:
             return state
     }

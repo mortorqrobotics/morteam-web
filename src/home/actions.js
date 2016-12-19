@@ -29,10 +29,12 @@ export const loadAnnouncements = () => async (dispatch, getState) => {
 }
 
 export const loadGroups = () => async (dispatch) => {
-    const { data } = await request("GET", "/groups/normal");
+    const userGroupsReq = await request("GET", "/groups/normal");
+    const otherGroupsReq = await request("GET", "/groups/other");
     dispatch({
         type: "LOAD_GROUPS",
-        groups: data,
+        userGroups: userGroupsReq.data,
+        otherGroups: otherGroupsReq.data,
     });
 }
 

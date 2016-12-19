@@ -61,7 +61,13 @@ class Leftbar extends React.Component {
 
                 <h5 style={styles.leftbar.h5}>Your Groups</h5>
                 <GroupList
-                    groups={this.props.groups}
+                    groups={this.props.userGroups}
+                />
+                <hr />
+
+                <h5 style={styles.leftbar.h5}>Other Groups</h5>
+                <GroupList
+                    groups={this.props.otherGroups}
                 />
                 <hr />
 
@@ -84,7 +90,8 @@ class Leftbar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        groups: state.groups,
+        userGroups: state.groups.user,
+        otherGroups: state.groups.other,
     }
 }
 
