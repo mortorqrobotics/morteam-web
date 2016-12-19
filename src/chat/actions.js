@@ -30,6 +30,7 @@ export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
         chatId,
         message,
         meta, // this is part of redux-sounds
+        timestamp: new Date(),
     });
 }
 
@@ -47,11 +48,14 @@ export const sendMessage = (content) => (dispatch, getState) => {
     });
 }
 
-export const messageSent = ({ chatId, content }) => ({
-    type: "SEND_MESSAGE_SUCCESS",
-    chatId,
-    content,
-})
+export const messageSent = ({ chatId, content }) => (dispatch) => {
+    dispatch({
+        type: "SEND_MESSAGE_SUCCESS",
+        chatId,
+        content,
+        timestamp: new Date(),
+    });
+}
 
 export const setChatName = ({ chatId, name }) => async (dispatch) => {
     await request("PUT", `/chats/group/id/${chatId}/name`, {
