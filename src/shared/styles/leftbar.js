@@ -1,6 +1,8 @@
 // shared by calendar, chat, and drive
 import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
 
+const leftbarWidth = 260;
+
 const item = {
     height: "60px",
     borderBottom: "1px solid black",
@@ -13,7 +15,7 @@ const item = {
 export default {
     div: {
         backgroundColor: defaultColor,
-        width: "260px",
+        width: leftbarWidth + "px",
         height: "calc(100% - 30px)",
         position: "fixed",
         top: "40px",
@@ -41,19 +43,25 @@ export default {
     glyph: {
         marginRight: "5px",
     },
-    hideButton: {
-        position: "fixed",
-        top: "calc(100% - 40px)",
-        backgroundColor: selectedColor,
-        width: "28px",
-        height: "30px",
-        padding: "7px",
-        cursor: "pointer",
-        zIndex: "91",
-        borderRadius: "20px",
-        boxShadow: "0px 2px 8px -4px black",
-        ":hover": {
-            backgroundColor: "darkOrange"
+    hideLeftbar: {
+        button: {
+            position: "fixed",
+            top: "calc(100% - 40px)",
+            backgroundColor: selectedColor,
+            width: "28px",
+            height: "30px",
+            padding: "7px",
+            cursor: "pointer",
+            zIndex: "91",
+            borderRadius: "20px",
+            boxShadow: "0px 2px 8px -4px black",
+            ":hover": {
+                backgroundColor: "darkOrange"
+            }
+        },
+        left: {
+            open: leftbarWidth + 10 + "px",
+            closed: "10px",
         }
     }
 }
