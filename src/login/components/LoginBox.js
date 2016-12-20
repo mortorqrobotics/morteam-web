@@ -26,7 +26,7 @@ export default class LoginBox extends React.Component {
 
     onSubmit = async() => {
         try {
-            let { data } = await ajax.request("post", "/login", {
+            let { data: user } = await ajax.request("post", "/login", {
                 username: this.state.username,
                 password: this.state.password,
                 rememberMe: this.state.checkedRM,
@@ -34,6 +34,17 @@ export default class LoginBox extends React.Component {
             this.setState({
                 errorMsg: "Success"
             });
+            localStorage.username = user.username;
+            localStorage.firstname = user.firstname;
+            localStorage.lastname = user.lastname;
+            localStorage._id = user._id;
+            localStorage.phone = user.phone;
+            localStorage.email = user.email;
+            localStorage.profpicpath = user.profpicpath;
+            localStorage.c_team = user.team._id;
+            localStorage.c_team_position = user.position;
+            localStorage.teamNumber = user.team.number;
+            localStorage.teamName = user.team.name;
             setTimeout(() => window.location.assign("/"), REDIR_TIME);
         } catch ({ response: { data } }) {
             this.setState({
