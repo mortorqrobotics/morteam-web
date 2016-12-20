@@ -7,6 +7,7 @@
     "build-prod": "NODE_ENV=production ./node_modules/.bin/gulp build",
     "gulp": "./node_modules/.bin/gulp",
     "gulp-prod": "NODE_ENV=production ./node_modules/.bin/gulp",
+    "one-by-one": "for page in $(echo $(cd src; echo */) | sed -e 's/\\///g' | tr ' ' \"\\n\" | grep -v '\\(shared\\|util\\)'); do npm run gulp-prod build-$page; done",
     "watch": "./node_modules/.bin/gulp watch",
     "vendor": "./node_modules/.bin/gulp vendor",
     "vendor-prod": "NODE_ENV=production ./node_modules/.bin/gulp vendor",
