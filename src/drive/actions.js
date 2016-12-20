@@ -3,12 +3,17 @@ import { request } from "~/util/ajax";
 const fetchFolders = () => async (dispatch, getStore) => {
     const store = getStore();
     const { data } = await request("GET", "/folders");
+    const defaultFolders = data.filter(folder => folder.defaultFolder);
+    const sortedFolders = [
+        defaultFolders.find(folder => folder.name === "Team Files"),
+        defaultFolders.find(folder => folder.name === "Personal Files")
+    ].concat(data.filter(f => defaultFolders.indexOf(f) === -1));
     dispatch({
         type: "SET_FOLDERS",
-        folders: data,
+        folders: sortedFolders,
     });
     if (!store.selectedFolder && data.length !== 0) {
-        dispatch(setFolder(data[0]))
+        dispatch(setFolder(sortedFolders[0]))
     }
 }
 
