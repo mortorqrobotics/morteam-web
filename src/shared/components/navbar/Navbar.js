@@ -28,7 +28,7 @@ class Navbar extends React.Component {
                     <ul style={styles.ul}>
                         <li 
                             style={styles.title} 
-                            onClick={() => console.log(this.props.isDropdownOpen)}
+                            onClick={() => window.location.assign("/")}
                         >
                             MorTeam
                         </li>
