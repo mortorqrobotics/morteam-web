@@ -29,7 +29,7 @@ let libs = [
     "socket.io-client",
 ];
 
-let pages = [
+let allPages = [
     "signup",
     "login",
     "void",
@@ -63,7 +63,7 @@ function stuff(bundler) {
         })
 }
 
-gulp.task("build", function() {
+function build(pages) {
     return gulp.src(pages.map(page => (
         "./src/" + page + "/components/" + capitalize(page) + ".js"
     )), { read: false, })
@@ -81,10 +81,20 @@ gulp.task("build", function() {
             console.log(err.codeFrame);
         })
         .pipe(gulp.dest("./build/"));
+}
+
+gulp.task("build", () => {
+    return build(allPages);
 });
 
+for (let page of allPages) {
+    gulp.task("build-" + page, () => {
+        return build([page]);
+    });
+}
+
 gulp.task("watch", () => {
-    let streams = pages.map(page => {
+    let streams = allPages.map(page => {
         let path = "./src/" + page + "/components/" + capitalize(page) + ".js";
         let bundler = watchify(browserify({
             entries: [path],

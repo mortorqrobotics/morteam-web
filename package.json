@@ -5,6 +5,8 @@
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
     "build-prod": "NODE_ENV=production ./node_modules/.bin/gulp build",
+    "gulp": "./node_modules/.bin/gulp",
+    "gulp-prod": "NODE_ENV=production ./node_modules/.bin/gulp",
     "watch": "./node_modules/.bin/gulp watch",
     "vendor": "./node_modules/.bin/gulp vendor",
     "vendor-prod": "NODE_ENV=production ./node_modules/.bin/gulp vendor",
