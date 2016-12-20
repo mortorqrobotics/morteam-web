@@ -36,10 +36,12 @@ export default class MessageItem extends React.Component {
         if (message.author._id == currentUser._id) {
             return (
                 <div style={styles.bubbleWrapper}>
-                    <div style={
-                        message.isLoading ? styles.selfBubbleLoading : styles.selfBubble
-                    }>
-                    <span dangerouslySetInnerHTML={{ __html: filterMessage(message.content) }} />
+                    <div
+                        style={
+                            message.isLoading ? styles.selfBubbleLoading : styles.selfBubble
+                        }
+                    >
+                        <span dangerouslySetInnerHTML={{ __html: filterMessage(message.content) }} />
                         <div style={styles.selfTriangle} />
                     </div>
                 </div>

@@ -22,6 +22,7 @@ export default class TypingIndicator extends React.Component {
             ]}>
                 <div style={styles.otherBubble}>
                     ...
+                    <div style={styles.otherTriangle} />
                 </div>
             </div>
         )
