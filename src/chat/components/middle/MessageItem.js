@@ -14,7 +14,7 @@ const filterMessage = (content) => (
 )
 
 @Radium
-export default class MessageItem extends React.Component {
+export default class MessageItem extends React.PureComponent {
 
     static propTypes = {
         message: React.PropTypes.object,
