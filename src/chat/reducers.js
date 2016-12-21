@@ -53,6 +53,9 @@ function chats(state = initialChats, action) {
                             isLoading: true,
                         }],
                     },
+                    wasTyping: {
+                        $set: false,
+                    },
                 },
             })
         case "SEND_MESSAGE_SUCCESS":
