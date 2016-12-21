@@ -6,7 +6,7 @@ import { ModalTextBox, ModalSubmitButton } from "~/shared/components/modal";
 import Form from "~/shared/components/forms/Form";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import Button from "~/shared/components/forms/Button";
-import { makeChangeHandlerFactory, fullName } from "~/util";
+import { makeChangeHandlerFactory, fullName, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
@@ -84,33 +84,34 @@ class OptionsModal extends React.Component {
     }
     
     handleDeleteRender = () => {
-        if(!this.state.isDeleteConfirmOpen){
-           return(
-                <Button 
-                    style={styles.deleteButton} 
-                    value="Delete"  
-                    onClick={() => this.setState({isDeleteConfirmOpen: true,})}
-                />
-            )
-        } else {
-            return (
-                <div>
-                    <p style={styles.p}>Are you sure?</p>
+        if(this.props.chat.isTwoPeople || this.props.chat.creator === currentUser._id || currentUser.isAdmin){
+            if(!this.state.isDeleteConfirmOpen){
+               return(
                     <Button 
-                        style={styles.confirmButton} 
-                        value="Yes"  
-                        onClick= {() => this.props.dispatch(deleteChat(this.props.chat))}
+                        style={styles.deleteButton} 
+                        value="Delete"  
+                        onClick={() => this.setState({isDeleteConfirmOpen: true,})}
                     />
-                    <Button 
-                        style={styles.confirmButton} 
-                        value="No"  
-                        onClick={() => this.setState({isDeleteConfirmOpen: false,})}
-                    />
-                </div>
-            )
+                )
+            } else {
+                return (
+                    <div>
+                        <p style={styles.p}>Are you sure?</p>
+                        <Button 
+                            style={styles.confirmButton} 
+                            value="Yes"  
+                            onClick= {() => this.props.dispatch(deleteChat(this.props.chat._id))}
+                        />
+                        <Button 
+                            style={styles.confirmButton} 
+                            value="No"  
+                            onClick={() => this.setState({isDeleteConfirmOpen: false,})}
+                        />
+                    </div>
+                )
+            }
         }
     }
-    
     render() {
         return(
             <StandardModal
