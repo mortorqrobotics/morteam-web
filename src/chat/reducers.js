@@ -12,7 +12,7 @@ function chats(state = initialChats, action) {
         case "ADD_CHAT_SUCCESS":
             return [action.chat].concat(state)
         case "DELETE_CHAT_SUCCESS":
-            return state.filter(chat => chat._id !== action.chat._id)
+            return state.filter(chat => chat._id !== action.chatId)
         case "SET_CHAT_NAME_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             // state[index].name = action.name
@@ -129,6 +129,8 @@ function currentChatId(state = initialCurrentChatId, action) {
                 return action.chat._id
             }
             return state
+        case "DELETE_CHAT_SUCCESS":
+            return action.newChatId
         case "SET_CURRENT_CHAT_ID":
             return action.chatId
         default:
