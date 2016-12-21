@@ -84,7 +84,9 @@ class OptionsModal extends React.Component {
     }
     
     handleDeleteRender = () => {
-        if(this.props.chat.isTwoPeople || this.props.chat.creator === currentUser._id || currentUser.isAdmin){
+        if(this.props.chat.isTwoPeople 
+            || this.props.chat.creator === currentUser._id 
+            || currentUser.isAdmin()){
             if(!this.state.isDeleteConfirmOpen){
                return(
                     <Button 
