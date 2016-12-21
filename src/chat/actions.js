@@ -9,7 +9,7 @@ export const addChat = (chat) => async (dispatch) => {
     });
 }
 
-export const deleteChat = (chat) => async (dispatch)=> {
+export const deleteChat = (chat) => async (dispatch) => {
     await request("DELETE", "/chats/id/" + chat._id.toString());
     dispatch({
        type: "DELETE_CHAT_SUCCESS",
@@ -17,6 +17,7 @@ export const deleteChat = (chat) => async (dispatch)=> {
     });
     
 }
+
 export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
     const { currentChatId } = getState();
     let meta = {};

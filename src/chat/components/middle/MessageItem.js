@@ -63,12 +63,20 @@ export default class MessageItem extends React.PureComponent {
                         </OverlayTrigger>
                         <p
                             style={styles.chatOpponent}
-                            onClick={() => window.location.assign(`/profiles/id/${message.author._id}`)}
+                            onClick={() => {
+                                window.location.assign(
+                                    `/profiles/id/${message.author._id}`
+                                )
+                            }}
                             // TODO: make a user link component
                         >
                             {message.author.firstname} {message.author.lastname[0]}:
                         </p>
-                        <span dangerouslySetInnerHTML={{ __html: filterMessage(message.content) }} />
+                        <span
+                            dangerouslySetInnerHTML={{
+                                __html: filterMessage(message.content)
+                            }}
+                        />
                         <div style={styles.otherTriangle} />
                     </div>
                 </div>

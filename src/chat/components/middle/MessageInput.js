@@ -11,8 +11,14 @@ import { sendMessage, startTyping, stopTyping } from "~/chat/actions";
 @Radium
 class MessageInput extends React.Component {
 
-    state = {
+    initialState = {
         content: "",
+        rows: 1,
+    }
+    state = this.initialState;
+
+    componentDidMount = () => {
+        this.originalHeight = $("#chat-input")[0].scrollHeight;
     }
 
     handleSend = () => {
@@ -20,7 +26,7 @@ class MessageInput extends React.Component {
             return;
         }
         this.props.dispatch(sendMessage(this.state.content));
-        this.setState({ content: "", });
+        this.setState(this.initialState);
     }
 
     // this is necessary because the input box is a textarea, not an input type="text"
@@ -33,22 +39,32 @@ class MessageInput extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({ content: event.target.value });
+        event.target.style.height = 0;
+        this.setState({
+            content: event.target.value,
+            rows: (event.target.scrollHeight - this.originalHeight) / parseInt($(event.target).css("lineHeight")) + 1,
+        });
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             this.props.dispatch(stopTyping());
         }, 2000);
         this.props.dispatch(startTyping());
+        event.target.style.height = "";
     }
 
     render() {
+        console.log(this.state.rows)
         return (
             <div style={styles.inputDiv}>
                 <Form onSubmit={this.handleSend}>
                     <TextArea
                         autoFocus
-                        rows="1"
-                        style={styles.inputTextArea}
+                        id="chat-input"
+                        rows={this.state.rows}
+                        style={[
+                            styles.inputTextArea,
+                            this.state.rows > 12 ? { overflowY: "scroll" } : {},
+                        ]}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
                         onChange={this.handleChange}
