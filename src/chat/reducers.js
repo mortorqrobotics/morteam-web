@@ -107,6 +107,8 @@ function currentChatId(state = initialCurrentChatId, action) {
                 return action.chat._id
             }
             return state
+        case "DELETE_CHAT_SUCCESS":
+            return action.newChatId
         case "SET_CURRENT_CHAT_ID":
             return action.chatId
         default:
