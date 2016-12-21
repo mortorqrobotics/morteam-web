@@ -94,7 +94,6 @@ export const loadMessages = () => async (dispatch, getState) => {
             chatId: currentChatId,
         });
     } else {
-        console.log(currentChatId)
         dispatch({
             type: "LOAD_MESSAGES_SUCCESS",
             messages: data,
