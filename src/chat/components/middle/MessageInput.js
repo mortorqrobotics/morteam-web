@@ -13,7 +13,7 @@ class MessageInput extends React.Component {
 
     initialState = {
         content: "",
-        rows: 1,
+        numRows: 1,
     }
     state = this.initialState;
 
@@ -39,31 +39,43 @@ class MessageInput extends React.Component {
     }
 
     handleChange = (event) => {
+
+        // without this line, if it expands to a certain number of lines it
+        // will never go down to fewer lines; not sure why but this works
         event.target.style.height = 0;
+
+        const currentHeight = event.target.scrollHeight;
+        const rowHeight = parseInt($(event.target).css("lineHeight"));
+        const numRows = (currentHeight - this.originalHeight) / rowHeight + 1;
+
         this.setState({
             content: event.target.value,
-            rows: (event.target.scrollHeight - this.originalHeight) / parseInt($(event.target).css("lineHeight")) + 1,
+            numRows,
         });
+
+        // this undoes what is done at the beginning of this function
+        event.target.style.height = "";
+
+        const typingTimeout = 2000;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             this.props.dispatch(stopTyping());
-        }, 2000);
+        }, typingTimeout);
         this.props.dispatch(startTyping());
-        event.target.style.height = "";
+
     }
 
     render() {
-        console.log(this.state.rows)
         return (
             <div style={styles.inputDiv}>
                 <Form onSubmit={this.handleSend}>
                     <TextArea
                         autoFocus
                         id="chat-input"
-                        rows={this.state.rows}
+                        rows={this.state.numRows}
                         style={[
                             styles.inputTextArea,
-                            this.state.rows > 12 ? { overflowY: "scroll" } : {},
+                            this.state.numRows > 12 ? { overflowY: "scroll" } : {},
                         ]}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
