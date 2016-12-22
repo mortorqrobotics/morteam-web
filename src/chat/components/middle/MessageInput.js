@@ -20,6 +20,7 @@ class MessageInput extends React.Component {
 
     initialState = {
         content: "",
+        numRows: 1,
     }
     state = this.initialState;
 
@@ -57,10 +58,10 @@ class MessageInput extends React.Component {
 
         this.setState({
             content: event.target.value,
+            numRows: numRows,
         });
 
         this.props.dispatch(setInputSize({
-            numRows,
             heightDiff: Math.min(heightDiff, maxRowsShown),
         }));
 
@@ -83,10 +84,10 @@ class MessageInput extends React.Component {
                     <TextArea
                         autoFocus
                         id="chat-input"
-                        rows={this.props.numRows}
+                        rows={this.state.numRows}
                         style={[
                             styles.inputTextArea,
-                            this.props.numRows > maxRowsShown ? { overflowY: "scroll" } : {},
+                            this.state.numRows > maxRowsShown ? { overflowY: "scroll" } : {},
                         ]}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
@@ -103,8 +104,4 @@ class MessageInput extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-    numRows: state.inputSize.numRows,
-})
-
-export default connect(mapStateToProps)(MessageInput);
+export default connect()(MessageInput);

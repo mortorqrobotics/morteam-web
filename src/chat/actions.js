@@ -124,7 +124,6 @@ export const pageClose = () => (dispatch) => {
 
 export const setInputSize = ({ numRows, heightDiff }) => ({
     type: "SET_INPUT_SIZE",
-    numRows,
     heightDiff,
 })
 
