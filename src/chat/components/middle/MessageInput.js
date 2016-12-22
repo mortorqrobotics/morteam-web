@@ -6,14 +6,20 @@ import Form from "~/shared/components/forms/Form";
 import TextArea from "~/shared/components/forms/TextArea";
 import SubmitButton from "~/shared/components/forms/SubmitButton";
 import styles from "~/chat/styles/middle";
-import { sendMessage, startTyping, stopTyping } from "~/chat/actions";
+import {
+    sendMessage,
+    startTyping,
+    stopTyping,
+    setInputSize,
+} from "~/chat/actions";
+
+const maxRowsShown = 12;
 
 @Radium
 class MessageInput extends React.Component {
 
     initialState = {
         content: "",
-        numRows: 1,
     }
     state = this.initialState;
 
@@ -45,13 +51,18 @@ class MessageInput extends React.Component {
         event.target.style.height = 0;
 
         const currentHeight = event.target.scrollHeight;
+        const heightDiff = currentHeight - this.originalHeight;
         const rowHeight = parseInt($(event.target).css("lineHeight"));
-        const numRows = (currentHeight - this.originalHeight) / rowHeight + 1;
+        const numRows = heightDiff / rowHeight + 1;
 
         this.setState({
             content: event.target.value,
-            numRows,
         });
+
+        this.props.dispatch(setInputSize({
+            numRows,
+            heightDiff: Math.min(heightDiff, maxRowsShown),
+        }));
 
         // this undoes what is done at the beginning of this function
         event.target.style.height = "";
@@ -72,10 +83,10 @@ class MessageInput extends React.Component {
                     <TextArea
                         autoFocus
                         id="chat-input"
-                        rows={this.state.numRows}
+                        rows={this.props.numRows}
                         style={[
                             styles.inputTextArea,
-                            this.state.numRows > 12 ? { overflowY: "scroll" } : {},
+                            this.props.numRows > maxRowsShown ? { overflowY: "scroll" } : {},
                         ]}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
@@ -92,4 +103,8 @@ class MessageInput extends React.Component {
 
 }
 
-export default connect()(MessageInput);
+const mapStateToProps = (state) => ({
+    numRows: state.inputSize.numRows,
+})
+
+export default connect(mapStateToProps)(MessageInput);

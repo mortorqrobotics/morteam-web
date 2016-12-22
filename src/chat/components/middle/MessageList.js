@@ -64,7 +64,13 @@ class MessageList extends React.Component {
 
     render() {
         return (
-            <div ref="container" style={styles.messagesDiv}>
+            <div
+                ref="container"
+                style={[
+                    styles.messagesDiv,
+                    { height: "calc(100% - " + (64 + this.props.heightDiff) + "px)" },
+                ]}
+            >
                 {this.props.chat.messages.map(message => (
                     <MessageItem
                         message={message}
@@ -85,6 +91,7 @@ class MessageList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         chat: state.chats.find(chat => chat._id == state.currentChatId),
+        heightDiff: state.inputSize.heightDiff,
     }
 }
 

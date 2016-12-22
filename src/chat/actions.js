@@ -122,6 +122,12 @@ export const pageClose = () => (dispatch) => {
     dispatch(stopTyping());
 }
 
+export const setInputSize = ({ numRows, heightDiff }) => ({
+    type: "SET_INPUT_SIZE",
+    numRows,
+    heightDiff,
+})
+
 export async function initialActions(dispatch) {
     const { data } = await request("GET", "/chats?" + Date.now);
     dispatch({

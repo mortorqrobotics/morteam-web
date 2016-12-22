@@ -34,7 +34,6 @@ export default {
         maxWidth: "700px",
         width: "95%",
         minWidth: "380px",
-        height: "calc(100% - 62px)",
         minHeight: "250px",
         margin: "0 auto",
         zIndex: "-1",
