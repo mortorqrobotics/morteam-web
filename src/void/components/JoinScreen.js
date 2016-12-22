@@ -38,9 +38,13 @@ export default class JoinScreen extends React.Component {
         }
         try {
             // TODO: validate empty input
-            await ajax.request("POST",
-                "/teams/code/" + this.state.teamCode + "/join"
-            ); // TODO: urlencode the team code
+            const { data: team } = await ajax.request("POST",
+                "/teams/code/" + encodeURIComponent(this.state.teamCode) + "/join"
+            );
+            localStorage.c_team = team._id;
+            localStorage.c_team_position = "member";
+            localStorage.teamNumber = team.number;
+            localStorage.teamName = team.name;
             this.setState({
                 errorMsg: "Success"
             });

@@ -34,11 +34,15 @@ export default class CreateScreen extends React.Component {
 
     create = async() => {
         try {
-            await ajax.request("post", "/teams", {
+            const { data: team } = await ajax.request("post", "/teams", {
                 number: this.state.number,
                 name: this.state.name,
                 id: this.state.id,
             });
+            localStorage.c_team = team._id;
+            localStorage.c_team_position = "leader";
+            localStorage.teamNumber = team.number;
+            localStorage.teamName = team.name;
             this.setState({
                 errorMsg: "Success"
             });
