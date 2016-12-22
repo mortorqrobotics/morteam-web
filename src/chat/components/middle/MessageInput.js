@@ -61,9 +61,9 @@ class MessageInput extends React.Component {
             numRows: numRows,
         });
 
-        this.props.dispatch(setInputSize({
-            heightDiff: Math.min(heightDiff, this.originalHeight + (maxRowsShown -1) * rowHeight),
-        }));
+        this.props.dispatch(setInputSize(
+            Math.min(heightDiff, this.originalHeight + (maxRowsShown -1) * rowHeight)
+        ));
 
         // this undoes what is done at the beginning of this function
         event.target.style.height = "";
