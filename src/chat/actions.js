@@ -122,7 +122,7 @@ export const pageClose = () => (dispatch) => {
     dispatch(stopTyping());
 }
 
-export const setInputSize = ({ numRows, heightDiff }) => ({
+export const setInputSize = (heightDiff) => ({
     type: "SET_INPUT_SIZE",
     heightDiff,
 })
