@@ -34,6 +34,7 @@ class MessageInput extends React.Component {
         }
         this.props.dispatch(sendMessage(this.state.content));
         this.setState(this.initialState);
+        this.props.dispatch(setInputSize(0));
     }
 
     // this is necessary because the input box is a textarea, not an input type="text"
@@ -87,7 +88,7 @@ class MessageInput extends React.Component {
                         rows={this.state.numRows}
                         style={[
                             styles.inputTextArea,
-                            this.state.numRows > maxRowsShown ? { overflowY: "scroll" } : {},
+                            this.state.numRows > maxRowsShown ? { overflowY: "scroll", overflowX: "hidden" } : {},
                         ]}
                         onKeyDown={this.handleKeyDown}
                         value={this.state.content}
