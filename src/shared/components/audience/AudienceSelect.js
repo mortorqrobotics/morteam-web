@@ -104,7 +104,7 @@ export default class AudienceSelect extends React.Component {
                 shownUsers: this.state.allUsers,
             }
         } else {
-            const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "ig");
+            const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "i");
             return {
                 shownUsers: this.state.allUsers.filter(user => (
                     regex.test(user.firstname) || regex.test(user.lastname)
