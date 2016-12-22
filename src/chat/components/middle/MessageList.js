@@ -21,6 +21,7 @@ class MessageList extends React.Component {
         this.$container.scroll(this.handleScroll);
         this.$container.scrollTop(this.$container.prop("scrollHeight"));
         this.loading = true;
+        this.lastHeightDiff = 0;
         this.props.dispatch(loadMessages());
     }
 
@@ -36,7 +37,9 @@ class MessageList extends React.Component {
         const scrollHeight = this.$container.prop("scrollHeight");
         this.$container.scrollTop(
             this.lastScrollTop + scrollHeight - this.lastScrollHeight
+            + this.props.heightDiff - this.lastHeightDiff
         );
+        this.lastHeightDiff = this.props.heightDiff;
 
         if (this.props.chat.areAllMessagesLoaded) {
             return;
