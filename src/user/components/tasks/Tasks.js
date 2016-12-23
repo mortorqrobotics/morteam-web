@@ -12,6 +12,7 @@ const Tasks = Radium(props => {
                 title="Pending"
                 tasks={props.pending}
             />
+            <hr />
             <TaskList
                 title="Completed"
                 tasks={props.completed}
