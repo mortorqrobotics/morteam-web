@@ -68,6 +68,7 @@ class OptionsModal extends React.Component {
                                     user={user}
                                     picSize="small"
                                     frameSize={30}
+                                    hasIndicator
                                 />
                                 <span style={styles.span}>
                                     {fullName(user)}
