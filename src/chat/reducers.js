@@ -138,7 +138,23 @@ function currentChatId(state = initialCurrentChatId, action) {
     }
 }
 
+const initialChatSize = {
+    heightDiff: 0,
+};
+
+function inputSize(state = initialChatSize, action) {
+    switch (action.type) {
+        case "SET_INPUT_SIZE":
+            return {
+                heightDiff: action.heightDiff,
+            }
+        default:
+            return state
+    }
+}
+
 export default {
     chats,
     currentChatId,
+    inputSize,
 }

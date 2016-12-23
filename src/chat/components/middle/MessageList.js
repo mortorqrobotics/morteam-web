@@ -21,6 +21,7 @@ class MessageList extends React.Component {
         this.$container.scroll(this.handleScroll);
         this.$container.scrollTop(this.$container.prop("scrollHeight"));
         this.loading = true;
+        this.lastHeightDiff = 0;
         this.props.dispatch(loadMessages());
     }
 
@@ -36,7 +37,9 @@ class MessageList extends React.Component {
         const scrollHeight = this.$container.prop("scrollHeight");
         this.$container.scrollTop(
             this.lastScrollTop + scrollHeight - this.lastScrollHeight
+            + this.props.heightDiff - this.lastHeightDiff
         );
+        this.lastHeightDiff = this.props.heightDiff;
 
         if (this.props.chat.areAllMessagesLoaded) {
             return;
@@ -64,7 +67,13 @@ class MessageList extends React.Component {
 
     render() {
         return (
-            <div ref="container" style={styles.messagesDiv}>
+            <div
+                ref="container"
+                style={[
+                    styles.messagesDiv,
+                    { height: "calc(100% - " + (64 + this.props.heightDiff) + "px)" },
+                ]}
+            >
                 {this.props.chat.messages.map(message => (
                     <MessageItem
                         message={message}
@@ -85,6 +94,7 @@ class MessageList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         chat: state.chats.find(chat => chat._id == state.currentChatId),
+        heightDiff: state.inputSize.heightDiff,
     }
 }
 
