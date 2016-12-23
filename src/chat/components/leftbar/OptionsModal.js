@@ -57,7 +57,11 @@ class OptionsModal extends React.Component {
                                     style={styles.img}
                                     src="/images/group.png"
                                 />
-                                <span style={styles.span}>
+                                <span
+                                    style={styles.span}
+                                    onClick={() => window.location.assign("/groups/id/" + group._id)}
+                                    key={group._id}
+                                >
                                     {getGroupName(group)}
                                 </span>
                             </li>
@@ -70,7 +74,11 @@ class OptionsModal extends React.Component {
                                     frameSize={30}
                                     hasIndicator
                                 />
-                                <span style={styles.span}>
+                                <span
+                                    style={styles.span}
+                                    onClick={() => window.location.assign("/profiles/id/" + user._id)}
+                                    key={user._id}
+                                >
                                     {fullName(user)}
                                 </span>
                             </li>
