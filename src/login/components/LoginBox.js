@@ -41,10 +41,12 @@ export default class LoginBox extends React.Component {
             localStorage.phone = user.phone;
             localStorage.email = user.email;
             localStorage.profpicpath = user.profpicpath;
-            localStorage.c_team = user.team._id;
-            localStorage.c_team_position = user.position;
-            localStorage.teamNumber = user.team.number;
-            localStorage.teamName = user.team.name;
+            if (user.team) {
+                localStorage.c_team = user.team._id;
+                localStorage.c_team_position = user.position;
+                localStorage.teamNumber = user.team.number;
+                localStorage.teamName = user.team.name;
+            }
             setTimeout(() => window.location.assign("/"), REDIR_TIME);
         } catch ({ response: { data } }) {
             this.setState({

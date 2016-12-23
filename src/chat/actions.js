@@ -9,13 +9,22 @@ export const addChat = (chat) => async (dispatch) => {
     });
 }
 
-export const deleteChat = (chat) => async (dispatch) => {
-    await request("DELETE", "/chats/id/" + chat._id.toString());
+export const deleteChat = (chatId) => async (dispatch, getState)=> {
+    const {chats} = getState();
+    let newCurrentChatId;
+    if(chats.length === 1) {
+        newCurrentChatId = null;
+    } else if(chats[0]._id === chatId) {
+        newCurrentChatId = chats[1]._id;
+    } else {
+        newCurrentChatId = chats[0]._id;
+    }
+    await request("DELETE", "/chats/id/" + chatId);
     dispatch({
        type: "DELETE_CHAT_SUCCESS",
-       chat,
+       chatId,
+       newChatId: newCurrentChatId,
     });
-    
 }
 
 export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
@@ -76,10 +85,10 @@ export const setCurrentChatId = (chatId) => ({
 
 export const loadMessages = () => async (dispatch, getState) => {
     const { currentChatId, chats } = getState();
-    if (!currentChatId) {
+    const chat = chats.find(chat => chat._id == currentChatId);
+    if (!chat) {
         return;
     }
-    const chat = chats.find(chat => chat._id == currentChatId);
     const { data } = await request("GET",
         `/chats/id/${currentChatId}/messages?skip=${chat.messages.length}`
         + "&" + Date.now()
