@@ -23,7 +23,6 @@ class Editor extends React.Component {
             groups: [],
         },
         isModalOpen: false,
-        hasSelectedAudience: false,
     }
 
     state = {
@@ -53,7 +52,8 @@ class Editor extends React.Component {
                     style={styles.button}
                     text="Post"
                     onClick={this.post}
-                    disabled={!this.state.hasSelectedAudience}
+                    disabled={!(this.state.audience.users.length
+                        || this.state.audience.groups.length)}
                 />
                 {/* order is switched because of float: right */}
                 <Button
@@ -61,7 +61,6 @@ class Editor extends React.Component {
                     text="Select audience"
                     onClick={() => this.setState({
                         isModalOpen: true,
-                        hasSelectedAudience: true,
                    })}
                 />
 
