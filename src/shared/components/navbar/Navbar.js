@@ -7,8 +7,8 @@ import RightLinks from "./RightLinks";
 import styles from "~/shared/styles/navbar";
 import { connect } from "react-redux";
 
-const DropdownItem = ({path, text}) =>{
-    return(
+const DropdownItem = Radium(({path, text}) => {
+    return (
         <p
             style={styles.navbarDropdown.item}
             onClick={() => window.location.assign(path)}
@@ -16,7 +16,7 @@ const DropdownItem = ({path, text}) =>{
             {text}
         </p>
     )
-}
+})
 
 @Radium
 class Navbar extends React.Component {
