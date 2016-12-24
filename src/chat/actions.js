@@ -139,14 +139,13 @@ export const setInputSize = (heightDiff) => ({
     heightDiff,
 })
 
-export async function initialActions(dispatch, getState) {
+export async function initialActions(dispatch) {
     const { data } = await request("GET", "/chats?" + Date.now);
     dispatch({
         type: "LOAD_CHATS_SUCCESS",
         chats: data,
     });
-    const { chats } = getState();
     const chatId = localStorage.selectedChatId
-        || (chats.length > 0 ? chats[0]._id : null);
-    setCurrentChatId(chatId);
+        || (data.length > 0 ? data[0]._id : null);
+    dispatch(setCurrentChatId(chatId));
 }
