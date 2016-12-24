@@ -118,12 +118,6 @@ const initialCurrentChatId = null;
 
 function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
-        case "LOAD_CHATS_SUCCESS":
-            if (!state && action.chats.length > 0) {
-                return action.chats[0]._id
-            } else {
-                return null
-            }
         case "ADD_CHAT_SUCCESS":
             if (!state) {
                 return action.chat._id

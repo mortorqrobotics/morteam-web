@@ -78,10 +78,13 @@ export const setChatName = ({ chatId, name }) => async (dispatch) => {
     });
 }
 
-export const setCurrentChatId = (chatId) => ({
-    type: "SET_CURRENT_CHAT_ID",
-    chatId,
-})
+export const setCurrentChatId = (chatId) => (dispatch) => {
+    localStorage.selectedChatId = chatId;
+    dispatch({
+        type: "SET_CURRENT_CHAT_ID",
+        chatId,
+    })
+}
 
 export const loadMessages = () => async (dispatch, getState) => {
     const { currentChatId, chats } = getState();
@@ -136,10 +139,14 @@ export const setInputSize = (heightDiff) => ({
     heightDiff,
 })
 
-export async function initialActions(dispatch) {
+export async function initialActions(dispatch, getState) {
     const { data } = await request("GET", "/chats?" + Date.now);
     dispatch({
         type: "LOAD_CHATS_SUCCESS",
         chats: data,
     });
+    const { chats } = getState();
+    const chatId = localStorage.selectedChatId
+        || (chats.length > 0 ? chats[0]._id : null);
+    setCurrentChatId(chatId);
 }
