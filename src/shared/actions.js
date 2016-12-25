@@ -1,5 +1,6 @@
 import { fullName } from "~/util";
 import { currentUser } from "~/util";
+import { setCurrentChatId } from "~/chat/actions";
 
 export const setOnlineClients = (userIds) => ({
     type: "SET_ONLINE_CLIENTS",
@@ -46,7 +47,10 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) =>
             },
         });
         $(document).on("click", ".messageNotification", function() {
-            window.location.assign("/chat");
+            if (window.location.pathname !== "/chat") {
+                window.location.assign("/chat");
+            }
+            dispatch(setCurrentChatId(chatId));
         })
     }
 }

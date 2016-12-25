@@ -82,7 +82,7 @@ class MessageInput extends React.Component {
     render() {
         return (
             <div style={styles.inputDiv}>
-                <Form onSubmit={this.handleSend}>
+                <Form onSubmit={this.handleSend} style={{ marginBottom: "0" }}>
                     <TextArea
                         autoFocus
                         id="chat-input"

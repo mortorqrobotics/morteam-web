@@ -1,5 +1,6 @@
 import { request } from "~/util/ajax";
 import { emit } from "~/util/sio";
+import { receiveMessage as receiveMessageShared } from "~/shared/actions";
 
 export const addChat = (chat) => async (dispatch) => {
     const { data } = await request("POST", "/chats", chat);
@@ -27,13 +28,16 @@ export const deleteChat = (chatId) => async (dispatch, getState)=> {
     });
 }
 
-export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
+export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, getState) => {
     const { currentChatId } = getState();
     let meta = {};
-    if (currentChatId !== chatId || !window.__isFocused) {
+    if (!window.__isFocused) {
         meta = {
             sound: "chatMessageNotification",
         };
+    }
+    if (window.__isFocused && currentChatId !== chatId) {
+        dispatch(receiveMessageShared({ chatId, message, type, name }));
     }
     dispatch({
         type: "RECEIVE_MESSAGE_SUCCESS",

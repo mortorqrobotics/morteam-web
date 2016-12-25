@@ -71,7 +71,7 @@ class MessageList extends React.Component {
                 ref="container"
                 style={[
                     styles.messagesDiv,
-                    { height: "calc(100% - " + (64 + this.props.heightDiff) + "px)" },
+                    { height: "calc(100% - " + (50 + this.props.heightDiff) + "px)" },
                 ]}
             >
                 {this.props.chat.messages.map(message => (

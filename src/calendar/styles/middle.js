@@ -2,12 +2,7 @@ import { selectedColor } from "~/shared/styles/colors";
 
 const topButton = {
     fontSize: "20px",
-    borderTop: "1px",
-    borderLeft: "1px",
-    borderRight: "1px",
-    borderBottom: "0px",
-    borderStyle: "solid",
-    borderColor: selectedColor,
+    border: "1px solid " + selectedColor,
     width: "30px",
     height: "30px",
     textAlign: "center",
