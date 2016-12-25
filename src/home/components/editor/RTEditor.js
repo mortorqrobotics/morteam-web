@@ -27,6 +27,7 @@ export default class RTEditor extends React.Component {
                     "upload",
                 ]
             }).panelInstance("niceditor-textarea");
+            
             let $elem = $(".nicEdit-main");
 
             // http://stackoverflow.com/a/15559608/1838811
@@ -38,6 +39,8 @@ export default class RTEditor extends React.Component {
             });
             $elem.css("outline", "none");
             $elem.css("font-size", "16px");
+            $elem.parent().parent().children().css("width", "auto");
+            
             this.props.registerClear(() => { // hack
                 $elem.html("");
             });

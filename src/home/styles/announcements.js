@@ -52,4 +52,14 @@ export default {
         // the tooltip is not affected by the styles in Root
         fontFamily: "'exo 2', sans-serif",
     },
+    right: {
+        width: "200px",
+    	display: "inline-block",
+    	verticalAlign: "top",
+    	height: "700px !important",
+    	marginTop: "15px",
+    	"@media screen and (max-width: 700px)": {
+	        display: "none",
+        },
+    },
 }
