@@ -33,6 +33,10 @@ export default {
     span: {
         paddingLeft: "5px",
         verticalAlign: "middle",
+        cursor: "pointer",
+        ":hover": {
+            textDecoration: "underline",
+        },
     },
     p: {
         textAlign: "center",

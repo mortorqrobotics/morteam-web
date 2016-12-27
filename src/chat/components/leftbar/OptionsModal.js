@@ -6,6 +6,7 @@ import { ModalTextBox, ModalSubmitButton } from "~/shared/components/modal";
 import Form from "~/shared/components/forms/Form";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import Button from "~/shared/components/forms/Button";
+import ErrorMsg from "~/shared/components/forms/ErrorMsg";
 import { makeChangeHandlerFactory, fullName, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { getGroupName } from "~/util/groups";
@@ -22,23 +23,34 @@ class OptionsModal extends React.Component {
         chat: React.PropTypes.object,
     }
 
-    constructor(props) {
-        super(props);
 
-        this.getChangeHandler = makeChangeHandlerFactory(this);
+    getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.state = {
-            name: this.props.chat.name,
-            isDeleteConfirmOpen: false, 
-        }
+    initialState = {
+        name: this.props.chat.name,
+        isDeleteConfirmOpen: false,
+        errorMsg: "",
+    }
+
+    state = {
+        ...this.initialState,
     }
 
     handleSubmit = () => {
-        this.props.dispatch(setChatName({
-            chatId: this.props.chat._id,
-            name: this.state.name,
-        }));
-        this.props.onRequestClose();
+        if (this.state.name.length < 20) {
+            this.setState({
+                errorMsg: this.initialState.errorMsg
+            });
+            this.props.dispatch(setChatName({
+                chatId: this.props.chat._id,
+                name: this.state.name,
+            }));
+            this.props.onRequestClose();
+        } else {
+            this.setState({
+                errorMsg: "Chat name has to be 19 characters or fewer",
+            });
+        }
     }
     
     handleGroupChatRender = () => {
@@ -50,6 +62,7 @@ class OptionsModal extends React.Component {
                         value={this.state.name}
                         onChange={this.getChangeHandler("name")}
                     />
+                    <ErrorMsg message={this.state.errorMsg} />
                     <ul style={styles.ul}>
                         {this.props.chat.audience.groups.map(group => (
                             <li key={group._id} style={styles.li}>
@@ -57,7 +70,11 @@ class OptionsModal extends React.Component {
                                     style={styles.img}
                                     src="/images/group.png"
                                 />
-                                <span style={styles.span}>
+                                <span
+                                    style={styles.span}
+                                    onClick={() => window.location.assign("/groups/id/" + group._id)}
+                                    key={group._id}
+                                >
                                     {getGroupName(group)}
                                 </span>
                             </li>
@@ -68,8 +85,13 @@ class OptionsModal extends React.Component {
                                     user={user}
                                     picSize="small"
                                     frameSize={30}
+                                    hasIndicator
                                 />
-                                <span style={styles.span}>
+                                <span
+                                    style={styles.span}
+                                    onClick={() => window.location.assign("/profiles/id/" + user._id)}
+                                    key={user._id}
+                                >
                                     {fullName(user)}
                                 </span>
                             </li>
@@ -120,6 +142,10 @@ class OptionsModal extends React.Component {
             <StandardModal
                 title="Options"
                 { ...modalPropsForward(this) }
+                onRequestClose={() => {
+                    this.setState(this.initialState);
+                    this.props.onRequestClose();
+                }}
             >
                 {this.handleGroupChatRender()}
                 {this.handleDeleteRender()}

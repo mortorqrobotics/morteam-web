@@ -46,6 +46,13 @@ class ChatItem extends React.Component {
         }
     }
 
+    handleOpenOptions = (event) => {
+        event.stopPropagation();
+        this.setState({
+            isOptionsModalOpen: true,
+        });
+    }
+
     render() {
         return (
             <LeftbarButton
@@ -58,7 +65,7 @@ class ChatItem extends React.Component {
                 <RadiumGlyphicon
                     glyph="cog"
                     style={styles.cog}
-                    onClick={() => this.setState({ isOptionsModalOpen: true })}
+                    onClick={this.handleOpenOptions}
                 />
                 
                 <OptionsModal

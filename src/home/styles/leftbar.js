@@ -10,6 +10,9 @@ export default{
             display: "inline-block",
             background: "white",
             boxShadow: standardBoxShadow,
+            "@media screen and (max-width: 700px)": {
+	            display: "none",
+            },
         },
         span: {
             color: "gray",

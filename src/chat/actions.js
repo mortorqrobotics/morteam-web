@@ -1,5 +1,7 @@
 import { request } from "~/util/ajax";
 import { emit } from "~/util/sio";
+import { receiveMessage as receiveMessageShared } from "~/shared/actions";
+import { currentUser } from "~/util";
 
 export const addChat = (chat) => async (dispatch) => {
     const { data } = await request("POST", "/chats", chat);
@@ -27,13 +29,16 @@ export const deleteChat = (chatId) => async (dispatch, getState)=> {
     });
 }
 
-export const receiveMessage = ({ chatId, message }) => (dispatch, getState) => {
+export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, getState) => {
     const { currentChatId } = getState();
     let meta = {};
-    if (currentChatId !== chatId || !window.__isFocused) {
+    if (!window.__isFocused && (currentUser._id !== message.author._id)) {
         meta = {
             sound: "chatMessageNotification",
         };
+    }
+    if (window.__isFocused && currentChatId !== chatId) {
+        dispatch(receiveMessageShared({ chatId, message, type, name }));
     }
     dispatch({
         type: "RECEIVE_MESSAGE_SUCCESS",
@@ -78,10 +83,13 @@ export const setChatName = ({ chatId, name }) => async (dispatch) => {
     });
 }
 
-export const setCurrentChatId = (chatId) => ({
-    type: "SET_CURRENT_CHAT_ID",
-    chatId,
-})
+export const setCurrentChatId = (chatId) => (dispatch) => {
+    localStorage.selectedChatId = chatId;
+    dispatch({
+        type: "SET_CURRENT_CHAT_ID",
+        chatId,
+    })
+}
 
 export const loadMessages = () => async (dispatch, getState) => {
     const { currentChatId, chats } = getState();
@@ -142,4 +150,7 @@ export async function initialActions(dispatch) {
         type: "LOAD_CHATS_SUCCESS",
         chats: data,
     });
+    const chatId = localStorage.selectedChatId
+        || (data.length > 0 ? data[0]._id : null);
+    dispatch(setCurrentChatId(chatId));
 }

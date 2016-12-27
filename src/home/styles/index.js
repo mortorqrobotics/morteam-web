@@ -3,10 +3,9 @@ export default {
         marginTop: "60px",
         marginLeft: "auto",
         marginRight: "auto",
-        width: "100%",
         maxWidth: "1110px",
+        width: "100%",
         whiteSpace: "nowrap",
-        display: "table",
     },
     centerCol: {
         maxWidth: "700px",
@@ -14,6 +13,9 @@ export default {
         verticalAlign: "top",
         height: "700px !important",
         marginTop: "15px",
-        width: "70%",
+        width: "70%", 
+        "@media screen and (max-width: 700px)": {
+	        width: "100%",
+        },
     },
 }

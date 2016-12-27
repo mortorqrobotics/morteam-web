@@ -24,10 +24,10 @@ class Container extends React.Component {
             >
                 <div style={styles.monthDisplay}>{allMonths[this.props.month]}</div>
                 <Row style={{height:"100%",width:"100%"}}>
-                    <Col sm={2} style={styles.middleCol}>
+                    <Col xs={2} style={styles.middleCol}>
                         <Middle />
                     </Col>
-                    <Col sm={2} style={{width:"50%"}}>
+                    <Col xs={2} style={{width:"50%"}}>
                         <Right />
                     </Col>
                 </Row>

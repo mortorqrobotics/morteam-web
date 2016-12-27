@@ -3,7 +3,7 @@ import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 export default {
     container: {
-        maxWith: "700px",
+        maxWidth: "700px",
         width: "90%",
         backgroundColor: "white",
         padding: "10px",

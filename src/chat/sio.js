@@ -2,10 +2,12 @@ import { receiveMessage, messageSent, setIsTyping, pageClose } from "./actions";
 
 export function initListeners(socket, dispatch) {
 
-    socket.on("message", ({ chatId, message }) => {
+    socket.on("message", ({ chatId, message, type, name }) => {
         dispatch(receiveMessage({
             chatId,
             message,
+            type,
+            name,
         }))
     })
 
