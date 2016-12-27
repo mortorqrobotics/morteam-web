@@ -1,12 +1,10 @@
 import React from "react";
 import Radium from "radium";
-import { StyleRoot } from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Leftbar from "./leftbar/Leftbar";
 import Navbar from "~/shared/components/navbar/Navbar";
 import CenterContainer from "./CenterContainer";
-import AnnouncementsRight from "./announcements/AnnouncementsRight";
 import styles from "~/home/styles";
 
 import { makeStore, soundsMiddleware } from "~/util/redux";
@@ -37,7 +35,6 @@ export default class Home extends React.Component {
                     <Leftbar />
                     <CenterContainer />
                 </div>
-                <AnnouncementsRight />
             </Root>
         )
     }
