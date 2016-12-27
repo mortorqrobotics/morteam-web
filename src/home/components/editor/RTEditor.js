@@ -39,6 +39,8 @@ export default class RTEditor extends React.Component {
             });
             $elem.css("outline", "none");
             $elem.css("font-size", "16px");
+            //The following line exists because both the ediotr's textbox and style selectors are wrapped in seperate, 
+            //hidden divs that have width set to initial width.
             $elem.parent().parent().children().css("width", "auto");
             
             this.props.registerClear(() => { // hack
