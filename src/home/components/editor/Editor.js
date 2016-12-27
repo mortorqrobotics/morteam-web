@@ -53,7 +53,8 @@ class Editor extends React.Component {
                     text="Post"
                     onClick={this.post}
                     disabled={!(this.state.audience.users.length
-                        || this.state.audience.groups.length)}
+                        || this.state.audience.groups.length)
+                    }
                 />
                 {/* order is switched because of float: right */}
                 <Button
