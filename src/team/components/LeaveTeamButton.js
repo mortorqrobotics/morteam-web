@@ -9,20 +9,44 @@ import { deleteUser } from "~/team/actions";
 
 @Radium
 class LeaveTeamButton extends React.Component {
-
-    handleClick = async () => {
-        if (window.confirm("Are you sure?")) {
-            await this.props.dispatch(deleteUser(currentUser));
+    state = {
+        isConfirmOpen: false,
+    }
+    
+    renderConfirm = () => {
+        if (!this.state.isConfirmOpen) {
+            return(
+                <Button
+                    style={styles.leaveButton}
+                    value="Leave"
+                    onClick={() => this.setState({isConfirmOpen: true,})}
+                />
+            )
+        } else {
+            return (
+                  <div>
+                    <Button
+                        style={styles.inviteButton}
+                        value="Confirm and Leave"
+                        onClick={() => this.props.dispatch(deleteUser(currentUser))}
+                    />
+                    <br/>
+                    <Button
+                        style={styles.leaveButton}
+                        value="Cancel"
+                        onClick={() => this.setState({isConfirmOpen: false,})}
+                    />
+                </div>
+            
+            )
         }
     }
 
     render() {
-        return (
-            <Button
-                style={styles.leaveButton}
-                value="Leave"
-                onClick={this.handleClick}
-            />
+        return(
+            <div>
+                {this.renderConfirm()}
+            </div>
         )
     }
 }
