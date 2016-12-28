@@ -59,18 +59,18 @@ export default class Team extends React.Component {
                     />
                     <ConfirmModal
                         grayConfirm
-                        text="Warning: Removing yourself from
-                            a team is not easily reversible. Do not do this
-                            unless you really mean to."
-                            action={() => {
+                        text="Warning: Removing yourself from a team is not"
+                            +  "easily reversible. Do not do this unless you"
+                            + "really mean to."
+                        action={() => {
                                 store.dispatch(deleteUser(currentUser._id));
                                 window.location.assign("/void");
                             }}
                         {...modalProps(this, "isModalOpen")}
                     />
-                    
+
                     <UserList />
-                
+
                 </div>
             </Root>
         )

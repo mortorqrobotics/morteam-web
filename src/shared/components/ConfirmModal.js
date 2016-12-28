@@ -40,6 +40,6 @@ ConfirmModal.propTypes = {
     grayConfirm: React.PropTypes.bool,
     ...modalPropTypes,
 }
-    
+
 export default ConfirmModal;
 
