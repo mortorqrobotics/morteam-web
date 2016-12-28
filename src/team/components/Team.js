@@ -41,6 +41,7 @@ export default class Team extends React.Component {
                             <br />
                         </h1>
                         <h2>Team {team.number}</h2>
+                        <h2>Team Code: {team.id}</h2>
                     </span>
                     
                     <UserList />
