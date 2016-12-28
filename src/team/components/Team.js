@@ -28,10 +28,6 @@ initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Team extends React.Component {
-    handleClick = () => {
-        this.props.dispatch(deleteUser(currentUser))
-    }
-    
     render() {
         const team = currentUser.team;
         return (
