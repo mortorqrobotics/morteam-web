@@ -4,17 +4,20 @@ import Radium from "radium";
 import SearchBox from "./SearchBox";
 import GlyphLink from "./GlyphLink";
 import RightLinks from "./RightLinks";
+import Link from "~/shared/components/Link";
 import styles from "~/shared/styles/navbar";
 import { connect } from "react-redux";
 
 const DropdownItem = Radium(({path, text}) => {
     return (
-        <p
-            style={styles.navbarDropdown.item}
-            onClick={() => window.location.assign(path)}
-        > 
-            {text}
-        </p>
+        <Link
+            location={path}
+            style={styles.link}
+        >
+            <p style={styles.navbarDropdown.item}>
+                {text}
+            </p>
+        </Link>
     )
 })
 
@@ -26,12 +29,11 @@ class Navbar extends React.Component {
             <div>
                 <div style={styles.container}>
                     <ul style={styles.ul}>
-                        <li 
-                            style={styles.title} 
-                            onClick={() => window.location.assign("/")}
-                        >
-                            MorTeam
-                        </li>
+                        <Link
+                            style={[styles.link, styles.title]}
+                            text="MorTeam"
+                            location="/"
+                        />
                         <SearchBox />
                         <GlyphLink path="/chat" glyph="comment" name="chat"/>
                         <GlyphLink path="/drive" glyph="hdd" name="drive"/>
