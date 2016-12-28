@@ -2,12 +2,14 @@ import React from "react";
 import Radium from "radium";
 
 import UserList from "./UserList";
-import LeaveTeamButton from "./LeaveTeamButton";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
+import Button from "~/shared/components/forms/Button";
+import ConfirmModal from "~/shared/components/ConfirmModal";
 import styles from "~/shared/styles/userList";
 import ajax from "~/util/ajax";
 import { currentUser } from "~/util";
+import { modalProps } from "~/util/modal";
 
 import { makeStore, soundsMiddleware } from "~/util/redux";
 import reducers from "~/team/reducers";
@@ -28,6 +30,11 @@ initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Team extends React.Component {
+
+    state = {
+        isModalOpen: false,
+    }
+
     render() {
         const team = currentUser.team;
         return (
@@ -44,8 +51,22 @@ export default class Team extends React.Component {
                         <h2>Team Code: {team.id}</h2>
                     </span>
                     <br />
-                    
-                    <LeaveTeamButton />
+
+                    <Button
+                        value="Leave Team"
+                        style={{ marginBottom: "50px" }}
+                        onClick={() => this.setState({ isModalOpen: true })}
+                    />
+                    <ConfirmModal
+                        text="Warning: Removing yourslf from
+                            a team is not easily reversible. Do not do this
+                            unless you really mean to"
+                            action={() => {
+                                store.dispatch(deleteUser(currentUser._id));
+                                window.location.assign("/void");
+                            }}
+                        {...modalProps(this, "isModalOpen")}
+                    />
                     
                     <UserList />
                 
