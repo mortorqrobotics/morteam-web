@@ -19,7 +19,6 @@ export default {
             marginBottom: "0px",
             marginLeft: "20px",
             marginRight: "20px",
-            paddingBottom: "50px",
         },
         h1: {
             paddingTop: "50px",
