@@ -41,7 +41,7 @@ export default class Team extends React.Component {
             <Root pageName="team" store={store}>
                 <Navbar />
                 <div style={styles.wideBody}>
-                
+
                     <span style={styles.teamInfo.span}>
                         <h1 style={styles.teamInfo.h1}>
                             {team.name}
@@ -60,8 +60,8 @@ export default class Team extends React.Component {
                     <ConfirmModal
                         grayConfirm
                         text={"Warning: Removing yourself from a team is not"
-                            + "easily reversible. Do not do this unless you"
-                            + "really mean to."
+                            + " easily reversible. Do not do this unless you"
+                            + " really mean to."
                         }
                         action={() => {
                                 store.dispatch(deleteUser(currentUser._id));
