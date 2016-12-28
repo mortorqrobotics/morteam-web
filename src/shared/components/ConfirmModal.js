@@ -20,9 +20,9 @@ const ConfirmModal = Radium((props) => {
                 onClick={props.action}
                 text="Confirm"
                 style={props.grayConfirm && {
-                    backgroundColor: "gray",
+                    backgroundColor: "buttonface",
                     ":hover": {
-                        backgroundColor: "gray",
+                        backgroundColor: "buttonface",
                     },
                 }}
             />
