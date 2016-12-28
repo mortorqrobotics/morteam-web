@@ -26,7 +26,7 @@ export default {
     },
     monthDisplay: {
         backgroundColor: defaultColor,
-        zIndex: "99",
+        zIndex: "87",
         position: "fixed",
         top: "40px",
         marginLeft: "-55px",
