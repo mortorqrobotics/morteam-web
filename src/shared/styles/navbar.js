@@ -41,7 +41,7 @@ export default {
         },
     },
     link: {
-        color: "black",
+        color: "#333",
         textDecoration: "none",
     },
     search: {
