@@ -9,17 +9,18 @@ import { deleteUser } from "~/team/actions";
 
 @Radium
 class LeaveTeamButton extends React.Component {
+
     state = {
         isConfirmOpen: false,
     }
     
     renderConfirm = () => {
         if (!this.state.isConfirmOpen) {
-            return(
+            return (
                 <Button
                     style={styles.leaveButton}
                     value="Leave"
-                    onClick={() => this.setState({isConfirmOpen: true,})}
+                    onClick={() => this.setState({ isConfirmOpen: true })}
                 />
             )
         } else {
@@ -28,22 +29,21 @@ class LeaveTeamButton extends React.Component {
                     <Button
                         style={styles.inviteButton}
                         value="Confirm and Leave"
-                        onClick={() => this.props.dispatch(deleteUser(currentUser))}
+                        onClick={() => this.props.dispatch(deleteUser(currentUser._id))}
                     />
                     <br/>
                     <Button
                         style={styles.leaveButton}
                         value="Cancel"
-                        onClick={() => this.setState({isConfirmOpen: false,})}
+                        onClick={() => this.setState({ isConfirmOpen: false })}
                     />
                 </div>
-            
             )
         }
     }
 
     render() {
-        return(
+        return (
             <div>
                 {this.renderConfirm()}
             </div>
