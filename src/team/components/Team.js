@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import UserList from "./UserList";
+import LeaveTeamButton from "./LeaveTeamButton";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Root, { pageInit } from "~/shared/components/Root";
 import styles from "~/shared/styles/userList";
@@ -15,7 +16,7 @@ const store = makeStore({
     ...reducers,
     ...sharedReducers,
 }, soundsMiddleware());
-import { initialActions } from "~/team/actions";
+import { initialActions, deleteUser } from "~/team/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
 import {
@@ -27,6 +28,9 @@ initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class Team extends React.Component {
+    handleClick = () => {
+        this.props.dispatch(deleteUser(currentUser))
+    }
     
     render() {
         const team = currentUser.team;
@@ -43,6 +47,9 @@ export default class Team extends React.Component {
                         <h2>Team {team.number}</h2>
                         <h2>Team Code: {team.id}</h2>
                     </span>
+                    <br />
+                    
+                    <LeaveTeamButton />
                     
                     <UserList />
                 

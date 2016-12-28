@@ -18,7 +18,7 @@ class InviteMemberButton extends React.Component {
         return (
             <div>
                 <Button
-                    style={styles.inviteButton}
+                    style={styles.buttons.inviteButton}
                     value="Add Members"
                     onClick={() => this.setState({ isModalOpen: true, })}
                 />

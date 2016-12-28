@@ -17,7 +17,7 @@ class JoinButton extends React.Component {
     render() {
         return (
             <Button
-                style={styles.inviteButton}
+                style={styles.buttons.inviteButton}
                 value="Join"
                 onClick={this.handleClick}
             />

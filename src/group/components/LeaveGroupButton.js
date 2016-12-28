@@ -17,7 +17,7 @@ class LeaveGroupButton extends React.Component {
     render() {
         return (
             <Button
-                style={styles.leaveButton}
+                style={styles.buttons.leaveButton}
                 value="Leave"
                 onClick={this.handleClick}
             />
