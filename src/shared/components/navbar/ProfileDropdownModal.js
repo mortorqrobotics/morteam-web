@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import ajax from "~/util/ajax";
 import DimModal from "~/shared/components/DimModal";
+import Link from "~/shared/components/Link";
 import styles from "~/shared/styles/navbar";
 import { currentUser } from "~/util";
 
@@ -15,14 +16,9 @@ export default class ProfileDropdownModal extends React.Component {
         onRequestClose: React.PropTypes.func,
     }
 
-    viewProfile = () => {
-        window.location.assign("/profiles/id/" + currentUser._id);
-    }
-
     logout = async() => {
         try {
             await ajax.request("POST", "/logout");
-            window.location.assign("/login");
         } catch (err) {
             console.error(err);
         }
@@ -37,20 +33,30 @@ export default class ProfileDropdownModal extends React.Component {
                 style={styles.profileDropdown.modal.container}
             >
                 <ul>
-                    <li
-                        key={1}
-                        style={styles.profileDropdown.modal.li}
-                        onClick={this.viewProfile}
+                    <Link
+                        location={"/profiles/id/" + currentUser._id}
+                        style={styles.link}
                     >
-                        View Profile and Settings
-                    </li>
-                    <li
-                        key={2}
-                        style={styles.profileDropdown.modal.li}
-                        onClick={this.logout}
+                        <li
+                            key={1}
+                            style={styles.profileDropdown.modal.li}
+                            onClick={this.viewProfile}
+                        >
+                            View Profile and Settings
+                        </li>
+                    </Link>
+                    <Link
+                        location="/login"
+                        style={styles.link}
                     >
-                        Logout
-                    </li>
+                        <li
+                            key={2}
+                            style={styles.profileDropdown.modal.li}
+                            onClick={this.logout}
+                        >
+                            Logout
+                        </li>
+                    </Link>
                 </ul>
             </DimModal>
         )
