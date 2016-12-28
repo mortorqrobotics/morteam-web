@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import Link from "~/shared/components/Link";
 import styles from "~/shared/styles/navbar";
 
 @Radium
@@ -23,15 +24,17 @@ export default class SearchBox extends React.Component {
 
     render() {
         return (
-            <li style={[
+            <Link
+                location={this.props.path}
+                style={[
+                    styles.link,
                     styles.glyphLink.li,
                     this.props.name === this.context.pageName ?
                         styles.glyphLink.selected : styles.glyphLink.unselected
                 ]} 
-                onClick={this.onClick}
-            >
-                <Glyphicon glyph={this.props.glyph} />
-            </li>
+                >
+                     <Glyphicon glyph={this.props.glyph} />
+            </Link>
         )
     }
 }

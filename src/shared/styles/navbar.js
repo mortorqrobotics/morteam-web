@@ -40,6 +40,10 @@ export default {
             display: "none",
         },
     },
+    link: {
+        color: "black",
+        textDecoration: "none",
+    },
     search: {
         li: {
             width: "360px",
