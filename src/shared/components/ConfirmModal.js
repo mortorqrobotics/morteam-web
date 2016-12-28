@@ -19,6 +19,12 @@ const ConfirmModal = Radium((props) => {
             <ModalButton
                 onClick={props.action}
                 text="Confirm"
+                style={props.grayConfirm && {
+                    backgroundColor: "gray",
+                    ":hover": {
+                        backgroundColor: "gray",
+                    },
+                }}
             />
             <ModalButton
                 onClick={() => props.onRequestClose()}
@@ -31,6 +37,7 @@ const ConfirmModal = Radium((props) => {
 ConfirmModal.propTypes = {
     text: React.PropTypes.string,
     action: React.PropTypes.func,
+    grayConfirm: React.PropTypes.bool,
     ...modalPropTypes,
 }
     

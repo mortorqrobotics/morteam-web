@@ -58,9 +58,10 @@ export default class Team extends React.Component {
                         onClick={() => this.setState({ isModalOpen: true })}
                     />
                     <ConfirmModal
+                        grayConfirm
                         text="Warning: Removing yourslf from
                             a team is not easily reversible. Do not do this
-                            unless you really mean to"
+                            unless you really mean to."
                             action={() => {
                                 store.dispatch(deleteUser(currentUser._id));
                                 window.location.assign("/void");
