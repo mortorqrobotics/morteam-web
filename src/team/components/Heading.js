@@ -6,10 +6,11 @@ import ConfirmModal from "~/shared/components/ConfirmModal";
 import styles from "~/team/styles";
 import { modalProps } from "~/util/modal";
 import { currentUser } from "~/util";
+import { deleteUser } from "~/team/actions";
 import { connect } from "react-redux";
 
 @Radium
-export default class Heading extends React.Component {
+class Heading extends React.Component {
 
     state = {
         isModalOpen: false,
@@ -41,7 +42,7 @@ export default class Heading extends React.Component {
                         + " really mean to."
                     }
                     action={() => {
-                        store.dispatch(deleteUser(currentUser._id));
+                        this.props.dispatch(deleteUser(currentUser._id));
                         window.location.assign("/void");
                     }}
                     {...modalProps(this, "isModalOpen")}
@@ -51,3 +52,4 @@ export default class Heading extends React.Component {
     }
 }
 
+export default connect()(Heading);

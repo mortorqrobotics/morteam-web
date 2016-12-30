@@ -1,14 +1,17 @@
 import React from "react";
 import Radium from "radium";
 
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Grid from "react-bootstrap/lib/Grid";
 import Col from "react-bootstrap/lib/Col";
 import ProfilePicture from "~/shared/components/ProfilePicture";
-import { fullName } from "~/util";
+import { fullName, currentUser } from "~/util";
 import styles from "~/shared/styles/userList";
 
+const RadiumGlyphicon = Radium(Glyphicon);
+
 const UserLabel = Radium((props) => {
-    let { user } = props;
+    let { user, handleDeleteUser } = props;
     return (
         <Col sm={6} md={4} lg={3}>
             <span
@@ -24,13 +27,23 @@ const UserLabel = Radium((props) => {
                 <span style={styles.userDisplay.name}>
                     {fullName(props.user)}
                 </span>
+                {currentUser.isAdmin() && (
+                    <RadiumGlyphicon
+                        glyph="trash"
+                        style={styles.userDisplay.glyph}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            props.handleDeleteUser(user._id);
+                        }}
+                    />
+                )}
             </span>
         </Col>
     )
 })
 
 const UserList = Radium((props) => {
-    let { users } = props;
+    let { users, handleDeleteUser } = props;
     return (
         <Grid fluid={true}>
             <div style={styles.center}>
@@ -39,6 +52,7 @@ const UserList = Radium((props) => {
                         <UserLabel
                             user={user}
                             key={user._id}
+                            handleDeleteUser={(userId) => props.handleDeleteUser(userId)}
                         />
                     ))}
                 </div>
