@@ -42,6 +42,7 @@ let allPages = [
     "drive",
     "map",
     "fp",
+    "otherTeam",
 ];
 
 function stuff(bundler) {
