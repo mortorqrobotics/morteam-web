@@ -1,7 +1,7 @@
 import { request } from "~/util/ajax";
 import { emit } from "~/util/sio";
 import { receiveMessage as receiveMessageShared } from "~/shared/actions";
-import { currentUser } from "~/util";
+import { currentUser, getRandomString } from "~/util";
 
 export const addChat = (chat) => async (dispatch) => {
     const { data } = await request("POST", "/chats", chat);
@@ -43,7 +43,12 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, ge
     dispatch({
         type: "RECEIVE_MESSAGE_SUCCESS",
         chatId,
-        message,
+        message: {
+            ...message,
+            // giving each message a unique id lets the view know which
+            // messages are new
+            _id: getRandomString(),
+        },
         meta, // this is part of redux-sounds
         timestamp: new Date(),
     });
@@ -68,6 +73,7 @@ export const messageSent = ({ chatId, content }) => (dispatch) => {
         type: "SEND_MESSAGE_SUCCESS",
         chatId,
         content,
+        messageId: getRandomString(),
         timestamp: new Date(),
     });
 }

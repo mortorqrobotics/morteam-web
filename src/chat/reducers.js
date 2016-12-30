@@ -71,6 +71,9 @@ function chats(state = initialChats, action) {
                             content: {
                                 $set: action.content,
                             },
+                            _id: {
+                                $set: action.messageId,
+                            },
                         },
                     },
                     updated_at: {

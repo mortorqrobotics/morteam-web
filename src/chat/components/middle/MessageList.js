@@ -35,26 +35,54 @@ class MessageList extends React.Component {
     componentDidUpdate = () => {
 
         const height = this.$container.height();
-
+        const scrollHeight = this.$container.prop("scrollHeight");
+        const heightDiffDiff = this.props.heightDiff - this.lastHeightDiff;
+        const topMessageId = this.props.chat.messages[0]._id;
+        const bottomMessageId =
+            this.props.chat.messages[this.props.chat.messages.length - 1]._id;
+        const isTyping = this.props.chat.isTyping;
         const offset = this.lastScrollHeight - this.lastScrollTop - height;
+        const scrollHeightDiff = scrollHeight - this.lastScrollHeight;
+
+        const setScroll = (num) => this.$container.scrollTop(num);
+
+        const noChange = () => setScroll(this.lastScrollTop + heightDiffDiff);
+        const jumpToBottom = () => setScroll(scrollHeight);
+        const noChangeNewHeight = () => setScroll(
+            this.lastScrollTop + scrollHeightDiff + heightDiffDiff
+        );
 
         // point where it will stop scrolling all the way down
         const threshold = 200;
 
-        if (offset > threshold) {
-
-            const heightDiffDiff = this.props.heightDiff - this.lastHeightDiff;
-            this.$container.scrollTop(this.lastScrollTop + heightDiffDiff);
-
+        // this a little more verbose than necessary, but it is easier
+        if (topMessageId !== this.lastTopMessageId) {
+            noChangeNewHeight();
+        } else if (bottomMessageId !== this.lastBottomMessageId) {
+            if (offset > threshold) {
+                noChange();
+            } else {
+                jumpToBottom();
+            }
+        } else if (isTyping !== this.wasTyping) {
+            if (offset > threshold) {
+                noChange();
+            } else {
+                noChangeNewHeight();
+            }
         } else {
-
-            const scrollHeight = this.$container.prop("scrollHeight");
-            this.$container.scrollTop(scrollHeight);
-
+            noChange();
         }
 
         // for preserving scrolling with the input box changing height
         this.lastHeightDiff = this.props.heightDiff;
+
+        // for preserving scroll height when messages are loaded at the top
+        // and not scrolling when the chat input changes height
+        // and not scrolling due to the typing indicator
+        this.lastTopMessageId = topMessageId;
+        this.lastBottomMessageId = bottomMessageId;
+        this.wasTyping = isTyping;
 
         if (!this.props.chat.areAllMessagesLoaded) {
             // without setTimeout, strange stuff happens
