@@ -18,7 +18,7 @@ export const leaveOnlineClient = (userId) => ({
 })
 
 export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) => {
-    if(currentUser._id !== message.author._id){  
+    if(currentUser._id !== message.author._id){
         dispatch({
             type: "NOTHING_HERE",
             meta: {

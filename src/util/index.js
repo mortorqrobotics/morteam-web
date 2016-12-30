@@ -69,6 +69,10 @@ export function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
 
+export function getRandomString() {
+    return Math.round(Math.random() * 1e10).toString();
+}
+
 export const currentUser = window.__userInfo;
 if (currentUser && typeof currentUser === "object") {
     currentUser.isAdmin = () => (
