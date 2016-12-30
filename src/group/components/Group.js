@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
-import UserList from "~/group/components/UserList";
+import Middle from "~/group/components/Middle";
 import styles from "~/shared/styles/userList";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Heading from "~/group/components/Heading";
@@ -32,7 +32,7 @@ class Group extends React.Component {
             <Root pageName="group" store={store}>
                 <Navbar />
                 <Heading />
-                <UserList />
+                <Middle />
             </Root>
         )
     }
