@@ -33,21 +33,34 @@ class MessageList extends React.Component {
     // TODO: preserve scrolling when switching from chat to chat
 
     componentDidUpdate = () => {
-        const scrollTop = this.$container.scrollTop();
-        const scrollHeight = this.$container.prop("scrollHeight");
-        this.$container.scrollTop(
-            this.lastScrollTop + scrollHeight - this.lastScrollHeight
-            + this.props.heightDiff - this.lastHeightDiff
-        );
-        this.lastHeightDiff = this.props.heightDiff;
 
-        if (this.props.chat.areAllMessagesLoaded) {
-            return;
+        const height = this.$container.height();
+
+        const offset = this.lastScrollHeight - this.lastScrollTop - height;
+
+        // point where it will stop scrolling all the way down
+        const threshold = 200;
+
+        if (offset > threshold) {
+
+            const heightDiffDiff = this.props.heightDiff - this.lastHeightDiff;
+            this.$container.scrollTop(this.lastScrollTop + heightDiffDiff);
+
+        } else {
+
+            const scrollHeight = this.$container.prop("scrollHeight");
+            this.$container.scrollTop(scrollHeight);
+
         }
 
-        // without setTimeout, strange stuff happens
-        // I think it checks the scrolling before updating or something
-        setTimeout(this.handleScroll, 10);
+        // for preserving scrolling with the input box changing height
+        this.lastHeightDiff = this.props.heightDiff;
+
+        if (!this.props.chat.areAllMessagesLoaded) {
+            // without setTimeout, strange stuff happens
+            // I think it checks the scrolling before updating or something
+            setTimeout(this.handleScroll, 10);
+        }
 
         this.loading = false;
     }
