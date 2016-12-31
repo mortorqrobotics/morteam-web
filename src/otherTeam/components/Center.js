@@ -12,11 +12,13 @@ export default class Center extends React.Component {
     
     state = {
         teamInfo: {},
+        displayedUrl: "",
     };
     
     getBlueAllienceInfo = async() => {
         let { data } = await request("GET", "/teams/number/" + pageOptions.teamNumber + "/info");
         this.setState({teamInfo: data});
+        this.setState({displayedUrl: this.state.teamInfo.website.replace(/^https?\:\/\//i, "")});
     }
     
     componentDidMount = () => {
@@ -40,7 +42,11 @@ export default class Center extends React.Component {
                     </li>
                     <li>
                         <Glyphicon glyph="globe" /> 
-                        <h3 style={{display: "inline-block",}}>{this.state.teamInfo.website}</h3>
+                        <h3 style={{display: "inline-block",}}>
+                            <a href={this.state.teamInfo.website}>
+                                {this.state.displayedUrl}
+                            </a>
+                        </h3>
                     </li>
                 </ul>
             </div> 
