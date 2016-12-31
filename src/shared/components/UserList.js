@@ -12,7 +12,7 @@ import styles from "~/shared/styles/userList";
 const RadiumGlyphicon = Radium(Glyphicon);
 
 const UserLabel = Radium((props) => {
-    let { user, handleDeleteUser, confirmModal } = props;
+    const { user, handleDeleteUser, confirmModal } = props;
     return (
         <Col sm={6} md={4} lg={3}>
             <span
@@ -42,17 +42,14 @@ const UserLabel = Radium((props) => {
             <ConfirmModal
                 action={() => props.handleDeleteUser(user._id)}
                 text={props.confirmModal.text}
-                grayConfirm={props.confirmModal.grayConfirm}
-                isOpen={props.confirmModal.isOpen}
-                onAfterOpen={props.confirmModal.onAfterOpen}
-                onRequestClose={props.confirmModal.onRequestClose}
+                { ...props.confirmModal }
             />
         </Col>
     )
 })
 
 const UserList = Radium((props) => {
-    let { users, handleDeleteUser, confirmModal } = props;
+    const { users, handleDeleteUser, confirmModal } = props;
     return (
         <Grid fluid={true}>
             <div style={styles.center}>

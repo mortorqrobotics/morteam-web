@@ -23,7 +23,7 @@ class Middle extends React.Component {
                     text: "Warning: Removing someone from a team is not"
                         + " easily reversible. Do not do this unless you"
                         + " really mean to.",
-                    grayConfirm: {true},
+                    grayConfirm: true,
                 }}
             />
         )
