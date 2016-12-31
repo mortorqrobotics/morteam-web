@@ -6,9 +6,7 @@ import DimModal from "./DimModal";
 const StandardModal = (props) => {
     return (
         <DimModal
-            isOpen={props.isOpen}
-            onAfterOpen={props.onAfterOpen}
-            onRequestClose={props.onRequestClose}
+            { ...props }
             style={styles.modal}
         >
             <div style={styles.title}>

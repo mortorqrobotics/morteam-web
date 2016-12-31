@@ -12,7 +12,13 @@ class Middle extends React.Component {
         return (
             <UserList
                 users={this.props.users}
-                handleDeleteUser={(userId) => this.props.dispatch(deleteUser(userId))}
+                deleteModal={{
+                    handleDeleteUser: (userId) => this.props.dispatch(deleteUser(userId)),
+                    text: "Warning: Removing someone from a team is not"
+                        + " easily reversible. Do not do this unless you"
+                        + " really mean to.",
+                    grayConfirm: true,
+                }}
             />
         )
     }

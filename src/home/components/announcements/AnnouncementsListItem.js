@@ -5,7 +5,9 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
 import Tooltip from "react-bootstrap/lib/Tooltip";
 import ProfilePicture from "~/shared/components/ProfilePicture";
+import ConfirmModal from "~/shared/components/ConfirmModal";
 import styles from "~/home/styles/announcements";
+import { modalProps } from "~/util/modal";
 import { fullName, currentUser } from "~/util";
 import { parseDate } from "~/util/date";
 import { getGroupName } from "~/util/groups";
@@ -18,25 +20,32 @@ const RadiumGlyphicon = Radium(Glyphicon);
 @Radium
 class AnnouncementsListItem extends React.Component {
 
-    static propTypes = {
-        announcement: React.PropTypes.object,
+    state = {
+        isModalOpen: false,
     }
 
-    handleDelete = () => {
-        if (window.confirm("Are you sure?")) {
-            this.props.dispatch(deleteAnnouncement(this.props.announcement._id));
-        }
+    static propTypes = {
+        announcement: React.PropTypes.object,
     }
 
     renderDeleteButton = () => {
         if (currentUser.isAdmin()
             || currentUser._id == this.props.announcement.author._id) {
             return (
-                <RadiumGlyphicon
-                    glyph="remove"
-                    style={styles.deleteIcon}
-                    onClick={this.handleDelete}
-                />
+                <div>
+                    <RadiumGlyphicon
+                        glyph="remove"
+                        style={styles.deleteIcon}
+                        onClick={() => this.setState({ isModalOpen: true })}
+                    />
+                    <ConfirmModal
+                        {...modalProps(this, "isModalOpen")}
+                        action={() => this.props.dispatch(
+                            deleteAnnouncement(this.props.announcement._id)
+                        )}
+                        text="Are you sure you would like to delete this announcement?"
+                    />
+                </div>
             )
         }
     }
