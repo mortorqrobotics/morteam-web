@@ -43,8 +43,7 @@ class UserLabel extends React.Component {
                     )}
                 </span>
                 <ConfirmModal
-                    action={() =>
-                        this.props.deleteModal.handleDeleteUser(this.props.user._id)}
+                    action={() => this.props.deleteModal.handleDeleteUser(this.props.user._id)}
                     { ...this.props.deleteModal }
                     { ...modalProps(this, "isModalOpen") }
                 />
