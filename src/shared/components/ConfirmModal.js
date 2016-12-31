@@ -12,12 +12,15 @@ const ConfirmModal = Radium((props) => {
             isOpen={props.isOpen}
             onAfterOpen={props.onAfterOpen}
             onRequestClose={props.onRequestClose}
-    
+
         >
             {props.text}
 
             <ModalButton
-                onClick={props.action}
+                onClick={() => {
+                    props.action();
+                    props.onRequestClose();
+                }}
                 text="Confirm"
                 style={props.grayConfirm && {
                     backgroundColor: "buttonface",

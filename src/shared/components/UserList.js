@@ -5,13 +5,14 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Grid from "react-bootstrap/lib/Grid";
 import Col from "react-bootstrap/lib/Col";
 import ProfilePicture from "~/shared/components/ProfilePicture";
+import ConfirmModal from "~/shared/components/ConfirmModal";
 import { fullName, currentUser } from "~/util";
 import styles from "~/shared/styles/userList";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
 const UserLabel = Radium((props) => {
-    let { user, handleDeleteUser } = props;
+    let { user, handleDeleteUser, confirmModal } = props;
     return (
         <Col sm={6} md={4} lg={3}>
             <span
@@ -33,17 +34,25 @@ const UserLabel = Radium((props) => {
                         style={styles.userDisplay.glyph}
                         onClick={(event) => {
                             event.stopPropagation();
-                            props.handleDeleteUser(user._id);
+                            props.confirmModal.onAfterOpen();
                         }}
                     />
                 )}
             </span>
+            <ConfirmModal
+                action={() => props.handleDeleteUser(user._id)}
+                text={props.confirmModal.text}
+                grayConfirm={props.confirmModal.grayConfirm}
+                isOpen={props.confirmModal.isOpen}
+                onAfterOpen={props.confirmModal.onAfterOpen}
+                onRequestClose={props.confirmModal.onRequestClose}
+            />
         </Col>
     )
 })
 
 const UserList = Radium((props) => {
-    let { users, handleDeleteUser } = props;
+    let { users, handleDeleteUser, confirmModal } = props;
     return (
         <Grid fluid={true}>
             <div style={styles.center}>
@@ -53,6 +62,7 @@ const UserList = Radium((props) => {
                             user={user}
                             key={user._id}
                             handleDeleteUser={(userId) => props.handleDeleteUser(userId)}
+                            confirmModal={props.confirmModal}
                         />
                     ))}
                 </div>

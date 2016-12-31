@@ -24,6 +24,7 @@ class LeaveGroupButton extends React.Component {
                     value="Leave"
                     onClick={() => this.setState({ isModalOpen: true })}
                 />
+
                 <ConfirmModal
                     text="Are you sure you would like to leave the group?"
                     action={() => this.props.dispatch(leaveGroup())}
