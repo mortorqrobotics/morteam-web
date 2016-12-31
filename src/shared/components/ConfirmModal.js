@@ -10,10 +10,7 @@ const ConfirmModal = Radium((props) => {
     return (
         <StandardModal
             title="Are you sure?"
-            isOpen={props.isOpen}
-            onAfterOpen={props.onAfterOpen}
-            onRequestClose={props.onRequestClose}
-
+            { ...props }
         >
             {props.text}
 
