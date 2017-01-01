@@ -50,7 +50,9 @@ class UserLabel extends React.Component {
             <Col sm={6} md={4} lg={3}>
                 <span
                     style={styles.userDisplay.span}
-                    onClick={() => window.location.assign("/profiles/id/" + user._id)}
+                    onClick={() =>
+                        window.location.assign("/profiles/id/" + this.props.user._id)
+                    }
                 >
                     <ProfilePicture
                         user={this.props.user}
