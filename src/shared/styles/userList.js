@@ -1,5 +1,7 @@
 import { defaultColor } from "~/shared/styles/colors";
 
+export const nameFontSize = 17;
+
 export default {
     center: {
         textAlign: "center",
@@ -22,7 +24,7 @@ export default {
             },
         },
         name: {
-            fontSize: "17px",
+            fontSize: nameFontSize + "px",
             margin: "8px",
             verticalAlign: "middle",
         },

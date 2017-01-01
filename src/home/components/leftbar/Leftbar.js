@@ -5,6 +5,7 @@ import LeftbarButton from "./LeftbarButton";
 import GroupList from "./GroupList";
 import MakeGroupModal from "./MakeGroupModal";
 import Link from "~/shared/components/Link";
+import ajax from "~/util/ajax";
 import { modalProps } from "~/util/modal";
 import { currentUser } from "~/util";
 import styles from "~/home/styles/leftbar";
