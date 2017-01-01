@@ -18,4 +18,10 @@ export default {
       display: "inline-block",
       verticalAlign: "middle",
     },
+    glyph: {
+        marginRight: "10px",
+    },
+    h3: {
+        display: "inline-block",
+    }
 }

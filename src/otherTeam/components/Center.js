@@ -37,12 +37,12 @@ export default class Center extends React.Component {
                 </div>
                 <ul style={{listStyle: "none",}}>
                     <li>
-                        <Glyphicon glyph="map-marker" />
-                        <h3 style={{display: "inline-block",}}>{this.state.teamInfo.location}</h3>
+                        <Glyphicon glyph="map-marker" style={styles.glyph} />
+                        <h3 style={styles.h3}>{this.state.teamInfo.location}</h3>
                     </li>
                     <li>
-                        <Glyphicon glyph="globe" /> 
-                        <h3 style={{display: "inline-block",}}>
+                        <Glyphicon glyph="globe" style={styles.glyph}/> 
+                        <h3 style={styles.h3}>
                             <a href={this.state.teamInfo.website}>
                                 {this.state.displayedUrl}
                             </a>
