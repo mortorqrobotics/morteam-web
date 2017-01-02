@@ -31,7 +31,9 @@ class UserLabel extends React.Component {
         }
 
         //makes font small enough so the box is not expanded
-        while (this.refs.name.parentElement.clientHeight > userLabelHeight) {
+        while (this.refs.name.parentElement.clientHeight > userLabelHeight
+            && fontSize > 0
+        ) {
             fontSize--;
             this.refs.name.style.setProperty("font-size", fontSize + "px");
         }
