@@ -11,7 +11,6 @@ import { modalProps } from "~/util/modal";
 import styles, { nameFontSize } from "~/shared/styles/userList";
 
 const RadiumGlyphicon = Radium(Glyphicon);
-
 const userLabelHeight = 70;
 
 @Radium
@@ -20,24 +19,22 @@ class UserLabel extends React.Component {
     state = { isModalOpen: false };
 
     adjustFontSize = () => {
-        let fontSize = parseInt(this.refs[this.props.user._id]
-            .style.fontSize.slice(0, -2) // removes "px" at end
-        );
-        while (this.refs[this.props.user._id]
-            .parentElement.clientHeight <= userLabelHeight
+        // removes "px" at end
+        let fontSize = parseInt(this.refs.name.style.fontSize.slice(0, -2));
+
+        // makes font as large as possible under the default size w/ out increasing box height
+        while (this.refs.name.parentElement.clientHeight <= userLabelHeight
             && fontSize < nameFontSize
         ) {
             fontSize++;
-            this.refs[this.props.user._id]
-                .style.setProperty("font-size", fontSize + "px");
-        } // makes font as large as possible under the default size while keeping box from expanding
-        while (this.refs[this.props.user._id]
-            .parentElement.clientHeight > userLabelHeight
-        ) {
+            this.refs.name.style.setProperty("font-size", fontSize + "px");
+        }
+
+        //makes font small enough so the box is not expanded
+        while (this.refs.name.parentElement.clientHeight > userLabelHeight) {
             fontSize--;
-            this.refs[this.props.user._id]
-                .style.setProperty("font-size", fontSize + "px");
-        } //makes font small enough so the box is not expanded
+            this.refs.name.style.setProperty("font-size", fontSize + "px");
+        }
     }
 
     componentDidMount = () => {
@@ -60,7 +57,7 @@ class UserLabel extends React.Component {
                         frameSize={30}
                         hasIndicator
                     />
-                    <span style={styles.userDisplay.name} ref={this.props.user._id}>
+                    <span style={styles.userDisplay.name} ref="name">
                         {fullName(this.props.user)}
                     </span>
                     {currentUser.isAdmin() && (
