@@ -1,3 +1,5 @@
+import orangeButton from "~/shared/styles/orangeButton";
+
 export default {
     centerWrapper: {
         marginTop: "50px",
@@ -23,5 +25,6 @@ export default {
     },
     h3: {
         display: "inline-block",
-    }
+    },
+    button: orangeButton,
 }

@@ -5,7 +5,10 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Col from "react-bootstrap/lib/Col";
 import styles from "~/otherTeam/styles";
 import { request } from "~/util/ajax";
-import { pageOptions } from "~/util";
+import { pageOptions, currentUser } from "~/util";
+import Button from "~/shared/components/forms/Button";
+import EmailModal from "./EmailModal";
+import { modalProps } from "~/util/modal";
 
 @Radium
 export default class Center extends React.Component {
@@ -13,6 +16,7 @@ export default class Center extends React.Component {
     state = {
         teamInfo: {},
         displayedUrl: "",
+        isModalOpen: false,
     };
     
     getBlueAllienceInfo = async() => {
@@ -23,6 +27,20 @@ export default class Center extends React.Component {
     
     componentDidMount = () => {
         this.getBlueAllienceInfo();
+    }
+    
+    handleButtonRender = () => {
+        if(currentUser.isAdmin() && pageOptions.team){ 
+            return (
+                <Button 
+                    style={styles.button} 
+                    value="Contact" 
+                    onClick={() => this.setState({
+                        isModalOpen: true,
+                    })}
+                />
+            )
+        }
     }
     
     render() {
@@ -49,6 +67,10 @@ export default class Center extends React.Component {
                         </h3>
                     </li>
                 </ul>
+                {this.handleButtonRender()}
+                <EmailModal 
+                    {...modalProps(this, "isModalOpen")}
+                />
             </div> 
         )
     }
