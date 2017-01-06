@@ -16,13 +16,17 @@ export default class Center extends React.Component {
     state = {
         teamInfo: {},
         displayedUrl: "",
+        getDataSuccess:  false,
         isModalOpen: false,
     };
     
     getBlueAllienceInfo = async() => {
         let { data } = await request("GET", "/teams/number/" + pageOptions.teamNumber + "/info");
-        this.setState({teamInfo: data});
-        this.setState({displayedUrl: this.state.teamInfo.website.replace(/^https?\:\/\//i, "")});
+        this.setState({
+            teamInfo: data, 
+            getDataSuccess: true,
+        });
+        this.setState({displayedUrl: this.state.teamInfo.website.replace(/^https?\:\/\//i, ""),});
     }
     
     componentDidMount = () => {
@@ -30,7 +34,7 @@ export default class Center extends React.Component {
     }
     
     handleButtonRender = () => {
-        if(currentUser.isAdmin() && pageOptions.team){ 
+        if(currentUser.isAdmin() && pageOptions.team && pageOptions.team._id !== currentUser.team._id){ 
             return (
                 <Button 
                     style={styles.button} 
@@ -49,11 +53,11 @@ export default class Center extends React.Component {
                 <div>
                     <img src="/images/questionMark.png" style={styles.image}/>
                     <div style={styles.topInfoContainer}>
-                        <h1>Team {this.state.teamInfo.team_number}</h1>
+                        <h1>Team {pageOptions.teamNumber}</h1>
                         <h1>{this.state.teamInfo.nickname}</h1>
                     </div>
                 </div>
-                <ul style={{listStyle: "none",}}>
+                <ul style={[{listStyle: "none",}, !this.state.getDataSuccess && {display: "none"}]}>
                     <li>
                         <Glyphicon glyph="map-marker" style={styles.glyph} />
                         <h3 style={styles.h3}>{this.state.teamInfo.location}</h3>

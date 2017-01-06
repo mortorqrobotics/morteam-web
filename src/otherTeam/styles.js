@@ -26,5 +26,8 @@ export default {
     h3: {
         display: "inline-block",
     },
-    button: orangeButton,
+    button: [orangeButton, {
+        marginTop: "10 px",
+    }], 
+    
 }
