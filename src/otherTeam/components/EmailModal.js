@@ -40,13 +40,19 @@ export default class EmailModal extends React.Component {
                 title={"Contact with Team " + pageOptions.teamNumber}
                 { ...modalPropsForward(this) }
             >
+                <p>
+                    Edit the body text of the email. 
+                </p>
+                <p>
+                    The email will contain a link to a new chat between the admins of your and their team.
+                </p>
                 <ModalTextArea
                     value={this.state.content} 
                     placeholder="email body" 
                     rows={5} 
                     onChange={this.handleChange}
                 />
-                <ModalButton text="Contact" onClick={this.handleSubmit}/>
+                <ModalButton text="Send email" onClick={this.handleSubmit}/>
             </StandardModal>
         )
     }
