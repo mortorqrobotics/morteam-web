@@ -37,7 +37,8 @@ class MessageList extends React.Component {
         const height = this.$container.height();
         const scrollHeight = this.$container.prop("scrollHeight");
         const heightDiffDiff = this.props.heightDiff - this.lastHeightDiff;
-        const topMessageId = this.props.chat.messages[0]._id;
+        const topMessageId = this.props.chat.messages[0]
+            && this.props.chat.messages[0]._id;
         const bottomMessageId =
             this.props.chat.messages[this.props.chat.messages.length - 1]._id;
         const isTyping = this.props.chat.isTyping;
