@@ -5,6 +5,7 @@ import {
     pageClose,
     addChatSync,
     deleteChatSync,
+    setChatNameSync,
 } from "./actions";
 
 export function initListeners(socket, dispatch) {
@@ -45,6 +46,10 @@ export function initListeners(socket, dispatch) {
 
     socket.on("deleteChat", ({ chatId }) => {
         dispatch(deleteChatSync(chatId));
+    });
+
+    socket.on("renameChat", ({ chatId, name }) => {
+        dispatch(setChatNameSync({ chatId, name }));
     });
 
     $(window).unload(() => {

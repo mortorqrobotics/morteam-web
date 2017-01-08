@@ -84,15 +84,17 @@ export const messageSent = ({ chatId, content }) => (dispatch) => {
     });
 }
 
+export const setChatNameSync = ({ chatId, name }) => ({
+    type: "SET_CHAT_NAME_SUCCESS",
+    chatId,
+    name,
+})
+
 export const setChatName = ({ chatId, name }) => async (dispatch) => {
     await request("PUT", `/chats/group/id/${chatId}/name`, {
         newName: name,
     });
-    dispatch({
-        type: "SET_CHAT_NAME_SUCCESS",
-        chatId,
-        name,
-    });
+    // chat is renamed by socketio
 }
 
 export const setCurrentChatId = (chatId) => (dispatch) => {
