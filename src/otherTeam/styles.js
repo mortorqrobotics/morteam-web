@@ -1,4 +1,5 @@
 import orangeButton from "~/shared/styles/orangeButton";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
 
 export default {
     centerWrapper: {
@@ -28,6 +29,9 @@ export default {
     },
     button: [orangeButton, {
         marginTop: "10 px",
+        width: "300px",
+        boxShadow: standardBoxShadow,
+        fontSize: "28px",
     }], 
     
 }
