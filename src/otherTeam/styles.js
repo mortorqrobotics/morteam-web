@@ -28,7 +28,7 @@ export default {
         display: "inline-block",
     },
     button: [orangeButton, {
-        marginTop: "10 px",
+        marginTop: "10px",
         width: "300px",
         boxShadow: standardBoxShadow,
         fontSize: "28px",
