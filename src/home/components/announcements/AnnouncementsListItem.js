@@ -96,22 +96,8 @@ class AnnouncementsListItem extends React.Component {
                     >
                         <RadiumGlyphicon glyph="globe" style={styles.globe} />
                     </OverlayTrigger>
-                    {/*
-                    TODO: show recipient list
-                    {this.props.audience.groups.map(group => (
-                        <p key={group._id}>
-                            {group.name}
-                        </p>
-                    ))}
-                    {this.props.audience.users.map(user => (
-                        <p key={user._id}>
-                            {user.firstname} {user.lastname}
-                        </p>
-                    ))}
-                    */}
                     {this.renderDeleteButton()}
                 </div>
-                {/* TODO: prevent xss here */}
                 <span dangerouslySetInnerHTML={{ __html: sanitize(announcement.content) }} />
             </div>
         )

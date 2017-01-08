@@ -73,6 +73,13 @@ export function getRandomString() {
     return Math.round(Math.random() * 1e10).toString();
 }
 
+export function getAudienceIds(audience) {
+    return {
+        users: audience.users.map(user => user._id),
+        groups: audience.groups.map(group => group._id),
+    }
+}
+
 export const currentUser = window.__userInfo;
 if (currentUser && typeof currentUser === "object") {
     currentUser.isAdmin = () => (

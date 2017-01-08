@@ -58,7 +58,7 @@ class AttendanceModal extends React.Component {
                         // TODO: use redux
                         await ajax.request("PUT",
                             "/events/id/" + this.props.event._id + "/excuseAbsences",
-                            { userIds: this.state.excusedUsers, }
+                            { userIds: this.state.excusedUsers.map(u => u._id), }
                         );
                         this.props.onRequestClose();
                     }}
