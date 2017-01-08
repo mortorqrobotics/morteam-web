@@ -68,7 +68,7 @@ export default class AudienceSelect extends React.Component {
             newUsers = update(this.props.selected.users, {
                 $splice: [
                     [this.props.selected.users.indexOf(user), 1]
-                ]
+                ],
             });
         } else {
             newUsers = this.props.selected.users.concat([user]);
