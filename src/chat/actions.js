@@ -10,12 +10,11 @@ export const addChatSync = (chat) => ({
 
 export const addChat = (chat) => async (dispatch) => {
     await request("POST", "/chats", chat);
-    // const { data } = await request("POST", "/chats", chat);
-    // dispatch(addChatSync(data));
+    // chat is added by socketio
 }
 
-export const deleteChat = (chatId) => async (dispatch, getState)=> {
-    const {chats} = getState();
+export const deleteChatSync = (chatId) => (dispatch, getState) => {
+    const { chats } = getState();
     let newCurrentChatId;
     if(chats.length === 1) {
         newCurrentChatId = null;
@@ -24,12 +23,16 @@ export const deleteChat = (chatId) => async (dispatch, getState)=> {
     } else {
         newCurrentChatId = chats[0]._id;
     }
-    await request("DELETE", "/chats/id/" + chatId);
     dispatch({
        type: "DELETE_CHAT_SUCCESS",
        chatId,
        newChatId: newCurrentChatId,
     });
+}
+
+export const deleteChat = (chatId) => async (dispatch, getState)=> {
+    await request("DELETE", "/chats/id/" + chatId);
+    // chat is deleted by socketio
 }
 
 export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, getState) => {

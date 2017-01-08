@@ -4,6 +4,7 @@ import {
     setIsTyping,
     pageClose,
     addChatSync,
+    deleteChatSync,
 } from "./actions";
 
 export function initListeners(socket, dispatch) {
@@ -40,6 +41,10 @@ export function initListeners(socket, dispatch) {
 
     socket.on("newChat", ({ chat }) => {
         dispatch(addChatSync(chat));
+    });
+
+    socket.on("deleteChat", ({ chatId }) => {
+        dispatch(deleteChatSync(chatId));
     });
 
     $(window).unload(() => {
