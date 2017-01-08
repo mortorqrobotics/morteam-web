@@ -1,4 +1,10 @@
-import { receiveMessage, messageSent, setIsTyping, pageClose } from "./actions";
+import {
+    receiveMessage,
+    messageSent,
+    setIsTyping,
+    pageClose,
+    addChatSync,
+} from "./actions";
 
 export function initListeners(socket, dispatch) {
 
@@ -31,6 +37,10 @@ export function initListeners(socket, dispatch) {
             isTyping: false,
         }))
     })
+
+    socket.on("newChat", ({ chat }) => {
+        dispatch(addChatSync(chat));
+    });
 
     $(window).unload(() => {
         dispatch(pageClose());

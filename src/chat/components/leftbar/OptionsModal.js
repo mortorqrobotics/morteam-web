@@ -17,12 +17,11 @@ import styles from "~/chat/styles/optionsModal";
 
 @Radium
 class OptionsModal extends React.Component {
-    
+
     static propTypes = {
         ...modalPropTypes,
         chat: React.PropTypes.object,
     }
-
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
@@ -52,7 +51,7 @@ class OptionsModal extends React.Component {
             });
         }
     }
-    
+
     handleGroupChatRender = () => {
         if(!this.props.chat.isTwoPeople){
             return(
@@ -104,17 +103,17 @@ class OptionsModal extends React.Component {
             )
         }
     }
-    
+
     handleDeleteRender = () => {
-        if (this.props.chat.isTwoPeople 
-            || this.props.chat.creator === currentUser._id 
+        if (this.props.chat.isTwoPeople
+            || this.props.chat.creator === currentUser._id
             || currentUser.isAdmin()
         ) {
             if (!this.state.isDeleteConfirmOpen) {
-               return(
-                    <Button 
-                        style={styles.deleteButton} 
-                        value="Delete"  
+               return (
+                    <Button
+                        style={styles.deleteButton}
+                        value="Delete"
                         onClick={() => this.setState({isDeleteConfirmOpen: true,})}
                     />
                 )
@@ -122,14 +121,14 @@ class OptionsModal extends React.Component {
                 return (
                     <div>
                         <p style={styles.p}>Are you sure?</p>
-                        <Button 
-                            style={styles.confirmButton} 
-                            value="Yes"  
+                        <Button
+                            style={styles.confirmButton}
+                            value="Yes"
                             onClick= {() => this.props.dispatch(deleteChat(this.props.chat._id))}
                         />
-                        <Button 
-                            style={styles.confirmButton} 
-                            value="No"  
+                        <Button
+                            style={styles.confirmButton}
+                            value="No"
                             onClick={() => this.setState({isDeleteConfirmOpen: false,})}
                         />
                     </div>
@@ -137,6 +136,7 @@ class OptionsModal extends React.Component {
             }
         }
     }
+
     render() {
         return(
             <StandardModal

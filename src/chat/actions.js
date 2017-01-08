@@ -3,12 +3,15 @@ import { emit } from "~/util/sio";
 import { receiveMessage as receiveMessageShared } from "~/shared/actions";
 import { currentUser, getRandomString } from "~/util";
 
+export const addChatSync = (chat) => ({
+    type: "ADD_CHAT_SUCCESS",
+    chat,
+})
+
 export const addChat = (chat) => async (dispatch) => {
-    const { data } = await request("POST", "/chats", chat);
-    dispatch({
-        type: "ADD_CHAT_SUCCESS",
-        chat: data,
-    });
+    await request("POST", "/chats", chat);
+    // const { data } = await request("POST", "/chats", chat);
+    // dispatch(addChatSync(data));
 }
 
 export const deleteChat = (chatId) => async (dispatch, getState)=> {
@@ -156,7 +159,9 @@ export async function initialActions(dispatch) {
         type: "LOAD_CHATS_SUCCESS",
         chats: data,
     });
-    const chatId = localStorage.selectedChatId
-        || (data.length > 0 ? data[0]._id : null);
+    const selected = localStorage.selectedChatId;
+    const chatId = selected && data[selected]
+        ? selected
+        : (data.length > 0 ? data[0]._id : null);
     dispatch(setCurrentChatId(chatId));
 }
