@@ -23,4 +23,3 @@ export function request(method, path, data) {
 }
 
 ajax.request = request;
-

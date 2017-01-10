@@ -1,11 +1,13 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import reduxSounds from "redux-sounds";
 
+// https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export function makeStore(reducers, ...otherMiddleware) {
     return createStore(
         combineReducers(reducers),
-        applyMiddleware(thunk, ...otherMiddleware)
+        composeEnhancers(applyMiddleware(thunk, ...otherMiddleware))
     );
 }
 

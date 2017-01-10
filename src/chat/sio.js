@@ -1,4 +1,12 @@
-import { receiveMessage, messageSent, setIsTyping, pageClose } from "./actions";
+import {
+    receiveMessage,
+    messageSent,
+    setIsTyping,
+    pageClose,
+    addChatSync,
+    deleteChatSync,
+    setChatNameSync,
+} from "./actions";
 
 export function initListeners(socket, dispatch) {
 
@@ -31,6 +39,18 @@ export function initListeners(socket, dispatch) {
             isTyping: false,
         }))
     })
+
+    socket.on("newChat", ({ chat }) => {
+        dispatch(addChatSync(chat));
+    });
+
+    socket.on("deleteChat", ({ chatId }) => {
+        dispatch(deleteChatSync(chatId));
+    });
+
+    socket.on("renameChat", ({ chatId, name }) => {
+        dispatch(setChatNameSync({ chatId, name }));
+    });
 
     $(window).unload(() => {
         dispatch(pageClose());
