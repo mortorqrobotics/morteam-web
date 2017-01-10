@@ -3,7 +3,8 @@ import Radium from "radium";
 
 import TextBox from "~/shared/components/forms/TextBox";
 import SearchDropItem from "./SearchDropItem";
-import ajax from "~/util/ajax";
+import { request } from "~/util/ajax";
+import { userSearch } from "~/util";
 import styles from "~/shared/styles/navbar";
 
 @Radium
@@ -14,50 +15,33 @@ export default class SearchBox extends React.Component {
 
         this.state = {
             query: "",
-            userIds: []
+            users: [],
         }
     }
 
-    sendQuery = async(query) => {
-        if (query == "") {
-            this.setState({
-                userIds: []
-            });
-        } else {
-            try {
-                let { data } = await ajax.request("get", "/users/search?search=" + query);
-                this.setState({
-                    userIds: data,
-                });
-            } catch (err) {
-                console.log(err);
-            }
-            //TODO: make this faster
-        }
-    }
-
-    onChange = (e) => {
+    componentDidMount = async () => {
+        let { data } = await request("get", "/teams/current/users");
         this.setState({
-            query: e.target.value,
+            users: data,
         });
-        this.sendQuery(e.target.value);
     }
 
-    renderSearchDrop(){
-        if(this.state.userIds.length){
-            return(
-                <div style={styles.searchDrop}>
-                    <ul>
-                        {this.state.userIds.map(user => (
-                            <SearchDropItem
-                                user={user}
-                                key={user._id}
-                            />
-                        ))}
-                    </ul>
-                </div>
-            )
+    renderSearchDrop = () => {
+        if (this.state.query === "") {
+            return null;
         }
+        return (
+            <div style={styles.searchDrop}>
+                <ul>
+                    {this.state.users.filter(userSearch(this.state.query)).map(user =>
+                        <SearchDropItem
+                            user={user}
+                            key={user._id}
+                        />
+                    )}
+                </ul>
+            </div>
+        )
     }
 
     render() {
@@ -66,7 +50,7 @@ export default class SearchBox extends React.Component {
                 <TextBox
                     style={styles.search.textBox}
                     placeholder={"search"}
-                    onChange={this.onChange}
+                    onChange={e => this.setState({ query: e.target.value })}
                     value={this.state.query}
                 />
                 {this.renderSearchDrop()}

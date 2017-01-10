@@ -8,7 +8,7 @@ import {
     ModalButton,
 } from "~/shared/components/modal";
 import ajax from "~/util/ajax";
-import { fullName, capitalize } from "~/util";
+import { fullName, capitalize, userSearch } from "~/util";
 import update from "react/lib/update";
 import ContextMenu from "react-context-menus";
 
@@ -79,9 +79,9 @@ export default class TakeAttendance extends React.Component {
     }
 
     getSearched = () => {
-        return this.state.attendance.filter(({ user }) => (
-            fullName(user).toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1
-        ))
+        return this.state.attendance.filter(({ user }) =>
+            userSearch(this.state.query)(user)
+        )
     }
 
     markAllPresent = () => {
