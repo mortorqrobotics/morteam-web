@@ -42,7 +42,7 @@ export default class SearchBox extends React.Component {
         });
         this.sendQuery(e.target.value);
     }
-    
+
     renderSearchDrop(){
         if(this.state.userIds.length){
             return(

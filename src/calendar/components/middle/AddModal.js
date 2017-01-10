@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, getAudienceIds } from "~/util";
 import {
     ModalTextBox,
     ModalTextArea,
@@ -40,13 +40,13 @@ class AddModal extends React.Component {
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    onSubmit = async() => {
+    onSubmit = async () => {
         await this.props.dispatch(addEvent({
             sendEmail: this.state.sendEmail,
             name: this.state.name,
             date: new Date(this.props.year, this.props.month, this.props.day),
             description: this.state.description,
-            audience: this.state.audience,
+            audience: getAudienceIds(this.state.audience),
         }))
         this.setState(this.initialState);
         this.props.onRequestClose();

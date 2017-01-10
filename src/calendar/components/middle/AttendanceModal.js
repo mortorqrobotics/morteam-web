@@ -30,16 +30,32 @@ class AttendanceModal extends React.Component {
     }
 
     componentDidMount = async () => {
-        let { data } = await ajax.request("GET",
-            "/events/id/" + this.props.event._id + "/userList"
-        );
-        this.setState({ userList: data });
+        const [{ data: userList }, { data: attendance }] = await Promise.all([
+            ajax.request("GET",
+                "/events/id/" + this.props.event._id + "/userList"
+            ),
+            ajax.request("GET",
+                `/events/id/${this.props.event._id}/attendance`
+            ),
+        ]);
+        this.setState({
+            userList: userList.filter(u =>
+                !attendance.some(({ user, status }) =>
+                    u._id === user._id && status === "excused"
+                )
+            ),
+        });
     }
 
     reset = () => {
         this.setState({
             title: "Attendance",
             isExcusing: false,
+            userList: this.state.userList.filter(u =>
+                !this.state.excusedUsers.some(user =>
+                    u._id === user._id
+                )
+            ),
             excusedUsers: [],
         });
     }
@@ -58,8 +74,9 @@ class AttendanceModal extends React.Component {
                         // TODO: use redux
                         await ajax.request("PUT",
                             "/events/id/" + this.props.event._id + "/excuseAbsences",
-                            { userIds: this.state.excusedUsers, }
+                            { userIds: this.state.excusedUsers.map(u => u._id), }
                         );
+                        this.reset();
                         this.props.onRequestClose();
                     }}
                 />

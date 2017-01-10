@@ -30,9 +30,11 @@ export default class TakeAttendance extends React.Component {
             attendance: [],
         }
     }
-    
+
     componentDidMount = async () => {
-        const { data } = await ajax.request("GET", `/events/id/${this.props.event._id}/attendance`);
+        const { data } = await ajax.request("GET",
+            `/events/id/${this.props.event._id}/attendance`
+        );
         this.setState({ attendance: data });
         $("#attendance-search-box-" + this.props.event._id).focus();
     }
@@ -81,7 +83,7 @@ export default class TakeAttendance extends React.Component {
             fullName(user).toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1
         ))
     }
-    
+
     markAllPresent = () => {
         this.setState({
             attendance: this.state.attendance.map(({ user, _id, status }) => {
