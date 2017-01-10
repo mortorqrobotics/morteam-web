@@ -16,7 +16,7 @@ class ComposeModal extends React.Component {
         ...modalPropTypes,
     }
 
-    state = {
+    initialState = {
         audience: {
             users: [],
             groups: [],
@@ -24,6 +24,7 @@ class ComposeModal extends React.Component {
         name: "",
         isEditingName: false,
     }
+    state = this.initialState;
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
@@ -38,6 +39,7 @@ class ComposeModal extends React.Component {
                 isTwoPeople: true,
                 otherUser: users[0],
             }));
+            this.setState(this.initialState);
             this.props.onRequestClose();
         } else if (this.state.isEditingName) {
             this.props.dispatch(addChat({
@@ -45,6 +47,7 @@ class ComposeModal extends React.Component {
                 audience: { users, groups },
                 name: this.state.name,
             }));
+            this.setState(this.initialState);
             this.props.onRequestClose();
         } else {
             this.setState({

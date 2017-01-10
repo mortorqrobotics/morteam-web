@@ -33,14 +33,13 @@ class MessageList extends React.Component {
     // TODO: preserve scrolling when switching from chat to chat
 
     componentDidUpdate = () => {
-
         const height = this.$container.height();
         const scrollHeight = this.$container.prop("scrollHeight");
         const heightDiffDiff = this.props.heightDiff - this.lastHeightDiff;
         const topMessageId = this.props.chat.messages[0]
             && this.props.chat.messages[0]._id;
-        const bottomMessageId =
-            this.props.chat.messages[this.props.chat.messages.length - 1]._id;
+        const bottomMessageId = this.props.chat.messages[0]
+            && this.props.chat.messages[this.props.chat.messages.length - 1]._id;
         const isTyping = this.props.chat.isTyping;
         const offset = this.lastScrollHeight - this.lastScrollTop - height;
         const scrollHeightDiff = scrollHeight - this.lastScrollHeight;
@@ -116,7 +115,7 @@ class MessageList extends React.Component {
                     { height: "calc(100% - " + (50 + this.props.heightDiff) + "px)" },
                 ]}
             >
-                {this.props.chat.messages.map(message => (
+                {this.props.chat && this.props.chat.messages.map(message => (
                     <MessageItem
                         message={message}
                         key={message._id}
