@@ -33,12 +33,15 @@ export default class SearchBox extends React.Component {
         return (
             <div style={styles.searchDrop}>
                 <ul>
-                    {this.state.users.filter(userSearch(this.state.query)).map(user =>
-                        <SearchDropItem
-                            user={user}
-                            key={user._id}
-                        />
-                    )}
+                    {this.state.users.filter(userSearch(this.state.query))
+                        .slice(0, 10)
+                        .map(user =>
+                            <SearchDropItem
+                                user={user}
+                                key={user._id}
+                            />
+                        )
+                    }
                 </ul>
             </div>
         )
@@ -49,7 +52,7 @@ export default class SearchBox extends React.Component {
             <li style={styles.search.li}>
                 <TextBox
                     style={styles.search.textBox}
-                    placeholder={"search"}
+                    placeholder="search"
                     onChange={e => this.setState({ query: e.target.value })}
                     value={this.state.query}
                 />
