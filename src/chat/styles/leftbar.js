@@ -49,4 +49,13 @@ export default {
             opacity: "1",
         },
     },
+    tab: {
+        right: {
+             display: "inline-block",
+            borderRight: "1px solid black",
+        },
+        left: {
+            display: "inline-block",
+        },
+    },
 }

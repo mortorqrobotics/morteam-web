@@ -9,6 +9,7 @@ import ComposeModal from "./ComposeModal";
 import ChatItem from "./ChatItem";
 import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
+import { setTab } from "~/chat/actions";
 import { fullName, otherUser, makeChangeHandlerFactory, currentUser } from "~/util";
 import styles from "~/chat/styles/leftbar";
 
@@ -47,6 +48,21 @@ class Leftbar extends React.Component {
         return (
             <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
                 <LeftbarButton
+                    style={styles.tab.right}
+                    onClick={() => this.props.dispatch(setTab("intra"))}
+                    isSelected={this.props.currentTab==="intra"}
+                >
+                   Your Team
+                </LeftbarButton>
+                <LeftbarButton
+                    style={styles.tab.left}
+                    onClick={() => this.props.dispatch(setTab("inter"))}
+                    isSelected={this.props.currentTab==="inter"}
+                >
+                   Other Teams
+                </LeftbarButton>
+                
+                <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
                 >
                     <Glyphicon glyph="pencil" style={{ marginRight: "5px" }} />
@@ -80,6 +96,7 @@ class Leftbar extends React.Component {
 const mapStateToProps = (state) => {
     return {
         chats: state.chats,
+        currentTab: state.currentTab,
     }
 }
 

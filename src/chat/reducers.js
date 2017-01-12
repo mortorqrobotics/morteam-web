@@ -122,7 +122,10 @@ const initialCurrentChatId = null;
 function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
         case "LOAD_CHATS_SUCCESS":
-            if (!state && action.chats.length > 0) {
+            if (action.chatId) {
+                return action.chatId 
+            }
+            else if (!state && action.chats.length > 0) {
                 return action.chats[0]._id
             } else {
                 return null
@@ -140,6 +143,17 @@ function currentChatId(state = initialCurrentChatId, action) {
             return state
     }
 }
+
+const initialTab = "intra";
+
+function currentTab(state = initialTab, action) {
+    switch (action.type) {
+        case "SET_TAB":
+            return action.tab
+        default:
+            return state
+    }
+ }
 
 const initialChatSize = {
     heightDiff: 0,
@@ -160,4 +174,5 @@ export default {
     chats,
     currentChatId,
     inputSize,
+    currentTab,
 }
