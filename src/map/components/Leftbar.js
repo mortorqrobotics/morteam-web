@@ -45,6 +45,11 @@ class Leftbar extends React.Component {
                             Blue Alliance Page
                         </a>
                     </li>
+                    <li style={styles.website}>
+                        <a href={"/teams/number/" + this.props.selectedTeam.num}>
+                            MorTeam page
+                        </a>
+                    </li>
                 </LeftbarContainer>
             )
         }
