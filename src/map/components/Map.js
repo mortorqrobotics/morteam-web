@@ -26,7 +26,7 @@ initSIO(socket => initAlertCreator(socket, store.dispatch));
 const currentTeam = teamLocations[currentUser.team.number];
 const mapOptions = {
     zoom: currentTeam ? 15 : 4,
-    center: currentTeam ? {lat: currentTeam.longitude, lng: currentTeam.latitude}
+    center: currentTeam ? {lat: currentTeam.lat, lng: currentTeam.lng}
         : {lat: 39.9583086, lng: -98.3331244}
 }
 
@@ -57,8 +57,8 @@ class Map extends React.Component {
                                 <Marker
                                     key={teamNum}
                                     position = {{
-                                        lat: teamLocations[teamNum].longitude,
-                                        lng: teamLocations[teamNum].latitude
+                                        lat: teamLocations[teamNum].lat,
+                                        lng: teamLocations[teamNum].lng
                                     }}
                                     onClick={() => store.dispatch(setTeam(teamNum))}
                                 />
