@@ -105,7 +105,12 @@ export const setCurrentChatId = (chatId) => (dispatch) => {
     })
 }
 
+let isLoading = false;
 export const loadMessages = () => async (dispatch, getState) => {
+    if (isLoading) {
+        return;
+    }
+    isLoading = true;
     const { currentChatId, chats } = getState();
     const chat = chats.find(chat => chat._id == currentChatId);
     if (!chat) {
@@ -115,6 +120,7 @@ export const loadMessages = () => async (dispatch, getState) => {
         `/chats/id/${currentChatId}/messages?skip=${chat.messages.length}`
         + "&" + Date.now()
     );
+    isLoading = false;
     if (data.length === 0) {
         dispatch({
             type: "ALL_MESSAGES_LOADED",
