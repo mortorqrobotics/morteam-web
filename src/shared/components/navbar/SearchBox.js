@@ -70,7 +70,6 @@ export default class SearchBox extends React.Component {
             )
         }
         if (this.state.team._id) { 
-            console.log(this.state.team);
             return(
                 <div style={styles.searchDrop}>
                     <ul>
