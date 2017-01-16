@@ -51,7 +51,10 @@ export default class Center extends React.Component {
         return (
             <div style={styles.centerWrapper}>
                 <div>
-                    <img src="/images/questionMark.png" style={styles.image}/>
+                    <img 
+                    src={pageOptions.team ? pageOptions.team.profPicPath : "/images/questionMark.png"} 
+                    style={styles.image}
+                />
                     <div style={styles.topInfoContainer}>
                         <h1>Team {pageOptions.teamNumber}</h1>
                         <h1>{this.state.teamInfo.nickname}</h1>

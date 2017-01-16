@@ -9,30 +9,40 @@ import styles from "~/shared/styles/navbar";
 @Radium
 export default class SearchBox extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            query: "",
-            userIds: []
-        }
+    state = {
+        query: "",
+        users: [],
+        team: {},
     }
 
     sendQuery = async(query) => {
         if (query == "") {
             this.setState({
-                userIds: []
+                users: [],
+                team: {},
             });
         } else {
             try {
                 let { data } = await ajax.request("get", "/users/search?search=" + query);
                 this.setState({
-                    userIds: data,
+                    users: data,
                 });
+                if ((/^\d+$/).test(query)) {
+                    try {
+                        let team = await ajax.request("get", "/teams/number/" + query);
+                        this.setState({
+                            team: team.data, 
+                        });
+                    } 
+                    catch (err) {
+                        this.setState({
+                            team: {}, 
+                        });
+                    }
+                }
             } catch (err) {
                 console.log(err);
             }
-            //TODO: make this faster
         }
     }
 
@@ -44,16 +54,31 @@ export default class SearchBox extends React.Component {
     }
     
     renderSearchDrop(){
-        if(this.state.userIds.length){
+        if(this.state.users.length) {
             return(
                 <div style={styles.searchDrop}>
                     <ul>
-                        {this.state.userIds.map(user => (
+                        {this.state.users.map(user => (
                             <SearchDropItem
-                                user={user}
+                                obj={user}
                                 key={user._id}
+                                type={"user"}
                             />
                         ))}
+                    </ul>
+                </div>
+            )
+        }
+        if (this.state.team._id) { 
+            console.log(this.state.team);
+            return(
+                <div style={styles.searchDrop}>
+                    <ul>
+                        <SearchDropItem
+                            obj={this.state.team}
+                            key={this.state.team._id}
+                            type={"team"}
+                        />
                     </ul>
                 </div>
             )
