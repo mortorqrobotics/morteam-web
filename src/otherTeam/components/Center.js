@@ -50,22 +50,30 @@ export default class Center extends React.Component {
     render() {
         return (
             <div style={styles.centerWrapper}>
-                <div>
+                <div 
+                    style={(!pageOptions.team 
+                        || pageOptions.team.profPicPath) 
+                        ? {marginRight: "40px"} : {}
+                    }
+                >
                     <img 
-                    src={pageOptions.team ? pageOptions.team.profPicPath : "/images/questionMark.png"} 
-                    style={styles.image}
-                />
+                        src={pageOptions.team ? pageOptions.team.profPicPath : ""} 
+                        style={[styles.image, (!pageOptions.team 
+                            || pageOptions.team.profPicPath === "") 
+                            && {display: "none"} 
+                        ]}
+                    />
                     <div style={styles.topInfoContainer}>
                         <h1>Team {pageOptions.teamNumber}</h1>
                         <h1>{this.state.teamInfo.nickname}</h1>
                     </div>
                 </div>
-                <ul style={[{listStyle: "none",}, !this.state.getDataSuccess && {display: "none"}]}>
-                    <li>
+                <ul style={[{listStyle: "none"}, !this.state.getDataSuccess && {display: "none"}]}>
+                    <li style={!this.state.teamInfo.location ? {display: "none"} : {}}>
                         <Glyphicon glyph="map-marker" style={styles.glyph} />
                         <h3 style={styles.h3}>{this.state.teamInfo.location}</h3>
                     </li>
-                    <li>
+                    <li style={!this.state.teamInfo.website ? {display: "none"} : {}}>
                         <Glyphicon glyph="globe" style={styles.glyph}/> 
                         <h3 style={styles.h3}>
                             <a href={this.state.teamInfo.website}>
