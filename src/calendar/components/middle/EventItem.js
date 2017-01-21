@@ -27,7 +27,7 @@ class EventItem extends React.Component {
     renderAdminButtons = () => {
         if (currentUser.isAdmin()) {
             return (
-                <div>
+                <div style={{display: "inline-block"}}>
                     <RadiumGlyphicon
                         glyph="list-alt"
                         style={styles.recordGlyph}
