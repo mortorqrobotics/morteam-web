@@ -5,29 +5,40 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/calendar/styles/middle";
 import { modalProps } from "~/util/modal";
 import AttendanceModal from "./AttendanceModal";
+import ConfirmModal from "~/shared/components/ConfirmModal";
 import { currentUser } from "~/util";
+import { connect } from "react-redux";
+import { deleteEvent } from "~/calendar/actions";
 
 const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
-export default class EventItem extends React.Component {
+class EventItem extends React.Component {
 
     static propTypes = {
         event: React.PropTypes.object,
     }
 
     state = {
-        isModalOpen: false,
+        isAttendanceModalOpen: false,
+        isDeleteModalOpen: false,
     }
 
-    renderRecordAttendance = () => {
+    renderAdminButtons = () => {
         if (currentUser.isAdmin()) {
             return (
-                <RadiumGlyphicon
-                    glyph="list-alt"
-                    style={styles.recordGlyph}
-                    onClick={() => this.setState({ isModalOpen: true, })}
-                />
+                <div>
+                    <RadiumGlyphicon
+                        glyph="list-alt"
+                        style={styles.recordGlyph}
+                        onClick={() => this.setState({ isAttendanceModalOpen: true })}
+                    />
+                    <RadiumGlyphicon
+                        glyph="trash"
+                        style={styles.recordGlyph}
+                        onClick={() => this.setState({ isDeleteModalOpen: true })}
+                    />
+                </div>
             )
         }
     }
@@ -38,16 +49,23 @@ export default class EventItem extends React.Component {
                 <span style={{fontWeight:"300",fontSize:"16px",}}>
                     {this.props.event.name}
                 </span>
-                {this.renderRecordAttendance()}
+                {this.renderAdminButtons()}
                 <br />
                 <div style={{paddingLeft:"25px",wordWrap:"break-word",fontWeight:"200",fontSize:"16px",}}>
                     {this.props.event.description}
                 </div>
                 <AttendanceModal
-                    { ...modalProps(this, "isModalOpen") }
+                    { ...modalProps(this, "isAttendanceModalOpen") }
                     event={this.props.event}
+                />
+                <ConfirmModal
+                    { ...modalProps(this, "isDeleteModalOpen") }
+                    text="Are you sure you would like to delete this event?"
+                    action={() => this.props.dispatch(deleteEvent(this.props.event))}
                 />
             </li>
         )
     }
 }
+
+export default connect()(EventItem);

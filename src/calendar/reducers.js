@@ -52,6 +52,14 @@ function events(state = initialEvents, action) {
                     },
                 },
             })
+        case "DELETE_EVENT_SUCCESS":
+            return update(state, {
+                [action.event.date.getFullYear()]: {
+                    [action.event.date.getMonth()]: {
+                        $splice: [[action.event]],
+                    },
+                },
+            })
         case "START_ATTENDANCE_SUCCESS":
             let eventYear, eventMonth, eventIndex;
             labelsIn2016:
