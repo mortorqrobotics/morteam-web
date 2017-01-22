@@ -27,21 +27,22 @@ export default class SearchBox extends React.Component {
                 this.setState({
                     users: data,
                 });
-                if ((/^\d+$/).test(query)) {
-                    try {
-                        let team = await ajax.request("get", "/teams/number/" + query);
-                        this.setState({
-                            team: team.data, 
-                        });
-                    } 
-                    catch (err) {
-                        this.setState({
-                            team: {}, 
-                        });
-                    }
-                }
             } catch (err) {
                 console.log(err);
+            }
+            if ((/^\d+$/).test(query)) {
+                try {
+                    let teamInfo = await ajax.request("get", "/teams/number/" + query + "/info");
+                    this.setState({
+                        team: teamInfo.data,
+                    });
+                }
+                catch (err) {
+                    this.setState({
+                        team: {},
+                    });
+                    console.log(err);
+                }
             }
         }
     }
@@ -52,7 +53,7 @@ export default class SearchBox extends React.Component {
         });
         this.sendQuery(e.target.value);
     }
-    
+
     renderSearchDrop(){
         if(this.state.users.length) {
             return(
@@ -69,13 +70,13 @@ export default class SearchBox extends React.Component {
                 </div>
             )
         }
-        if (this.state.team._id) { 
+        if (this.state.team.team_number) {
             return(
                 <div style={styles.searchDrop}>
                     <ul>
                         <SearchDropItem
                             obj={this.state.team}
-                            key={this.state.team._id}
+                            key={this.state.team.team_number}
                             type={"team"}
                         />
                     </ul>

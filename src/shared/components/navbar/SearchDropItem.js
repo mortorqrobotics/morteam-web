@@ -14,10 +14,10 @@ export default class SearchDropItem extends React.Component {
         obj: React.PropTypes.object,
         type: React.PropTypes.string,
     }
-    
+
     handleRender = () => {
-        if (this.props.type === "user") {    
-            return(   
+        if (this.props.type === "user") {
+            return(
                 <Link
                     location={"/profiles/id/" + this.props.obj._id}
                     style={styles.link}
@@ -36,12 +36,11 @@ export default class SearchDropItem extends React.Component {
         } else {
             return (
                 <Link
-                    location={"/teams/number/" + this.props.obj.number}
+                    location={"/teams/number/" + this.props.obj.team_number}
                     style={styles.link}
                 >
                     <li style={styles.searchDropItem.li}>
-                        <img src={this.props.obj.profPicPath} style={{width: "60px", height: "60px"}}/> 
-                        <span style={styles.searchDropItem.span}>Team {this.props.obj.number}</span>
+                        <span style={styles.searchDropItem.span}>Team {this.props.obj.team_number}</span>
                     </li>
                 </Link>
             )
