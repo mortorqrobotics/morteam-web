@@ -160,7 +160,6 @@ export const loadChats = (query) => async (dispatch, getState) => {
     } else {
         sentData = data.filter(obj => !obj.audience.isMultiTeam);
     }
-    
     const chatId = query
         || (sentData.length > 0 ? sentData[0]._id : null);
     dispatch({
@@ -182,12 +181,15 @@ export async function initialActions(dispatch) {
     const { data } = await request("GET", "/chats?" + Date.now);
     if(window.location.search.match(/[\?&]id=([^&]+)/)) {
         const query = window.location.search.match(/[\?&]id=([^&]+)/)[1];
-        if (query 
+        if (data.map(obj => obj._id).indexOf(query) === -1) {
+            dispatch(loadChats(localStorage.selectedChatId));
+        }
+        if (query
             && data.filter(obj => !obj.audience.isMultiTeam).map(obj => obj._id).indexOf(query) === -1
         ) {
             dispatch(setTab("inter", query));
-        } 
+        }
+    } else {
+        dispatch(loadChats(localStorage.selectedChatId));
     }
-    dispatch(loadChats(localStorage.selectedChatId));
 }
-
