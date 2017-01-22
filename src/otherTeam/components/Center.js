@@ -63,14 +63,14 @@ export default class Center extends React.Component {
                     <div>
                         <div
                             style={(!pageOptions.team
-                                || pageOptions.team.profPicPath)
+                                || !pageOptions.team.profPicPath)
                                 ? {marginLeft: "40px"} : {}
                             }
                         >
                             <img
-                                src={pageOptions.team ? pageOptions.team.profPicPath : ""}
+                                src={pageOptions.team ? pageOptions.team.profPicPath : null}
                                 style={[styles.image, (!pageOptions.team
-                                    || pageOptions.team.profPicPath === "")
+                                    || !pageOptions.team.profPicPath)
                                     && {display: "none"}
                                 ]}
                             />
@@ -114,5 +114,5 @@ export default class Center extends React.Component {
             </div>
         )
     }
-    
+
 }
