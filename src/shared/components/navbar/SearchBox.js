@@ -6,6 +6,9 @@ import SearchDropItem from "./SearchDropItem";
 import ajax from "~/util/ajax";
 import styles from "~/shared/styles/navbar";
 
+let userCancelRequest;
+let teamCancelRequest;
+
 @Radium
 export default class SearchBox extends React.Component {
 
@@ -14,7 +17,7 @@ export default class SearchBox extends React.Component {
         users: [],
         team: {},
     }
-
+    
     sendQuery = async(query) => {
         if (query == "") {
             this.setState({
@@ -22,19 +25,23 @@ export default class SearchBox extends React.Component {
                 team: {},
             });
         } else {
+            let userInfo = ajax.request("get", "/users/search?search=" + query, true);
+            userCancelRequest = userInfo.cancel;
             try {
-                let { data } = await ajax.request("get", "/users/search?search=" + query);
+                let { data: userData } = await userInfo.req;
                 this.setState({
-                    users: data,
+                    users: userData,
                 });
             } catch (err) {
                 console.log(err);
             }
             if ((/^\d+$/).test(query)) {
+                let teamInfo = ajax.request("get", "/teams/number/" + query + "/info", true);
+                teamCancelRequest = teamInfo.cancel;
                 try {
-                    let teamInfo = await ajax.request("get", "/teams/number/" + query + "/info");
+                    let { data: teamData } = await teamInfo.req;
                     this.setState({
-                        team: teamInfo.data,
+                        team: teamData,
                     });
                 }
                 catch (err) {
@@ -48,8 +55,16 @@ export default class SearchBox extends React.Component {
     }
 
     onChange = (e) => {
+        if (userCancelRequest) {
+            userCancelRequest();
+        }
+        if (teamCancelRequest) {
+            teamCancelRequest();
+        }
         this.setState({
             query: e.target.value,
+            users: [],
+            team: {},
         });
         this.sendQuery(e.target.value);
     }
