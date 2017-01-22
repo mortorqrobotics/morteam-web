@@ -56,7 +56,11 @@ function events(state = initialEvents, action) {
             return update(state, {
                 [action.event.date.getFullYear()]: {
                     [action.event.date.getMonth()]: {
-                        $splice: [[action.event]],
+                        $splice: [
+                            [state[action.event.date.getFullYear()][action.event.date.getMonth()].findIndex(event => (
+                                event == action.event
+                            )), 1]
+                        ]
                     },
                 },
             })
