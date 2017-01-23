@@ -46,7 +46,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") } style={{width: "auto"}}>
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") } style={{width: "auto", maxWidth: "300px"}}>
                 <LeftbarButton
                     style={styles.tab.right}
                     onClick={() => this.props.dispatch(setTab("intra"))}
