@@ -46,24 +46,26 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") } style={{width: "auto", maxWidth: "300px"}}>
-                <LeftbarButton
-                    style={styles.tab.right}
-                    onClick={() => this.props.dispatch(setTab("intra"))}
-                    isSelected={this.props.currentTab==="intra"}
-                >
-                   Your Team
-                </LeftbarButton>
-                <LeftbarButton
-                    style={styles.tab.left}
-                    onClick={() => this.props.dispatch(setTab("inter"))}
-                    isSelected={this.props.currentTab==="inter"}
-                >
-                   Other Teams
-                </LeftbarButton>
-
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") } style={styles.container}>
+                <div style={{width: "100%"}}>
+                    <LeftbarButton
+                        style={styles.tab.right}
+                        onClick={() => this.props.dispatch(setTab("intra"))}
+                        isSelected={this.props.currentTab==="intra"}
+                    >
+                       Your Team
+                    </LeftbarButton>
+                    <LeftbarButton
+                        style={styles.tab.left}
+                        onClick={() => this.props.dispatch(setTab("inter"))}
+                        isSelected={this.props.currentTab==="inter"}
+                    >
+                       Other Teams
+                    </LeftbarButton>
+                </div>
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
+                    style={this.props.currentTab === "inter" ? {display: "none"} : {}}
                 >
                     <Glyphicon glyph="pencil" style={{ marginRight: "5px" }} />
                     Compose

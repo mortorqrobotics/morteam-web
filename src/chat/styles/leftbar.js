@@ -3,6 +3,10 @@ import { selectedColor } from "~/shared/styles/colors";
 const color = "#ffdd78";
 
 export default {
+    container: {
+      width: "auto",
+      maxWidth: "300px",
+    },
     img: {
         width: "30px",
         height: "30px",
