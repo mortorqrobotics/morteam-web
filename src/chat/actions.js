@@ -184,8 +184,7 @@ export async function initialActions(dispatch) {
         if (data.map(obj => obj._id).indexOf(query) === -1) {
             dispatch(loadChats(localStorage.selectedChatId));
         }
-        if (query
-            && data.filter(obj => !obj.audience.isMultiTeam).map(obj => obj._id).indexOf(query) === -1
+        else if (data.filter(obj => !obj.audience.isMultiTeam).map(obj => obj._id).indexOf(query) === -1
         ) {
             dispatch(setTab("inter", query));
         }
