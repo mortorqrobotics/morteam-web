@@ -46,7 +46,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") } style={{width: "auto"}}>
                 <LeftbarButton
                     style={styles.tab.right}
                     onClick={() => this.props.dispatch(setTab("intra"))}
@@ -61,7 +61,7 @@ class Leftbar extends React.Component {
                 >
                    Other Teams
                 </LeftbarButton>
-                
+
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
                 >

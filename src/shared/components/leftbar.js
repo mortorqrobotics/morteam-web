@@ -8,10 +8,10 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 const RadiumGlyphicon = Radium(Glyphicon);
 
 export const LeftbarContainer = Radium((props) => {
-    let { isOpen, onToggle } = props;
+    let { isOpen, onToggle, style } = props;
     return (
         <div>
-            <div style={[styles.div, !props.isOpen && { display: "none" } ]}>
+            <div style={[styles.div, props.style || {}, !props.isOpen && { display: "none" } ]}>
                 <ul style={styles.ul}>
                     {props.children}
                 </ul>

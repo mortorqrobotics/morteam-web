@@ -4,7 +4,7 @@ let ajax = {};
 export default ajax;
 
 export function request(method, path, data, cancellable) {
-    if (arguments.length === 3) {
+    if (arguments.length === 3 && typeof(data) === "boolean") {
         cancellable = data;
         data = undefined;
     }
@@ -22,17 +22,17 @@ export function request(method, path, data, cancellable) {
     } else {
         let cancel;
         return {
-            req:  
-                method === "GET" && data ? 
+            req:
+                method === "GET" && data ?
                 axios.get("/api" + path, {
                     params: data,
                     cancelToken: new CancelToken(c => cancel = c)
-                }) : 
+                }) :
                 axios({
                     method: method,
                     url: "/api" + path,
                     data: data,
-                    cancelToken: new CancelToken (c => cancel = c)  
+                    cancelToken: new CancelToken (c => cancel = c)
                 }),
             cancel: () => cancel(),
         }
@@ -40,4 +40,3 @@ export function request(method, path, data, cancellable) {
 }
 
 ajax.request = request;
-
