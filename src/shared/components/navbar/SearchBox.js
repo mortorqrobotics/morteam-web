@@ -17,7 +17,7 @@ export default class SearchBox extends React.Component {
         users: [],
         team: {},
     }
-    
+
     sendQuery = async(query) => {
         if (query == "") {
             this.setState({
@@ -63,8 +63,6 @@ export default class SearchBox extends React.Component {
         }
         this.setState({
             query: e.target.value,
-            users: [],
-            team: {},
         });
         this.sendQuery(e.target.value);
     }
