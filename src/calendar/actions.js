@@ -10,6 +10,14 @@ export const addEvent = (event) => async (dispatch) => {
     });
 }
 
+export const deleteEvent = (event) => async (dispatch) => {
+    await request("DELETE", "/events/id/" + event._id);
+    dispatch({
+        type: "DELETE_EVENT_SUCCESS",
+        event,
+    });
+}
+
 // absolute month contains the month from 0..11 and year
 
 export const setAbsMonth = ({ month, year }) => async (dispatch, getState) => {
