@@ -57,9 +57,9 @@ function events(state = initialEvents, action) {
                 [action.event.date.getFullYear()]: {
                     [action.event.date.getMonth()]: {
                         $splice: [
-                            [state[action.event.date.getFullYear()][action.event.date.getMonth()].findIndex(event => (
-                                event == action.event
-                            )), 1]
+                            [state[action.event.date.getFullYear()][action.event.date.getMonth()]
+                                .map(event => event._id).indexOf(action.event._id),
+                            1]
                         ]
                     },
                 },
