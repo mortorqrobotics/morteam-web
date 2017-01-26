@@ -38,6 +38,15 @@ class EventItem extends React.Component {
                         style={styles.recordGlyph}
                         onClick={() => this.setState({ isDeleteModalOpen: true })}
                     />
+                    <AttendanceModal
+                        { ...modalProps(this, "isAttendanceModalOpen") }
+                        event={this.props.event}
+                    />
+                    <ConfirmModal
+                        { ...modalProps(this, "isDeleteModalOpen") }
+                        text="Are you sure you would like to delete this event?"
+                        action={() => this.props.dispatch(deleteEvent(this.props.event))}
+                    />
                 </div>
             )
         }
@@ -54,15 +63,6 @@ class EventItem extends React.Component {
                 <div style={{paddingLeft:"25px",wordWrap:"break-word",fontWeight:"200",fontSize:"16px",}}>
                     {this.props.event.description}
                 </div>
-                <AttendanceModal
-                    { ...modalProps(this, "isAttendanceModalOpen") }
-                    event={this.props.event}
-                />
-                <ConfirmModal
-                    { ...modalProps(this, "isDeleteModalOpen") }
-                    text="Are you sure you would like to delete this event?"
-                    action={() => this.props.dispatch(deleteEvent(this.props.event))}
-                />
             </li>
         )
     }
