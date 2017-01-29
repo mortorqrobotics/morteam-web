@@ -44,9 +44,9 @@ class Leftbar extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+    handleTabsRender = () => {
+        if (currentUser.isAdmin()) {
+            return (
                 <div style={{width: "100%"}}>
                     <LeftbarButton
                         onClick={() => this.props.dispatch(setTab("intra"))}
@@ -57,10 +57,19 @@ class Leftbar extends React.Component {
                     <LeftbarButton
                         onClick={() => this.props.dispatch(setTab("inter"))}
                         isSelected={this.props.currentTab==="inter"}
+                        style={{borderBottom: "2px dashed black"}}
                     >
                        Other Teams
                     </LeftbarButton>
                 </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+                {this.handleTabsRender()}
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
                     style={this.props.currentTab === "inter" ? {display: "none"} : {}}
