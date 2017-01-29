@@ -25,6 +25,15 @@ export default class SearchBox extends React.Component {
                 team: {},
             });
         } else {
+	    
+	    if (userCancelRequest) {
+	    	userCancelRequest();
+	    }
+
+	    if (teamCancelRequest) {
+	    	teamCancelRequest();
+	    }
+
             let userInfo = ajax.request("get", "/users/search?search=" + query, true);
             userCancelRequest = userInfo.cancel;
             try {
@@ -55,12 +64,6 @@ export default class SearchBox extends React.Component {
     }
 
     onChange = (e) => {
-        if (userCancelRequest) {
-            userCancelRequest();
-        }
-        if (teamCancelRequest) {
-            teamCancelRequest();
-        }
         this.setState({
             query: e.target.value,
         });
