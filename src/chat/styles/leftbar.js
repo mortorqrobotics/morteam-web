@@ -53,4 +53,16 @@ export default {
             opacity: "1",
         },
     },
+    tabs: {
+        wrapper: {
+            marginTop: "20px",
+            marginBottom: "20px",
+            textAlign: "center",
+        },
+        tab: {
+            display: "inline",
+            fontSize: "17px",
+            border: "none",
+        },
+    }
 }

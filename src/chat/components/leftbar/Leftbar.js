@@ -47,17 +47,18 @@ class Leftbar extends React.Component {
     handleTabsRender = () => {
         if (currentUser.isAdmin()) {
             return (
-                <div style={{width: "100%"}}>
+                <div style={styles.tabs.wrapper}>
                     <LeftbarButton
                         onClick={() => this.props.dispatch(setTab("intra"))}
                         isSelected={this.props.currentTab==="intra"}
+                        style={styles.tabs.tab}
                     >
                        Your Team
                     </LeftbarButton>
                     <LeftbarButton
                         onClick={() => this.props.dispatch(setTab("inter"))}
                         isSelected={this.props.currentTab==="inter"}
-                        style={{borderBottom: "2px dashed black"}}
+                        style={styles.tabs.tab}
                     >
                        Other Teams
                     </LeftbarButton>
