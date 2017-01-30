@@ -56,13 +56,16 @@ export default {
     tabs: {
         wrapper: {
             marginTop: "20px",
-            marginBottom: "20px",
+            marginBottom: "10px",
             textAlign: "center",
         },
         tab: {
             display: "inline",
             fontSize: "17px",
             border: "none",
+            borderRadius: "35px",
+            height: "50px",
+            padding: "10px",
         },
     }
 }

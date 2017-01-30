@@ -51,7 +51,7 @@ class Leftbar extends React.Component {
                     <LeftbarButton
                         onClick={() => this.props.dispatch(setTab("intra"))}
                         isSelected={this.props.currentTab==="intra"}
-                        style={styles.tabs.tab}
+                        style={[styles.tabs.tab, {marginRight: "5px"}]}
                     >
                        Your Team
                     </LeftbarButton>
