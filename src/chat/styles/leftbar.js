@@ -62,7 +62,7 @@ export default {
         tab: {
             display: "inline",
             fontSize: "17px",
-            border: "none",
+            borderBottom: "none",
             borderRadius: "35px",
             height: "50px",
             padding: "10px",

@@ -169,12 +169,15 @@ export const loadChats = (query) => async (dispatch, getState) => {
     });
 }
 
-export const setTab = (tab, query) => (dispatch) => {
-    dispatch({
-        type: "SET_TAB",
-        tab,
-    })
-    dispatch(loadChats(query));
+export const setTab = (tab, query) => (dispatch, getState) => {
+    const { currentTab } = getState();
+    if(currentTab !== tab){
+        dispatch({
+            type: "SET_TAB",
+            tab,
+        })
+        dispatch(loadChats(query));
+    }
 }
 
 export async function initialActions(dispatch) {
