@@ -18,5 +18,5 @@ export default{
         fontSize: "15px",
         padding: "8px 4px 8px 4px",
         boxShadow: standardBoxShadow,
-    }, 
+    },
 }

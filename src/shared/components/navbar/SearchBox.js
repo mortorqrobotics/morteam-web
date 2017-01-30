@@ -18,21 +18,23 @@ export default class SearchBox extends React.Component {
         team: {},
     }
 
+    //needs refactoring
+
     sendQuery = async(query) => {
+        console.log(query);
         if (query == "") {
             this.setState({
                 users: [],
                 team: {},
             });
         } else {
-	    
-	    if (userCancelRequest) {
-	    	userCancelRequest();
-	    }
+      	    if (userCancelRequest) {
+                userCancelRequest();
+      	    }
 
-	    if (teamCancelRequest) {
-	    	teamCancelRequest();
-	    }
+      	    if (teamCancelRequest) {
+      	    	  teamCancelRequest();
+      	    }
 
             let userInfo = ajax.request("get", "/users/search?search=" + query, true);
             userCancelRequest = userInfo.cancel;
@@ -49,11 +51,20 @@ export default class SearchBox extends React.Component {
                 teamCancelRequest = teamInfo.cancel;
                 try {
                     let { data: teamData } = await teamInfo.req;
-                    this.setState({
-                        team: teamData,
-                    });
+                    if (this.state.query) {
+                        this.setState({
+                            team: teamData,
+                        });
+                    } else {
+                      this.setState({
+                          team: {},
+                      });
+                    }
                 }
                 catch (err) {
+                    if (this.state.query !== query && query) {
+                        this.sendQuery(this.state.query);
+                    }
                     this.setState({
                         team: {},
                     });

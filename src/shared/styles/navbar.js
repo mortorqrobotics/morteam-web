@@ -125,14 +125,14 @@ export default {
                 backgroundColor: "darkorange",
             },
         },
-        unselected: {    
+        unselected: {
             ":hover": {
                 backgroundColor: hoverColor,
             },
         }
     },
     rightLinks: {
-        container:{    
+        container:{
             position: "absolute",
             top: "10px",
             right: "0px",

@@ -23,7 +23,7 @@ const DropdownItem = Radium(({path, text}) => {
 
 @Radium
 class Navbar extends React.Component {
-    
+
     render() {
         return (
             <div>

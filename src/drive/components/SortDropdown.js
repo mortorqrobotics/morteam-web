@@ -20,7 +20,7 @@ class SortDropdown extends React.Component {
             isDropdownOpen: !this.state.isDropdownOpen,
         });
     }
-    
+
     handleOptionClick = (sortType) => {
         this.setState({
             chosenSortType: sortType,

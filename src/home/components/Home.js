@@ -17,7 +17,7 @@ const store = makeStore({
 import { initialActions } from "~/home/actions";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
-import { 
+import {
     initAlertCreator,
     initListeners as initSharedListeners
 } from "~/shared/sio";

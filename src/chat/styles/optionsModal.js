@@ -4,7 +4,7 @@ const button = {
     height: "37px",
     backgroundColor: "#cc0000",
     color: "white",
-    boxShadow: standardBoxShadow,    
+    boxShadow: standardBoxShadow,
     ":hover": {
         cursor: "pointer",
         backgroundColor: "#b30000",

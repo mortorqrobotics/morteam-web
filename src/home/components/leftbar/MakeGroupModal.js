@@ -24,7 +24,7 @@ class MakeGroupModal extends React.Component {
         groupName: "",
         users: [currentUser],
     };
-    
+
     state = {
        ...this.initialState,
     }

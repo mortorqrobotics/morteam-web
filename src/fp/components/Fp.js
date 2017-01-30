@@ -13,19 +13,19 @@ import styles from "~/fp/styles";
 
 @Radium
 class Fp extends React.Component {
-    
+
     getChangeHandler = makeChangeHandlerFactory(this);
-    
+
     state = {
         email: "",
         username: "",
         errorMsg: "",
     }
-    
+
     onSubmit = async() =>{
         try {
             let { data } = await ajax.request("post", "/forgotPassword", {
-                email: this.state.email, 
+                email: this.state.email,
                 username: this.state.username,
             });
             this.setState({
@@ -38,21 +38,21 @@ class Fp extends React.Component {
                 errorMsg: data
             });
         }
-        
+
     }
     render() {
         return (
             <Root pageName="fp">
                 <Link location="login" text="Back to login" />
-                <Form style={styles.form} onSubmit={this.onSubmit}>  
-                    <TextBox 
+                <Form style={styles.form} onSubmit={this.onSubmit}>
+                    <TextBox
                         placeholder="Email"
                         style={styles.textBox}
                         value={this.state.email}
                         onChange={this.getChangeHandler("email")}
                         autoFocus
                     />
-                    <TextBox 
+                    <TextBox
                         placeholder="Username"
                         style={styles.textBox}
                         value={this.state.Username}

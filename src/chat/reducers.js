@@ -123,7 +123,7 @@ function currentChatId(state = initialCurrentChatId, action) {
     switch (action.type) {
         case "LOAD_CHATS_SUCCESS":
             if (action.chatId) {
-                return action.chatId 
+                return action.chatId
             }
             else if (!state && action.chats.length > 0) {
                 return action.chats[0]._id

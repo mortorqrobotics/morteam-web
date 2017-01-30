@@ -24,7 +24,7 @@ export default {
             marginLeft: "300px",
             position: "absolute",
         }],
-        leftbarClosed: [wrapper, { 
+        leftbarClosed: [wrapper, {
             width: "100vw",
             margin: "auto",
             position: "relative",

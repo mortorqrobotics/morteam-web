@@ -20,7 +20,7 @@ initSIO(socket => initAlertCreator(socket, store.dispatch));
 
 @Radium
 export default class OtherTeam extends React.Component {
-    
+
     render() {
         return (
             <Root pageName="chat" store={store}>

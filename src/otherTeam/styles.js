@@ -32,6 +32,6 @@ export default {
         width: "300px",
         boxShadow: standardBoxShadow,
         fontSize: "28px",
-    }], 
-    
+    }],
+
 }

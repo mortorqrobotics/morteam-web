@@ -12,7 +12,7 @@ const ConfirmModal = Radium((props) => {
             isOpen={props.isOpen}
             onAfterOpen={props.onAfterOpen}
             onRequestClose={props.onRequestClose}
-    
+
         >
             {props.text}
 
