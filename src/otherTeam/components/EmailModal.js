@@ -27,11 +27,12 @@ export default class EmailModal extends React.Component {
     }
 
     handleSubmit = async() => {
-        await request ("POST", "/teams/id/" + pageOptions.team._id + "/contact", {
+        const {data: chatId} = await request ("POST", "/teams/id/" + pageOptions.team._id + "/contact", {
             content: this.state.content,
         });
         this.props.onRequestClose();
         this.setState(this.initialState);
+        window.location.assign("/chat?id=" + chatId);
     }
 
     render() {
