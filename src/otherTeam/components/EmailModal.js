@@ -14,7 +14,7 @@ export default class EmailModal extends React.Component {
     }
 
     initialState = {
-        content: "We are team " + currentUser.team.number + ", and we would like to communicate with you!"
+        content: "",
     }
 
     state = this.initialState;
@@ -49,7 +49,7 @@ export default class EmailModal extends React.Component {
                 </p>
                 <ModalTextArea
                     value={this.state.content}
-                    placeholder="email body"
+                    placeholder={"type message to team " + pageOptions.team.number}
                     rows={5}
                     onChange={this.handleChange}
                 />
