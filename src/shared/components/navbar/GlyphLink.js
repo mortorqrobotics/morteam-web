@@ -13,7 +13,7 @@ export default class SearchBox extends React.Component {
         glyph: React.PropTypes.string,
         name: React.PropTypes.string,
     }
-    
+
     static contextTypes = {
         pageName: React.PropTypes.string,
     }
@@ -31,7 +31,7 @@ export default class SearchBox extends React.Component {
                     styles.glyphLink.li,
                     this.props.name === this.context.pageName ?
                         styles.glyphLink.selected : styles.glyphLink.unselected
-                ]} 
+                ]}
                 >
                      <Glyphicon glyph={this.props.glyph} />
             </Link>

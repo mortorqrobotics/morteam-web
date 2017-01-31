@@ -25,7 +25,7 @@ class RightLinks extends React.Component {
             isModalOpen: true
         })
     }
-    
+
     render() {
         return (
             <div style={styles.rightLinks.container}>

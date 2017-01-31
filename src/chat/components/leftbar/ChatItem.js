@@ -61,18 +61,18 @@ class ChatItem extends React.Component {
             >
                 {this.chatImage()}
                 {this.props.title}
-                
+
                 <RadiumGlyphicon
                     glyph="cog"
                     style={styles.cog}
                     onClick={this.handleOpenOptions}
                 />
-                
+
                 <OptionsModal
                     chat={this.props.chat}
                     { ...modalProps(this, "isOptionsModalOpen") }
                 />
-                
+
             </LeftbarButton>
         )
     }

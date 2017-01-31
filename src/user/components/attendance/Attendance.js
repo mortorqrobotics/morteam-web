@@ -119,7 +119,7 @@ export default class Attendance extends React.Component {
                     onChange={toYear => this.setState({ toYear })}
                     options={range(2015, now.getFullYear() + 1)}
                 />
-                
+
                 <Button
                     style={styles.refreshAttendance}
                     text="Refresh Attendance"

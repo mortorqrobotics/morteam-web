@@ -13,7 +13,7 @@ export default {
         verticalAlign: "top",
         height: "700px !important",
         marginTop: "15px",
-        width: "70%", 
+        width: "70%",
         "@media screen and (max-width: 700px)": {
 	        width: "100%",
         },

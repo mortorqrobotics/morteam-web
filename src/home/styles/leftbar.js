@@ -30,7 +30,7 @@ export default{
             marginBottom: "15px",
         },
     },
-    leftbarButton:{    
+    leftbarButton:{
         button: {
             fontsize: "14px",
             ":hover": {
@@ -41,5 +41,5 @@ export default{
         glyph: {
             marginRight: "5px"
         }
-    }, 
+    },
 }
