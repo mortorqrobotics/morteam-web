@@ -19,7 +19,6 @@ export default class SearchBox extends React.Component {
     }
 
     sendQuery = async(query) => {
-        console.log(query);
         if (query == "") {
             this.setState({
                 users: [],
