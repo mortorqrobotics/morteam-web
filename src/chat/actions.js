@@ -174,8 +174,8 @@ export const loadChats = (query) => async (dispatch, getState) => {
     } else {
         sentData = data.filter(obj => !obj.audience.isMultiTeam);
     }
-    const chatId = query
-        || (sentData.length > 0 ? sentData[0]._id : null);
+    const chatId = (query in sentData) ? query
+        : (sentData.length > 0 ? sentData[0]._id : null);
     dispatch({
         type: "LOAD_CHATS_SUCCESS",
         chats: sentData,
@@ -196,13 +196,12 @@ export const setTab = (tab, query) => (dispatch, getState) => {
 
 export async function initialActions(dispatch) {
     const { data } = await request("GET", "/chats?" + Date.now);
-    if(window.location.search.match(/[\?&]id=([^&]+)/)) {
-        const query = window.location.search.match(/[\?&]id=([^&]+)/)[1];
+    let match = window.location.search.match(/[\?&]id=([^&]+)/);
+    if (match) {
+        const query = match[1];
         if (data.map(obj => obj._id).indexOf(query) === -1) {
             dispatch(loadChats(localStorage.selectedChatId));
-        }
-        else if (data.filter(obj => !obj.audience.isMultiTeam).map(obj => obj._id).indexOf(query) === -1
-        ) {
+        } else if (data.filter(obj => !obj.audience.isMultiTeam).map(obj => obj._id).indexOf(query) === -1) {
             dispatch(setTab("inter", query));
         }
     } else {

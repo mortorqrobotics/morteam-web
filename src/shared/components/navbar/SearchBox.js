@@ -15,7 +15,7 @@ export default class SearchBox extends React.Component {
         users: [],
         team: {},
     }
- 
+
     componentDidMount = async () => {
         let { data } = await request("get", "/teams/current/users");
         this.setState({
@@ -30,7 +30,7 @@ export default class SearchBox extends React.Component {
             });
         } else if (/^\d+$/.test(query)) {
             this.lastQuery = query;
-            let teamInfo = ajax.request("get", "/teams/number/" + query + "/info", true);
+            let teamInfo = request("get", "/teams/number/" + query + "/info", true);
             this.teamCancelRequest = teamInfo.cancel;
             try {
                 let { data: teamData } = await teamInfo.req;
@@ -76,7 +76,7 @@ export default class SearchBox extends React.Component {
                                 key={user._id}
                                 type={"user"}
                             />
-                        ))
+                        )
                     }
                     {this.state.team.team_number &&
                         <SearchDropItem
@@ -85,9 +85,9 @@ export default class SearchBox extends React.Component {
                             type={"team"}
                         />
                     }
-                </div>
-            )
-        }
+                </ul>
+            </div>
+        )
     }
 
     render() {
