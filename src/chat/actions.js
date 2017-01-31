@@ -174,7 +174,7 @@ export const loadChats = (query) => async (dispatch, getState) => {
     } else {
         sentData = data.filter(obj => !obj.audience.isMultiTeam);
     }
-    const chatId = (query in sentData) ? query
+    const chatId = sentData.some(chat => chat._id === query) ? query
         : (sentData.length > 0 ? sentData[0]._id : null);
     dispatch({
         type: "LOAD_CHATS_SUCCESS",
