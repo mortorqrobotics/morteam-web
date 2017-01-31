@@ -21,7 +21,7 @@ export default class Center extends React.Component {
         isModalOpen: false,
     };
 
-    getBlueAllienceInfo = async() => {
+    getBlueAllianceInfo = async () => {
         try {
             let { data } = await request("GET", "/teams/number/" + pageOptions.teamNumber + "/info");
             this.setState({
@@ -39,7 +39,7 @@ export default class Center extends React.Component {
     }
 
     componentWillMount = () => {
-        this.getBlueAllienceInfo();
+        this.getBlueAllianceInfo();
     }
 
     handleButtonRender = () => {
@@ -94,9 +94,11 @@ export default class Center extends React.Component {
                             </li>
                         </ul>
                         {this.handleButtonRender()}
-                        <EmailModal
-                            {...modalProps(this, "isModalOpen")}
-                        />
+                        {pageOptions.team &&
+                            <EmailModal
+                                {...modalProps(this, "isModalOpen")}
+                            />
+                        }
                     </div>
                 )
             } else {
