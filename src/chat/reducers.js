@@ -141,8 +141,7 @@ function currentChatId(state = initialCurrentChatId, action) {
         case "LOAD_CHATS_SUCCESS":
             if (action.chatId) {
                 return action.chatId
-            }
-            else if (!state && action.chats.length > 0) {
+            } else if (!state && action.chats.length > 0) {
                 return action.chats[0]._id
             } else {
                 return null
