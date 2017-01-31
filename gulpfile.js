@@ -94,32 +94,40 @@ for (let page of allPages) {
     });
 }
 
+function watchPage(page) {
+    let path = "./src/" + page + "/components/" + capitalize(page) + ".js";
+    let bundler = watchify(browserify({
+        entries: [path],
+        debug: true,
+        cache: [],
+        packageCache: [],
+    }));
+    bundler = stuff(bundler);
+    let watcher = () => {
+        return bundler.bundle()
+            .on("error", function(err) {
+                console.log(err.toString());
+                console.log(err.codeFrame);
+                this.emit("end");
+            })
+            .pipe(source(capitalize(page) + ".js"))
+            .pipe(gulp.dest("./build/"));
+    }
+    bundler.on("update", watcher);
+    bundler.on("log", gutil.log);
+    return watcher();
+}
+
 gulp.task("watch", () => {
-    let streams = allPages.map(page => {
-        let path = "./src/" + page + "/components/" + capitalize(page) + ".js";
-        let bundler = watchify(browserify({
-            entries: [path],
-            debug: true,
-            cache: [],
-            packageCache: [],
-        }));
-        bundler = stuff(bundler);
-        let watcher = () => {
-            return bundler.bundle()
-                .on("error", function(err) {
-                    console.log(err.toString());
-                    console.log(err.codeFrame);
-                    this.emit("end");
-                })
-                .pipe(source(capitalize(page) + ".js"))
-                .pipe(gulp.dest("./build/"));
-        }
-        bundler.on("update", watcher);
-        bundler.on("log", gutil.log);
-        return watcher();
-    });
+    let streams = allPages.map(watchPage);
     return eventStream.merge(streams);
 });
+
+for (let page of allPages) {
+    gulp.task("watch-" + page, () => {
+        return watchPage(page);
+    });
+}
 
 gulp.task("vendor", function() {
     let bundler = browserify({

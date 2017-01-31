@@ -41,7 +41,9 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
-            return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+            return newState.sort((a, b) => (
+                new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+            ));
         case "SEND_MESSAGE_LOADING":
             index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
@@ -81,7 +83,9 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
-            return newState.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+            return newState.sort((a, b) => (
+                new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+            ));
         case "LOAD_MESSAGES_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             return update(state, {
@@ -102,6 +106,10 @@ function chats(state = initialChats, action) {
             })
         case "SET_IS_TYPING":
             index = state.findIndex(chat => chat._id === action.chatId);
+            if (index === -1) {
+                // avoid throwing errors if chats have not loaded yet
+                return state;
+            }
             return update(state, {
                 [index]: {
                     isTyping: {
@@ -112,6 +120,15 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
+        case "SET_CURRENT_CHAT_ID":
+            // unload messages in chats other than the current chat, since
+            // loading a lot of messages, switching chats, then switching
+            // back can be very slow otherwise
+            return state.map(chat => update(chat, {
+                messages: {
+                    $apply: (messages) => messages.slice(-20),
+                },
+            }))
         default:
             return state
     }

@@ -6,7 +6,7 @@ import ajax from "~/util/ajax";
 import TextBox from "~/shared/components/forms/TextBox";
 import AudienceItem from "./AudienceItem";
 import { getGroupName } from "~/util/groups";
-import { fullName } from "~/util";
+import { fullName, userSearch } from "~/util";
 
 import styles from "~/shared/styles/audience";
 
@@ -68,7 +68,7 @@ export default class AudienceSelect extends React.Component {
             newUsers = update(this.props.selected.users, {
                 $splice: [
                     [this.props.selected.users.indexOf(user), 1]
-                ]
+                ],
             });
         } else {
             newUsers = this.props.selected.users.concat([user]);
@@ -106,9 +106,7 @@ export default class AudienceSelect extends React.Component {
         } else {
             const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "i");
             return {
-                shownUsers: this.state.allUsers.filter(user => (
-                    regex.test(user.firstname) || regex.test(user.lastname)
-                )),
+                shownUsers: this.state.allUsers.filter(userSearch(this.state.query)),
                 shownGroups: this.state.allGroups.filter(group => (
                     regex.test(getGroupName(group))
                 ))

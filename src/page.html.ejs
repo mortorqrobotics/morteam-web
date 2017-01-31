@@ -2,6 +2,8 @@
 
     <head>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
         <title>MorTeam - <%= page %></title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:700,300,400" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -24,7 +26,7 @@
 
         <% var pages = ["Login", "Signup", "Fp", "Void"]
         if (pages.indexOf(page) === -1) { %>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jBox/0.3.2/jBox.js"></script>        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jBox/0.3.2/jBox.js"></script>
         <% } %>
 
         <style type="text/css">
@@ -65,8 +67,8 @@
             window.__options = <%- JSON.stringify(options || null) %>;
         </script>
 
-        <script src="/js/vendor"></script>
-        <script src="/js/<%= page %>"></script>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/<%= page %>.js"></script>
 
         <script type="text/javascript">
             // each root jsx file has to define the global variable __pageInit

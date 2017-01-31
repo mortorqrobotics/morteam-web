@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
-import { makeChangeHandlerFactory } from "~/util";
+import { makeChangeHandlerFactory, getAudienceIds } from "~/util";
 import {
     ModalTextBox,
     ModalTextArea,
@@ -37,10 +37,7 @@ class AddFolderModal extends React.Component {
     onSubmit = async () => {
         await this.props.dispatch(addFolder({
             name: this.state.name,
-            audience: {
-                users: this.state.audience.users.map(u => u._id),
-                groups: this.state.audience.groups.map(g => g._id)
-            },
+            audience: getAudienceIds(this.state.audience),
             type: "teamFolder",
         }))
         this.setState(this.initialState);

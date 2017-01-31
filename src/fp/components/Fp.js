@@ -17,16 +17,15 @@ class Fp extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     state = {
-        email: "",
-        username: "",
+        emailOrUsername: "",
         errorMsg: "",
     }
 
-    onSubmit = async() =>{
+    onSubmit = async () => {
         try {
+
             let { data } = await ajax.request("post", "/forgotPassword", {
-                email: this.state.email,
-                username: this.state.username,
+                emailOrUsername: this.state.emailOrUsername,
             });
             this.setState({
                 errorMsg: "success",
@@ -46,17 +45,11 @@ class Fp extends React.Component {
                 <Link location="login" text="Back to login" />
                 <Form style={styles.form} onSubmit={this.onSubmit}>
                     <TextBox
-                        placeholder="Email"
+                        placeholder="Email/Username"
                         style={styles.textBox}
-                        value={this.state.email}
-                        onChange={this.getChangeHandler("email")}
+                        value={this.state.emailOrUsername}
+                        onChange={this.getChangeHandler("emailOrUsername")}
                         autoFocus
-                    />
-                    <TextBox
-                        placeholder="Username"
-                        style={styles.textBox}
-                        value={this.state.Username}
-                        onChange={this.getChangeHandler("username")}
                     />
                     <SubmitButton
                         style={styles.button}

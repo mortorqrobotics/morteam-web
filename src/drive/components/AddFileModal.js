@@ -24,6 +24,7 @@ class AddFileModal extends React.Component {
     initialState = {
         name: "",
         file: null,
+        errorMsg: "",
     }
 
     state = {
@@ -40,16 +41,21 @@ class AddFileModal extends React.Component {
 
     onSubmit = async () => {
         try {
+            this.setState({
+                errorMsg: "Uploading...",
+            });
             const formData = new FormData();
             formData.append("uploadedFile", this.state.file);
             formData.append("fileName", this.state.name);
             formData.append("currentFolderId", this.props.selectedFolder._id);
-            await this.props.dispatch(addFile(formData))
-        } catch (err) {
-            console.log(err);
+            await this.props.dispatch(addFile(formData));
+            this.setState(this.initialState);
+            this.props.onRequestClose();
+        } catch ({ response: { data } }) {
+            this.setState({
+                errorMsg: data,
+            });
         }
-        this.setState(this.initialState);
-        this.props.onRequestClose();
     }
 
     render() {
@@ -86,6 +92,8 @@ class AddFileModal extends React.Component {
                     value={this.state.name}
                     onChange={this.getChangeHandler("name")}
                 />
+                <br />
+                {this.state.errorMsg}
                 <br />
                 <ModalButton
                     text="Upload"

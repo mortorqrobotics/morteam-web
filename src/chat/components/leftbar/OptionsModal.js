@@ -23,7 +23,6 @@ class OptionsModal extends React.Component {
         chat: React.PropTypes.object,
     }
 
-
     getChangeHandler = makeChangeHandlerFactory(this);
 
     initialState = {
@@ -111,7 +110,7 @@ class OptionsModal extends React.Component {
             || currentUser.isAdmin()
         ) {
             if (!this.state.isDeleteConfirmOpen) {
-               return(
+               return (
                     <Button
                         style={styles.deleteButton}
                         value="Delete"
@@ -137,6 +136,7 @@ class OptionsModal extends React.Component {
             }
         }
     }
+
     render() {
         return(
             <StandardModal

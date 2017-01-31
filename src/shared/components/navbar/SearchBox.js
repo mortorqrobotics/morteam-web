@@ -3,11 +3,9 @@ import Radium from "radium";
 
 import TextBox from "~/shared/components/forms/TextBox";
 import SearchDropItem from "./SearchDropItem";
-import ajax from "~/util/ajax";
+import { request } from "~/util/ajax";
+import { userSearch } from "~/util";
 import styles from "~/shared/styles/navbar";
-
-let userCancelRequest;
-let teamCancelRequest;
 
 @Radium
 export default class SearchBox extends React.Component {
@@ -17,88 +15,76 @@ export default class SearchBox extends React.Component {
         users: [],
         team: {},
     }
+ 
+    componentDidMount = async () => {
+        let { data } = await request("get", "/teams/current/users");
+        this.setState({
+            users: data,
+        });
+    }
 
-    sendQuery = async(query) => {
+    sendQuery = async (query) => {
         if (query == "") {
             this.setState({
-                users: [],
                 team: {},
             });
-        } else {
-            let userInfo = ajax.request("get", "/users/search?search=" + query, true);
-            userCancelRequest = userInfo.cancel;
+        } else if (/^\d+$/.test(query)) {
+            this.lastQuery = query;
+            let teamInfo = ajax.request("get", "/teams/number/" + query + "/info", true);
+            this.teamCancelRequest = teamInfo.cancel;
             try {
-                let { data: userData } = await userInfo.req;
-                this.setState({
-                    users: userData,
-                });
-            } catch (err) {
-                console.log(err);
-            }
-            if ((/^\d+$/).test(query)) {
-                this.lastQuery = query;
-                let teamInfo = ajax.request("get", "/teams/number/" + query + "/info", true);
-                teamCancelRequest = teamInfo.cancel;
-                try {
-                    let { data: teamData } = await teamInfo.req;
-                    if (query  === this.lastQuery) {
-                        this.setState({
-                            team: teamData,
-                        });
-                    }
-                } catch (err) {
-                    if (query === this.lastQuery) {
-                        this.setState({
-                            team: {},
-                        });
-                    }
-                    console.log(err);
+                let { data: teamData } = await teamInfo.req;
+                if (query  === this.lastQuery) {
+                    this.setState({
+                        team: teamData,
+                    });
                 }
+            } catch (err) {
+                if (query === this.lastQuery) {
+                    this.setState({
+                        team: {},
+                    });
+                }
+                console.log(err);
             }
         }
     }
 
     onChange = (e) => {
-        if (userCancelRequest) {
-            userCancelRequest();
+        if (this.teamCancelRequest) {
+            this.teamCancelRequest();
         }
-
-        if (teamCancelRequest) {
-            teamCancelRequest();
-        }
-
+      
         this.setState({
             query: e.target.value,
         });
         this.sendQuery(e.target.value);
     }
 
-    renderSearchDrop(){
-        if(this.state.users.length) {
-            return(
-                <div style={styles.searchDrop}>
-                    <ul>
-                        {this.state.users.map(user => (
+    renderSearchDrop = () => {
+        if (this.state.query === "") {
+            return null;
+        }
+        return (
+            <div style={styles.searchDrop}>
+                <ul>
+                    {this.state.users.filter(userSearch(this.state.query))
+                        .slice(0, 10)
+                        .map(user =>
                             <SearchDropItem
                                 obj={user}
                                 key={user._id}
                                 type={"user"}
                             />
-                        ))}
-                    </ul>
-                </div>
-            )
-        }
-        if (this.state.team.team_number) {
-            return(
-                <div style={styles.searchDrop}>
-                    <ul>
+                        ))
+                    }
+                    {this.state.team.team_number &&
                         <SearchDropItem
                             obj={this.state.team}
                             key={this.state.team.team_number}
                             type={"team"}
                         />
-                    </ul>
+                    }
                 </div>
             )
         }
@@ -109,7 +95,7 @@ export default class SearchBox extends React.Component {
             <li style={styles.search.li}>
                 <TextBox
                     style={styles.search.textBox}
-                    placeholder={"search"}
+                    placeholder="search"
                     onChange={this.onChange}
                     value={this.state.query}
                 />

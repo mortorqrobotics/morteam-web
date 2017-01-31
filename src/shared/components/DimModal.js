@@ -23,10 +23,7 @@ export default class DimModal extends React.Component {
     render() {
         return (
             <Modal
-                isOpen={this.props.isOpen}
-                onAfterOpen={this.props.onAfterOpen}
-                onRequestClose={this.props.onRequestClose}
-                closeTimeoutMS={this.props.closeTimeoutMS}
+                { ...this.props }
                 style={{ overlay: overlayStyle, content: this.props.style }}
             >
                 {this.props.children}

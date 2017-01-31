@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { addAnnouncement } from "~/home/actions";
 import AudienceModal from "./AudienceModal";
 import styles from "~/home/styles/editor";
+import { getAudienceIds } from "~/util";
 
 @Radium
 class Editor extends React.Component {
@@ -32,10 +33,7 @@ class Editor extends React.Component {
     post = async() => {
         await this.props.dispatch(addAnnouncement({
             content: this.content,
-            audience: {
-                users: this.state.audience.users.map(u => u._id),
-                groups: this.state.audience.groups.map(g => g._id),
-            }
+            audience: getAudienceIds(this.state.audience),
         }))
         this.setState(this.initialState);
         this.clear();
