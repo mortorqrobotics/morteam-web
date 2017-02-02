@@ -38,9 +38,15 @@ class AddModal extends React.Component {
         sendEmail: true,
     }
 
+    pending = false;
+
     getChangeHandler = makeChangeHandlerFactory(this);
 
     onSubmit = async () => {
+        if (this.pending) {
+            return;
+        }
+        this.pending = true;
         await this.props.dispatch(addEvent({
             sendEmail: this.state.sendEmail,
             name: this.state.name,
@@ -48,6 +54,7 @@ class AddModal extends React.Component {
             description: this.state.description,
             audience: getAudienceIds(this.state.audience),
         }))
+        this.pending = false;
         this.setState(this.initialState);
         this.props.onRequestClose();
     }
