@@ -7,6 +7,8 @@ function chats(state = initialChats, action) {
     let index;
     let newState;
     switch (action.type) {
+        case "LOAD_CHATS_PENDING":
+            return []
         case "LOAD_CHATS_SUCCESS":
             return action.chats
         case "ADD_CHAT_SUCCESS":

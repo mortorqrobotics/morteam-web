@@ -184,16 +184,15 @@ export const loadChats = (query) => async (dispatch, getState) => {
 }
 
 export const setTab = (tab, query) => (dispatch, getState) => {
-    dispatch({
-    	type: "LOAD_CHATS_SUCCESS",
-	chats: [],
-    })
     const { currentTab } = getState();
     if(currentTab !== tab){
         dispatch({
+            type: "LOAD_CHATS_PENDING",
+        });
+        dispatch({
             type: "SET_TAB",
             tab,
-        })
+        });
         dispatch(loadChats(query));
     }
 }
