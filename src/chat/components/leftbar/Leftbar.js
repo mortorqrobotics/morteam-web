@@ -73,7 +73,6 @@ class Leftbar extends React.Component {
                 {this.handleTabsRender()}
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
-                    style={this.props.currentTab === "inter" ? {display: "none"} : {}}
                 >
                     <Glyphicon glyph="pencil" style={{ marginRight: "5px" }} />
                     Compose

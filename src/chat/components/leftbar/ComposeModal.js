@@ -29,6 +29,7 @@ class ComposeModal extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     handleSubmit = () => {
+        console.log(this.props.currentTab)
         let users = this.state.audience.users.map(u => u._id);
         let groups = this.state.audience.groups.map(g => g._id);
         users = users.filter(userId => userId != currentUser._id);
@@ -44,7 +45,7 @@ class ComposeModal extends React.Component {
         } else if (this.state.isEditingName) {
             this.props.dispatch(addChat({
                 isTwoPeople: false,
-                audience: { users, groups },
+                audience: { users, groups, isMultiTeam: true },
                 name: this.state.name,
             }));
             this.setState(this.initialState);
@@ -68,6 +69,7 @@ class ComposeModal extends React.Component {
                             <AudienceSelect
                                 selected={this.state.audience}
                                 onChange={audience => this.setState({ audience })}
+                                isMultiTeam={this.props.currentTab==="inter"}
                             />
                         )
                     } else {
@@ -90,4 +92,10 @@ class ComposeModal extends React.Component {
 
 }
 
-export default connect()(ComposeModal);
+const mapStateToProps = (state) => {
+    return {
+        currentTab: state.currentTab,
+    }
+}
+
+export default connect(mapStateToProps)(ComposeModal);
