@@ -41,7 +41,7 @@ export default class Attendance extends React.Component {
 
     updateAttendance = async (isFirst) => {
         const { data: { absences, present } } = await ajax.request("GET",
-            `/users/id/${pageOptions.userId}/absences`, isFirst || ({
+            `/users/id/${pageOptions.userId}/absences`, isFirst ? ({
                 startDate: new Date(
                     this.state.fromYear,
                     this.state.fromMonth,
@@ -52,7 +52,7 @@ export default class Attendance extends React.Component {
                     this.state.toMonth,
                     this.state.toDay
                 ),
-            })
+            }) : undefined
         );
         this.setState({ absences, present });
     }
@@ -62,6 +62,10 @@ export default class Attendance extends React.Component {
         const absent = this.state.absences.length;
         const result = 100 * present / (present + absent) || 0;
         return Number.isInteger(result) ? result.toString() : result.toFixed(1);
+    }
+
+    getUnexcusedAbsenses = () => {
+
     }
 
     render() {
@@ -133,11 +137,21 @@ export default class Attendance extends React.Component {
                 </span>
                 <br />
 
+                {this.state.absences.length > 0 ?
+                    <div>
+                        <span style={styles.attendanceDataPoint}>
+                            Dates: {this.getUnexcusedAbsenses()}
+                        </span>
+                        <br />
+                    </div>
+                    :
+                    void(0)
+                }
+
                 <span style={styles.attendanceDataPoint}>
                     Presence percentage: {this.getPresencePercentage()}%
                 </span>
 
-                {/* TODO: show unexcused absences here */}
 
             </div>
         )
