@@ -92,3 +92,24 @@ export function parseDate(timestamp) {
 	result += ", " + time;
 	return result;
 }
+
+export function parseDateWithoutTime(timestamp) {
+    let date = new Date(timestamp);
+    let now = new Date();
+    let result = "";
+    let month = date.getMonth();
+    let day = date.getDate();
+    let year = date.getFullYear();
+	if (now.getFullYear() == year) {
+		if (now.getDate() == day && now.getMonth() == month) {
+			result += "Today";
+		} else if (now.getDate() == day + 1 && now.getMonth() == month) {
+			result += "Yesterday";
+		} else {
+			result += allMonths[month] + " " + day;
+		}
+	} else {
+		result += allMonths[month] + " " + day + " " + year;
+	}
+	return result;
+}

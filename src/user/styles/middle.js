@@ -45,6 +45,12 @@ export default {
         fontSize: "18px",
         display: "inline-block",
     },
+    absenceDate: {
+        margin: "10px 10px 5px 33px",
+        fontSize: "18px",
+        display: "inline-block",
+        color: "#FF0000",
+    },
     attendanceDropdown: {
         margin: "5px",
     },
