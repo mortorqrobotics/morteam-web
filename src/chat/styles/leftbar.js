@@ -53,19 +53,4 @@ export default {
             opacity: "1",
         },
     },
-    tabs: {
-        wrapper: {
-            marginTop: "20px",
-            marginBottom: "10px",
-            textAlign: "center",
-        },
-        tab: {
-            display: "inline",
-            fontSize: "17px",
-            borderBottom: "none",
-            borderRadius: "35px",
-            height: "50px",
-            padding: "10px",
-        },
-    }
 }

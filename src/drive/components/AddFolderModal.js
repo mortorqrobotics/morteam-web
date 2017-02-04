@@ -35,11 +35,14 @@ class AddFolderModal extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     onSubmit = async () => {
+        let audienceIds = getAudienceIds(this.state.audience);
+        audienceIds.isMultiTeam = this.props.currentTab === "inter";
+        console.log(audienceIds)
         await this.props.dispatch(addFolder({
             name: this.state.name,
-            audience: getAudienceIds(this.state.audience),
+            audience: audienceIds,
             type: "teamFolder",
-        }))
+        }));
         this.setState(this.initialState);
         this.props.onRequestClose();
     }
@@ -59,6 +62,7 @@ class AddFolderModal extends React.Component {
                 <AudienceSelect
                     selected={this.state.audience}
                     onChange={audience => this.setState({ audience })}
+                    isMultiTeam={this.props.currentTab === "inter"}
                 />
                  <ModalButton
                     text="Done"
@@ -70,4 +74,10 @@ class AddFolderModal extends React.Component {
     }
 }
 
-export default connect()(AddFolderModal);
+const mapStateToProps = (state) => {
+    return {
+        currentTab: state.currentTab,
+    }
+}
+
+export default connect(mapStateToProps)(AddFolderModal);

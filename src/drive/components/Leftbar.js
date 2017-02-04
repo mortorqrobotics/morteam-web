@@ -4,14 +4,14 @@ import Radium from "radium";
 import { withCss } from "~/util/component";
 import { range } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
+import { LeftbarContainer, LeftbarItem, LeftbarButton, MultiTeamTabs } from "~/shared/components/leftbar";
 import { leftbarProps } from "~/util/leftbar";
 import { modalProps } from "~/util/modal";
 import AddFolderModal from "~/drive/components/AddFolderModal";
 import SortDropdown from "~/drive/components/SortDropdown";
 import styles from "~/drive/styles";
 import ajax from "~/util/ajax";
-import { setFolder } from "~/drive/actions";
+import { setFolder, setTab } from "~/drive/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -29,7 +29,13 @@ class Leftbar extends React.Component {
     render() {
         return (
             <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
-
+                <MultiTeamTabs
+                    actions={{
+                        intra: () => this.props.dispatch(setTab("intra")),
+                        inter: () => this.props.dispatch(setTab("inter")),
+                    }}
+                    currentTab={this.props.currentTab}
+                />
                 <LeftbarItem>
                     <SortDropdown />
                 </LeftbarItem>
@@ -65,6 +71,7 @@ const mapStateToProps = (state) => {
     return {
         folders: state.folders,
         selectedFolder: state.selectedFolder,
+        currentTab: state.currentTab,
     }
 }
 

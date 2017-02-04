@@ -1,19 +1,35 @@
 import { request } from "~/util/ajax";
 
-const fetchFolders = () => async (dispatch, getStore) => {
+const fetchFolders = () => async (dispatch, getStore, getState) => {
     const store = getStore();
+    const currentTab = store.currentTab;
     const { data } = await request("GET", "/folders");
-    const defaultFolders = data.filter(folder => folder.defaultFolder);
-    const sortedFolders = [
-        defaultFolders.find(folder => folder.name === "Team Files"),
-        defaultFolders.find(folder => folder.name === "Personal Files")
-    ].concat(data.filter(f => defaultFolders.indexOf(f) === -1));
+    let sentFolders;
+    if (currentTab === "inter") {
+        console.log(data);
+        sentFolders = data.filter(obj => obj.audience.isMultiTeam);
+    } else {
+        const sentData = data.filter(obj => !obj.audience.isMultiTeam);
+        const defaultFolders = sentData.filter(folder => folder.defaultFolder);
+        sentFolders = [
+            defaultFolders.find(folder => folder.name === "Team Files"),
+            defaultFolders.find(folder => folder.name === "Personal Files")
+        ].concat(sentData.filter(f => defaultFolders.indexOf(f) === -1));
+    }
     dispatch({
         type: "SET_FOLDERS",
-        folders: sortedFolders,
+        folders: sentFolders,
     });
-    if (!store.selectedFolder && data.length !== 0) {
-        dispatch(setFolder(sortedFolders[0]))
+}
+
+export const setTab = (tab) => (dispatch, getState) => {
+    const { currentTab } = getState();
+    if(currentTab !== tab){
+        dispatch({
+            type: "SET_TAB",
+            tab,
+        })
+        dispatch(fetchFolders());
     }
 }
 
