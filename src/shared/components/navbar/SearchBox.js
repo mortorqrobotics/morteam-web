@@ -54,7 +54,7 @@ export default class SearchBox extends React.Component {
         if (this.teamCancelRequest) {
             this.teamCancelRequest();
         }
-      
+
         this.setState({
             query: e.target.value,
         });

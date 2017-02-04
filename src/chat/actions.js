@@ -187,9 +187,12 @@ export const setTab = (tab, query) => (dispatch, getState) => {
     const { currentTab } = getState();
     if(currentTab !== tab){
         dispatch({
+            type: "LOAD_CHATS_PENDING",
+        });
+        dispatch({
             type: "SET_TAB",
             tab,
-        })
+        });
         dispatch(loadChats(query));
     }
 }
