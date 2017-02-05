@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import { withCss } from "~/util/component";
-import { range } from "~/util";
+import { range, currentUser } from "~/util";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import { LeftbarContainer, LeftbarItem, LeftbarButton, MultiTeamTabs } from "~/shared/components/leftbar";
 import { leftbarProps } from "~/util/leftbar";
@@ -42,6 +42,7 @@ class Leftbar extends React.Component {
 
                 <LeftbarButton
                     onClick={() => this.setState({ isModalOpen: true })}
+                    styles={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
                 >
                     <Glyphicon glyph="plus" style={styles.left.glyph} />
                     New Folder

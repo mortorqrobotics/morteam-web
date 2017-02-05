@@ -56,6 +56,7 @@ class Leftbar extends React.Component {
                 />
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
+                    style={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
                 >
                     <Glyphicon glyph="pencil" style={{ marginRight: "5px" }} />
                     Compose

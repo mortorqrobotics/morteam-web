@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
-import CheckBox from "~/shared/components/forms/CheckBox";
+import AdminCheckBox from "~/shared/components/AdminCheckBox";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { makeChangeHandlerFactory, otherUser, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
@@ -89,16 +89,11 @@ class ComposeModal extends React.Component {
                         )
                     }
                 })()}
-                <CheckBox
-                    id="modal-checkbox"
-                    checked={this.state.checked}
+                <AdminCheckBox
                     onChange={this.getChangeHandler("checked", "checked")}
+                    condition={this.props.currentTab === "inter"}
+                    checked={this.state.checked}
                 />
-                <label
-                    htmlFor="modal-checkbox"
-                >
-                    Admin Only?
-                </label>
                 <ModalButton
                     text="Done"
                     onClick={this.handleSubmit}
