@@ -49,7 +49,9 @@ export default {
         margin: "10px 10px 5px 33px",
         fontSize: "18px",
         display: "inline-block",
-        color: "#FF0000",
+        backgroundColor: "#F9A9A9",
+        paddingLeft: "16px",
+        paddingRight: "16px",
     },
     attendanceDropdown: {
         margin: "5px",

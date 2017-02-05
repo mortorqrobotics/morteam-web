@@ -66,11 +66,14 @@ export default class Attendance extends React.Component {
     }
 
     getUnexcusedAbsenses = () => {
-        console.log(this.state.absences);
         let showDate = "";
-        for (let i = 0; i < this.state.absences.length; i++) {
-             showDate = showDate + parseDate(this.state.absences[i].date);
-        }
+        showDate = this.state.absences.map(absence => (
+            <div key={absence._id}>
+                <span style={styles.absenceDate}>{parseDate(absence.date)}: {absence.name}, {absence.description}</span>
+                <br />
+            </div>
+        ))
+        //showDate += JSON.stringify(this.state.absences);
         return showDate;
 
     }
@@ -146,10 +149,9 @@ export default class Attendance extends React.Component {
 
                 {this.state.absences.length > 0 ?
                     <div>
-                        <span style={styles.absenceDate}>
-                            Dates: {this.getUnexcusedAbsenses()}
+                        <span>
+                            {this.getUnexcusedAbsenses()}
                         </span>
-                        <br />
                     </div>
                     :
                     void(0)
