@@ -7,7 +7,7 @@ import styles from "~/user/styles/middle";
 import { range, pageOptions } from "~/util";
 import ajax from "~/util/ajax";
 import { allMonths, daysInAbsMonth } from "~/util/date";
-import { parseDate, parseDateWithoutTime } from "~/util/date";
+import { parseDate } from "~/util/date";
 
 const now = new Date();
 
@@ -69,7 +69,7 @@ export default class Attendance extends React.Component {
         console.log(this.state.absences);
         let showDate = "";
         for (let i = 0; i < this.state.absences.length; i++) {
-             showDate = showDate + parseDateWithoutTime(this.state.absences[i].date);
+             showDate = showDate + parseDate(this.state.absences[i].date);
         }
         return showDate;
 
