@@ -24,6 +24,7 @@ export default class DimModal extends React.Component {
         return (
             <Modal
                 { ...this.props }
+                contentLabel = "Modal"
                 style={{ overlay: overlayStyle, content: this.props.style }}
             >
                 {this.props.children}
