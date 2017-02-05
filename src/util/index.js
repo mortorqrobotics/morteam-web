@@ -106,4 +106,5 @@ export function filterMultiTeam(objects, filter) {
         return objects.filter(obj => !obj.audience.isMultiTeam);
     }
 }
+
 export const pageOptions = window.__options;

@@ -3,9 +3,11 @@ import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
+import CheckBox from "~/shared/components/forms/CheckBox";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { makeChangeHandlerFactory, otherUser, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
+import { request } from "~/util/ajax";
 import { connect } from "react-redux";
 import { addChat } from "~/chat/actions";
 
@@ -23,13 +25,13 @@ class ComposeModal extends React.Component {
         },
         name: "",
         isEditingName: false,
+        checked: false,
     }
     state = this.initialState;
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    handleSubmit = () => {
-        console.log(this.props.currentTab)
+    handleSubmit = async() => {
         let users = this.state.audience.users.map(u => u._id);
         let groups = this.state.audience.groups.map(g => g._id);
         users = users.filter(userId => userId != currentUser._id);
@@ -43,9 +45,14 @@ class ComposeModal extends React.Component {
             this.setState(this.initialState);
             this.props.onRequestClose();
         } else if (this.state.isEditingName) {
+            if (this.props.currentTab === "inter" && this.state.checked) {
+                groups = JSON.stringify(this.state.audience.groups.map(group => group.team._id));
+                let { data } = await request("GET", "/groups/position/" + groups);
+                groups = data.map(group => group._id);
+            }
             this.props.dispatch(addChat({
                 isTwoPeople: false,
-                audience: { users, groups, isMultiTeam: true },
+                audience: { users, groups, isMultiTeam: this.props.currentTab === "inter" },
                 name: this.state.name,
             }));
             this.setState(this.initialState);
@@ -82,6 +89,16 @@ class ComposeModal extends React.Component {
                         )
                     }
                 })()}
+                <CheckBox
+                    id="modal-checkbox"
+                    checked={this.state.checked}
+                    onChange={this.getChangeHandler("checked", "checked")}
+                />
+                <label
+                    htmlFor="modal-checkbox"
+                >
+                    Admin Only?
+                </label>
                 <ModalButton
                     text="Done"
                     onClick={this.handleSubmit}
