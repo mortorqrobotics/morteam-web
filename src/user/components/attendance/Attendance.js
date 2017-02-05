@@ -4,7 +4,7 @@ import Radium from "radium";
 import Dropdown from "~/shared/components/forms/Dropdown";
 import Button from "~/shared/components/forms/Button";
 import styles from "~/user/styles/middle";
-import { range, pageOptions } from "~/util";
+import { range, pageOptions, fullName, currentUser} from "~/util";
 import ajax from "~/util/ajax";
 import { allMonths, daysInAbsMonth } from "~/util/date";
 import { parseDate } from "~/util/date";
@@ -70,6 +70,14 @@ export default class Attendance extends React.Component {
         showDate = this.state.absences.map(absence => (
             <div key={absence._id}>
                 <span style={styles.absenceDate}>{parseDate(absence.date)}: {absence.name}, {absence.description}</span>
+                {currentUser.isAdmin() ?
+                    <Button
+                        style={styles.refreshAttendance}
+                        text="Excuse Absence"
+                    />
+                    :
+                    void(0)
+                }
                 <br />
             </div>
         ))
