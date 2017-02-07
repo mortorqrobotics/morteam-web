@@ -21,6 +21,9 @@ export default {
     container: {
         backgroundColor: defaultColor,
         width: "260px",
+        '@media screen and (max-width: 800px)': {
+            width: "200px",
+        },
         height: "calc(100% - 30px)",
         position: "fixed",
         top: "40px",
@@ -32,7 +35,11 @@ export default {
     item,
     img: {
         margin: "24px 54px -10px 54px",
+        '@media screen and (max-width: 800px)': {
+            marginLeft: "25px"
+        },
         border: "2px solid gray",
+        textAlign: "center",
     },
     name: [item, {
         fontSize: "24px",

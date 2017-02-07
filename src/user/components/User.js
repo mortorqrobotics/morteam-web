@@ -9,6 +9,7 @@ import Attendance from "./attendance/Attendance";
 import Grid from "react-bootstrap/lib/Grid";
 import Row from "react-bootstrap/lib/Row";
 import Col from "react-bootstrap/lib/Col";
+import styles from "~/user/styles/middle";
 
 import { makeStore, soundsMiddleware } from "~/util/redux";
 import sharedReducers from "~/shared/reducers";
@@ -35,12 +36,12 @@ export default class User extends React.Component {
             <Root pageName="user" store={store}>
                 <Navbar />
                 <Leftbar />
-                <Grid fluid style={{overflow:"hidden",marginLeft:"300px",width:"calc(100%-300px)",height:"100%"}}>
-                    <Row style={{height:"100%",width:"100%"}}>
-                        <Col sm={2} style={{width:"50%"}}>
+                <Grid fluid style={styles.grid}>
+                    <Row style={styles.row}>
+                        <Col sm={2} style={styles.col}>
                             <Attendance />
                         </Col>
-                        <Col sm={2} style={{width:"50%"}}>
+                        <Col sm={2} style={styles.col}>
                             <Tasks />
                         </Col>
                     </Row>
