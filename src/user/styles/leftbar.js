@@ -21,10 +21,13 @@ export default {
     container: {
         backgroundColor: defaultColor,
         width: "260px",
-        '@media screen and (max-width: 800px)': {
-            width: "200px",
-        },
         height: "calc(100% - 30px)",
+        "@media screen and (max-width: 800px)": {
+            width: "200px"
+        },
+        "@media screen and (max-width: 550px)": {
+            width: "150px",
+        },
         position: "fixed",
         top: "40px",
         overflowY: "auto",
@@ -35,8 +38,12 @@ export default {
     item,
     img: {
         margin: "24px 54px -10px 54px",
-        '@media screen and (max-width: 800px)': {
-            marginLeft: "25px"
+        "@media screen and (max-width: 800px)": {
+            marginLeft: "25px",
+        },
+        "@media screen and (max-width: 550px)": {
+            marginLeft: "12px",
+            width: "130px",
         },
         border: "2px solid gray",
         textAlign: "center",

@@ -15,6 +15,9 @@ export default {
     },
     col: {
         width: "50%",
+        "@media screen and (max-width: 800px)": {
+            width: "100%",
+        },
     },
     container: {
         backgroundColor: "#f5f5f5",
@@ -23,9 +26,9 @@ export default {
         paddingBottom: "3px",
         boxShadow: standardBoxShadow,
         marginLeft: "120px",
-        '@media screen and (max-width: 800px)': {
+        "@media screen and (max-width: 550px)": {
             width: "150px",
-            marginLeft: "10px",
+            marginLeft: "20px",
         },
     },
     title: {

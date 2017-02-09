@@ -12,6 +12,7 @@ import { allMonths } from "~/util/date";
 import { connect } from "react-redux";
 
 const RadiumGrid = Radium(Grid);
+const RadiumCol = Radium(Col);
 
 @Radium
 class Container extends React.Component {
@@ -24,12 +25,12 @@ class Container extends React.Component {
             >
                 <div style={styles.monthDisplay}>{allMonths[this.props.month]}</div>
                 <Row style={{height:"100%",width:"100%"}}>
-                    <Col xs={2} style={styles.middleCol}>
+                    <RadiumCol xs={2} style={styles.middleCol}>
                         <Middle />
-                    </Col>
-                    <Col xs={2} style={{width:"50%"}}>
+                    </RadiumCol>
+                    <RadiumCol xs={2} style={styles.rightCol}>
                         <Right />
-                    </Col>
+                    </RadiumCol>
                 </Row>
             </RadiumGrid>
         )

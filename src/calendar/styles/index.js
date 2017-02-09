@@ -15,6 +15,17 @@ export default {
         display: "inline-block",
         padding: "15px",
         WebkitOverflowScrolling: "touch",
+        "@media screen and (max-width: 800px)": {
+            width: "100%",
+        },    
+    },
+    rightCol: {
+        width: "50%", 
+        borderRight: "2px solid " + defaultColor,
+        height: "100%",
+        display: "inline-block",
+        padding: "15px",
+        WebkitOverflowScrolling: "touch",
     },
     grid: {
         leftbarOpen: [grid, {

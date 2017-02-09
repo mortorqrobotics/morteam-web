@@ -28,6 +28,8 @@ import {
 initSIO(socket => initSharedListeners(socket, store.dispatch));
 initSIO(socket => initAlertCreator(socket, store.dispatch));
 
+const RadiumCol = Radium(Col);
+
 @Radium
 export default class User extends React.Component {
 
@@ -38,12 +40,12 @@ export default class User extends React.Component {
                 <Leftbar />
                 <Grid fluid style={styles.grid}>
                     <Row style={styles.row}>
-                        <Col sm={2} style={styles.col}>
+                        <RadiumCol sm={2} style={styles.col}>
                             <Attendance />
-                        </Col>
-                        <Col sm={2} style={styles.col}>
+                        </RadiumCol>
+                        <RadiumCol sm={2} style={styles.col}>
                             <Tasks />
-                        </Col>
+                        </RadiumCol>
                     </Row>
                 </Grid>
             </Root>
