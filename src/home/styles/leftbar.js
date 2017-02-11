@@ -42,4 +42,11 @@ export default{
             marginRight: "5px"
         }
     },
+    alert: {
+        width: "190px",
+        textAllign: "center",
+        "@media screen and (max-width: 700px)": {
+            display: "none",
+        },
+    },
 }

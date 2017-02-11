@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Leftbar from "./leftbar/Leftbar";
+import Rightbar from "./rightbar/Rightbar";
 import Navbar from "~/shared/components/navbar/Navbar";
 import CenterContainer from "./CenterContainer";
 import styles from "~/home/styles";
@@ -15,6 +16,7 @@ const store = makeStore({
     ...sharedReducers,
 }, soundsMiddleware());
 import { initialActions } from "~/home/actions";
+import { currentUser } from "~/util";
 initialActions(store.dispatch);
 import { initSIO } from "~/util/sio";
 import {
@@ -34,6 +36,11 @@ export default class Home extends React.Component {
                 <div style={styles.container}>
                     <Leftbar />
                     <CenterContainer />
+                    {currentUser.isAdmin() ?
+                        <Rightbar />
+                        :
+                        void(0)
+                    }
                 </div>
             </Root>
         )
