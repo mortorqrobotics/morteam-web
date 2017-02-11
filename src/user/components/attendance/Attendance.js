@@ -65,6 +65,18 @@ export default class Attendance extends React.Component {
         return Number.isInteger(result) ? result.toString() : result.toFixed(1);
     }
 
+
+    excuseAbsence = async (absenceId) => {
+        // TODO: Use Redux
+        await ajax.request("PUT",
+            "/events/id/" + absenceId + "/excuseAbsences",
+            { userIds: [pageOptions.userId], }
+        )
+        this.setState({
+            absences: this.state.absences.filter(absence => absence._id != absenceId),
+        })
+    }
+
     getUnexcusedAbsenses = () => {
         let showDate = "";
         showDate = this.state.absences.map(absence => (
@@ -74,6 +86,7 @@ export default class Attendance extends React.Component {
                     <Button
                         style={styles.refreshAttendance}
                         text="Excuse Absence"
+                        onClick={() => this.excuseAbsence(absence._id)}
                     />
                     :
                     void(0)
@@ -155,6 +168,10 @@ export default class Attendance extends React.Component {
                 </span>
                 <br />
 
+                <span style={styles.attendanceDataPoint}>
+                    Presence percentage: {this.getPresencePercentage()}%
+                </span>
+
                 {this.state.absences.length > 0 ?
                     <div>
                         <span>
@@ -164,11 +181,6 @@ export default class Attendance extends React.Component {
                     :
                     void(0)
                 }
-
-                <span style={styles.attendanceDataPoint}>
-                    Presence percentage: {this.getPresencePercentage()}%
-                </span>
-
 
             </div>
         )
