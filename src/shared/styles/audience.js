@@ -45,4 +45,9 @@ export default {
             },
         },
     },
+    adminCheckBox: {
+        wrapper: {
+          marginTop: "5px",
+        },
+    },
 }

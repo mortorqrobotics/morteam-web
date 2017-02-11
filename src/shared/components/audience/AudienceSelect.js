@@ -104,16 +104,23 @@ export default class AudienceSelect extends React.Component {
     }
 
     getShownItems = () => {
+        let allGroups = this.state.allGroups;
+
+        if (this.props.isMultiTeam) {
+            allGroups = allGroups.sort((first, second) => first.team.number - second.team.number );
+        }
+
         if (this.state.query == "") {
             return {
-                shownGroups: this.state.allGroups,
+                shownGroups: allGroups,
                 shownUsers: this.state.allUsers,
             }
         } else {
             const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "i");
+
             return {
                 shownUsers: this.state.allUsers.filter(userSearch(this.state.query)),
-                shownGroups: this.state.allGroups.filter(group => (
+                shownGroups: allGroups.filter(group => (
                     regex.test(this.props.isMultiTeam ? group.team.number.toString() : getGroupName(group))
                 ))
             }
