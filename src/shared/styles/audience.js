@@ -1,5 +1,6 @@
 import { standardBoxShadow } from "~/shared/styles/boxShadows";
 import { selectedColor } from "~/shared/styles/colors";
+import { defaultFont } from "~/shared/styles/fonts";
 
 export default {
     audienceItem:{
@@ -49,5 +50,13 @@ export default {
         wrapper: {
           marginTop: "5px",
         },
+        glyph: {
+          marginLeft: "5px",
+          color: "#a9a9a9",
+          ":hover": {
+              color: "#555555",
+          },
+        },
+        tooltip: defaultFont,
     },
 }

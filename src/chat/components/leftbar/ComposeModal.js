@@ -25,7 +25,7 @@ class ComposeModal extends React.Component {
         },
         name: "",
         isEditingName: false,
-        checked: false,
+        checked: true,
     }
     state = this.initialState;
 

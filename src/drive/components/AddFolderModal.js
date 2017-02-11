@@ -28,7 +28,7 @@ class AddFolderModal extends React.Component {
             users: [],
             groups: [],
         },
-        checked: false,
+        checked: true,
     }
 
     state = {

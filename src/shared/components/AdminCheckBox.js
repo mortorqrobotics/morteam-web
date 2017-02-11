@@ -3,7 +3,19 @@ import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
 import CheckBox from "~/shared/components/forms/CheckBox";
+import OverlayTrigger from "react-bootstrap/lib/OverlayTrigger";
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import Tooltip from "react-bootstrap/lib/Tooltip";
 import styles from "~/shared/styles/audience"
+
+const RadiumGlyphicon = Radium(Glyphicon);
+const tooltip=(
+    <Tooltip id="AdminCheckBox">
+        <span style={styles.adminCheckBox.tooltip}>
+            Add only admin members of the selected teams
+        </span>
+    </Tooltip>
+);
 
 const AdminCheckBox = Radium((props) => {
     return (
@@ -12,15 +24,15 @@ const AdminCheckBox = Radium((props) => {
               id="modal-checkbox"
               checked={props.checked}
               onChange={props.onChange}
+
           />
-          <label
-              htmlFor="modal-checkbox"
+          Admin only?
+          <OverlayTrigger
+              placement="top"
+              overlay={tooltip}
           >
-              Admin Only?
-          </label>
-          <p>
-              Selecting this textbox will create the chat with only the admin members of each team.
-          </p>
+              <RadiumGlyphicon glyph="info-sign" style={styles.adminCheckBox.glyph} />
+          </OverlayTrigger>
       </div>
     )
 })
