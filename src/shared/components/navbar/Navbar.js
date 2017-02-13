@@ -43,7 +43,7 @@ class Navbar extends React.Component {
                         <RightLinks />
                     </ul>
                 </div>
-                <div style={this.props.isDropdownOpen ? styles.navbarDropdown.div : {display: "none"}}>
+                <div style={styles.navbarDropdown.div} className="dropdown">
                     <DropdownItem path="/" text="Home" />
                     <DropdownItem path="/chat" text="Chat" />
                     <DropdownItem path="/drive" text="Drive" />
@@ -62,4 +62,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Navbar);
-

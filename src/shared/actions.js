@@ -80,8 +80,17 @@ export function closeLeftbar() {
     }
 }
 
-export function toggleDropdown() {
-    return {
-        type: "TOGGLE_DROPDOWN",
+export const toggleDropdown = () => (dispatch, getState) => {
+    const { isDropdownOpen } = getState();
+    if (isDropdownOpen) {
+        $(".dropdown").velocity({
+            top: "-215px",
+        }, 200);
     }
+    else {
+        $(".dropdown").velocity({
+            top: "40px",
+        }, 200);
+    }
+    dispatch({ type: "TOGGLE_DROPDOWN" });
 }

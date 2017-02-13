@@ -194,13 +194,13 @@ export default {
             textAlign: "center",
             backgroundColor: defaultColor,
             left: "0px",
-            top: "40px",
+            top: "-215px",
             height: "auto",
             padding: "10px 0 5px 0",
             zIndex: "88",
             boxShadow: "0 3px 8px -5px black",
             position: "fixed",
-        "@media screen and (min-width: 821px)": {
+            "@media screen and (min-width: 821px)": {
                 display: "none",
             },
         },
