@@ -14,10 +14,6 @@ import { leftbarProps } from "~/util/leftbar";
 @Radium
 class Leftbar extends React.Component {
 
-    state = {
-        isLeftbarOpen: true,
-    }
-
     handleMonthChange = (month) => {
         this.props.dispatch(setAbsMonth({
             year: this.props.selectedYear,
@@ -34,7 +30,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this) }>
 
                 <LeftbarItem>
                     <YearDropdown
@@ -63,6 +59,7 @@ const mapStateToProps = (state) => {
     return {
         selectedMonth: state.absMonth.month,
         selectedYear: state.absMonth.year,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 

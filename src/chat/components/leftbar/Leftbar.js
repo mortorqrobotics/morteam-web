@@ -19,7 +19,6 @@ class Leftbar extends React.Component {
     state = {
         isComposeModalOpen: false,
         search: "",
-        isLeftbarOpen: true,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this)
@@ -69,7 +68,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this) }>
                 {this.handleTabsRender()}
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
@@ -107,6 +106,7 @@ const mapStateToProps = (state) => {
     return {
         chats: state.chats,
         currentTab: state.currentTab,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 
