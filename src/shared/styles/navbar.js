@@ -1,11 +1,12 @@
 import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
 
-const navbarHeight = 40;
+export const navbarHeight = 40 + "px";
+export const dropdownTop = -215 + "px";
 
 export default {
     container: {
         backgroundColor: defaultColor,
-        height: navbarHeight + "px",
+        height: navbarHeight,
         position: "fixed",
         width: "100%",
         top: "0",
@@ -194,7 +195,7 @@ export default {
             textAlign: "center",
             backgroundColor: defaultColor,
             left: "0px",
-            top: "-215px",
+            top: dropdownTop,
             height: "auto",
             padding: "10px 0 5px 0",
             zIndex: "88",
@@ -219,7 +220,7 @@ export default {
             display: "inline-block",
             width: "35px",
             fontSize: "20px",
-            height: navbarHeight + "px",
+            height: navbarHeight,
             paddingTop: "8px",
             position: "relative",
             marginTop: "-10px",

@@ -1,6 +1,7 @@
 import { fullName } from "~/util";
 import { currentUser } from "~/util";
 import { setCurrentChatId } from "~/chat/actions";
+import { navbarHeight, dropdownTop } from "~/shared/styles/navbar";
 
 export const setOnlineClients = (userIds) => ({
     type: "SET_ONLINE_CLIENTS",
@@ -84,12 +85,12 @@ export const toggleDropdown = () => (dispatch, getState) => {
     const { isDropdownOpen } = getState();
     if (isDropdownOpen) {
         $(".dropdown").velocity({
-            top: "-215px",
+            top: dropdownTop,
         }, 200);
     }
     else {
         $(".dropdown").velocity({
-            top: "40px",
+            top: navbarHeight,
         }, 200);
     }
     dispatch({ type: "TOGGLE_DROPDOWN" });
