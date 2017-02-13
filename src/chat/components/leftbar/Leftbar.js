@@ -10,6 +10,7 @@ import ChatItem from "./ChatItem";
 import { modalProps } from "~/util/modal";
 import { connect } from "react-redux";
 import { setTab } from "~/chat/actions";
+import { toggleLeftbar } from "~/shared/actions";
 import { fullName, otherUser, makeChangeHandlerFactory, currentUser } from "~/util";
 import styles from "~/chat/styles/leftbar";
 
@@ -19,7 +20,6 @@ class Leftbar extends React.Component {
     state = {
         isComposeModalOpen: false,
         search: "",
-        isLeftbarOpen: true,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this)
@@ -69,7 +69,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this) }>
                 {this.handleTabsRender()}
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
@@ -107,6 +107,7 @@ const mapStateToProps = (state) => {
     return {
         chats: state.chats,
         currentTab: state.currentTab,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 

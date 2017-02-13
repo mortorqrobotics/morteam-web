@@ -55,19 +55,26 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) =>
     }
 }
 
-export function toggleLeftbar() {
-    return {
-        type: "TOGGLE_LEFTBAR",
+export const toggleLeftbar = () => (dispatch, getState) => {
+    const { isLeftbarOpen } = getState();
+    if (isLeftbarOpen) {
+        dispatch(closeLeftbar());
+    } else {
+        dispatch(openLeftbar());
     }
 }
 
 export function openLeftbar() {
+    $(".leftbar").velocity({ left: "0px" }, { duration: 300, queue: false });
+    $(".hidebutton").velocity({ left: "270px" }, { duration: 300, queue: false });
     return {
         type: "OPEN_LEFTBAR"
     }
 }
 
 export function closeLeftbar() {
+    $(".leftbar").velocity({ left: "-260px" }, { duration: 300, queue: false }) ;
+    $(".hidebutton").velocity({ left: "10px" }, { duration: 300, queue: false });
     return {
         type: "CLOSE_LEFTBAR"
     }

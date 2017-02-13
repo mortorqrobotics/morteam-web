@@ -11,16 +11,17 @@ export const LeftbarContainer = Radium((props) => {
     let { isOpen, onToggle, style } = props;
     return (
         <div>
-            <div style={[styles.div, props.style || {}, !props.isOpen && { display: "none" } ]}>
+            <div className="leftbar" style={[styles.div, props.style || {}/*, !props.isOpen && { left: "-260px" } */]}>
                 <ul style={styles.ul}>
                     {props.children}
                 </ul>
             </div>
             <RadiumGlyphicon
+                className="hidebutton"
                 glyph={props.isOpen ? "chevron-left" : "chevron-right"}
                 onClick={props.onToggle}
                 style={[styles.hideLeftbar.button, {
-                    left: props.isOpen ? styles.hideLeftbar.left.open : styles.hideLeftbar.left.closed
+                    left: /*props.isOpen ? */styles.hideLeftbar.left.open/* : styles.hideLeftbar.left.closed*/
                 }]}
             />
         </div>

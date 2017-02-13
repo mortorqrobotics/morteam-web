@@ -10,10 +10,6 @@ import { connect } from "react-redux";
 @Radium
 class Leftbar extends React.Component {
 
-    state = {
-        isLeftbarOpen: true,
-    }
-
     getTeamDisplay = () => {
         if (this.props.selectedTeam) {
             return "Team " + this.props.selectedTeam.num;
@@ -24,10 +20,7 @@ class Leftbar extends React.Component {
     render() {
         if (this.props.selectedTeam) {
             return (
-                <LeftbarContainer
-                    isOpen={this.props.isLeftbarOpen}
-                    onToggle={leftbarProps(this, "isLeftbarOpen").onToggle}
-                >
+                <LeftbarContainer { ...leftbarProps(this) }>
                     <li style={styles.teamNum}>
                         {this.getTeamDisplay()}
                     </li>
