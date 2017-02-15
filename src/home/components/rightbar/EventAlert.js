@@ -1,16 +1,24 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/home/styles/leftbar";
 import LeftbarButton from "../leftbar/LeftbarButton";
+import AttendanceModal from "~/calendar/components/middle/AttendanceModal";
+
+import styles from "~/home/styles/leftbar";
 import ajax from "~/util/ajax";
 import { currentUser } from "~/util";
+import { modalProps } from "~/util/modal";
 
 @Radium
 export default class EventAlert extends React.Component {
 
+    static propTypes = {
+        event: React.PropTypes.object,
+    }
+
     state = {
         events: [],
+        isAttendanceModalOpen: false,
     }
 
     componentDidMount = async () => {
@@ -26,7 +34,6 @@ export default class EventAlert extends React.Component {
         );
         data = data.filter(event => new Date(event.date).getDate() == today.getDate());
         todayEvents = data.filter(event => event.hasTakenAttendance == false);
-        console.log(todayEvents.length);
         this.setState({
             events: todayEvents,
         });
@@ -41,7 +48,12 @@ export default class EventAlert extends React.Component {
                         , has begun!</p>
                     <LeftbarButton
                         text="Click to take Attendance"
+                        onClick={() => this.setState({ isAttendanceModalOpen: true })}
                     />
+                    {/*<AttendanceModal
+                        { ...modalProps(this, "isAttendanceModalOpen") }
+                        event={this.props.event}
+                    />*/}
                 </div>
             ))
             return (
