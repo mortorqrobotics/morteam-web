@@ -36,11 +36,7 @@ export default class Home extends React.Component {
                 <div style={styles.container}>
                     <Leftbar />
                     <CenterContainer />
-                    {currentUser.isAdmin() ?
-                        <Rightbar />
-                        :
-                        void(0)
-                    }
+                    <Rightbar />
                 </div>
             </Root>
         )

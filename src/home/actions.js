@@ -46,7 +46,23 @@ export const addGroup = (group) => async (dispatch) => {
     });
 }
 
+export const fetchEvents = () => async (dispatch) => {
+    let todayEvents = [];
+    let today = new Date();
+    let { data } = await request("GET", "/events"
+        + `/startYear/${today.getFullYear()}/startMonth/${today.getMonth()}`
+        + `/endYear/${today.getFullYear()}/endMonth/${today.getMonth()}`
+    );
+    data = data.filter(event => new Date(event.date).getDate() == today.getDate());
+    todayEvents = data.filter(event => event.hasTakenAttendance == false);
+    dispatch({
+        type: "FETCH_EVENTS_SUCCESS",
+        events: todayEvents,
+    });
+}
+
 export function initialActions(dispatch) {
     dispatch(loadAnnouncements());
     dispatch(loadGroups());
+    dispatch(fetchEvents());
 }

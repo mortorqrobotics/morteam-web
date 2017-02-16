@@ -16,39 +16,17 @@ export default class EventAlert extends React.Component {
         event: React.PropTypes.object,
     }
 
-    state = {
-        events: [],
-        isAttendanceModalOpen: false,
-    }
-
-    componentDidMount = async () => {
-        await this.getRecentEvents();
-    }
-
-    getRecentEvents = async () => {
-        let todayEvents = [];
-        let today = new Date();
-        let { data } = await ajax.request("GET", "/events"
-            + `/startYear/${today.getFullYear()}/startMonth/${today.getMonth()}`
-            + `/endYear/${today.getFullYear()}/endMonth/${today.getMonth()}`
-        );
-        data = data.filter(event => new Date(event.date).getDate() == today.getDate());
-        todayEvents = data.filter(event => event.hasTakenAttendance == false);
-        this.setState({
-            events: todayEvents,
-        });
-    }
-
     renderAttendanceAlert = () => {
-        if (currentUser.isAdmin() && this.state.events.length > 0) {
-            const attendanceAlerts = this.state.events.map(event => (
+        if (currentUser.isAdmin()) {
+            const attendanceAlerts = this.props.alerts.map(event => (
                 <div key={event._id}>
                     <h3>Event Today</h3>
+
                     <p>The event, <span>{event.name}</span>
                         , has begun!</p>
                     <LeftbarButton
                         text="Click to take Attendance"
-                        onClick={() => this.setState({ isAttendanceModalOpen: true })}
+                        //onClick={() => this.setState({ isAttendanceModalOpen: true })}
                     />
                     {/*<AttendanceModal
                         { ...modalProps(this, "isAttendanceModalOpen") }

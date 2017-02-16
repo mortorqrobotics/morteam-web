@@ -45,8 +45,19 @@ const groups = (state = initialGroups, action) => {
     }
 }
 
+const initialAlerts = [];
+const alerts = (state = initialAlerts, action) => {
+    switch (action.type) {
+        case "FETCH_EVENTS_SUCCESS":
+            return action.events;
+        default:
+            return state
+    }
+}
+
 export default {
     announcements,
     announcementsLoading,
     groups,
+    alerts,
 }
