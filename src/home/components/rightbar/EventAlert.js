@@ -16,6 +16,10 @@ export default class EventAlert extends React.Component {
         event: React.PropTypes.object,
     }
 
+    state = {
+        isAttendanceModalOpen: false,
+    }
+
     renderAttendanceAlert = () => {
         if (currentUser.isAdmin()) {
             const attendanceAlerts = this.props.alerts.map(event => (
@@ -26,12 +30,12 @@ export default class EventAlert extends React.Component {
                         , has begun!</p>
                     <LeftbarButton
                         text="Click to take Attendance"
-                        //onClick={() => this.setState({ isAttendanceModalOpen: true })}
+                        onClick={() => this.setState({ isAttendanceModalOpen: true })}
                     />
-                    {/*<AttendanceModal
+                    <AttendanceModal
                         { ...modalProps(this, "isAttendanceModalOpen") }
-                        event={this.props.event}
-                    />*/}
+                        event={event}
+                    />
                 </div>
             ))
             return (

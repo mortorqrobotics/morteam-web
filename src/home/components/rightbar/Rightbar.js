@@ -15,7 +15,9 @@ class Rightbar extends React.Component {
         if (this.props.alerts.length > 0) {
             return (
                 <div style={styles.leftbar.div}>
-                    <EventAlert alerts={this.props.alerts} />
+                    <EventAlert
+                        alerts={this.props.alerts}
+                    />
                 </div>
             )
         } else {
