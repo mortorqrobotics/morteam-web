@@ -17,6 +17,9 @@ const fetchFolders = () => async (dispatch, getStore, getState) => {
         type: "SET_FOLDERS",
         folders: sentData,
     });
+    if (sentData.length !== 0) {
+        dispatch(setFolder(sentData[0]));
+    }
 }
 
 export const setTab = (tab) => (dispatch, getState) => {

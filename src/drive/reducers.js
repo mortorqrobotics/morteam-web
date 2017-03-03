@@ -51,12 +51,6 @@ const files = (state = [], action) => {
 
 const selectedFolder = (state = null, action) => {
     switch (action.type) {
-        case "SET_FOLDERS":
-            if(action.folders.length !== 0){
-               return action.folders[0]
-            } else {
-                return null
-            }
         case "SET_FOLDER":
             return action.folder
         case "ADD_FOLDER":
