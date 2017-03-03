@@ -19,7 +19,6 @@ class Leftbar extends React.Component {
     state = {
         isComposeModalOpen: false,
         search: "",
-        isLeftbarOpen: true,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this)
@@ -46,7 +45,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this) }>
                 <MultiTeamTabs
                     actions={{
                         intra: () => this.props.dispatch(setTab("intra")),
@@ -90,6 +89,7 @@ const mapStateToProps = (state) => {
     return {
         chats: state.chats,
         currentTab: state.currentTab,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 

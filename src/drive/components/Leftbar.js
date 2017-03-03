@@ -19,7 +19,6 @@ class Leftbar extends React.Component {
 
     state = {
         isModalOpen: false,
-        isLeftbarOpen: true,
     }
 
     handleFolderChange = async (folder) => {
@@ -28,7 +27,7 @@ class Leftbar extends React.Component {
 
     render() {
         return (
-            <LeftbarContainer { ...leftbarProps(this, "isLeftbarOpen") }>
+            <LeftbarContainer { ...leftbarProps(this) }>
                 <MultiTeamTabs
                     actions={{
                         intra: () => this.props.dispatch(setTab("intra")),
@@ -36,6 +35,7 @@ class Leftbar extends React.Component {
                     }}
                     currentTab={this.props.currentTab}
                 />
+
                 <LeftbarItem>
                     <SortDropdown />
                 </LeftbarItem>
@@ -73,6 +73,7 @@ const mapStateToProps = (state) => {
         folders: state.folders,
         selectedFolder: state.selectedFolder,
         currentTab: state.currentTab,
+        isLeftbarOpen: state.isLeftbarOpen,
     }
 }
 

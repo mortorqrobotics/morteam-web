@@ -7,6 +7,8 @@ function chats(state = initialChats, action) {
     let index;
     let newState;
     switch (action.type) {
+        case "LOAD_CHATS_PENDING":
+            return []
         case "LOAD_CHATS_SUCCESS":
             return action.chats
         case "ADD_CHAT_SUCCESS":
@@ -141,8 +143,7 @@ function currentChatId(state = initialCurrentChatId, action) {
         case "LOAD_CHATS_SUCCESS":
             if (action.chatId) {
                 return action.chatId
-            }
-            else if (!state && action.chats.length > 0) {
+            } else if (!state && action.chats.length > 0) {
                 return action.chats[0]._id
             } else {
                 return null
