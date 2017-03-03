@@ -55,9 +55,12 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch) =>
     }
 }
 
-export function toggleLeftbar() {
-    return {
-        type: "TOGGLE_LEFTBAR",
+export const toggleLeftbar = () => (dispatch, getState) => {
+    const { isLeftbarOpen } = getState();
+    if (isLeftbarOpen) {
+        dispatch(closeLeftbar());
+    } else {
+        dispatch(openLeftbar());
     }
 }
 
