@@ -53,7 +53,6 @@ class OptionsModal extends React.Component {
     }
 
     handleGroupChatRender = () => {
-        console.log(this.props.chat.audience);
         if(!this.props.chat.isTwoPeople){
             return(
                 <Form onSubmit={this.handleSubmit}>
