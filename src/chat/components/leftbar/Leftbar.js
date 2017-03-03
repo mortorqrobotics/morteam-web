@@ -1,7 +1,7 @@
 import React from "react";
 import Radium, { Style } from "radium";
 
-import { LeftbarContainer, LeftbarItem, LeftbarButton } from "~/shared/components/leftbar";
+import { LeftbarContainer, LeftbarItem, LeftbarButton, MultiTeamTabs } from "~/shared/components/leftbar";
 import { leftbarProps } from "~/util/leftbar";
 import TextBox from "~/shared/components/forms/TextBox";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
@@ -43,36 +43,19 @@ class Leftbar extends React.Component {
         }
     }
 
-    handleTabsRender = () => {
-        if (currentUser.isAdmin()) {
-            return (
-                <div style={styles.tabs.wrapper}>
-                    <LeftbarButton
-                        onClick={() => this.props.dispatch(setTab("intra"))}
-                        isSelected={this.props.currentTab==="intra"}
-                        style={[styles.tabs.tab, {marginRight: "5px"}]}
-                    >
-                       Your Team
-                    </LeftbarButton>
-                    <LeftbarButton
-                        onClick={() => this.props.dispatch(setTab("inter"))}
-                        isSelected={this.props.currentTab==="inter"}
-                        style={styles.tabs.tab}
-                    >
-                       Other Teams
-                    </LeftbarButton>
-                </div>
-            )
-        }
-    }
-
     render() {
         return (
             <LeftbarContainer { ...leftbarProps(this) }>
-                {this.handleTabsRender()}
+                <MultiTeamTabs
+                    actions={{
+                        intra: () => this.props.dispatch(setTab("intra")),
+                        inter: () => this.props.dispatch(setTab("inter")),
+                    }}
+                    currentTab={this.props.currentTab}
+                />
                 <LeftbarButton
                     onClick={() => this.setState({ isComposeModalOpen: true })}
-                    style={this.props.currentTab === "inter" ? {display: "none"} : {}}
+                    style={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
                 >
                     <Glyphicon glyph="pencil" style={{ marginRight: "5px" }} />
                     Compose

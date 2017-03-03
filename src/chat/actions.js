@@ -1,7 +1,7 @@
 import { request } from "~/util/ajax";
 import { emit } from "~/util/sio";
 import { receiveMessage as receiveMessageShared } from "~/shared/actions";
-import { currentUser, getRandomString } from "~/util";
+import { currentUser, getRandomString, filterMultiTeam } from "~/util";
 
 export const addChatSync = (chat) => ({
     type: "ADD_CHAT_SUCCESS",
@@ -168,12 +168,7 @@ export const setInputSize = (heightDiff) => ({
 export const loadChats = (query) => async (dispatch, getState) => {
     const { currentTab } = getState();
     const { data } = await request("GET", "/chats?" + Date.now);
-    let sentData;
-    if (currentTab === "inter") {
-        sentData = data.filter(obj => obj.audience.isMultiTeam);
-    } else {
-        sentData = data.filter(obj => !obj.audience.isMultiTeam);
-    }
+    let sentData = filterMultiTeam(data, currentTab);
     const chatId = sentData.some(chat => chat._id === query) ? query
         : (sentData.length > 0 ? sentData[0]._id : null);
     dispatch({

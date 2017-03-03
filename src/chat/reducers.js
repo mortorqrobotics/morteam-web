@@ -162,17 +162,6 @@ function currentChatId(state = initialCurrentChatId, action) {
     }
 }
 
-const initialTab = "intra";
-
-function currentTab(state = initialTab, action) {
-    switch (action.type) {
-        case "SET_TAB":
-            return action.tab
-        default:
-            return state
-    }
- }
-
 const initialChatSize = {
     heightDiff: 0,
 };
@@ -192,5 +181,4 @@ export default {
     chats,
     currentChatId,
     inputSize,
-    currentTab,
 }

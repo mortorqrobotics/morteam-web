@@ -71,10 +71,16 @@ class OptionsModal extends React.Component {
                                 />
                                 <span
                                     style={styles.span}
-                                    onClick={() => window.location.assign("/groups/id/" + group._id)}
+                                    onClick={this.props.currentTab === "intra"
+                                        ? () => window.location.assign("/groups/id/" + group._id)
+                                        : () => window.location.assign("/teams/number/" + group.team.number )
+                                    }
                                     key={group._id}
                                 >
-                                    {getGroupName(group)}
+                                    {this.props.currentTab === "inter"
+                                        ? getGroupName(group) + " of "  + group.team.number
+                                        : getGroupName(group)
+                                    }
                                 </span>
                             </li>
                         ))}
@@ -154,4 +160,10 @@ class OptionsModal extends React.Component {
     }
 }
 
-export default connect()(OptionsModal);
+const mapStateToProps = (state) => {
+    return {
+        currentTab: state.currentTab,
+    }
+}
+
+export default connect(mapStateToProps)(OptionsModal);

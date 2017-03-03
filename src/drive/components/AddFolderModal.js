@@ -2,12 +2,14 @@ import React, { PropTypes } from "react";
 import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
+import AdminCheckBox from "~/shared/components/AdminCheckBox";
 import { makeChangeHandlerFactory, getAudienceIds } from "~/util";
 import {
     ModalTextBox,
     ModalTextArea,
     ModalButton,
 } from "~/shared/components/modal";
+import { request } from "~/util/ajax";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
@@ -26,6 +28,7 @@ class AddFolderModal extends React.Component {
             users: [],
             groups: [],
         },
+        checked: true,
     }
 
     state = {
@@ -35,11 +38,18 @@ class AddFolderModal extends React.Component {
     getChangeHandler = makeChangeHandlerFactory(this);
 
     onSubmit = async () => {
+        let audienceIds = getAudienceIds(this.state.audience);
+        if (this.props.currentTab === "inter" && this.state.checked) {
+            let groups = JSON.stringify(this.state.audience.groups.map(group => group.team._id));
+            let { data } = await request("GET", "/groups/position/" + groups);
+            audienceIds.groups = data.map(group => group._id);
+        }
+        audienceIds.isMultiTeam = this.props.currentTab === "inter";
         await this.props.dispatch(addFolder({
             name: this.state.name,
-            audience: getAudienceIds(this.state.audience),
+            audience: audienceIds,
             type: "teamFolder",
-        }))
+        }));
         this.setState(this.initialState);
         this.props.onRequestClose();
     }
@@ -59,6 +69,12 @@ class AddFolderModal extends React.Component {
                 <AudienceSelect
                     selected={this.state.audience}
                     onChange={audience => this.setState({ audience })}
+                    isMultiTeam={this.props.currentTab === "inter"}
+                />
+                <AdminCheckBox
+                    onChange={this.getChangeHandler("checked", "checked")}
+                    condition={this.props.currentTab === "inter"}
+                    checked={this.state.checked}
                 />
                  <ModalButton
                     text="Done"
@@ -70,4 +86,10 @@ class AddFolderModal extends React.Component {
     }
 }
 
-export default connect()(AddFolderModal);
+const mapStateToProps = (state) => {
+    return {
+        currentTab: state.currentTab,
+    }
+}
+
+export default connect(mapStateToProps)(AddFolderModal);

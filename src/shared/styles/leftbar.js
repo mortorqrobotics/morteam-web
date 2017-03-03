@@ -62,8 +62,23 @@ export default {
         left: {
             open: leftbarWidth + 10 + "px",
             closed: "10px",
-        }
-    }
+        },
+    },
+    tabs: {
+        wrapper: {
+            marginTop: "20px",
+            marginBottom: "10px",
+            textAlign: "center",
+        },
+        tab: {
+            display: "inline",
+            fontSize: "17px",
+            borderBottom: "none",
+            borderRadius: "35px",
+            height: "50px",
+            padding: "10px",
+        },
+    },
 }
 
 export const dropdown = {

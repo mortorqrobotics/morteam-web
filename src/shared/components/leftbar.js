@@ -41,6 +41,28 @@ export const LeftbarButton = Radium((props) => {
     })
 })
 
+export const MultiTeamTabs = Radium((props) => {
+    const { actions, currentTab, ...rest} = props;
+    return (
+        <div style={styles.tabs.wrapper}>
+            <LeftbarButton
+                onClick={props.actions.intra}
+                isSelected={props.currentTab==="intra"}
+                style={[styles.tabs.tab, {marginRight: "5px"}]}
+            >
+               Your Team
+            </LeftbarButton>
+            <LeftbarButton
+                onClick={props.actions.inter}
+                isSelected={props.currentTab==="inter"}
+                style={styles.tabs.tab}
+            >
+               Other Teams
+            </LeftbarButton>
+        </div>
+    )
+})
+
 export const Dropdown = Radium((props) => {
     const { isOpen, options, selectedOption, text, onClick, style, listStyle, onOptionClick, ...rest } = props;
     let buttonStyle = dropdown.button;

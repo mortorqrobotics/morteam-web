@@ -1,19 +1,35 @@
 import { request } from "~/util/ajax";
+import { filterMultiTeam } from "~/util";
 
-const fetchFolders = () => async (dispatch, getStore) => {
+const fetchFolders = () => async (dispatch, getStore, getState) => {
     const store = getStore();
+    const currentTab = store.currentTab;
     const { data } = await request("GET", "/folders");
-    const defaultFolders = data.filter(folder => folder.defaultFolder);
-    const sortedFolders = [
-        defaultFolders.find(folder => folder.name === "Team Files"),
-        defaultFolders.find(folder => folder.name === "Personal Files")
-    ].concat(data.filter(f => defaultFolders.indexOf(f) === -1));
+    let sentData = filterMultiTeam(data, currentTab);
+    if (currentTab === "intra") {
+        const defaultFolders = sentData.filter(folder => folder.defaultFolder);
+        sentData = [
+            defaultFolders.find(folder => folder.name === "Team Files"),
+            defaultFolders.find(folder => folder.name === "Personal Files")
+        ].concat(sentData.filter(f => defaultFolders.indexOf(f) === -1));
+    }
     dispatch({
         type: "SET_FOLDERS",
-        folders: sortedFolders,
+        folders: sentData,
     });
-    if (!store.selectedFolder && data.length !== 0) {
-        dispatch(setFolder(sortedFolders[0]))
+    if (sentData.length !== 0) {
+        dispatch(setFolder(sentData[0]));
+    }
+}
+
+export const setTab = (tab) => (dispatch, getState) => {
+    const { currentTab } = getState();
+    if(currentTab !== tab){
+        dispatch({
+            type: "SET_TAB",
+            tab,
+        })
+        dispatch(fetchFolders());
     }
 }
 

@@ -6,7 +6,7 @@ import ajax from "~/util/ajax";
 import TextBox from "~/shared/components/forms/TextBox";
 import AudienceItem from "./AudienceItem";
 import { getGroupName } from "~/util/groups";
-import { fullName, userSearch } from "~/util";
+import { fullName, userSearch, currentUser } from "~/util";
 
 import styles from "~/shared/styles/audience";
 
@@ -21,6 +21,7 @@ export default class AudienceSelect extends React.Component {
         onChange: React.PropTypes.func,
         noIncludeGroups: React.PropTypes.bool,
         userList: React.PropTypes.array,
+        isMultiTeam: React.PropTypes.bool,
     }
 
     constructor(props) {
@@ -41,14 +42,19 @@ export default class AudienceSelect extends React.Component {
             return;
         }
         try {
-            let [{ data: users }, { data: groups }] = await Promise.all([
-                ajax.request("get", "/teams/current/users"),
-                ajax.request("get", "/groups"),
-            ]);
-            this.setState({
-                allUsers: users,
-                ...(this.props.noIncludeGroups ? ({}) : ({ allGroups: groups })),
-            });
+            if (this.props.isMultiTeam) {
+                let { data } = await ajax.request("get", "/groups/allTeam");
+                this.setState({ allGroups: data });
+            } else {
+                let [{ data: users }, { data: groups }] = await Promise.all([
+                    ajax.request("get", "/teams/current/users"),
+                    ajax.request("get", "/groups"),
+                ]);
+                this.setState({
+                    allUsers: users,
+                    ...(this.props.noIncludeGroups ? ({}) : ({ allGroups: groups })),
+                });
+            }
         } catch (err) {
             console.log(err);
         }
@@ -98,17 +104,24 @@ export default class AudienceSelect extends React.Component {
     }
 
     getShownItems = () => {
+        let allGroups = this.state.allGroups;
+
+        if (this.props.isMultiTeam) {
+            allGroups = allGroups.sort((first, second) => first.team.number - second.team.number );
+        }
+
         if (this.state.query == "") {
             return {
-                shownGroups: this.state.allGroups,
+                shownGroups: allGroups,
                 shownUsers: this.state.allUsers,
             }
         } else {
             const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "i");
+
             return {
                 shownUsers: this.state.allUsers.filter(userSearch(this.state.query)),
-                shownGroups: this.state.allGroups.filter(group => (
-                    regex.test(getGroupName(group))
+                shownGroups: allGroups.filter(group => (
+                    regex.test(this.props.isMultiTeam ? group.team.number.toString() : getGroupName(group))
                 ))
             }
         }
@@ -119,7 +132,7 @@ export default class AudienceSelect extends React.Component {
         return (
             <div>
                 <TextBox
-                    placeholder="Search Names..."
+                    placeholder={this.props.isMultiTeam ? "Search Teams..." : "Search Names..."}
                     onChange={event => this.setState({ query: event.target.value })}
                     value={this.state.query}
                     style={styles.audienceSelect.textBox}
@@ -129,7 +142,7 @@ export default class AudienceSelect extends React.Component {
                     {shownGroups.map(group => (
                         <AudienceItem
                             key={group._id}
-                            text={getGroupName(group)}
+                            text={this.props.isMultiTeam ? "Team " + group.team.number.toString() : getGroupName(group)}
                             item={group}
                             onClick={this.onGroupClick}
                             isSelected={this.isGroupSelected(group)}

@@ -98,4 +98,13 @@ if (currentUser && typeof currentUser === "object") {
        currentUser.position === "leader" || currentUser.position === "mentor"
     )
 }
+
+export function filterMultiTeam(objects, filter) {
+    if (filter === "inter") {
+        return objects.filter(obj => obj.audience.isMultiTeam);
+    } else {
+        return objects.filter(obj => !obj.audience.isMultiTeam);
+    }
+}
+
 export const pageOptions = window.__options;
