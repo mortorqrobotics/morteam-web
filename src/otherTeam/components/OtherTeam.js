@@ -23,7 +23,7 @@ export default class OtherTeam extends React.Component {
 
     render() {
         return (
-            <Root pageName="chat" store={store}>
+            <Root pageName="otherTeam" store={store}>
                 <Navbar />
                 <Center />
             </Root>
