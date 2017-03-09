@@ -11,12 +11,11 @@ import styles from "~/home/styles/leftbar";
 class Rightbar extends React.Component {
 
     render() {
-        console.log(this.props.alerts.length);
-        if (this.props.alerts.length > 0) {
+        if (this.props.events.length > 0) {
             return (
                 <div style={styles.leftbar.div}>
                     <EventAlert
-                        alerts={this.props.alerts}
+                        alerts={this.props.events}
                     />
                 </div>
             )
@@ -29,7 +28,7 @@ class Rightbar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        alerts: state.alerts,
+        events: state.alerts,
     }
 }
 export default connect(mapStateToProps)(Rightbar);
