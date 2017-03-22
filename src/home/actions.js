@@ -46,6 +46,20 @@ export const addGroup = (group) => async (dispatch) => {
     });
 }
 
+export function setAudience(audience) {
+    return {
+        type: "SET_AUDIENCE",
+        audience,
+    }
+}
+
+export function resetAudience(isMultiTeam) {
+    return {
+        type: "RESET_AUDIENCE",
+        isMultiTeam,
+    }
+}
+
 export function initialActions(dispatch) {
     dispatch(loadAnnouncements());
     dispatch(loadGroups());

@@ -77,6 +77,7 @@ export function getAudienceIds(audience) {
     return {
         users: audience.users.map(user => user._id),
         groups: audience.groups.map(group => group._id),
+        isMultiTeam: audience.isMultiTeam,
     }
 }
 

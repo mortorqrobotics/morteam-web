@@ -45,8 +45,24 @@ const groups = (state = initialGroups, action) => {
     }
 }
 
+let emptyAudience = { users: [], groups: [], isMultiTeam: false };
+const audience = (state = emptyAudience, action) => {
+    switch (action.type) {
+      case "RESET_AUDIENCE":
+          emptyAudience.isMultiTeam = action.isMultiTeam
+          return emptyAudience
+      case "SET_AUDIENCE":
+          let actionAudience = action.audience
+          actionAudience.isMultiTeam = emptyAudience.isMultiTeam
+          return actionAudience
+      default:
+          return state
+    }
+}
+
 export default {
     announcements,
     announcementsLoading,
     groups,
+    audience,
 }
