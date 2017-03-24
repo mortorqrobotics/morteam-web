@@ -16,6 +16,10 @@ class Middle extends React.Component {
         this.lastAbsMonth = null;
         this.lastMidElemId = null;
         this.lastOffsetTop = null;
+        $("#allContent").css("height", "100%");
+        $("#allContent").children().css("height", "100%");
+        $("#allContent").children().children().css("height", "100%");
+        //the scrolling does not work unless all preceeding divs have a set height
     }
 
     componentWillUpdate = () => {
