@@ -42,10 +42,10 @@ class Leftbar extends React.Component {
 
                 <LeftbarButton
                     onClick={() => this.setState({ isModalOpen: true })}
-                    styles={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
+                    style={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
                 >
                     <Glyphicon glyph="plus" style={styles.left.glyph} />
-                    New Folder
+                    New Folder 
                 </LeftbarButton>
 
                 {this.props.folders.map(folder => (

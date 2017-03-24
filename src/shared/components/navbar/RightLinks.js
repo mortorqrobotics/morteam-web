@@ -45,7 +45,6 @@ class RightLinks extends React.Component {
                 >
                     {currentUser.firstname}
                 </span>
-
                 <ProfileDropdownModal
                     isOpen={this.state.isModalOpen}
                     onAfterOpen={() => this.setState({ isModalOpen: true })}
@@ -63,4 +62,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(RightLinks);
-
