@@ -27,7 +27,7 @@ class Container extends React.Component {
                     <Col xs={2} style={styles.middleCol}>
                         <Middle />
                     </Col>
-                    <Col xs={2} style={{width:"50%"}}>
+                    <Col xs={2} style={{height:"100%",width:"50%"}}>
                         <Right />
                     </Col>
                 </Row>

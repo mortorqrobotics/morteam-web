@@ -81,6 +81,13 @@ export default {
     },
 }
 
+const option = {
+  cursor: "pointer",
+  padding: "5px",
+  listStyle: "none",
+  fontSize: "14px",
+}
+
 export const dropdown = {
     button: {
         backgroundColor: defaultColor,
@@ -110,7 +117,7 @@ export const dropdown = {
     ul: {
         display: "block",
         width: "84px",
-        backgroundColor: "f5f5f5",
+        backgroundColor: "#f5f5f5",
         zIndex: "1000",
         position: "relative",
         padding: "5px 0",
@@ -119,19 +126,12 @@ export const dropdown = {
         border: "1px solid rgba(0,0,0,.15)",
         boxShadow: "0 6px 12px rgba(0,0,0,.175)",
     },
-    option: {
-        cursor: "pointer",
-        padding: "5px",
-        listStyle: "none",
-        fontSize: "14px",
+    option: [option, {
         ":hover": {
-            backgroundColor: defaultColor
+            backgroundColor: hoverColor
         },
-    },
-    selected: {
+    }],
+    selected: [option, {
         backgroundColor: selectedColor,
-        ":hover": {
-            backgroundColor: selectedColor
-        },
-    }
+    }]
 }

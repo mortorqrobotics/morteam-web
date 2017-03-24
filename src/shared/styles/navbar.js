@@ -27,6 +27,8 @@ export default {
         fontFamily: "'Titillium Web', sans-serif",
         cursor: "pointer",
         display: "inline-block",
+        verticalAlign: "top",
+        marginTop: "8px",
         "@media screen and (max-width: 700px)": {
             marginLeft: "10px",
             marginRight: "4px",
@@ -50,6 +52,7 @@ export default {
             margin: "0px 10px 0px 2px",
             position: "relative",
             display: "inline-block",
+            verticalAlign: "top",
             "@media screen and (max-width: 700px)": {
                 width: "55% ",
             },
@@ -147,13 +150,13 @@ export default {
             marginTop: "-5px",
             marginRight: "15px",
             display: "inline-block",
+            verticalAlign: "top",
         },
-        name: {
+        span: {
             position: "relative",
-            verticalAlign: "text-bottom",
-            marginLeft: "10px",
             marginRight: "15px",
             display: "inline-block",
+            verticalAlign: "top",
         },
         modal: {
             container: {

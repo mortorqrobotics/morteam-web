@@ -15,6 +15,7 @@ const wrapper = {
     minWidth: "400px",
     top: "40px",
     height: "calc(100% - 40px)",
+    position: "absolute",
 }
 
 export default {
@@ -22,12 +23,10 @@ export default {
         leftbarOpen: [wrapper, {
             width: "calc(100vw - 460px)",
             marginLeft: "300px",
-            position: "absolute",
         }],
         leftbarClosed: [wrapper, {
             width: "100vw",
             margin: "auto",
-            position: "relative",
         }],
     },
     messagesDiv: {

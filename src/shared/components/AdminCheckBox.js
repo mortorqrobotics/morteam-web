@@ -39,8 +39,8 @@ const AdminCheckBox = Radium((props) => {
 
 AdminCheckBox.propTypes = {
     onChange: React.PropTypes.func,
-    condition: React.PropTypes.checked,
-    checked: React.PropTypes.checked,
+    condition: React.PropTypes.bool,
+    checked: React.PropTypes.bool,
 }
 
 export default AdminCheckBox;
