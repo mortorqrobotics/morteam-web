@@ -55,7 +55,7 @@ class MessageInput extends React.Component {
         const currentHeight = event.target.scrollHeight;
         const heightDiff = currentHeight - this.originalHeight;
         const rowHeight = parseInt($(event.target).css("lineHeight"));
-        const numRows = heightDiff / rowHeight + 1;
+        const numRows = Math.round(heightDiff / rowHeight + 1);
 
         this.setState({
             content: event.target.value,
@@ -68,7 +68,7 @@ class MessageInput extends React.Component {
         )));
 
         // this undoes what is done at the beginning of this function
-        event.target.style.height = "";
+        event.target.style.height = ((this.state.numRows * 20) + 10) + "px";
 
         const typingTimeout = 2000;
         clearTimeout(this.timeout);
@@ -89,6 +89,7 @@ class MessageInput extends React.Component {
                         rows={this.state.numRows}
                         style={[
                             styles.inputTextArea,
+                            { height: ((this.state.numRows * 20) + 10) + "px" },
                             this.state.numRows > maxRowsShown ? { overflowY: "scroll", overflowX: "hidden" } : {},
                         ]}
                         onKeyDown={this.handleKeyDown}
