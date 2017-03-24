@@ -51,12 +51,20 @@ class AnnouncementsListItem extends React.Component {
     }
 
     renderAudienceTooltip = () => {
-        const { groups, users } = this.props.announcement.audience;
+        const { groups, users, isMultiTeam } = this.props.announcement.audience;
+        console.log(isMultiTeam);
+        let displayedAudience;
+        if (isMultiTeam) {
+            displayedAudience = groups.map(group => getGroupName(group) + " of " + group.team.number);
+        } else {
+            displayedAudience = groups.map(getGroupName).concat(users.map(fullName));
+        }
+        displayedAudience = displayedAudience.join(", ");
         // TODO: this looks meh
         return (
             <Tooltip id="announcement-audience">
                 <span style={styles.audienceTooltip}>
-                    {groups.map(getGroupName).concat(users.map(fullName)).join(", ")}
+                    {displayedAudience}
                 </span>
             </Tooltip>
         )

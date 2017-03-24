@@ -5,7 +5,7 @@ import ajax from "~/util/ajax";
 import RTEditor from "./RTEditor";
 import Button from "~/shared/components/forms/Button";
 import { connect } from "react-redux";
-import { addAnnouncement } from "~/home/actions";
+import { addAnnouncement, setAudience, resetAudience } from "~/home/actions";
 import AudienceModal from "./AudienceModal";
 import styles from "~/home/styles/editor";
 import { getAudienceIds } from "~/util";
@@ -18,24 +18,17 @@ class Editor extends React.Component {
     // should be changed eventually
     content = "";
 
-    initialState = {
-        audience: {
-            users: [],
-            groups: [],
-        },
+    state = {
         isModalOpen: false,
     }
 
-    state = {
-        ...this.initialState,
-    }
-
     post = async() => {
+        console.log(this.props.audience)
         await this.props.dispatch(addAnnouncement({
             content: this.content,
-            audience: getAudienceIds(this.state.audience),
-        }))
-        this.setState(this.initialState);
+            audience: getAudienceIds(this.props.audience),
+        }));
+        this.props.dispatch(resetAudience(false));
         this.clear();
     }
 
@@ -50,8 +43,8 @@ class Editor extends React.Component {
                     style={styles.button}
                     text="Post"
                     onClick={this.post}
-                    disabled={!(this.state.audience.users.length
-                        || this.state.audience.groups.length)
+                    disabled={!(this.props.audience.users.length
+                        || this.props.audience.groups.length)
                     }
                 />
                 {/* order is switched because of float: right */}
@@ -67,12 +60,19 @@ class Editor extends React.Component {
                     isOpen={this.state.isModalOpen}
                     onAfterOpen={() => this.setState({ isModalOpen: true })}
                     onRequestClose={() => this.setState({ isModalOpen: false })}
-                    selected={this.state.audience}
-                    onChange={audience => this.setState({ audience: audience })}
+                    selected={this.props.audience}
+                    onChange={audience => this.props.dispatch(setAudience(audience))}
                 />
             </div>
         )
     }
 
 }
-export default connect()(Editor);
+
+const mapStateToProps = (state) => {
+    return {
+        audience: state.audience,
+    }
+}
+
+export default connect(mapStateToProps)(Editor);

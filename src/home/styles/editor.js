@@ -1,5 +1,6 @@
 import orangeButton from "~/shared/styles/orangeButton";
 import { standardBoxShadow } from "~/shared/styles/boxShadows";
+import { selectedColor } from "~/shared/styles/colors";
 
 export default {
     container: {
@@ -34,6 +35,14 @@ export default {
         ":focus": {
             outline: "none",
         },
+    },
+
+    modalTab: [orangeButton, {
+        borderRadius: "200px",
+        fontSize: "16px",
+    }],
+    selectedModalTab: {
+        backgroundColor: selectedColor,
     },
     button: [orangeButton, {
         float: "right",

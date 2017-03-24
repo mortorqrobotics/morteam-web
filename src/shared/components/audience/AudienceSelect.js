@@ -28,10 +28,11 @@ export default class AudienceSelect extends React.Component {
         super(props);
 
         this.state = {
-            allGroups: [],
             allUsers: [],
             shownGroups: [],
             shownUsers: [],
+            teams: [],
+            groups: [],
             query: "",
         }
     }
@@ -42,19 +43,18 @@ export default class AudienceSelect extends React.Component {
             return;
         }
         try {
-            if (this.props.isMultiTeam) {
-                let { data } = await ajax.request("get", "/groups/allTeam");
-                this.setState({ allGroups: data });
-            } else {
-                let [{ data: users }, { data: groups }] = await Promise.all([
-                    ajax.request("get", "/teams/current/users"),
-                    ajax.request("get", "/groups"),
-                ]);
-                this.setState({
-                    allUsers: users,
-                    ...(this.props.noIncludeGroups ? ({}) : ({ allGroups: groups })),
-                });
-            }
+            let [{ data: users }, { data: groups }, {data: teams}] = await Promise.all([
+                ajax.request("get", "/teams/current/users"),
+                ajax.request("get", "/groups"),
+                ajax.request("get", "/groups/allTeam")
+            ]);
+
+            this.setState({
+                allUsers: users,
+                groups: groups,
+                teams: teams,
+            });
+
         } catch (err) {
             console.log(err);
         }
@@ -104,7 +104,8 @@ export default class AudienceSelect extends React.Component {
     }
 
     getShownItems = () => {
-        let allGroups = this.state.allGroups;
+
+        let allGroups = this.props.isMultiTeam ? this.state.teams : this.state.groups;
 
         if (this.props.isMultiTeam) {
             allGroups = allGroups.sort((first, second) => first.team.number - second.team.number );
@@ -113,13 +114,13 @@ export default class AudienceSelect extends React.Component {
         if (this.state.query == "") {
             return {
                 shownGroups: allGroups,
-                shownUsers: this.state.allUsers,
+                shownUsers: this.props.isMultiTeam ? [] : this.state.allUsers,
             }
         } else {
             const regex = new RegExp(this.state.query.trim().replace(/\s+/g, "|"), "i");
 
             return {
-                shownUsers: this.state.allUsers.filter(userSearch(this.state.query)),
+                shownUsers: this.props.isMultiTeam ? [] : this.state.allUsers.filter(userSearch(this.state.query)),
                 shownGroups: allGroups.filter(group => (
                     regex.test(this.props.isMultiTeam ? group.team.number.toString() : getGroupName(group))
                 ))
