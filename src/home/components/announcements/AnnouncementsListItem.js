@@ -9,7 +9,7 @@ import ConfirmModal from "~/shared/components/ConfirmModal";
 import styles from "~/home/styles/announcements";
 import { modalProps } from "~/util/modal";
 import { fullName, currentUser } from "~/util";
-import { parseDate } from "~/util/date";
+import { parseDateAndTime } from "~/util/date";
 import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { deleteAnnouncement } from "~/home/actions";
@@ -96,7 +96,7 @@ class AnnouncementsListItem extends React.Component {
                         </span>
                     </div>
                     <span style={styles.time}>
-                        {" - " + parseDate(announcement.timestamp)}
+                        {" - " + parseDateAndTime(announcement.timestamp)}
                     </span>
                     <OverlayTrigger
                         placement="top"

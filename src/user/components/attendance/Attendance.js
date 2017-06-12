@@ -4,28 +4,23 @@ import Radium from "radium";
 import Dropdown from "~/shared/components/forms/Dropdown";
 import Button from "~/shared/components/forms/Button";
 import styles from "~/user/styles/middle";
-import { range, pageOptions } from "~/util";
+import { range, pageOptions, fullName, currentUser} from "~/util";
 import ajax from "~/util/ajax";
 import { allMonths, daysInAbsMonth } from "~/util/date";
+import { parseDate } from "~/util/date";
+
+import { connect } from "react-redux";
+import { excuseAbsence, fetchAttendance } from "~/user/actions";
 
 const now = new Date();
 
 @Radium
-export default class Attendance extends React.Component {
+class Attendance extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            toMonth: now.getMonth(),
-            toDay: now.getDate(),
-            toYear: now.getFullYear(),
-            absences: [], // all unexcused
-            present: 0,
-        }
-        this.state.fromMonth = this.state.toMonth;
-        this.state.fromDay = this.state.toDay;
-        this.state.fromYear = this.state.toYear;
+    state = {
+        toMonth: now.getMonth(),
+        toDay: now.getDate(),
+        toYear: now.getFullYear(),
     }
 
     componentDidMount = async () => {
@@ -36,30 +31,26 @@ export default class Attendance extends React.Component {
             fromDay: date.getDate(),
             fromYear: date.getFullYear(),
         });
-        await this.updateAttendance(true);
     }
 
-    updateAttendance = async (isFirst) => {
-        const { data: { absences, present } } = await ajax.request("GET",
-            `/users/id/${pageOptions.userId}/absences`, isFirst || ({
-                startDate: new Date(
-                    this.state.fromYear,
-                    this.state.fromMonth,
-                    this.state.fromDay
-                ),
-                endDate: new Date(
-                    this.state.toYear,
-                    this.state.toMonth,
-                    this.state.toDay
-                ),
-            })
-        );
-        this.setState({ absences, present });
+    updateAttendance = () => {
+        this.props.dispatch(fetchAttendance(pageOptions.userId,
+            new Date(
+                this.state.fromYear,
+                this.state.fromMonth,
+                this.state.fromDay
+            ),
+            new Date(
+                this.state.toYear,
+                this.state.toMonth,
+                this.state.toDay,
+            )
+        ))
     }
 
     getPresencePercentage = () => {
-        const present = this.state.present;
-        const absent = this.state.absences.length;
+        const present = this.props.present;
+        const absent = this.props.absences.length;
         const result = 100 * present / (present + absent) || 0;
         return Number.isInteger(result) ? result.toString() : result.toFixed(1);
     }
@@ -115,7 +106,7 @@ export default class Attendance extends React.Component {
                 />
                 <Dropdown
                     style={styles.attendanceDropdown}
-                    selected={this.state.fromYear}
+                    selected={this.state.toYear}
                     onChange={toYear => this.setState({ toYear })}
                     options={range(2015, now.getFullYear() + 1)}
                 />
@@ -123,13 +114,13 @@ export default class Attendance extends React.Component {
                 <Button
                     style={styles.refreshAttendance}
                     text="Refresh Attendance"
-                    onClick={() => this.updateAttendance(false)}
+                    onClick={() => this.updateAttendance()}
                 />
                 <br />
 
 
                 <span style={styles.attendanceDataPoint}>
-                    Unexcused absences: {this.state.absences.length}
+                    Unexcused absences: {this.props.absences.length}
                 </span>
                 <br />
 
@@ -137,10 +128,44 @@ export default class Attendance extends React.Component {
                     Presence percentage: {this.getPresencePercentage()}%
                 </span>
 
-                {/* TODO: show unexcused absences here */}
+                {this.props.absences.length > 0 ?
+                    <div>
+                        <span>
+                            {this.props.absences.map(absence => (
+                                <div key={absence._id}>
+                                    <span style={styles.absenceDate}>
+                                        {parseDate(absence.date)}: {absence.name}, {absence.description}
+                                    </span>
+                                    {currentUser.isAdmin() ?
+                                        <Button
+                                            style={styles.refreshAttendance}
+                                            text="Excuse Absence"
+                                            onClick={() => this.props.dispatch(excuseAbsence(absence._id))}
+                                        />
+                                        :
+                                        void(0)
+                                    }
+                                    <br />
+                                </div>
+                            ))}
+
+                        </span>
+                    </div>
+                    :
+                    void(0)
+                }
 
             </div>
         )
     }
 
 }
+
+const mapStateToProps = ({ attendance }) => {
+    return {
+        absences: attendance.absences,
+        present: attendance.present,
+    }
+}
+
+export default connect(mapStateToProps)(Attendance);

@@ -1,9 +1,9 @@
-const initialState = {
+const tasksInitialState = {
     pending: [],
     completed: [],
 }
 
-const tasks = (state = initialState, action) => {
+const tasks = (state = tasksInitialState, action) => {
     switch (action.type) {
         case "SET_TASKS":
             return {
@@ -28,6 +28,28 @@ const tasks = (state = initialState, action) => {
     }
 }
 
+const attendanceInitialState = {
+    absences: [],
+    present: 0,
+}
+
+const attendance = (state = attendanceInitialState, action) => {
+    switch (action.type) {
+        case "FETCH_ATTENDANCE":
+            return {
+                absences: action.absences,
+                present: action.present,
+            }
+        case "EXCUSE_ABSENCE":
+            return {
+                absences: state.absences.filter(absence => absence._id != action.absenceId),
+            }
+        default:
+            return state
+    }
+}
+
 export default {
     tasks,
+    attendance,
 }

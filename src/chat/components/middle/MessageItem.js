@@ -7,7 +7,7 @@ import ProfilePicture from "~/shared/components/ProfilePicture";
 import { chatItem as styles } from "~/chat/styles/middle";
 import { fullName, currentUser } from "~/util";
 import { allowOnlyTags } from "~/util/component";
-import { parseDate } from "~/util/date";
+import { parseDateAndTime } from "~/util/date";
 
 const filterMessage = (content) => (
     allowOnlyTags(["a", "br"], content.replace(/\n/g, "<br />"))
@@ -25,7 +25,7 @@ export default class MessageItem extends React.PureComponent {
         return (
             <Tooltip id="message-author">
                 <span style={styles.audienceTooltip}>
-                    {fullName(message.author) + ", " + parseDate(message.timestamp)}
+                    {fullName(message.author) + ", " + parseDateAndTime(message.timestamp)}
                 </span>
             </Tooltip>
         )
