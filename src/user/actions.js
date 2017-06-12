@@ -29,6 +29,28 @@ export const markTaskCompleted = (taskId) => async (dispatch) => {
     });
 }
 
+export const fetchAttendance = (userId, startDate, endDate) => async (dispatch) => {
+    const { data } = await request("GET",
+        `/users/id/${userId}/absences`, ({ startDate, endDate })
+    );
+    dispatch({
+        type: "FETCH_ATTENDANCE",
+        absences: data.absences,
+        present: data.present,
+    });
+}
+
+export const excuseAbsence = (absenceId) => async (dispatch) => {
+    await request("PUT", `/events/id/${absenceId}/excuseAbsences`,
+        { userIds: [pageOptions.userId] }
+    )
+    dispatch({
+        type: "EXCUSE_ABSENCE",
+        absenceId,
+    });
+}
+
 export function initialActions(dispatch) {
     dispatch(fetchTasks(pageOptions.userId));
+    dispatch(fetchAttendance(pageOptions.userId));
 }
