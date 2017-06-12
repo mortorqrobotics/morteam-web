@@ -10,11 +10,15 @@ import styles from "~/home/styles/leftbar";
 @Radium
 class Rightbar extends React.Component {
 
-    render() {
-        console.log(this.props.alerts.length);
+    state = {
+        hasAlerts: false,
+    }
+
+    renderEventAlerts = () => {
         if (this.props.alerts.length > 0) {
+            this.state.hasAlerts = true;
             return (
-                <div style={styles.leftbar.div}>
+                <div>
                     <EventAlert
                         alerts={this.props.alerts}
                     />
@@ -23,7 +27,27 @@ class Rightbar extends React.Component {
         } else {
             return null
         }
+    }
 
+    renderNoAlerts = () => {
+        if (this.state.hasAlerts == false) {
+            return (
+                <p>You have no new alerts.</p>
+            )
+        } else {
+            return null
+        }
+    }
+
+
+    render() {
+        return (
+            <div style={styles.leftbar.div}>
+                <h1>Alerts</h1>
+                {this.renderEventAlerts()}
+                {this.renderNoAlerts()}
+            </div>
+        )
     }
 }
 
