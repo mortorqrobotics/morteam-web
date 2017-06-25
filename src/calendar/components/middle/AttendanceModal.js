@@ -12,7 +12,7 @@ import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import TakeAttendance from "./TakeAttendance";
 import { connect } from "react-redux";
-import { startAttendance } from "~/calendar/actions";
+import { startAttendance, submitAttendence } from "~/calendar/actions";
 
 @Radium
 class AttendanceModal extends React.Component {
@@ -70,12 +70,8 @@ class AttendanceModal extends React.Component {
                 />
                 <ModalButton
                     text="Done"
-                    onClick={async () => {
-                        // TODO: use redux
-                        await ajax.request("PUT",
-                            "/events/id/" + this.props.event._id + "/excuseAbsences",
-                            { userIds: this.state.excusedUsers.map(u => u._id), }
-                        );
+                    onClick={() => {
+                        this.props.dispatch(submitAttendence(this.state.excusedUsers));
                         this.reset();
                         this.props.onRequestClose();
                     }}

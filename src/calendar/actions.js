@@ -69,3 +69,10 @@ export async function initialActions(dispatch) {
     dispatch(setAbsMonth(currentAbsMonth()));
     loadPendingTasks(dispatch);
 }
+
+export async function submitAttendence(excusedUsers) {
+    await ajax.request("PUT",
+        "/events/id/" + this.props.event._id + "/excuseAbsences",
+        { userIds: excusedUsers.map(u => u._id), }
+    );
+}
