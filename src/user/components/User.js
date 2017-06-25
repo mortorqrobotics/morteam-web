@@ -35,7 +35,7 @@ export default class User extends React.Component {
             <Root pageName="user" store={store}>
                 <Navbar />
                 <Leftbar />
-                <Grid fluid style={{overflow:"hidden",marginLeft:"300px",width:"calc(100%-300px)",height:"100%"}}>
+                <Grid fluid style={{marginLeft:"300px",width:"calc(100%-300px)",height:"100%"}}>
                     <Row style={{height:"100%",width:"100%"}}>
                         <Col sm={2} style={{width:"50%"}}>
                             <Attendance />
