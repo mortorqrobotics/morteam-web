@@ -43,6 +43,7 @@ const attendance = (state = attendanceInitialState, action) => {
         case "EXCUSE_ABSENCE":
             return {
                 absences: state.absences.filter(absence => absence._id != action.absenceId),
+                present: state.present++,
             }
         default:
             return state
