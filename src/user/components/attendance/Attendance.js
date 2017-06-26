@@ -134,7 +134,7 @@ class Attendance extends React.Component {
                             {this.props.absences.map(absence => (
                                 <div key={absence._id}>
                                     <span style={styles.absenceDate}>
-                                        {parseDate(absence.date)}: {absence.name}, {absence.description}
+                                        {parseDate(absence.date)}: {absence.name}
                                     </span>
                                     {currentUser.isAdmin() ?
                                         <Button
