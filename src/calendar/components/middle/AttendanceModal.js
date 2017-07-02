@@ -110,6 +110,7 @@ class AttendanceModal extends React.Component {
                         text="Take Attendance"
                         onClick={() => {
                             this.props.dispatch(startAttendance(this.props.event._id));
+                            console.log(this.props.event);
                         }}
                     />
                 )}

@@ -53,6 +53,7 @@ export const fetchEvents = () => async (dispatch) => {
         + `/startYear/${today.getFullYear()}/startMonth/${today.getMonth()}`
         + `/endYear/${today.getFullYear()}/endMonth/${today.getMonth()}`
     );
+    console.log(data);
     data = data.filter(event => new Date(event.date).getDate() == today.getDate());
     todayEvents = data.filter(event => event.hasTakenAttendance == false);
     dispatch({

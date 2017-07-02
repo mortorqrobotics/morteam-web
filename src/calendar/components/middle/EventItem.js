@@ -55,6 +55,7 @@ class EventItem extends React.Component {
     render() {
         return (
             <li style={styles.eventItem}>
+                {console.log(this.props.event)}
                 <span style={{fontWeight:"300",fontSize:"16px",}}>
                     {this.props.event.name}
                 </span>
