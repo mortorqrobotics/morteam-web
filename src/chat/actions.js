@@ -49,6 +49,7 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, ge
     dispatch({
         type: "RECEIVE_MESSAGE_SUCCESS",
         chatId,
+        currentChatId,
         message: {
             ...message,
             // giving each message a unique id lets the view know which
@@ -101,6 +102,9 @@ export const setCurrentChatId = (chatId) => (dispatch) => {
     localStorage.selectedChatId = chatId;
     dispatch({
         type: "SET_CURRENT_CHAT_ID",
+        chatId,
+    })
+    emit("read message", {
         chatId,
     })
 }
@@ -176,6 +180,10 @@ export const loadChats = (query) => async (dispatch, getState) => {
         chats: sentData,
         chatId: chatId,
     });
+
+    if (chatId) {
+        dispatch(setCurrentChatId(chatId));
+    }
 }
 
 export const setTab = (tab, query) => (dispatch, getState) => {

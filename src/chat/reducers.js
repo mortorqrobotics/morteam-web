@@ -5,6 +5,7 @@ const initialChats = [];
 
 function chats(state = initialChats, action) {
     let index;
+    let unreadMessagesIndex;
     let newState;
     switch (action.type) {
         case "LOAD_CHATS_PENDING":
@@ -27,7 +28,9 @@ function chats(state = initialChats, action) {
             })
         case "RECEIVE_MESSAGE_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
-             newState = update(state, {
+            unreadMessagesIndex = state[index].unreadMessages.findIndex(obj =>
+                    obj.user === currentUser._id);
+            newState = update(state, {
                 [index]: {
                     messages: {
                         $push: [action.message],
@@ -41,6 +44,14 @@ function chats(state = initialChats, action) {
                     wasTyping: {
                         $set: false,
                     },
+                    unreadMessages: {
+                        [unreadMessagesIndex]: {
+                            number: {
+                                $set: state[index].unreadMessages[unreadMessagesIndex]
+                                    .number + (action.chatId !== action.currentChatId)
+                            }
+                        }
+                    }
                 },
             })
             return newState.sort((a, b) => (
@@ -123,10 +134,24 @@ function chats(state = initialChats, action) {
                 },
             })
         case "SET_CURRENT_CHAT_ID":
+            index = state.findIndex(chat => chat._id === action.chatId);
+            unreadMessagesIndex = state[index].unreadMessages.findIndex(obj =>
+                    obj.user === currentUser._id);
+            newState = update(state, {
+                [index]: {
+                    unreadMessages: {
+                        [unreadMessagesIndex]: {
+                            number: {
+                                $set: 0
+                            }
+                        }
+                    }
+                }
+            });
             // unload messages in chats other than the current chat, since
             // loading a lot of messages, switching chats, then switching
             // back can be very slow otherwise
-            return state.map(chat => update(chat, {
+            return newState.map(chat => update(chat, {
                 messages: {
                     $apply: (messages) => messages.slice(-20),
                 },

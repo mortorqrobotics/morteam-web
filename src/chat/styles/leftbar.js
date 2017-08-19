@@ -53,4 +53,11 @@ export default {
             opacity: "1",
         },
     },
+    unread: {
+        float: "left",
+        marginLeft: "-79px",
+        fontSize: "79px",
+        marginTop: "-31px",
+        color: "darkorange",
+    },
 }
