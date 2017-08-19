@@ -53,6 +53,13 @@ export default {
             opacity: "1",
         },
     },
+    unreadIndicator: {
+        float: "left",
+        marginLeft: "-83px",
+        fontSize: "79px",
+        marginTop: "-31px",
+        color: "darkorange",
+    },
     chatTitle: {
         color: "#333333",
         textDecoration: "none",

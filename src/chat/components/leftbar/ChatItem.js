@@ -71,6 +71,13 @@ class ChatItem extends React.Component {
                     ]}
                 />
 
+                {this.props.hasUnreadMessages && (
+                    <RadiumGlyphicon
+                        glyph="stop"
+                        style={styles.unreadIndicator}
+                    />
+                )}
+
                 <RadiumGlyphicon
                     glyph="cog"
                     style={styles.cog}
