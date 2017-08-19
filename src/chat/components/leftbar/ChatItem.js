@@ -9,6 +9,7 @@ import { otherUser, currentUser } from "~/util";
 import { modalProps } from "~/util/modal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import Button from "~/shared/components/forms/Button"
+import Link from "~/shared/components/Link";
 import OptionsModal from "./OptionsModal";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/chat/styles/leftbar";
@@ -61,9 +62,14 @@ class ChatItem extends React.Component {
                 onClick={() => this.props.dispatch(setCurrentChatId(this.props.chat._id))}
             >
                 {this.chatImage()}
-                <span style={this.props.hasUnreadMessages ? styles.unreadIndicator : {}}>
-                    {this.props.title}
-                </span>
+
+                <Link
+                    location="javascript:void(0);"
+                    text={this.props.title}
+                    style={[ styles.chatTitle, this.props.hasUnreadMessages ?
+                        { fontWeight: "bold" } : {}
+                    ]}
+                />
 
                 <RadiumGlyphicon
                     glyph="cog"

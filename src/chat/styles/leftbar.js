@@ -53,7 +53,8 @@ export default {
             opacity: "1",
         },
     },
-    unreadIndicator: {
-        fontWeight: "bold",
+    chatTitle: {
+        color: "#333333",
+        textDecoration: "none",
     },
 }
