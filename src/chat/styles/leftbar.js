@@ -53,4 +53,7 @@ export default {
             opacity: "1",
         },
     },
+    unreadIndicator: {
+        fontWeight: "bold",
+    },
 }

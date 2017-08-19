@@ -21,6 +21,7 @@ class ChatItem extends React.Component {
     static propTypes = {
         chat: React.PropTypes.object,
         title: React.PropTypes.string,
+        hasUnreadMessages: React.PropTypes.bool,
     }
 
     state = {
@@ -60,7 +61,9 @@ class ChatItem extends React.Component {
                 onClick={() => this.props.dispatch(setCurrentChatId(this.props.chat._id))}
             >
                 {this.chatImage()}
-                {this.props.title}
+                <span style={this.props.hasUnreadMessages ? styles.unreadIndicator : {}}>
+                    {this.props.title}
+                </span>
 
                 <RadiumGlyphicon
                     glyph="cog"

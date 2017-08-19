@@ -74,6 +74,8 @@ class Leftbar extends React.Component {
                         key={chat._id}
                         chat={chat}
                         title={this.chatTitle(chat)}
+                        hasUnreadMessages={chat.unreadMessages.find(obj =>
+                            obj.user === currentUser._id).number > 0}
                     />
                 ))}
                 <ComposeModal
