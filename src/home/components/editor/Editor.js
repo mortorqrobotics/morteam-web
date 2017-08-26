@@ -23,7 +23,6 @@ class Editor extends React.Component {
     }
 
     post = async() => {
-        console.log(this.props.audience)
         await this.props.dispatch(addAnnouncement({
             content: this.content,
             audience: getAudienceIds(this.props.audience),

@@ -52,7 +52,6 @@ class AnnouncementsListItem extends React.Component {
 
     renderAudienceTooltip = () => {
         const { groups, users, isMultiTeam } = this.props.announcement.audience;
-        console.log(isMultiTeam);
         let displayedAudience;
         if (isMultiTeam) {
             displayedAudience = groups.map(group => getGroupName(group) + " of " + group.team.number);

@@ -140,16 +140,18 @@ export default class AudienceSelect extends React.Component {
                 />
                 <br />
                 <div style={styles.audienceSelect.div}>
-                    {shownGroups.map(group => (
-                        <AudienceItem
-                            key={group._id}
-                            text={this.props.isMultiTeam ? "Team " + group.team.number.toString() : getGroupName(group)}
-                            item={group}
-                            onClick={this.onGroupClick}
-                            isSelected={this.isGroupSelected(group)}
-                            isGroup={true}
-                        />
-                    ))}
+                    {!this.props.noIncludeGroups &&
+                        shownGroups.map(group => (
+                            <AudienceItem
+                                key={group._id}
+                                text={this.props.isMultiTeam ? "Team " + group.team.number.toString() : getGroupName(group)}
+                                item={group}
+                                onClick={this.onGroupClick}
+                                isSelected={this.isGroupSelected(group)}
+                                isGroup={true}
+                            />
+                        ))
+                    }
                     {shownUsers.map(user => (
                         <AudienceItem
                             key={user._id}

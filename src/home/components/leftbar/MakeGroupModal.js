@@ -59,6 +59,7 @@ class MakeGroupModal extends React.Component {
                     noIncludeGroups
                     selected={{ users: this.state.users }}
                     onChange={({ users }) => this.setState({ users })}
+                    noIncludeGroups={true}
                 />
                 <br />
 
