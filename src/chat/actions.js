@@ -59,6 +59,11 @@ export const receiveMessage = ({ chatId, message, type, name }) => (dispatch, ge
         meta, // this is part of redux-sounds
         timestamp: new Date(),
     });
+    if (currentChatId === chatId) {
+        emit("read message", {
+            chatId,
+        })
+    }
 }
 
 export const sendMessage = (content) => (dispatch, getState) => {

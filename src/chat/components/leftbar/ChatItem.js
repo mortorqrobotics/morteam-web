@@ -67,7 +67,7 @@ class ChatItem extends React.Component {
                     location="javascript:void(0);"
                     text={this.props.title}
                     style={[ styles.chatTitle, this.props.hasUnreadMessages ?
-                        { fontWeight: "bold" } : {}
+                        { fontWeight: "400" } : {}
                     ]}
                 />
 
