@@ -39,34 +39,38 @@ class Map extends React.Component {
                 <Navbar />
                 <Leftbar />
 
-                <GoogleMapLoader
-                    containerElement= {
-                        <div
-                            style={{
-                                height: "100%",
-                            }}
-                        />
-                    }
-                    googleMapElement = {
-                        <GoogleMap
-                            center={mapOptions.center}
-                            zoom={mapOptions.zoom}
-                        >
-                            {Object.keys(teamLocations).map(teamNum => (
-                                // yes they are switched
-                                <Marker
-                                    key={teamNum}
-                                    position = {{
-                                        lat: teamLocations[teamNum].lat,
-                                        lng: teamLocations[teamNum].lng
-                                    }}
-                                    onClick={() => store.dispatch(setTeam(teamNum))}
-                                />
-                            ))}
-                        </GoogleMap>
-                    }
-                />
-
+                <div
+                    style= {{ height: "100vh" }}
+                >
+                    <GoogleMapLoader
+                        style={{ position: "static" }}
+                        containerElement= {
+                            <div
+                                style={{
+                                    height: "100%",
+                                }}
+                            />
+                        }
+                        googleMapElement = {
+                            <GoogleMap
+                                center={mapOptions.center}
+                                zoom={mapOptions.zoom}
+                            >
+                                {Object.keys(teamLocations).map(teamNum => (
+                                    // yes they are switched
+                                    <Marker
+                                        key={teamNum}
+                                        position = {{
+                                            lat: teamLocations[teamNum].lat,
+                                            lng: teamLocations[teamNum].lng
+                                        }}
+                                        onClick={() => store.dispatch(setTeam(teamNum))}
+                                    />
+                                ))}
+                            </GoogleMap>
+                        }
+                    />
+                </div>
             </Root>
         )
     }
