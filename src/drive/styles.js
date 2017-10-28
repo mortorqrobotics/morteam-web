@@ -80,15 +80,14 @@ export default {
             fontSize: "14px",
             fontWeight: "300",
         },
-        trash: {
-            display: "inline-block",
-            lineHeight: "1.3em",
-            maxHeight: "37px",
-            position: "absolute",
-            right: "0px",
-            top: "43px",
+        cog: {
+            float: "right",
+            opacity: "0.5",
+            fontSize: "13px",
+            marginTop: "7px",
+            cursor: "pointer",
             ":hover": {
-                color: "#a9a9a9",
+                opacity: "1",
             },
         },
     },

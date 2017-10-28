@@ -3,14 +3,13 @@ import Radium from "radium";
 
 import { LeftbarButton } from "~/shared/components/leftbar";
 import { connect } from "react-redux";
-import { setCurrentChatId } from "~/chat/actions";
-import { deleteChat } from "~/chat/actions";
+import { setCurrentChatId, setChatName, deleteChat } from "~/chat/actions";
 import { otherUser, currentUser } from "~/util";
 import { modalProps } from "~/util/modal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import Button from "~/shared/components/forms/Button"
 import Link from "~/shared/components/Link";
-import OptionsModal from "./OptionsModal";
+import OptionsModal from "~/shared/components/OptionsModal";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/chat/styles/leftbar";
 
@@ -85,7 +84,18 @@ class ChatItem extends React.Component {
                 />
 
                 <OptionsModal
-                    chat={this.props.chat}
+                    obj={this.props.chat}
+                    hasAudienceList={!this.props.chat.isTwoPeople}
+                    hasNameEdit={!this.props.chat.isTwoPeople}
+                    hasDelete={this.props.chat.isTwoPeople
+                        || this.props.chat.creator === currentUser._id
+                        || currentUser.isAdmin()
+                    }
+                    onDelete={() => this.props.dispatch(deleteChat(this.props.chat._id))}
+                    onNameChange={(name) => this.props.dispatch(setChatName({
+                        chatId: this.props.chat._id,
+                        name: name,
+                    }))}
                     { ...modalProps(this, "isOptionsModalOpen") }
                 />
 

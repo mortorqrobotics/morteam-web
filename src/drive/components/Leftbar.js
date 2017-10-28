@@ -9,9 +9,10 @@ import { leftbarProps } from "~/util/leftbar";
 import { modalProps } from "~/util/modal";
 import AddFolderModal from "~/drive/components/AddFolderModal";
 import SortDropdown from "~/drive/components/SortDropdown";
+import FolderItem from "~/drive/components/FolderItem";
 import styles from "~/drive/styles";
 import ajax from "~/util/ajax";
-import { setFolder, setTab } from "~/drive/actions";
+import { setTab } from "~/drive/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -45,18 +46,13 @@ class Leftbar extends React.Component {
                     style={(this.props.currentTab === "intra" || currentUser.isAdmin()) ? {} : {display: "none"}}
                 >
                     <Glyphicon glyph="plus" style={styles.left.glyph} />
-                    New Folder 
+                    New Folder
                 </LeftbarButton>
 
                 {this.props.folders.map(folder => (
-                    <LeftbarButton
-                        isSelected={folder === this.props.selectedFolder}
-                        key={folder._id}
-                        onClick={() => this.handleFolderChange(folder)}
-                    >
-                        <Glyphicon glyph="folder-open" style={styles.left.glyph} />
-                        {folder.name}
-                    </LeftbarButton>
+                    <FolderItem
+                        folder={folder}
+                    />
                 ))}
 
                 <AddFolderModal

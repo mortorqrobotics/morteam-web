@@ -41,6 +41,14 @@ export const addFolder = (folder) => async (dispatch) => {
     });
 }
 
+export const deleteFolder = (folder) => async (dispatch) => {
+    const { data } = await request("delete", `/folders/id/${folder._id}`);
+    dispatch({
+        type: "DELETE_FOLDER",
+        folder,
+    });
+}
+
 export const setFolder = (folder) => async (dispatch) => {
     const { data } = await request("get", `/folders/id/${folder._id}/files`);
     dispatch({

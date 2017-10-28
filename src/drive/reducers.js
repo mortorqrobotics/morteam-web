@@ -8,6 +8,14 @@ const folders = (state = [], action) => {
             });
         case "SET_FOLDERS":
             return action.folders
+        case "DELETE_FOLDER":
+            return update(state, {
+                $splice: [
+                    [state.findIndex(folder => (
+                        folder == action.folder
+                    )), 1]
+                ]
+            });
         default:
             return state
     }
