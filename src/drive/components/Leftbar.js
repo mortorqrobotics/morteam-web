@@ -52,6 +52,7 @@ class Leftbar extends React.Component {
                 {this.props.folders.map(folder => (
                     <FolderItem
                         folder={folder}
+                        key={folder._id}
                     />
                 ))}
 

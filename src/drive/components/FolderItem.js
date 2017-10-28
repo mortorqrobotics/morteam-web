@@ -57,6 +57,7 @@ class FolderItem extends React.Component {
                     hasDelete={this.props.folder.creator === currentUser._id
                         || currentUser.isAdmin()
                     }
+                    onDelete={() => this.props.dispatch(deleteFolder(this.props.folder))}
                     { ...modalProps(this, "isOptionsModalOpen")}
                 />
             </LeftbarButton>

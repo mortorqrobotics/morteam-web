@@ -70,18 +70,19 @@ class OptionsModal extends React.Component {
             return (
                 <ul style={styles.ul}>
                     {this.props.obj.audience.groups.map(group => (
-                        <li key={group._id} style={styles.li}>
+                        <li key={"li" + this.props.obj._id + group._id ?  group._id : group}
+                            style={styles.li}>
                             <img
                                 style={styles.img}
                                 src="/images/group.png"
                             />
                             <span
+                                key={"span" + this.props.obj._id + group._id ?  group._id : group}
                                 style={styles.span}
                                 onClick={this.props.obj.audience.isMultiTeam
                                     ? () => window.location.assign("/teams/number/" + group.team.number )
                                     : () => window.location.assign("/groups/id/" + group._id)
                                 }
-                                key={group._id}
                             >
                                 {this.props.obj.audience.isMultiTeam
                                     ? getGroupName(group) + " of "  + group.team.number
@@ -91,7 +92,8 @@ class OptionsModal extends React.Component {
                         </li>
                     ))}
                     {this.props.obj.audience.users.map(user => (
-                        <li key={user._id} style={styles.li}>
+                        <li key={"li" + this.props.obj._id + user._id ?  user._id : user}
+                            style={styles.li}>
                             <ProfilePicture
                                 user={user}
                                 picSize="small"
@@ -99,9 +101,9 @@ class OptionsModal extends React.Component {
                                 hasIndicator
                             />
                             <span
+                                key={"span" + this.props.obj._id + user._id ? user._id : user}
                                 style={styles.span}
                                 onClick={() => window.location.assign("/profiles/id/" + user._id)}
-                                key={user._id}
                             >
                                 {fullName(user)}
                             </span>
