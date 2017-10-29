@@ -57,11 +57,11 @@ class AddFolderModal extends React.Component {
     render() {
         return (
             <StandardModal
-                title="New Group"
+                title="New Folder"
                 { ...modalPropsForward(this) }
             >
                 <ModalTextBox
-                    placeholder="Group Name"
+                    placeholder="Folder Name"
                     value={this.state.name}
                     onChange={this.getChangeHandler("name")}
                 />
