@@ -1,21 +1,25 @@
 import update from "react/lib/update";
 
 const folders = (state = [], action) => {
+    let index;
     switch (action.type) {
         case "ADD_FOLDER":
             return update(state, {
                 $push: [action.folder]
             });
+        case "SET_FOLDER_NAME":
+            index = state.findIndex(folder => folder._id === action.folderId);
+            return update(state, {
+                [index]: {
+                    name: {
+                        $set: action.name,
+                    },
+                },
+            });
         case "SET_FOLDERS":
             return action.folders
         case "DELETE_FOLDER":
-            return update(state, {
-                $splice: [
-                    [state.findIndex(folder => (
-                        folder == action.folder
-                    )), 1]
-                ]
-            });
+            return state.filter(folder => folder._id !== action.folderId);
         default:
             return state
     }

@@ -41,11 +41,22 @@ export const addFolder = (folder) => async (dispatch) => {
     });
 }
 
-export const deleteFolder = (folder) => async (dispatch) => {
-    const { data } = await request("delete", `/folders/id/${folder._id}`);
+export const setFolderName = ({ folderId, name }) => async (dispatch) => {
+    await request("PUT", `/folders/id/${folderId}/name`, {
+        newName: name,
+    });
+    dispatch({
+        type: "SET_FOLDER_NAME",
+        folderId,
+        name,
+    });
+}
+
+export const deleteFolder = (folderId) => async (dispatch) => {
+    const { data } = await request("delete", `/folders/id/${folderId}`);
     dispatch({
         type: "DELETE_FOLDER",
-        folder,
+        folderId,
     });
 }
 

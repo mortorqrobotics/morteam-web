@@ -94,7 +94,7 @@ class ChatItem extends React.Component {
                     onDelete={() => this.props.dispatch(deleteChat(this.props.chat._id))}
                     onNameChange={(name) => this.props.dispatch(setChatName({
                         chatId: this.props.chat._id,
-                        name: name,
+                        name,
                     }))}
                     { ...modalProps(this, "isOptionsModalOpen") }
                 />

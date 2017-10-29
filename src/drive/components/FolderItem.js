@@ -5,7 +5,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import OptionsModal from "~/shared/components/OptionsModal";
 import { modalProps } from "~/util/modal";
 import { LeftbarButton } from "~/shared/components/leftbar";
-import { deleteFolder, setFolder } from "~/drive/actions";
+import { deleteFolder, setFolder, setFolderName } from "~/drive/actions";
 import { currentUser } from "~/util";
 import styles from "~/drive/styles";
 import { connect } from "react-redux";
@@ -57,7 +57,11 @@ class FolderItem extends React.Component {
                     hasDelete={this.props.folder.creator === currentUser._id
                         || currentUser.isAdmin()
                     }
-                    onDelete={() => this.props.dispatch(deleteFolder(this.props.folder))}
+                    onDelete={() => this.props.dispatch(deleteFolder(this.props.folder._id))}
+                    onNameChange={(name) => this.props.dispatch(setFolderName({
+                        folderId: this.props.folder._id,
+                        name,
+                    }))}
                     { ...modalProps(this, "isOptionsModalOpen")}
                 />
             </LeftbarButton>
