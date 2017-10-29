@@ -30,11 +30,6 @@ class FolderItem extends React.Component {
         });
     }
 
-    handleDeleteFolder = (event) => {
-        event.stopPropagation();
-        this.props.dispatch(deleteFolder(this.props.folder));
-    }
-
     render() {
         return (
             <LeftbarButton
@@ -44,26 +39,31 @@ class FolderItem extends React.Component {
                 <RadiumGlyphicon glyph="folder-open" style={styles.left.glyph} />
                 {this.props.folder.name}
 
-                <RadiumGlyphicon
-                    glyph="cog"
-                    style={styles.description.cog}
-                    onClick={this.handleOpenOptions}
-                />
-
-                <OptionsModal
-                    obj={this.props.folder}
-                    hasNameEdit={true}
-                    hasAudienceList={true}
-                    hasDelete={this.props.folder.creator === currentUser._id
-                        || currentUser.isAdmin()
-                    }
-                    onDelete={() => this.props.dispatch(deleteFolder(this.props.folder._id))}
-                    onNameChange={(name) => this.props.dispatch(setFolderName({
-                        folderId: this.props.folder._id,
-                        name,
-                    }))}
-                    { ...modalProps(this, "isOptionsModalOpen")}
-                />
+                {!this.props.folder.defaultFolder && (
+                    <RadiumGlyphicon
+                        glyph="cog"
+                        style={styles.description.cog}
+                        onClick={this.handleOpenOptions}
+                    />
+                )}
+                {!this.props.folder.defaultFolder && (
+                    <OptionsModal
+                        obj={this.props.folder}
+                        hasNameEdit={this.props.folder.creator === currentUser._id
+                            || currentUser.isAdmin()
+                        }
+                        hasAudienceList={true}
+                        hasDelete={this.props.folder.creator === currentUser._id
+                            || currentUser.isAdmin()
+                        }
+                        onDelete={() => this.props.dispatch(deleteFolder(this.props.folder._id))}
+                        onNameChange={(name) => this.props.dispatch(setFolderName({
+                            folderId: this.props.folder._id,
+                            name,
+                        }))}
+                        { ...modalProps(this, "isOptionsModalOpen")}
+                    />
+                )}
             </LeftbarButton>
 
         )
