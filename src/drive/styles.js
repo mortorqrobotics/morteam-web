@@ -14,6 +14,16 @@ export default {
             marginLeft: "5px",
             marginRight: "14px",
         },
+        cog: {
+            float: "right",
+            opacity: "0.5",
+            fontSize: "13px",
+            marginTop: "7px",
+            cursor: "pointer",
+            ":hover": {
+                opacity: "1",
+            },
+        },
     },
     docList: {
         leftbarOpen: [docList, {
@@ -80,14 +90,15 @@ export default {
             fontSize: "14px",
             fontWeight: "300",
         },
-        cog: {
-            float: "right",
-            opacity: "0.5",
-            fontSize: "13px",
-            marginTop: "7px",
-            cursor: "pointer",
+        trash: {
+            display: "inline-block",
+            lineHeight: "1.3em",
+            maxHeight: "37px",
+            position: "absolute",
+            right: "0px",
+            top: "43px",
             ":hover": {
-                opacity: "1",
+                color: "#a9a9a9",
             },
         },
     },

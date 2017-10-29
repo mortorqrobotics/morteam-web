@@ -42,7 +42,7 @@ class FolderItem extends React.Component {
                 {!this.props.folder.defaultFolder && (
                     <RadiumGlyphicon
                         glyph="cog"
-                        style={styles.description.cog}
+                        style={styles.left.cog}
                         onClick={this.handleOpenOptions}
                     />
                 )}
