@@ -12,6 +12,48 @@ import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import styles from "~/shared/styles/optionsModal";
 
+const UserListItem = Radium(props => {
+    return (
+        <li style={styles.li}>
+            <ProfilePicture
+                user={props.user}
+                picSize="small"
+                frameSize={30}
+                hasIndicator
+            />
+            <span
+                style={styles.span}
+                onClick={() => window.location.assign("/profiles/id/" + props.user._id)}
+            >
+                {fullName(props.user)}
+            </span>
+        </li>
+    )
+})
+
+const GroupListItem = Radium(props => {
+    return (
+        <li style={styles.li}>
+            <img
+                style={styles.img}
+                src="/images/group.png"
+            />
+            <span
+                style={styles.span}
+                onClick={props.isMultiTeam
+                    ? () => window.location.assign("/teams/number/" + prpos.group.team.number )
+                    : () => window.location.assign("/groups/id/" + props.group._id)
+                }
+            >
+                {props.isMultiTeam
+                    ? getGroupName(props.group) + " of "  + props.group.team.number
+                    : getGroupName(props.group)
+                }
+            </span>
+        </li>
+    )
+})
+
 @Radium
 class OptionsModal extends React.Component {
 
@@ -69,45 +111,13 @@ class OptionsModal extends React.Component {
         if (this.props.hasAudienceList) {
             return (
                 <ul style={styles.ul}>
-                    {this.props.obj.audience.groups.map(group => (
-                        <li key={"li" + this.props.obj._id + group._id ?  group._id : group}
-                            style={styles.li}>
-                            <img
-                                style={styles.img}
-                                src="/images/group.png"
-                            />
-                            <span
-                                key={"span" + this.props.obj._id + group._id ?  group._id : group}
-                                style={styles.span}
-                                onClick={this.props.obj.audience.isMultiTeam
-                                    ? () => window.location.assign("/teams/number/" + group.team.number )
-                                    : () => window.location.assign("/groups/id/" + group._id)
-                                }
-                            >
-                                {this.props.obj.audience.isMultiTeam
-                                    ? getGroupName(group) + " of "  + group.team.number
-                                    : getGroupName(group)
-                                }
-                            </span>
-                        </li>
+                    {this.props.obj.audience.groups.map(group  => (
+                        <GroupListItem group={group} key={group._id}
+                            isMultiTeam={this.props.obj.audience.isMultiTeam}
+                        />
                     ))}
                     {this.props.obj.audience.users.map(user => (
-                        <li key={"li" + this.props.obj._id + user._id ?  user._id : user}
-                            style={styles.li}>
-                            <ProfilePicture
-                                user={user}
-                                picSize="small"
-                                frameSize={30}
-                                hasIndicator
-                            />
-                            <span
-                                key={"span" + this.props.obj._id + user._id ? user._id : user}
-                                style={styles.span}
-                                onClick={() => window.location.assign("/profiles/id/" + user._id)}
-                            >
-                                {fullName(user)}
-                            </span>
-                        </li>
+                        <UserListItem user={user} key={user._id} />
                     ))}
                 </ul>
             )
