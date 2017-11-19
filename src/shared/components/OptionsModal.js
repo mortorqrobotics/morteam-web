@@ -67,6 +67,7 @@ class OptionsModal extends React.Component {
         hasNameEdit: React.PropTypes.bool,
         onDelete: React.PropTypes.func,
         onNameChange: React.PropTypes.func,
+        onAddAudience: React.PropTypes.func,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);
@@ -75,7 +76,7 @@ class OptionsModal extends React.Component {
         name: this.props.obj.name,
         isDeleteConfirmOpen: false,
         errorMsg: "",
-        isAddingMembers: false,
+        isAddingAudience: false,
         audience: {
             users: [],
             groups: [],
@@ -119,18 +120,20 @@ class OptionsModal extends React.Component {
             return (
                 <ul style={styles.ul}>
 
-                    <li
-                        style={[styles.addMemberLi, styles.li]}
-                        key="addMember"
-                        onClick={() => this.setState({ isAddingMembers: true })}
-                    >
-                        <Glyphicon style={styles.plus} glyph="plus" />
-                        <span
-                            style={styles.span}
+                    {this.props.onAddAudience && (
+                        <li
+                            style={[styles.addMemberLi, styles.li]}
+                            key="addMember"
+                            onClick={() => this.setState({ isAddingAudience: true })}
                         >
-                            Add new members
-                        </span>
-                    </li>
+                            <Glyphicon style={styles.plus} glyph="plus" />
+                            <span
+                                style={styles.span}
+                            >
+                                Add new members
+                            </span>
+                        </li>
+                    )}
 
                     {this.props.obj.audience.groups.map(group  => (
                         <GroupListItem group={group} key={group._id}
@@ -187,12 +190,14 @@ class OptionsModal extends React.Component {
     }
 
     render() {
-        const isAddingMembers = this.state.isAddingMembers;
+        const isAddingAudience = this.state.isAddingAudience;
         let view = null;
-        if (isAddingMembers) {
+        if (isAddingAudience && this.props.onAddAudience) {
             view =
                 <div>
                     <AudienceSelect
+                        excludedUsers={this.props.obj.audience.users}
+                        excludedGroups={this.props.obj.audience.groups}
                         selected={this.state.audience}
                         onChange={audience => this.setState({ audience })}
                         isMultiTeam={this.props.obj.isMultiTeam}
@@ -200,7 +205,10 @@ class OptionsModal extends React.Component {
                     <ModalButton
                         text="Add"
                         style={styles.confirmAddButton}
-                        onClick={() => this.setState(this.initialState)}
+                        onClick={() => {
+                            this.setState(this.initialState);
+                            this.props.onAddAudience(this.state.audience);
+                        }}
                     />
                     <ModalButton
                         text="Cancel"

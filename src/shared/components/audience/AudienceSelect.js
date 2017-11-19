@@ -20,7 +20,8 @@ export default class AudienceSelect extends React.Component {
         }),
         onChange: React.PropTypes.func,
         noIncludeGroups: React.PropTypes.bool,
-        userList: React.PropTypes.array,
+        excludedUsers: React.PropTypes.array,
+        excludedGroups: React.PropTypes.array,
         isMultiTeam: React.PropTypes.bool,
     }
 
@@ -29,19 +30,15 @@ export default class AudienceSelect extends React.Component {
 
         this.state = {
             allUsers: [],
+            allGroups: [],
             shownGroups: [],
             shownUsers: [],
             teams: [],
-            groups: [],
             query: "",
         }
     }
 
     componentDidMount = async() => {
-        if (this.props.userList) {
-            this.setState({ allUsers: this.props.userList, });
-            return;
-        }
         try {
             let [{ data: users }, { data: groups }, {data: teams}] = await Promise.all([
                 ajax.request("get", "/teams/current/users"),
@@ -50,9 +47,17 @@ export default class AudienceSelect extends React.Component {
             ]);
 
             this.setState({
-                allUsers: users,
-                groups: groups,
-                teams: teams,
+                allUsers: this.props.excludedUsers ? users.filter(u => (
+                    !this.props.excludedUsers.some(eu => (
+                        eu._id == u._id
+                    ))
+                )) : users,
+                allGroups: this.props.excludedGroups ? groups.filter(g => (
+                    !this.props.excludedGroups.some(eg => (
+                        eg._id == g._id
+                    ))
+                )) : groups,
+                teams,
             });
 
         } catch (err) {
@@ -105,7 +110,7 @@ export default class AudienceSelect extends React.Component {
 
     getShownItems = () => {
 
-        let allGroups = this.props.isMultiTeam ? this.state.teams : this.state.groups;
+        let allGroups = this.props.isMultiTeam ? this.state.teams : this.state.allGroups;
 
         if (this.props.isMultiTeam) {
             allGroups = allGroups.sort((first, second) => first.team.number - second.team.number );
