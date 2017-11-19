@@ -40,7 +40,7 @@ export function initListeners(socket, dispatch) {
         }))
     })
 
-    socket.on("newChat", ({ chat }) => {
+    socket.on("addChat", ({ chat }) => {
         dispatch(addChatSync(chat));
     });
 
