@@ -65,6 +65,7 @@ class OptionsModal extends React.Component {
         hasAudienceList: React.PropTypes.bool,
         hasDelete: React.PropTypes.bool,
         hasNameEdit: React.PropTypes.bool,
+        hasAddAudience: React.PropTypes.bool,
         onDelete: React.PropTypes.func,
         onNameChange: React.PropTypes.func,
         onAddAudience: React.PropTypes.func,
@@ -120,7 +121,7 @@ class OptionsModal extends React.Component {
             return (
                 <ul style={styles.ul}>
 
-                    {this.props.onAddAudience && (
+                    {this.props.hasAddAudience && (
                         <li
                             style={[styles.addMemberLi, styles.li]}
                             key="addMember"
@@ -192,7 +193,7 @@ class OptionsModal extends React.Component {
     render() {
         const isAddingAudience = this.state.isAddingAudience;
         let view = null;
-        if (isAddingAudience && this.props.onAddAudience) {
+        if (isAddingAudience && this.props.hasAddAudience) {
             view =
                 <div>
                     <AudienceSelect
@@ -214,7 +215,6 @@ class OptionsModal extends React.Component {
                         text="Cancel"
                         onClick={() => this.setState(this.initialState)}
                     />
-
                 </div>
         } else {
             view =

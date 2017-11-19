@@ -91,6 +91,10 @@ class ChatItem extends React.Component {
                         || this.props.chat.creator === currentUser._id
                         || currentUser.isAdmin()
                     }
+                    hasAddAudience={!this.props.chat.isTwoPeople
+                        && (this.props.chat.creator === currentUser._id
+                        || currentUser.isAdmin())
+                    }
                     onDelete={() => this.props.dispatch(deleteChat(this.props.chat._id))}
                     onNameChange={(name) => this.props.dispatch(setChatName({
                         chatId: this.props.chat._id,
