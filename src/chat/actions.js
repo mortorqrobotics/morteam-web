@@ -114,6 +114,20 @@ export const setCurrentChatId = (chatId) => (dispatch) => {
     })
 }
 
+export const addAudienceToChat = ({ chatId, audience }) => async (dispatch) => {
+    await request("PUT", `/chats/id/${chatId}/audience`, {
+        audience: {
+            users: audience.users.map(u => u._id),
+            groups: audience.groups.map(g => g._id),
+        }
+    });
+    dispatch({
+        type: "ADD_AUDIENCE_TO_CHAT",
+        chatId,
+        audience,
+    })
+}
+
 let isLoading = false;
 export const loadMessages = () => async (dispatch, getState) => {
     if (isLoading) {
@@ -193,7 +207,7 @@ export const loadChats = (query) => async (dispatch, getState) => {
 
 export const setTab = (tab, query) => (dispatch, getState) => {
     const { currentTab } = getState();
-    if(currentTab !== tab){
+    if (currentTab !== tab){
         dispatch({
             type: "LOAD_CHATS_PENDING",
         });

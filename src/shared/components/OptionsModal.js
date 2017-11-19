@@ -6,6 +6,8 @@ import { ModalTextBox, ModalButton } from "~/shared/components/modal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
 import Button from "~/shared/components/forms/Button";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import AudienceSelect from "~/shared/components/audience/AudienceSelect";
 import { makeChangeHandlerFactory, fullName, currentUser } from "~/util";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { getGroupName } from "~/util/groups";
@@ -22,7 +24,7 @@ const UserListItem = Radium(props => {
                 hasIndicator
             />
             <span
-                style={styles.span}
+                style={[styles.span, styles.memberSpan]}
                 onClick={() => window.location.assign("/profiles/id/" + props.user._id)}
             >
                 {fullName(props.user)}
@@ -39,7 +41,7 @@ const GroupListItem = Radium(props => {
                 src="/images/group.png"
             />
             <span
-                style={styles.span}
+                style={[styles.span, styles.memberSpan]}
                 onClick={props.isMultiTeam
                     ? () => window.location.assign("/teams/number/" + prpos.group.team.number )
                     : () => window.location.assign("/groups/id/" + props.group._id)
@@ -63,8 +65,10 @@ class OptionsModal extends React.Component {
         hasAudienceList: React.PropTypes.bool,
         hasDelete: React.PropTypes.bool,
         hasNameEdit: React.PropTypes.bool,
+        hasAddAudience: React.PropTypes.bool,
         onDelete: React.PropTypes.func,
         onNameChange: React.PropTypes.func,
+        onAddAudience: React.PropTypes.func,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);
@@ -73,6 +77,11 @@ class OptionsModal extends React.Component {
         name: this.props.obj.name,
         isDeleteConfirmOpen: false,
         errorMsg: "",
+        isAddingAudience: false,
+        audience: {
+            users: [],
+            groups: [],
+        },
     }
 
     state = {
@@ -111,6 +120,22 @@ class OptionsModal extends React.Component {
         if (this.props.hasAudienceList) {
             return (
                 <ul style={styles.ul}>
+
+                    {this.props.hasAddAudience && (
+                        <li
+                            style={[styles.addMemberLi, styles.li]}
+                            key="addMember"
+                            onClick={() => this.setState({ isAddingAudience: true })}
+                        >
+                            <Glyphicon style={styles.plus} glyph="plus" />
+                            <span
+                                style={styles.span}
+                            >
+                                Add new members
+                            </span>
+                        </li>
+                    )}
+
                     {this.props.obj.audience.groups.map(group  => (
                         <GroupListItem group={group} key={group._id}
                             isMultiTeam={this.props.obj.audience.isMultiTeam}
@@ -166,7 +191,41 @@ class OptionsModal extends React.Component {
     }
 
     render() {
-        return(
+        const isAddingAudience = this.state.isAddingAudience;
+        let view = null;
+        if (isAddingAudience && this.props.hasAddAudience) {
+            view =
+                <div>
+                    <AudienceSelect
+                        excludedUsers={this.props.obj.audience.users}
+                        excludedGroups={this.props.obj.audience.groups}
+                        selected={this.state.audience}
+                        onChange={audience => this.setState({ audience })}
+                        isMultiTeam={this.props.obj.isMultiTeam}
+                    />
+                    <ModalButton
+                        text="Add"
+                        style={styles.confirmAddButton}
+                        onClick={() => {
+                            this.setState(this.initialState);
+                            this.props.onAddAudience(this.state.audience);
+                        }}
+                    />
+                    <ModalButton
+                        text="Cancel"
+                        onClick={() => this.setState(this.initialState)}
+                    />
+                </div>
+        } else {
+            view =
+                <div>
+                    {this.handleNameEditRender()}
+                    {this.handleAudienceRender()}
+                    {this.handleDoneRender()}
+                    {this.handleDeleteRender()}
+                </div>
+        }
+        return (
             <StandardModal
                 title="Options"
                 { ...modalPropsForward(this) }
@@ -175,10 +234,7 @@ class OptionsModal extends React.Component {
                     this.props.onRequestClose();
                 }}
             >
-                {this.handleNameEditRender()}
-                {this.handleAudienceRender()}
-                {this.handleDoneRender()}
-                {this.handleDeleteRender()}
+            {view}
             </StandardModal>
         )
     }

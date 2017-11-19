@@ -22,13 +22,7 @@ class AddMemberModal extends React.Component {
     }
 
     state = {
-        allUsers: [],
         ...this.initialState,
-    }
-
-    componentDidMount = async () => {
-        const { data } = await ajax.request("get", "/teams/current/users");
-        this.setState({ allUsers: data, });
     }
 
     onSubmit = () => {
@@ -46,11 +40,8 @@ class AddMemberModal extends React.Component {
                 >
 
                     <AudienceSelect
-                        userList={this.state.allUsers.filter(u => (
-                            !this.props.users.some(gu => (
-                                gu._id == u._id
-                            ))
-                        ))}
+                        excludedUsers={this.props.users}
+                        noIncludeGroups
                         selected={{ groups: [], users: this.state.users, }}
                         onChange={({ users }) => this.setState({ users })}
                     />

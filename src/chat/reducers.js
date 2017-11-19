@@ -26,6 +26,20 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
+        case "ADD_AUDIENCE_TO_CHAT":
+            index = state.findIndex(chat => chat._id === action.chatId);
+            return update(state, {
+                [index]: {
+                    audience: {
+                        users: {
+                            $push: action.audience.users,
+                        },
+                        groups: {
+                            $push: action.audience.groups,
+                        },
+                    },
+                },
+            })
         case "RECEIVE_MESSAGE_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             unreadMessagesIndex = state[index].unreadMessages.findIndex(obj =>
