@@ -114,6 +114,12 @@ export const setCurrentChatId = (chatId) => (dispatch) => {
     })
 }
 
+export const addMembersToChat = ({ chatId, audience }) => async (dispatch) => {
+    await request("PUT", `/chats/id/${chatId}/members`, {
+        audience
+    });
+}
+
 let isLoading = false;
 export const loadMessages = () => async (dispatch, getState) => {
     if (isLoading) {
