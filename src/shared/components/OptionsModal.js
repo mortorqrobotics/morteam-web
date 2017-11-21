@@ -43,8 +43,10 @@ const GroupListItem = Radium(props => {
             <span
                 style={[styles.span, styles.memberSpan]}
                 onClick={props.isMultiTeam
-                    ? () => window.location.assign("/teams/number/" + prpos.group.team.number )
-                    : () => window.location.assign("/groups/id/" + props.group._id)
+                    ? () => window.location.assign("/teams/number/" + props.group.team.number )
+                    : props.group.__t == "AllTeamGroup"
+                        ? () => window.location.assign("/teams/current")
+                        : () => window.location.assign("/groups/id/" + props.group._id)
                 }
             >
                 {props.isMultiTeam

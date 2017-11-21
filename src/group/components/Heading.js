@@ -5,6 +5,7 @@ import styles from "~/group/styles";
 import LeaveGroupButton from "~/group/components/LeaveGroupButton";
 import InviteMemberButton from "~/group/components/InviteMemberButton";
 import JoinButton from "~/group/components/JoinButton";
+import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import { currentUser } from "~/util";
 
@@ -12,27 +13,30 @@ import { currentUser } from "~/util";
 class Heading extends React.Component {
 
     renderConditionalButtons = () => {
-        if (this.props.users.some(user => user._id === currentUser._id)) {
-            return (
-                <div>
-                  {currentUser.isAdmin() && (
-                        <InviteMemberButton/>
-                    )}
-                    <LeaveGroupButton />
-                </div>
-            )
-        } else {
-            return (
-                <JoinButton />
-            )
+        if (this.props.group.__t == "NormalGroup") {
+            if (this.props.users.some(user => user._id === currentUser._id)) {
+                return (
+                    <div>
+                        {currentUser.isAdmin() && (
+                            <InviteMemberButton/>
+                        )}
+                        <LeaveGroupButton />
+                    </div>
+                )
+            } else {
+                return (
+                    <JoinButton />
+                )
+            }
         }
     }
 
     render() {
+        console.log(this.props.group);
         return (
             <div>
                 <h1 style={styles.groupName}>
-                    {this.props.group.name}
+                    {getGroupName(this.props.group)}
                 </h1>
                 <div style={styles.buttonContainer}>
                     {this.renderConditionalButtons()}
