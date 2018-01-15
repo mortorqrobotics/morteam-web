@@ -13,6 +13,7 @@ import ProfilePicture from "~/shared/components/ProfilePicture";
 import { withCss } from "~/util/component";
 import { fullName, currentUser, pageOptions } from "~/util";
 import { modalProps } from "~/util/modal";
+import site from "~/AppInfo";
 
 const Item = withCss("div", styles.item);
 const ButtonItem = (props) => (
@@ -35,19 +36,19 @@ export default class Leftbar extends React.Component {
         isAssignTaskOpen: false,
     }
 
-    componentDidMount = async() => {
-//        try {
-            const { data } = await ajax.request("GET",
-                "/users/id/" + pageOptions.userId
-            );
-            this.setState({
-                loaded: true,
-                user: data,
-            })
-//        } catch (err) {
-//            // TODO: deal with the case where the user does not exist
-//            console.log(err);
-//        }
+    componentDidMount = async () => {
+        //        try {
+        const { data } = await ajax.request("GET",
+            "/users/id/" + pageOptions.userId
+        );
+        this.setState({
+            loaded: true,
+            user: data,
+        })
+        //        } catch (err) {
+        //            // TODO: deal with the case where the user does not exist
+        //            console.log(err);
+        //        }
     }
 
     renderConditionalButtons = () => {
@@ -86,8 +87,8 @@ export default class Leftbar extends React.Component {
                 user={this.state.user}
                 picSize="large"
                 frameSize={150}
-                hasIndicator = {!isCurrentUser}
-                style={ isCurrentUser ? styles.img : { margin: styles.img.margin } }
+                hasIndicator={!isCurrentUser}
+                style={isCurrentUser ? styles.img : { margin: styles.img.margin }}
             />
         )
     }
@@ -131,7 +132,7 @@ export default class Leftbar extends React.Component {
                 <ButtonItem
                     text="View MorScout Profile"
                     onClick={() => window.location.assign(
-                        "http://www.scout.morteam.com/profile.html?id="
+                        "http://www.scout." + site + "/profile.html?id="
                         + pageOptions.userId
                     )}
                 />
