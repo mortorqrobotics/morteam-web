@@ -18,7 +18,7 @@ import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { connect } from "react-redux";
 import { addTask } from "~/user/actions";
 
-const currentYear = new Date().getFullYear();
+const now = new Date();
 
 @Radium
 class AssignTask extends React.Component {
@@ -27,26 +27,18 @@ class AssignTask extends React.Component {
         ...modalPropTypes,
     }
 
-    constructor(props) {
-        super(props);
+    getChangeHandler = makeChangeHandlerFactory(this);
 
-        this.getChangeHandler = makeChangeHandlerFactory(this);
+    initialState = {
+        name: "",
+        description: "",
+        errorMsg: "",
+        month: now.getMonth(),
+        day: now.getDate(),
+        year: now.getFullYear(),
+   }
 
-        this.initialState = {
-            name: "",
-            description: "",
-            errorMsg: "",
-        }
-
-        // keep the same date if making multiple tasks
-        const now = new Date();
-        this.state = {
-            ...this.initialState,
-            month: now.getMonth(),
-            day: now.getDate(),
-            year: now.getFullYear(),
-        }
-    }
+    state = this.initialState;
 
     onSubmit = async() => {
         try {
@@ -62,7 +54,10 @@ class AssignTask extends React.Component {
             this.setState({
                 errorMsg: "Success"
             })
-            setTimeout(() => this.props.onRequestClose(), REDIR_TIME);
+            setTimeout(() => {
+                this.props.onRequestClose();
+                this.setState(this.initialState);
+            }, REDIR_TIME);
         } catch ({ data }) {
             this.setState({
                 errorMsg: data
@@ -108,7 +103,7 @@ class AssignTask extends React.Component {
                         style={styles.dropdown}
                         selected={this.state.year}
                         onChange={year => this.setState({ year: parseInt(year) })}
-                        options={range(currentYear, currentYear + 4)}
+                        options={range(now.getFullYear(), now.getFullYear() + 4)}
                     />
                     <ModalSubmitButton text="Save" />
                     {this.state.errorMsg && (
