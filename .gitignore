@@ -3,4 +3,7 @@ node_modules
 **/*.sw[a-p]
 **/.DS_Store
 build
-config.json
+
+# Ignore Lock Files
+package-lock.json
+yarn.lock

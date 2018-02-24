@@ -7,8 +7,11 @@ import RightLinks from "./RightLinks";
 import Link from "~/shared/components/Link";
 import styles from "~/shared/styles/navbar";
 import { connect } from "react-redux";
+import {
+    mainURL as site
+ } from "config";
 
-const DropdownItem = Radium(({path, text}) => {
+const DropdownItem = Radium(({ path, text }) => {
     return (
         <Link
             location={path}
@@ -35,15 +38,15 @@ class Navbar extends React.Component {
                             location="/"
                         />
                         <SearchBox />
-                        <GlyphLink path="/chat" glyph="comment" name="chat"/>
-                        <GlyphLink path="/drive" glyph="hdd" name="drive"/>
-                        <GlyphLink path="/cal" glyph="calendar" name="calendar"/>
-                        <GlyphLink path="/map" glyph="globe" name="map"/>
-                        <GlyphLink path="http://www.scout.morteam.com" glyph="pencil"/>
+                        <GlyphLink path="/chat" glyph="comment" name="chat" />
+                        <GlyphLink path="/drive" glyph="hdd" name="drive" />
+                        <GlyphLink path="/cal" glyph="calendar" name="calendar" />
+                        <GlyphLink path="/map" glyph="globe" name="map" />
+                        <GlyphLink path={"http://www.scout." + site} glyph="pencil" />
                         <RightLinks />
                     </ul>
                 </div>
-                <div style={this.props.isDropdownOpen ? styles.navbarDropdown.div : {display: "none"}}>
+                <div style={this.props.isDropdownOpen ? styles.navbarDropdown.div : { display: "none" }}>
                     <DropdownItem path="/" text="Home" />
                     <DropdownItem path="/chat" text="Chat" />
                     <DropdownItem path="/drive" text="Drive" />

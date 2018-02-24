@@ -11,6 +11,10 @@ import Link from "~/shared/components/Link";
 import Form from "~/shared/components/forms/Form";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
 import styles from "~/login/styles/loginBox";
+import {
+    mainURL as site,
+    redirects
+} from 'config';
 
 @Radium
 export default class LoginBox extends React.Component {
@@ -24,7 +28,7 @@ export default class LoginBox extends React.Component {
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    onSubmit = async() => {
+    onSubmit = async () => {
         try {
             let { data: user } = await ajax.request("post", "/login", {
                 username: this.state.username,
@@ -47,7 +51,18 @@ export default class LoginBox extends React.Component {
                 localStorage.teamNumber = user.team.number;
                 localStorage.teamName = user.team.name;
             }
-            setTimeout(() => window.location.assign("/"), REDIR_TIME);
+            setTimeout(() => {
+                if (window.location.search && window.location.search !== "?") {// Checks for GET parameters
+                    let red = window.location.search.substr(1);// Get GET parameters without prefixed "?"
+                    if (redirects.indexOf(red) !== -1) {// Redirect
+                        window.location.assign("//" + red + "." + site);
+                    } else {// Redirect to home b/c of unknown redirect
+                        window.location.assign("/");
+                    }
+                } else {// no redirect
+                    window.location.assign("/");
+                }
+            }, REDIR_TIME);
         } catch ({ response: { data } }) {
             this.setState({
                 errorMsg: data
