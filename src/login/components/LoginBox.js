@@ -12,11 +12,9 @@ import Form from "~/shared/components/forms/Form";
 import ErrorMsg from "~/shared/components/forms/ErrorMsg";
 import styles from "~/login/styles/loginBox";
 import {
+    mainURL as site,
     redirects
-} from "~/AppInfo";
-import {
-    mainURL as site
-} from '~/config.json';
+} from 'config';
 
 @Radium
 export default class LoginBox extends React.Component {

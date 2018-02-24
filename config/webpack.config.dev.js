@@ -86,6 +86,7 @@ const config = {
             'react-native': 'react-native-web',
             '~': sD(),
             'root': sD('..'),
+            'config': sD('config.json')
         },
         plugins: [
             // Prevents users from importing files from outside of src/ (or node_modules/).

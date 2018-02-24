@@ -9,7 +9,7 @@ import styles from "~/shared/styles/navbar";
 import { connect } from "react-redux";
 import {
     mainURL as site
- } from "~/config.json";
+ } from "config";
 
 const DropdownItem = Radium(({ path, text }) => {
     return (

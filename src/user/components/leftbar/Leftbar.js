@@ -15,7 +15,7 @@ import { fullName, currentUser, pageOptions } from "~/util";
 import { modalProps } from "~/util/modal";
 import {
     mainURL as site
- } from "~/config.json";
+ } from "config";
 
 const Item = withCss("div", styles.item);
 const ButtonItem = (props) => (
