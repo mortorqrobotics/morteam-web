@@ -9,8 +9,18 @@ import { fullName, currentUser } from "~/util";
 import { allowOnlyTags } from "~/util/component";
 import { parseDateAndTime } from "~/util/date";
 
+const whitespaces = {
+    " ": "&nbsp",
+    "\t": "&nbsp;&nbsp;&nbsp;&nbsp;",
+    "\n": "<br />",
+}
+
 const filterMessage = (content) => (
-    allowOnlyTags(["a", "br"], content.replace(/\n/g, "<br />"))
+    allowOnlyTags(["a", "br"],
+        Object.keys(whitespaces).reduce((result, key) => (
+            result.replace(new RegExp(key, "g"), whitespaces[key])
+        ), content)
+    )
 )
 
 @Radium
