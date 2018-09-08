@@ -131,7 +131,7 @@ export default class Leftbar extends React.Component {
                 <ButtonItem
                     text="View MorScout Profile"
                     onClick={() => window.location.assign(
-                        "http://www.scout.morteam.com/profile.html?id="
+                        "https://www.scout.morteam.com/profile.html?id="
                         + pageOptions.userId
                     )}
                 />
