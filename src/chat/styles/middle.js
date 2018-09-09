@@ -99,6 +99,7 @@ export const chatItem = {
         width: "100%",
         minHeight: "40px",
         overflow: "hidden",
+        whiteSpace: "pre-wrap",
     },
     otherBubble: {
         backgroundColor: "#cccccc",
