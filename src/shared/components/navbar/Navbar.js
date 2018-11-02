@@ -40,6 +40,7 @@ class Navbar extends React.Component {
                         <GlyphLink path="/cal" glyph="calendar" name="calendar"/>
                         <GlyphLink path="/map" glyph="globe" name="map"/>
                         <GlyphLink path="https://www.scout.morteam.com" glyph="pencil"/>
+                        <GlyphLink path="https://www.parts.morteam.com" glyph="wrench"/>
                         <RightLinks />
                     </ul>
                 </div>
