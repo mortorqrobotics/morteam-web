@@ -21,6 +21,8 @@ const DropdownItem = Radium(({path, text}) => {
     )
 })
 
+const getSubdomain = (sub) => `//${sub}.${window.location.host}`;
+
 @Radium
 class Navbar extends React.Component {
 
@@ -39,8 +41,8 @@ class Navbar extends React.Component {
                         <GlyphLink path="/drive" glyph="hdd" name="drive"/>
                         <GlyphLink path="/cal" glyph="calendar" name="calendar"/>
                         <GlyphLink path="/map" glyph="globe" name="map"/>
-                        <GlyphLink path="https://www.scout.morteam.com" glyph="pencil"/>
-                        <GlyphLink path="https://www.parts.morteam.com" glyph="wrench"/>
+                        <GlyphLink path={getSubdomain("scout")} glyph="pencil"/>
+                        <GlyphLink path={getSubdomain("parts")} glyph="wrench"/>
                         <RightLinks />
                     </ul>
                 </div>
