@@ -21,7 +21,7 @@ const DropdownItem = Radium(({path, text}) => {
     )
 })
 
-const getSubdomain = (sub) => `//${sub}.${window.location.host}`;
+const getSubdomain = (sub) => `//www.${sub}.${window.location.host.replace(/^(www\.)/, "")}`;
 
 @Radium
 class Navbar extends React.Component {
