@@ -115,7 +115,7 @@ export const setCurrentChatId = (chatId) => (dispatch) => {
 }
 
 export const addAudienceToChat = ({ chatId, audience }) => async (dispatch) => {
-    await request("PUT", `/chats/id/${chatId}/audience`, {
+    await request("POST", `/chats/id/${chatId}/audience/add`, {
         audience: {
             users: audience.users.map(u => u._id),
             groups: audience.groups.map(g => g._id),
@@ -123,6 +123,15 @@ export const addAudienceToChat = ({ chatId, audience }) => async (dispatch) => {
     });
     dispatch({
         type: "ADD_AUDIENCE_TO_CHAT",
+        chatId,
+        audience,
+    })
+}
+
+export const deleteAudienceFromChat = ({ chatId, audience }) => async (dispatch) => {
+    await request("POST", `/chats/id/${chatId}/audience/remove`, { audience });
+    dispatch({
+        type: "DELETE_AUDIENCE_FROM_CHAT",
         chatId,
         audience,
     })

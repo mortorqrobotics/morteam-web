@@ -14,6 +14,8 @@ import { getGroupName } from "~/util/groups";
 import { connect } from "react-redux";
 import styles from "~/shared/styles/optionsModal";
 
+const RadiumGlyphicon = Radium(Glyphicon);
+
 const UserListItem = Radium(props => {
     return (
         <li style={styles.li}>
@@ -29,6 +31,11 @@ const UserListItem = Radium(props => {
             >
                 {fullName(props.user)}
             </span>
+            {props.hasDelete && (
+                <RadiumGlyphicon style={styles.trash} glyph="trash"
+                    onClick={() => props.onDelete({ users: [props.user._id], groups: [] })}
+                />
+            )}
         </li>
     )
 })
@@ -54,6 +61,11 @@ const GroupListItem = Radium(props => {
                     : getGroupName(props.group)
                 }
             </span>
+            {props.hasDelete && (
+                <RadiumGlyphicon style={styles.trash} glyph="trash"
+                    onClick={() => props.onDelete({ users: [], groups: [props.group._id] })}
+                />
+            )}
         </li>
     )
 })
@@ -71,6 +83,7 @@ class OptionsModal extends React.Component {
         onDelete: React.PropTypes.func,
         onNameChange: React.PropTypes.func,
         onAddAudience: React.PropTypes.func,
+        onDeleteAudience: React.PropTypes.func,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);
@@ -129,7 +142,7 @@ class OptionsModal extends React.Component {
                             key="addMember"
                             onClick={() => this.setState({ isAddingAudience: true })}
                         >
-                            <Glyphicon style={styles.plus} glyph="plus" />
+                            <RadiumGlyphicon style={styles.plus} glyph="plus" />
                             <span
                                 style={styles.span}
                             >
@@ -141,10 +154,15 @@ class OptionsModal extends React.Component {
                     {this.props.obj.audience.groups.map(group  => (
                         <GroupListItem group={group} key={group._id}
                             isMultiTeam={this.props.obj.audience.isMultiTeam}
+                            onDelete={(audience) => this.props.onDeleteAudience(audience)}
+                            hasDelete={this.props.hasAddAudience}
                         />
                     ))}
                     {this.props.obj.audience.users.map(user => (
-                        <UserListItem user={user} key={user._id} />
+                        <UserListItem user={user} key={user._id}
+                            onDelete={(audience) => this.props.onDeleteAudience(audience)}
+                            hasDelete={this.props.hasAddAudience}
+                        />
                     ))}
                 </ul>
             )

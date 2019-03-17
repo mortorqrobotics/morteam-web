@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import { LeftbarButton } from "~/shared/components/leftbar";
 import { connect } from "react-redux";
-import { setCurrentChatId, setChatName, deleteChat, addAudienceToChat } from "~/chat/actions";
+import { setCurrentChatId, setChatName, deleteChat, addAudienceToChat, deleteAudienceFromChat } from "~/chat/actions";
 import { otherUser, currentUser } from "~/util";
 import { modalProps } from "~/util/modal";
 import ProfilePicture from "~/shared/components/ProfilePicture";
@@ -102,6 +102,10 @@ class ChatItem extends React.Component {
                     }))}
                     { ...modalProps(this, "isOptionsModalOpen") }
                     onAddAudience={(audience) => this.props.dispatch(addAudienceToChat({
+                        chatId: this.props.chat._id,
+                        audience,
+                    }))}
+                    onDeleteAudience={(audience) => this.props.dispatch(deleteAudienceFromChat({
                         chatId: this.props.chat._id,
                         audience,
                     }))}
