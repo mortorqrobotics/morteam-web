@@ -42,6 +42,15 @@ export default {
         width: "30px",
         height: "30px",
     },
+    trash: {
+        opacity: "0.5",
+        float: "right",
+        marginTop: "10px",
+        ":hover": {
+            cursor: "pointer",
+            opacity: "1",
+        },
+    },
     span: {
         paddingLeft: "5px",
         verticalAlign: "middle",

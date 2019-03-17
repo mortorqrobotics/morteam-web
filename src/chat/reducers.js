@@ -40,6 +40,21 @@ function chats(state = initialChats, action) {
                     },
                 },
             })
+        case "DELETE_AUDIENCE_FROM_CHAT":
+            index = state.findIndex(chat => chat._id === action.chatId);
+            return update(state, {
+                [index]: {
+                    audience: {
+                        users: {
+                            $set: state[index].audience.users.filter(user => !action.audience.users.includes(user._id)),
+                        },
+                        groups: {
+                            $set: state[index].audience.groups.filter(group => !action.audience.groups.includes(group._id)),
+                        },
+                    },
+                },
+            })
+
         case "RECEIVE_MESSAGE_SUCCESS":
             index = state.findIndex(chat => chat._id === action.chatId);
             unreadMessagesIndex = state[index].unreadMessages.findIndex(obj =>
