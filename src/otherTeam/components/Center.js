@@ -96,7 +96,7 @@ export default class Center extends React.Component {
                         {this.handleButtonRender()}
                         {pageOptions.team &&
                             <EmailModal
-                                {...modalProps(this, "isModalOpen")}
+                                { ...modalProps(this, "isModalOpen") }
                             />
                         }
                     </div>

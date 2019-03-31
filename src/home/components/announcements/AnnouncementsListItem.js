@@ -39,7 +39,7 @@ class AnnouncementsListItem extends React.Component {
                         onClick={() => this.setState({ isModalOpen: true })}
                     />
                     <ConfirmModal
-                        {...modalProps(this, "isModalOpen")}
+                        { ...modalProps(this, "isModalOpen") }
                         action={() => this.props.dispatch(
                             deleteAnnouncement(this.props.announcement._id)
                         )}

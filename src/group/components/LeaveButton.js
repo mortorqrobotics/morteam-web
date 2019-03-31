@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { leaveGroup } from "~/group/actions";
 
 @Radium
-class LeaveGroupButton extends React.Component {
+class LeaveButton extends React.Component {
 
     state = {
         isModalOpen: false,
@@ -28,11 +28,11 @@ class LeaveGroupButton extends React.Component {
                 <ConfirmModal
                     text="Are you sure you would like to leave the group?"
                     action={() => this.props.dispatch(leaveGroup())}
-                    {...modalProps(this, "isModalOpen")}
+                    { ...modalProps(this, "isModalOpen") }
                 />
             </div>
         )
     }
 }
 
-export default connect()(LeaveGroupButton);
+export default connect()(LeaveButton);

@@ -45,7 +45,7 @@ class Heading extends React.Component {
                         this.props.dispatch(deleteUser(currentUser._id));
                         window.location.assign("/void");
                     }}
-                    {...modalProps(this, "isModalOpen")}
+                    { ...modalProps(this, "isModalOpen") }
                 />
             </div>
         )

@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import styles from "~/group/styles";
-import LeaveGroupButton from "~/group/components/LeaveGroupButton";
+import LeaveButton from "~/group/components/LeaveButton";
 import InviteMemberButton from "~/group/components/InviteMemberButton";
 import JoinButton from "~/group/components/JoinButton";
 import ConfirmModal from "~/shared/components/ConfirmModal";
@@ -26,7 +26,7 @@ class Heading extends React.Component {
             return (
                 <div>
                     {this.props.users.some(user => user._id === currentUser._id) ?
-                        <LeaveGroupButton /> : <JoinButton />
+                        <LeaveButton /> : <JoinButton />
                     }
                     {currentUser.isAdmin() && (
                         <div>
