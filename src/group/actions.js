@@ -45,6 +45,11 @@ const loadUsers = () => async (dispatch) => {
     });
 }
 
+export const deleteGroup = async () => {
+    await request("DELETE", `/groups/normal/id/${groupId}`);
+    window.location.assign("/");
+}
+
 const fetchGroup = () => async (dispatch) => {
     const { data } = await request("GET", `/groups/id/${groupId}`);
     dispatch({
