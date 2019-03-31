@@ -20,4 +20,11 @@ export default {
             marginTop: "0px",
         },
     },
+    h2: {
+        fontWeight: "200",
+    },
+    hr: {
+        borderColor: "#e0e0e0",
+        borderWidth: "2px",
+    },
 }
