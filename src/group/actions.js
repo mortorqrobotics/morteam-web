@@ -62,4 +62,3 @@ export function initialActions(dispatch) {
     dispatch(fetchGroup());
     dispatch(loadUsers());
 }
-

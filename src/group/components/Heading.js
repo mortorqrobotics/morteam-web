@@ -23,33 +23,29 @@ class Heading extends React.Component {
 
     renderConditionalButtons = () => {
         if (this.props.group.__t == "NormalGroup") {
-            if (this.props.users.some(user => user._id === currentUser._id)) {
-                return (
-                    <div>
-                        {currentUser.isAdmin() && (
-                            <div>
-                                <InviteMemberButton/>
-                                <LeaveGroupButton />
-                                <Button
-                                    value="Delete"
-                                    style={{ marginBottom: "50px" }}
-                                    onClick={() => this.setState({ isModalOpen: true })}
-                                />
-                                        <ConfirmModal
-                                            grayConfirm
-                                            text={`Are you sure you would like to delete ${getGroupName(this.props.group)}?`}
-                                            action={() => deleteGroup()}
-                                            { ...modalProps(this, "isModalOpen") }
-                                        />
-                                            </div>
-                        )}
-                            </div>
-                )
-            } else {
-                return (
-                    <JoinButton />
-                )
-            }
+            return (
+                <div>
+                    {this.props.users.some(user => user._id === currentUser._id) ?
+                        <LeaveGroupButton /> : <JoinButton />
+                    }
+                    {currentUser.isAdmin() && (
+                        <div>
+                            <InviteMemberButton/>
+                            <Button
+                                value="Delete"
+                                style={{ marginBottom: "50px" }}
+                                onClick={() => this.setState({ isModalOpen: true })}
+                            />
+                            <ConfirmModal
+                                grayConfirm
+                                text={`Are you sure you would like to delete ${getGroupName(this.props.group)}?`}
+                                action={() => deleteGroup()}
+                                { ...modalProps(this, "isModalOpen") }
+                            />
+                        </div>
+                    )}
+                </div>
+            )
         }
     }
 
