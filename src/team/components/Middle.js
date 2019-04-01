@@ -5,6 +5,7 @@ import UserList from "~/shared/components/UserList";
 import styles from "~/team/styles";
 import { positions, getPlural } from "~/util/positions";
 import { capitalize } from "~/util";
+
 import { deleteUser } from "~/team/actions";
 import { connect } from "react-redux";
 
