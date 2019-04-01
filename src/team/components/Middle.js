@@ -3,6 +3,9 @@ import Radium from "radium";
 
 import UserList from "~/shared/components/UserList";
 import styles from "~/team/styles";
+import { positions, getPlural } from "~/util/positions";
+import { capitalize } from "~/util";
+
 import { deleteUser } from "~/team/actions";
 import { connect } from "react-redux";
 
@@ -16,34 +19,29 @@ class Middle extends React.Component {
     render() {
         return (
             <div>
-                <UserList
-                    users={this.props.currentMembers}
-                    deleteModal={{
-                        handleDeleteUser: (userId) => this.props.dispatch(deleteUser(userId)),
-                        text,
-                        grayConfirm: true,
-                    }}
-                />
-                <h2 style={styles.h2}>Alumni</h2>
-                <hr style={styles.hr} />
-                <UserList
-                    users={this.props.alumni}
-                    deleteModal={{
-                        handleDeleteUser: (userId) => this.props.dispatch(deleteUser(userId)),
-                        text,
-                        grayConfirm: false,
-                    }}
-                />
+                {positions.map(position => (
+                    <div key={position}>
+                        <h2 style={styles.h2}>{capitalize(getPlural(position))}</h2>
+                        <hr style={styles.hr} />
+                        <UserList
+                            users={this.props[getPlural(position)]}
+                            deleteModal={{
+                                handleDeleteUser: (userId) => this.props.dispatch(deleteUser(userId)),
+                                text,
+                                grayConfirm: true,
+                            }}
+                        />
+                    </div>
+                ))}
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        currentMembers: state.users.filter(u => u.position !== "alumnus"),
-        alumni: state.users.filter(u => u.position === "alumnus"),
-    }
+    return Object.assign(...positions.map(position => ({
+        [getPlural(position)]: state.users.filter(user => user.position === position)
+    })));
 }
 
 export default connect(mapStateToProps)(Middle);
