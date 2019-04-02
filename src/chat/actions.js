@@ -199,7 +199,7 @@ export const setInputSize = (heightDiff) => ({
 
 export const loadChats = (query) => async (dispatch, getState) => {
     const { currentTab } = getState();
-    const { data } = await request("GET", "/chats?" + Date.now);
+    const { data } = await request("GET", "/chats?" + Date.now());
     let sentData = filterMultiTeam(data, currentTab);
     const chatId = sentData.some(chat => chat._id === query) ? query
         : (sentData.length > 0 ? sentData[0]._id : null);
@@ -229,7 +229,7 @@ export const setTab = (tab, query) => (dispatch, getState) => {
 }
 
 export async function initialActions(dispatch) {
-    const { data } = await request("GET", "/chats?" + Date.now);
+    const { data } = await request("GET", "/chats?" + Date.now());
     let match = window.location.search.match(/[\?&]id=([^&]+)/);
     if (match) {
         const query = match[1];
