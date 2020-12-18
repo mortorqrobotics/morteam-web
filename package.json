@@ -28,7 +28,7 @@
     "autosize": "^3.0.20",
     "axios": "^0.18.1",
     "babel-runtime": "^6.9.2",
-    "dompurify": "^0.8.3",
+    "dompurify": "^2.0.17",
     "radium": "^0.18.1",
     "react": "^15.1.0",
     "react-bootstrap": "^0.30.0",
